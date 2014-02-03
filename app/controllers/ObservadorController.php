@@ -2,6 +2,16 @@
 
 class ObservadorController extends BaseController
 {
+	public $errors;
+	public $_observador;
+
+
+	public function __construct()
+	{
+		$this->_observador = new Observador();
+	}
+
+
 	public function index()
 	{
       	return View::make("observador.index");
@@ -9,7 +19,31 @@ class ObservadorController extends BaseController
 
 	public function nuevo()
 	{
-      	return View::make("observador.nuevo");
+		$grupos = Grupo::all()->lists('nombre','id');
+       	/*
+		return Input::All();
+		*/
+        // Obtenemos la data enviada por el usuario
+        if(Input::get())
+        {
+        	$data = Input::all();
+	        // Revisamos si la data es válido
+	        if ($this->isValid($data))
+	        {
+	            // Si la data es valida se la asignamos al usuario
+	            $observador->fill($data);
+	            // Guardamos el usuario
+	            $observador->save();
+	            // Y Devolvemos una redirección a la acción show para mostrar el usuario
+	            return Redirect::to('observador/informe');
+	        }
+    	}
+        else
+        {
+            // En caso de error regresa a la acción create con los datos y los errores encontrados
+			return View::make('observador.nuevo')->with(array('observador'=>$this->_observador,'grupos'=>$grupos));
+        }
+
 	}
 
 	public function informe()
@@ -19,30 +53,7 @@ class ObservadorController extends BaseController
 
 	public function save()
 	{
-		/*
-		return Input::All();
-		*/
-        
-		// Creamos un nuevo objeto para nuestro nuevo usuario
-        $observador = new Observador;
-        // Obtenemos la data enviada por el usuario
-        $data = Input::all();
-        
-        // Revisamos si la data es válido
-        if ($observador->isValid($data))
-        {
-            // Si la data es valida se la asignamos al usuario
-            $observador->fill($data);
-            // Guardamos el usuario
-            $observador->save();
-            // Y Devolvemos una redirección a la acción show para mostrar el usuario
-            return Redirect::route('observador.lista', array($observador->id));
-        }
-        else
-        {
-            // En caso de error regresa a la acción create con los datos y los errores encontrados
-			return Redirect::route('observador.nueva')->withInput()->withErrors($observador->errors);
-        }
+		
 	}
 
 	public function show($id)

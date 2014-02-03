@@ -105,6 +105,7 @@ Route::group(array('prefix' => 'observador'), function(){
 			Route::get('/', 'ObservadorController@index');
 			Route::get('nuevo', 'ObservadorController@nuevo');
 			Route::get('informe', 'ObservadorController@informe');
+			Route::get('save', 'ObservadorController@save');
 		});
 	});
 });

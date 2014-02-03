@@ -11,52 +11,56 @@
 @stop
 
 @section ('content')
-
-<div class="row" id="row1">
-
-    {{ Form::model(array('route' => 'observador.save', 'method' => 'POST', 'files'=>'true'), array('role' => 'form')) }}
-
-    <!-- -/Fecha/-  !-->
-
-    <div class="form-group col-md-4">
-      {{ Form::label('fecha', 'Fecha Observacion') }}
-      {{ Form::text('fecha', null, array('placeholder' => 'Fecha de Observacion', 'class' => 'form-control')) }}
+  @if ($errors->any())
+    <div class="alert alert-danger">
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+      <strong>Por favor corrige los siguentes errores:</strong>
+      <ul>
+      @foreach ($errors->all() as $error)
+        <li>{{ $error }}</li>
+      @endforeach
+      </ul>
     </div>
+  @endif
+     
+  {{ Form::model($observador, array('url' => 'observador/nuevo', 'method' => 'POST','class'=>'form-horizontal'), array('role'=>'form'))}}
+      <!-- Fecha  !-->
+      <div class="form-group">
+      {{ Form::label('Fecha', 'Fecha', array('class' => 'col-sm-2 control-label')) }}
+        <div class="col-sm-2">
+      {{ Form::Text('Fecha', null, array('placeholder' => 'Fecha Observacion', 'class' => 'col-sm-2 form-control')) }}
+        </div>
+      </div>
 
-    <!-- -/Id Docente/-  !-->
+      <!-- Docente  !-->
+      <div class="form-group">
+      {{ Form::label('docente', 'Docente',array('class' => 'col-sm-2 control-label')) }}
+        <div class="col-sm-2">
+      {{ Form::Text('docente', null, array('placeholder' => 'Id del Docente', 'class' => 'col-sm-2 form-control')) }}
+        </div>
+      </div>
 
-    <div class="form-group col-md-4">
-      {{ Form::label('id_profesor', 'Id Docente') }}
-      {{ Form::text('id_profesor', null, array('placeholder' => 'Id Docente', 'class' => 'form-control')) }}
-    </div>
+      <!-- Select grupo  !-->
+        <div class="form-group">
+          {{ Form::label('grupo', 'Grado', array('class' => 'col-sm-2 control-label'))}}
+          <div class="col-sm-2">
+            {{{ $errors->has('grupo') ? '**' : '' }}}
+            {{ Form::select('grupo', $grupos, '')}}
+          </div>
+        </div>
 
-    <!-- -/Seleccionar Alumnos/-  !-->
-    
-    <button type="button" class="btn btn-primary">Seleccionar Alumnos</button>
+        <div class="form-group">
+          <div class="col-sm-2">
+            {{form::button('Seleccionar Alumno',array('class'=>'col-sm-3 btn btn-info'))}}
+          </div>
+        </div>
 
-    <div class="form-group col-md-4">
-      {{ Form::label('Descrip', 'Descripcion') }}
-      {{ Form::textarea('Descrip', null, array('placeholder' => 'Descripcion', 'class' => 'form-control')) }}        
-    </div>
-
-    <!-- -/Archivo/-  !-->
-
-    <div class="form-group ">
-      {{ Form::label('Prueba', 'Pruebas') }}
-      {{ Form::File('Prueba', null, array('class' => 'form-control')) }}        
-    </div>
-    <br>
-
-    <!-- -/Guardar/-  !-->
-
-  {{ Form::button('Crear Observación', array('type' => 'submit', 'class' => 'btn btn-primary')) }}
-  </div>
-
-  <!-- -/Lista de Alumnos/-  !-->
-
-  <div class="row" id="list_grado">
-  </div>
-  
+            
+         <div class="form-group">
+          <div class="col-sm-2">
+          {{form::submit('Crear Observacion',array('class'=>'btn btn-success'))}}
+          {{form::button('Regresar',array('class'=>'btn btn-info'))}}
+          </div>
+        </div>
 {{ Form::close() }}
-
 @stop
