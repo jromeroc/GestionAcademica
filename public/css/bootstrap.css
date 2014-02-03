@@ -49,6 +49,14 @@ a:active,
 a:hover {
   outline: 0;
 }
+/*----------------------------------------------*/
+/* Codigo insertado*/
+
+#der{
+  margin-left: 10%;
+}
+/*----------------------------------------------*/
+
 abbr[title] {
   border-bottom: 1px dotted;
 }
