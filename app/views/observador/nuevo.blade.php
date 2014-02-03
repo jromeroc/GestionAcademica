@@ -5,26 +5,6 @@
 .:: Observador ::.
 @stop
 
-<style>
-  #row1{
-    margin:5px;
-    padding:5px;
-    float:left;
-    border: dashed gray;
-    background-color: #57ADEE;
-  }
-  #list_grado{
-    margin:5px;
-    padding:5px;
-    float:right;
-    border:solid #111;
-    background-color: #12B127;
-  }
-  .c{
-    text-align: center;
-    color: darkblue;
-  }
-</style>
 
 @section('modulo')
   <h1>Observaciones <small>Nueva Observación</small></h1>
@@ -32,9 +12,7 @@
 
 @section ('content')
 
-<h1 class="c"><i>Crear Observación<i></h1>
-
-  <div class="row" id="row1">
+<div class="row" id="row1">
 
     {{ Form::model(array('route' => 'observador.save', 'method' => 'POST', 'files'=>'true'), array('role' => 'form')) }}
 
@@ -63,7 +41,7 @@
 
     <!-- -/Archivo/-  !-->
 
-    <div class="form-group col-md-4">
+    <div class="form-group ">
       {{ Form::label('Prueba', 'Pruebas') }}
       {{ Form::File('Prueba', null, array('class' => 'form-control')) }}        
     </div>

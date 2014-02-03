@@ -13,97 +13,103 @@
         {{ HTML::style('css/bootstrap-responsive.css') }}
         {{ HTML::style('css/jquery-ui-1.10.3.custom.css') }}
         {{ HTML::style('css/estilos.css') }}
+        {{ HTML::style('css/estructura.css') }}
+        <!-- Just for debugging purposes. Don't actually copy this line! -->
+        <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+          <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+          <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
     </head>
 
     <body>
         <!-- Navbar -->
         <div class="navbar navbar-inverse navbar-fixed-top" id="bartop">
-            <div class="navbar-inner">
-                <div class="container">
-                    <a class="btn btn-navbar" data-toggle="collapse" data-target="#principal-menu">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#principal-menu">
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
-                    </a>
-                    <a class="brand" href="#">Colegio Colombo Hebreo</a>
-                    <div class="nav pull-right">
-                        <ul class="nav">
-                            @if ( Auth::guest() )
+                    </button>
+                    <a class="navbar-brand" href="#">Colegio Colombo Hebreo</a>
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav navbar-right">
+                        @if ( Auth::guest() )
                             <li>{{ HTML::link('login', 'Iniciar sesión') }}</li>
-                            @else
+                        @else
                             <li>{{ HTML::link('', 'Perfil') }}</li>
                             <li>{{ HTML::link('logout', 'Cerrar sesión') }}</li>
-                            @endif
-                        </ul>
-                    </div>
+                        @endif
+                    </ul>
                 </div>
             </div>
         </div>
 
         <!-- Container -->
-        <div id="main" class="row">
-            @if ( !Auth::guest() )
-            <section class="span3">
-                <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
-                <div class="nav-collapse collapse" id="principal-menu">
-                    <ul class="nav nav-tabs nav-stacked">
-                        <?php
-                        $control = Request::segment(1);
-                        if ($control)
-                        {
-                            $menu = new Menu;
-                            $idmenu = $menu->idMenu($control);
-                            $submenu = new Submenu();
-                            $drawsubmenu = $submenu->filterlist($idmenu);
-                        }
+        <div class="container-fluid"></div>
+            <div id="main" class="row">
+                @if ( !Auth::guest() )
+                <section class="col-sm-3 col-md-2 sidebar">
+                    <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+                    <div class="nav-collapse collapse" id="principal-menu">
+                        <ul class="nav nav-tabs nav-stacked">
+                            <?php
+                            $control = Request::segment(1);
+                            if ($control)
+                            {
+                                $menu = new Menu;
+                                $idmenu = $menu->idMenu($control);
+                                $submenu = new Submenu();
+                                $drawsubmenu = $submenu->filterlist($idmenu);
+                            }
 
-                        $permisos_role = new PermisosRole();
-                        $permisos = $permisos_role->permisoRole();
-                        ?>
-                        @foreach($permisos as $item)
-                        <li><a href="{{{ URL::to($item['url'])}}}">{{$item['item_name']}}</a></li>
-                        @endforeach
-                    </ul>
-                </div>
+                            $permisos_role = new PermisosRole();
+                            $permisos = $permisos_role->permisoRole();
+                            ?>
+                            @foreach($permisos as $item)
+                            <li><a href="{{{ URL::to($item['url'])}}}">{{$item['item_name']}}</a></li>
+                            @endforeach
+                        </ul>
+                    </div>
 
-                <!-- Success-Messages -->
-                @if ($message = Session::get('ok'))
-                <div class="alert alert-success alert-block">
-                    <button type="button" class="close" data-dismiss="alert">&times;</button>
-                    <h4>Sesión iniciada</h4>
-                    {{{ $message }}}
-                </div>
-                @endif
-            </section>
-            <section class="span9">
-                @else
-                <section class="container">
+                    <!-- Success-Messages -->
+                    @if ($message = Session::get('ok'))
+                    <div class="alert alert-success alert-block">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        <h4>Sesión iniciada</h4>
+                        {{{ $message }}}
+                    </div>
                     @endif
+                </section>
+                <section class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+                    @else
+                    <section class="container">
+                        @endif
 
-                    <!-- Contenido -->
-                    <article>
-                        <div class="page-header">
-                            @yield('modulo')
-                        </div>
-                        @if(isset($drawsubmenu))
-                        <div>
-                            <div class="navbar">
-                                <div class="navbar-inner">
-                                    <ul class="nav">
+                        <!-- Contenido -->
+                        <article>
+                            <div class="page-header">
+                                @yield('modulo')
+                            </div>
+                            @if(isset($drawsubmenu))
+                            <div>
+                                <div class="navbar navbar-default" role="navigation">
+                                    <ul class="nav nav-pills">
                                         @foreach ($drawsubmenu as $subitem)
                                         <li><a href="{{{ URL::to(Request::segment(1))}}}/{{ $subitem['url'] }}">{{ $subitem['name_item'] }}</a></li>   
                                         @endforeach
                                     </ul>
                                 </div>
                             </div>
-                            <ul>
-
-                            </ul>
-                        </div>
-                        @endif
-                        @yield('content')
-                    </article>
-                </section>
+                            @endif
+                            @yield('content')
+                        </article>
+                    </section>
+            </div>
         </div>
 
         <script type="text/javascript">
