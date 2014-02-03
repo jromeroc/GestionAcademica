@@ -7,6 +7,7 @@ class MenuTableSeeder extends Seeder {
      *
      * @return void
      */
+    
     public function run() {
 
         DB::table('menus')->delete();

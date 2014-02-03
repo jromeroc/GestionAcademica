@@ -24,38 +24,39 @@
 </div>
 @endif
 
-{{ Form::model($carga, array('url' => 'carga_academica/nuevo', 'method' => 'POST','class'=>'form-horizontal'), array('role'=>'form'))}}
-	<div class="control-group">
-		{{ Form::label('grupo', 'Grado', array('class' => 'control-label'))}}
-		<div class="controls">
+{{ Form::model($cargae, array('url' => 'carga_academica/nuevo', 'method' => 'POST','class'=>'form-horizontal'), array('role'=>'form'))}}
+	<div class="form-group">
+		{{ Form::label('grupo', 'Grado', array('class' => 'col-sm-2 control-label'))}}
+		<div class="col-sm-10">
 		 	{{{ $errors->has('grupo') ? '**' : '' }}}
 			{{ Form::select('grupo', $grupos, '')}}
 		</div>
 	</div>
 
-	<div class="control-group">
-		{{ Form::label('materia', 'Materia', array('class' => 'control-label'))}}
+	<div class="form-group">
+		{{ Form::label('materia', 'Materia', array('class' => 'col-sm-2 control-label'))}}
 
-		<div class="controls">
+		<div class="col-sm-10">
 			{{ Form::hidden('materia', Input::old('materia'), array('id' => 'materia')) }}
 			{{{ $errors->has('materia') ? '**' : '' }}}
 			{{ Form::input('text', 'materia_srch', Input::old('materia_srch'), array('placeholder'=>'Materia', 'id'=>'materia_srch'))}}
 		</div>
 	</div>
 
-	<div class="control-group ">
-		{{ Form::label('ih', 'Intensidad horaria', array('class' => 'control-label'))}}
-		<div class="controls">
+	<div class="form-group ">
+		{{ Form::label('ih', 'Intensidad horaria', array('class' => 'col-sm-2 control-label'))}}
+		<div class="col-sm-10">
 			{{{ $errors->has('ih') ? '**' : '' }}}
 			{{ Form::input('number', 'ih', Input::old('ih'), array('placeholder'=>'I.H', 'min' => 1, 'max' => 10))}}
 		</div>
 	</div>
 
-	<div class="control-group">
-		<div class="controls">
+	<div class="form-group">
+		<div class="col-sm-12">
 			{{ Form::submit('Guardar', array('class' => 'btn btn-success'));}}
 		</div>
 	</div>
+	
 {{ Form::close();}}
 @stop
 

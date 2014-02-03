@@ -55,7 +55,7 @@
                 @if ( !Auth::guest() )
                 <section class="col-sm-3 col-md-2 sidebar">
                     <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
-                    <div class="nav-collapse collapse" id="principal-menu">
+                    <div class="nav-collapse" id="principal-menu">
                         <ul class="nav nav-tabs nav-stacked">
                             <?php
                             $control = Request::segment(1);
