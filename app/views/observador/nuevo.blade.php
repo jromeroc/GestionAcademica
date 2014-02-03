@@ -22,8 +22,8 @@
       </ul>
     </div>
   @endif
-     
-  {{ Form::model($observador, array('url' => 'observador/nuevo', 'method' => 'POST','class'=>'form-horizontal'), array('role'=>'form'))}}
+
+  {{ Form::model($observador, array('url' => 'observador/nuevo', 'method' => 'POST','class'=>'form-horizontal col-sm -6'), array('role'=>'form'))}}
       <!-- Fecha  !-->
       <div class="form-group">
       {{ Form::label('Fecha', 'Fecha', array('class' => 'col-sm-2 control-label')) }}
@@ -48,19 +48,23 @@
             {{ Form::select('grupo', $grupos, '')}}
           </div>
         </div>
-
+        <!-- Select alumno  !-->
         <div class="form-group">
-          <div class="col-sm-2">
-            {{form::button('Seleccionar Alumno',array('class'=>'col-sm-3 btn btn-info'))}}
+            
+          <div class="col-sm-offset-2 col-sm-4">
+            {{form::button('Seleccionar Alumnos',array('id'=>'btn-alumn-srch','class'=>'col-sm-6 btn btn-info'))}}
           </div>
         </div>
-
-            
-         <div class="form-group">
-          <div class="col-sm-2">
-          {{form::submit('Crear Observacion',array('class'=>'btn btn-success'))}}
-          {{form::button('Regresar',array('class'=>'btn btn-info'))}}
+        <!-- Guardar-Volver  !-->    
+        <div class="form-group">
+          
+          <div class="col-sm-offset-2 col-sm-3">
+            {{form::submit('Guardar',array('class'=>'btn btn-success'))}}           
           </div>
         </div>
 {{ Form::close() }}
+@stop
+
+@section('scripts')
+  {{HTML::script('js/scripts/observador.js')}}
 @stop

@@ -105,7 +105,18 @@ Route::group(array('prefix' => 'observador'), function(){
 			Route::get('/', 'ObservadorController@index');
 			Route::get('nuevo', 'ObservadorController@nuevo');
 			Route::get('informe', 'ObservadorController@informe');
-			Route::get('save', 'ObservadorController@save');
+
+		});
+	});
+});
+
+Route::group(array('prefix' => 'alumnos'), function(){
+	Route::group(array('before' => 'auth'), function(){
+		Route::group(array('before' => 'permit'), function(){
+			Route::get('/', 'AlumnosController@index');
+			Route::get('nuevo', 'AlumnosController@nuevo');
+			Route::get('informe', 'AlumnosController@informe');
+			
 		});
 	});
 });
