@@ -24,7 +24,7 @@
 </div>
 @endif
 
-{{ Form::model($cargae, array('url' => 'carga_academica/nuevo', 'method' => 'POST','class'=>'form-horizontal'), array('role'=>'form'))}}
+{{ Form::model($carga, array('url' => 'carga_academica/nuevo', 'method' => 'POST','class'=>'form-horizontal'), array('role'=>'form'))}}
 	<div class="form-group">
 		{{ Form::label('grupo', 'Grado', array('class' => 'col-sm-2 control-label'))}}
 		<div class="col-sm-10">
@@ -52,7 +52,7 @@
 	</div>
 
 	<div class="form-group">
-		<div class="col-sm-12">
+		<div class="col-sm-offset-2 col-sm-6">
 			{{ Form::submit('Guardar', array('class' => 'btn btn-success'));}}
 		</div>
 	</div>
