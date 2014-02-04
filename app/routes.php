@@ -104,8 +104,9 @@ Route::group(array('prefix' => 'observador'), function(){
 		Route::group(array('before' => 'permit'), function(){
 			Route::get('/', 'ObservadorController@index');
 			Route::get('nuevo', 'ObservadorController@nuevo');
+			Route::post('nuevo', 'ObservadorController@nuevo');
 			Route::get('informe', 'ObservadorController@informe');
-
+			Route::post('informe', 'ObservadorController@informe');
 		});
 	});
 });

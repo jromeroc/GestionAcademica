@@ -31,11 +31,19 @@ class ObservadorController extends BaseController
 	        if ($this->isValid($data))
 	        {
 	            // Si la data es valida se la asignamos al usuario
+        		print_r($data);
 	            $observador->fill($data);
 	            // Guardamos el usuario
 	            $observador->save();
 	            // Y Devolvemos una redirección a la acción show para mostrar el usuario
-	            return Redirect::to('observador/informe');
+	            return Redirect::route('observador.informe');
+	        }
+	        else
+	        {
+	        	return Redirect::to('observador/nuevo')->withInput()->withErrors(
+					array('grupo' => 'Seleccione un grado.',
+					'docente' => 'El docente debe ser un valor numerico'
+					));
 	        }
     	}
         else
@@ -75,5 +83,30 @@ class ObservadorController extends BaseController
 	{
 		//Eliminar Observacion
 	}
+
+	public function isValid($data)
+    {
+        $rules = array(
+            'grupo' => 'required|numeric',
+            'docente'=>'required|numeric',
+            'fecha' => 'required',
+            'descripcion' => 'required',
+        );
+
+        $validator = Validator::make($data, $rules);
+
+        if ($validator->passes())
+        {
+            return true;
+        }
+
+        else
+        {
+
+        $this->errors = $validator->errors();
+        return false;
+        }
+
+        }
 
 }

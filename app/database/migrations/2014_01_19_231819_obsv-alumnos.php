@@ -17,7 +17,7 @@ class ObsvAlumnos extends Migration {
 			$table->date('fecha');
 			$table->integer('id_docente');
 			$table->string('descripcion');
-			$table->binary('archivo');
+			$table->string('grupo');
 			$table->timestamps();
 		});
 	}
