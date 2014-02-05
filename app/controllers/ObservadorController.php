@@ -20,43 +20,43 @@ class ObservadorController extends BaseController
 	public function nuevo()
 	{
 		$grupos = Grupo::all()->lists('nombre','id');
-       	/*
-		return Input::All();
-		*/
-        // Obtenemos la data enviada por el usuario
+        
         if(Input::get())
-        {
-        	$data = Input::all();
-	        // Revisamos si la data es válido
-	        if ($this->isValid($data))
-	        {
-	            // Si la data es valida se la asignamos al usuario
-        		print_r($data);
-	            $observador->fill($data);
-	            // Guardamos el usuario
-	            $observador->save();
-	            // Y Devolvemos una redirección a la acción show para mostrar el usuario
-	            return Redirect::route('observador.informe');
-	        }
-	        else
-	        {
-	        	return Redirect::to('observador/nuevo')->withInput()->withErrors(
-					array('grupo' => 'Seleccione un grado.',
-					'docente' => 'El docente debe ser un valor numerico'
-					));
-	        }
-    	}
-        else
-        {
-            // En caso de error regresa a la acción create con los datos y los errores encontrados
-			return View::make('observador.nuevo')->with(array('observador'=>$this->_observador,'grupos'=>$grupos));
-        }
+		{
+			$data = Input::all();
+			$reglas = array(
+				'grupo' 		=>  'required|numeric',
+				'fecha' 		=>  'required',
+				'descripcion' 	=>  'required',
+				'id_docente' 	=>  'required|numeric'
+			);
+			$mensajes = array(
+				'required' 	=> 'El campo :attribute es requerido.',
+				'numeric' 	=> 'Se esperaba un valor numerico en el campo :attribute.');
+
+			$validacion = Validator::make($data,$reglas,$mensajes);
+
+			if ($validacion->fails()) 
+			{
+				return Redirect::to('observador/nuevo')->withInput()->withErrors($validacion);
+			}
+			else
+			{	
+				$this->_observador->fill($data);
+				$this->_observador->save();
+				return Redirect::to('observador/informe');
+			}
+		}else
+		{
+			return View::make('observador.nuevo')->with(array('observador'=> $this->_observador,'grupos' => $grupos));
+		}
 
 	}
 
 	public function informe()
 	{
-		return View::make('observador.list');
+		$observador = Observador::paginate();
+        return View::make('observador/list')->with('observaciones', $observador);
 	}
 
 	public function save()
@@ -66,12 +66,17 @@ class ObservadorController extends BaseController
 
 	public function show($id)
 	{
-		return 'Aqui mostramos la info de la Observacion: ' . $id;
+		return View::make('observador.show')->with('observacion', $observador);
 	}
 
 	public function edit($id)
 	{
-		return 'Aqui editamos la Observacion: ' . $id;
+		$observador = Observador::find($id);
+		if (is_null ($observador))
+		{
+			App::abort(404);
+		}
+		return View::make('observador.edit')->with('observacion', $observador);
 	}
 
 	public function update($id)

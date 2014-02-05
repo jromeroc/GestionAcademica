@@ -117,8 +117,8 @@
         </script>
 
         <!-- Scripts -->
-        {{ HTML::script('js/jquery-1.9.1.js') }}
-        {{ HTML::script('js/jqueryui.js') }}
+        {{ HTML::script('js/jquery-1.11.0.js') }}
+        {{ HTML::script('js/jqueryui-1.1.4.js') }}
         {{ HTML::script('js/bootstrap.min.js') }}
         {{ HTML::script('js/general.js') }}
 

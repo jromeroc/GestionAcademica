@@ -18,8 +18,8 @@ class CreateDocentes extends Migration {
 			$table->string('pri_apellido');
 			$table->string('seg_apellido');
 			$table->integer('tipo_doc');
-			$table->string('num_doc')->unique();
-			$table->string('email')->unique();
+			$table->string('num_doc');
+			$table->string('email');
 			$table->string('telefono');
 			$table->string('celular');
 			$table->timestamps();

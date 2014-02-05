@@ -68,6 +68,8 @@
             {{form::submit('Guardar',array('class'=>'btn btn-success'))}}           
           </div>
         </div>
+        {{Form::h}}
+
 {{ Form::close() }}
 @stop
 

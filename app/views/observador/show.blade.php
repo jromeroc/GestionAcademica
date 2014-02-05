@@ -6,7 +6,7 @@
 @stop
 
 @section('modulo')
-	<h1>Observaciones Observacion #</h1>
+	<h1>Observaciones: <strong>Observacion #</strong></h1>
 @stop
 
 @section('content')
