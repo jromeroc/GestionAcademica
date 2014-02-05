@@ -39,7 +39,7 @@
 		<div class="col-sm-10">
 			{{ Form::hidden('materia', Input::old('materia'), array('id' => 'materia')) }}
 			{{{ $errors->has('materia') ? '**' : '' }}}
-			{{ Form::input('text', 'materia_srch', Input::old('materia_srch'), array('placeholder'=>'Materia', 'id'=>'materia_srch'))}}
+			{{ Form::input('text', 'materia', Input::old('materia_srch'), array('placeholder'=>'Materia', 'id'=>'materia_srch'))}}
 		</div>
 	</div>
 

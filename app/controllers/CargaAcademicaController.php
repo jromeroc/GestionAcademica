@@ -11,26 +11,33 @@ class CargaAcademicaController extends BaseController
 		$this->_carga = new CargaAcademica();
 	}
 
-	public function create()
+	public function nuevo()
 	{
 		$grupos = Grupo::all()->lists('nombre','id');
 
 		if(Input::get())
 		{
 			$data = Input::all();
-			
-			if ($this->isValid($data)) 
+			$reglas = array(
+				'grupo' =>  'required|numeric',
+				'materia' =>  'required|numeric',
+				'ih' =>  'required|numeric'
+			);
+			$mensajes = array(
+					'required' => 'El campo :attribute es requerido.',
+					'numeric' => 'Se esperaba un valor numerico en el campo :attribute.');
+
+			$validacion = Validator::make($data,$reglas,$mensajes);
+
+			if ($validacion->fails()) 
 			{
-				$this->_carga->fill($data);
-				$this->_carga->save();
-				return Redirect::to('carga_academica/informes');
+				return Redirect::to('carga_academica/nuevo')->withInput()->withErrors($validacion);
 			}
 			else
 			{	
-				return Redirect::to('carga_academica/nuevo')->withInput()->withErrors(
-					array('grupo' => 'Seleccione un grado.',
-					'materia' => 'Debe seleccionar una materia.',
-					'ih' => 'Debe indicar un valor númerico.'));
+				$this->_carga->fill($data);
+				$this->_carga->save();
+				return Redirect::to('carga_academica/informes');
 			}
 		}else
 		{
@@ -47,8 +54,6 @@ class CargaAcademicaController extends BaseController
 		{
 			return "error";
 		}
-
-		
 		
 		return View::make('carga.editar')->with(array('carga' => $carga, 'grupos' => $grupos));
 	}

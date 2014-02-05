@@ -62,14 +62,13 @@ Route::group(array('prefix' => 'carga_academica'), function(){
 	Route::group(array('before' => 'auth'), function(){
 		Route::group(array('before' => 'permit'), function(){
 			Route::get('/', 'CargaAcademicaController@report');
-			Route::get('nuevo', 'CargaAcademicaController@create');
+			Route::get('nuevo', 'CargaAcademicaController@nuevo');
 			Route::get('informes', 'CargaAcademicaController@report');
 			Route::get('editar/{carga}', 'CargaAcademicaController@edit')->where('numero','[0-9]');
 			Route::get('asignar/{carga}', 'CargaAcademicaController@assign')->where('numero','[0-9]');
 			Route::get('eliminar/{carga}', 'CargaAcademicaController@delete')->where('numero','[0-9]');
 			Route::group(array('before' => 'csrf'), function(){
-				Route::post('nuevo', 'CargaAcademicaController@create');
-				Route::post('nuevo', 'CargaAcademicaController@edit');
+				Route::post('nuevo', 'CargaAcademicaController@nuevo');
 			});
 		});
 	});
