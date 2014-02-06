@@ -11,7 +11,7 @@
         <!-- CSS -->
         {{ HTML::style('css/bootstrap.css') }}
         {{ HTML::style('css/bootstrap-responsive.css') }}
-        {{ HTML::style('css/jquery-ui-1.10.3.custom.css') }}
+        {{ HTML::style('css/jquery-ui-1.10.4.custom.css') }}
         {{ HTML::style('css/estilos.css') }}
         {{ HTML::style('css/estructura.css') }}
         <!-- Just for debugging purposes. Don't actually copy this line! -->
@@ -117,8 +117,8 @@
         </script>
 
         <!-- Scripts -->
-        {{ HTML::script('js/jquery-1.9.1.js') }}
-        {{ HTML::script('js/jqueryui.js') }}
+        {{ HTML::script('js/jquery-1.10.2.js') }}
+        {{ HTML::script('js/jquery-ui-1.10.4.custom.min.js') }}
         {{ HTML::script('js/bootstrap.min.js') }}
         {{ HTML::script('js/general.js') }}
 

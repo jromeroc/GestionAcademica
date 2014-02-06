@@ -9,5 +9,4 @@ $(document).on('ready',function(){
         	$("#materia").val(ui.item.id);
         }
 	});	
-	
 });
