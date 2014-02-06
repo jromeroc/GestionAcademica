@@ -117,18 +117,8 @@
         </script>
 
         <!-- Scripts -->
-<<<<<<< HEAD
-<<<<<<< HEAD
         {{ HTML::script('js/jquery-1.11.0.js') }}
-        {{ HTML::script('js/jqueryui-1.1.4.js') }}
-=======
-        {{ HTML::script('js/jquery-1.10.2.js') }}
         {{ HTML::script('js/jquery-ui-1.10.4.custom.min.js') }}
->>>>>>> b4a7ca0b8015491b638e3e91fa271adeff4ef2ab
-=======
-        {{ HTML::script('js/jquery-1.10.2.js') }}
-        {{ HTML::script('js/jquery-ui-1.10.4.custom.min.js') }}
->>>>>>> b4a7ca0b8015491b638e3e91fa271adeff4ef2ab
         {{ HTML::script('js/bootstrap.min.js') }}
         {{ HTML::script('js/general.js') }}
 
