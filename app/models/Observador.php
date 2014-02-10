@@ -9,4 +9,7 @@ class Observador extends Eloquent
 
     public $errors;
     
-    }
+    //Enviar los datos al formulario de Editar
+    
+
+}

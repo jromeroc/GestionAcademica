@@ -4,9 +4,12 @@ class DocentesController extends BaseController
 {
 	public function autocompletar()
 	{
-		$docentes = new Docente();
-		return $docentes->autocomplete(Input::get('item');)
+		$buscar = new Docentes();
+		if(Input::get('term'))
+		{
+			$found = $buscar->autocomplete(Input::get('term'));
+			return Response::json($found);
+		}
 	}
 }
-
 ?>

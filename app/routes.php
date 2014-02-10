@@ -97,19 +97,20 @@ Route::group(array('prefix' => 'materias'), function(){
 		Route::get('buscar', 'MateriasController@buscar');
 	});
 });
-
+/*
+	-- Rutas para Observador
+*/
 Route::group(array('prefix' => 'observador'), function(){
 	Route::group(array('before' => 'auth'), function(){
 		Route::group(array('before' => 'permit'), function(){
 			Route::get('/', 'ObservadorController@index');
 			Route::get('nuevo', 'ObservadorController@nuevo');
 			Route::get('informe', 'ObservadorController@informe');
-			Route::get('show', 'ObservadorController@show');
-			Route::get('edit', 'ObservadorController@edit');
+			Route::get('show/{numero}', 'ObservadorController@show')->where('numero','[0-9]');
+			Route::get('edit/{numero}', 'ObservadorController@edit')->where('numero','[0-9]');
 			
 			Route::post('nuevo', 'ObservadorController@nuevo');
 			Route::post('informe', 'ObservadorController@informe');
-			Route::post('show', 'ObservadorController@show');
 			Route::post('edit', 'ObservadorController@edit');
 		});
 	});
@@ -129,7 +130,7 @@ Route::group(array('prefix' => 'alumnos'), function(){
 Route::group(array('prefix' => 'docentes'), function(){
 	Route::group(array('before' => 'auth'), function(){
 		Route::group(array('before' => 'permit'), function(){
-			Route::get('/', 'DocentesController@autocompletar');			
+			Route::get('buscar', 'DocentesController@autocompletar');			
 		});
 	});
 });

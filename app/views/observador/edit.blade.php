@@ -5,9 +5,8 @@
 .:: Observador ::.
 @stop
 
-
 @section('modulo')
-  <h1>Observaciones <small>Nueva Observación</small></h1>
+  <h1>Observaciones <small>Editar Observación</small></h1>
 @stop
 
 @section ('content')
@@ -22,8 +21,7 @@
       </ul>
     </div>
   @endif
-
-  {{ Form::model($observador, array('url' => 'observador/nuevo', 'method' => 'POST','class'=>'form-horizontal col-sm -6'), array('role'=>'form'))}}
+  {{ Form::model($Observacion, array('url' => 'observador/edit/', 'method' => 'POST','class'=>'form-horizontal col-sm -6'), array('role'=>'form'))}}
       <!-- Fecha  !-->
       <div class="form-group">
       {{ Form::label('fecha', 'Fecha', array('class' => 'col-sm-2 control-label')) }}
@@ -52,7 +50,7 @@
           {{ Form::label('grupo', 'Grado', array('class' => 'col-sm-2 control-label'))}}
           <div class="col-sm-2">
             {{{ $errors->has('grupo') ? '**' : '' }}}
-            {{ Form::select('grupo', $grupos, null)}}
+            {{ Form::select('grupo', $grupos, '')}}
           </div>
         </div>
         <!-- Select alumno  !-->
