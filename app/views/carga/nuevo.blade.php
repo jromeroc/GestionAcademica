@@ -25,6 +25,7 @@
 @endif
 
 {{ Form::model($carga, array('url' => 'carga_academica/nuevo', 'method' => 'POST','class'=>'form-horizontal'), array('role'=>'form'))}}
+	
 	<div class="form-group">
 		{{ Form::label('grupo', 'Grado', array('class' => 'col-sm-2 control-label'))}}
 		<div class="col-sm-10">
@@ -37,7 +38,7 @@
 		{{ Form::label('materia', 'Materia', array('class' => 'col-sm-2 control-label'))}}
 
 		<div class="col-sm-10">
-			{{ Form::hidden('materia', Input::old('materia'), array('id' => 'materia')) }}
+			{{ Form::hidden('id_materia', Input::old('id_materia'), array('id' => 'id_materia')) }}
 			{{{ $errors->has('materia') ? '**' : '' }}}
 			{{ Form::input('text', 'materia', Input::old('materia_srch'), array('placeholder'=>'Materia', 'id'=>'materia_srch'))}}
 		</div>

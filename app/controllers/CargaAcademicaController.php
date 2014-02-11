@@ -11,6 +11,12 @@ class CargaAcademicaController extends BaseController
 		$this->_carga = new CargaAcademica();
 	}
 
+	public function informe()
+	{
+		return View::make('carga.informes')
+			->with(array('list' => $this->_carga->reportCarga()));
+	}
+
 	public function nuevo()
 	{
 		$grupos = Grupo::all()->lists('nombre','id');
@@ -20,10 +26,13 @@ class CargaAcademicaController extends BaseController
 			$data = Input::all();
 			$reglas = array(
 				'grupo' =>  'required|numeric',
-				'materia' =>  'required|numeric',
+				'id_materia' =>  'required|numeric',
 				'ih' =>  'required|numeric'
 			);
 			$mensajes = array(
+					'id_materia.required' => 'Debe selecionar una materia de la lista.',
+					'id_materia.numeric' => 'Debe selecionar una materia de la lista.',
+					'ih.required' => 'Debe ingresar la intensidad horaria.',
 					'required' => 'El campo :attribute es requerido.',
 					'numeric' => 'Se esperaba un valor numerico en el campo :attribute.');
 
@@ -68,12 +77,6 @@ class CargaAcademicaController extends BaseController
 	{
 		$infoCarga = $this->_carga->infoCarga($id);
 		return View::make('carga.assign')->with(array('infoCarga' => $infoCarga, 'cargaAssign' =>$this->_carga));
-	}
-
-	public function report()
-	{
-		return View::make('carga.informes')
-			->with(array('list' => $this->_carga->reportCarga()));
 	}
 
 	public function isValid($data)

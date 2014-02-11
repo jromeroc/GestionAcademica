@@ -6,7 +6,7 @@ $(document).on('ready',function(){
 		minLength: 2,
 		select: function(event, ui)
         {
-        	$("#materia").val(ui.item.id);
+        	$("#id_materia").val(ui.item.id);
         }
 	});
 

@@ -8,9 +8,9 @@ class Grupo extends Eloquent
      *
      * @var string
      */
-    protected $table = 'grupos';  
+    protected $table = 'grupos'; 
 
-    
+        
 }
 
 ?>
