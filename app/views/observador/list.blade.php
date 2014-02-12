@@ -28,7 +28,7 @@
         <td>	{{ $info_Observador->descripcion }}	</td>
         <td>	{{ $info_Observador->grupo }}		</td>
         <td>
-          {{ HTML::link('observador/show/'. $info_Observador->id, 'Ver', array('class'=>'btn btn-info'));}}
+          <button type="button" class="btn btn-info">Ver</button>
           
           {{ HTML::link('observador/edit/'. $info_Observador->id, 'Editar', array('class'=>'btn btn-primary'));}}
 

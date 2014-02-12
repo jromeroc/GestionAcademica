@@ -59,7 +59,7 @@
         <div class="form-group">
             
           <div class="col-sm-offset-2 col-sm-4">            
-            {{form::button('Seleccionar Alumnos',array('id'=>'btn-alumn-srch','class'=>'col-sm-6 btn btn-info'))}}
+            {{form::button('Seleccionar Alumnos',array('id'=>'slt_list_grupo','class'=>'col-sm-6 btn btn-info'))}}
           </div>
         </div>
         <!-- Guardar !-->    
@@ -73,23 +73,24 @@
 
 {{ Form::close() }}
 
-<div class="modal fade" id="modal-list">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title">Modal title</h4>
-      </div>
-      <div class="modal-body">
-        Si funciono :3
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
-    </div><!-- /.modal-content -->
-  </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
+  <div class="modal fade" id="modal-list">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title">Seleccionar Alumnos Grado</h4>
+        </div>
+        <div class="modal-body">
+          @include('observador/list_alumnos')
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+          <button type="button" class="btn btn-success">Aceptar</button>
+
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
 @stop
 
 @section('scripts')

@@ -67,6 +67,7 @@ Route::group(array('prefix' => 'carga_academica'), function(){
 			Route::get('editar/{carga}', 'CargaAcademicaController@edit')->where('numero','[0-9]');
 			Route::get('asignar/{carga}', 'CargaAcademicaController@assign')->where('numero','[0-9]');
 			Route::get('eliminar/{carga}', 'CargaAcademicaController@delete')->where('numero','[0-9]');
+			
 			Route::group(array('before' => 'csrf'), function(){
 				Route::post('nuevo', 'CargaAcademicaController@nuevo');
 			});
@@ -108,6 +109,7 @@ Route::group(array('prefix' => 'observador'), function(){
 			Route::get('informe', 'ObservadorController@informe');
 			Route::get('show/{numero}', 'ObservadorController@show')->where('numero','[0-9]');
 			Route::get('edit/{numero}', 'ObservadorController@edit')->where('numero','[0-9]');
+			Route::get('grupo/{numero}','ObservadorController@listGrupo')->where('numero','[0-9]');
 			/*----------------------------*/
 			Route::post('nuevo', 'ObservadorController@nuevo');
 			Route::post('informe', 'ObservadorController@informe');
@@ -119,10 +121,7 @@ Route::group(array('prefix' => 'observador'), function(){
 Route::group(array('prefix' => 'alumnos'), function(){
 	Route::group(array('before' => 'auth'), function(){
 		Route::group(array('before' => 'permit'), function(){
-			Route::get('/', 'AlumnosController@index');
-			Route::get('nuevo', 'AlumnosController@nuevo');
-			Route::get('informe', 'AlumnosController@informe');
-			Route::post('list_grupo','AlumnosController@listGrupo');
+			
 		});
 	});
 });

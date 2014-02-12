@@ -19,7 +19,9 @@ class ObservadorController extends BaseController
 
 	public function nuevo()
 	{
-
+		//
+		
+		//
 		$grupos = Grupo::all()->lists('nombre','id');
 		//--|  |--\\
         //$grupos = array_unshift($grupos,'Seleccione-Grupo');
@@ -161,5 +163,13 @@ class ObservadorController extends BaseController
 			return Response::json($found);
 		}
 	}
+
+	public function listGrupo($grupo)
+	{
+		$listGrupo = new Alumnos;
+		$listaGrupo = $listGrupo->list_alumnos;
+		return View::make('observador.list_alumnos')->with('lista',$listaGrupo);
+	}
+
 }
 ?>

@@ -15,4 +15,8 @@ class Observador extends Eloquent
 		->join('map_carga','carga_academica.id','=','map_carga.id_carga')
 		->join('grupos','carga_academica.grupo','=','grupos.id')->get()->toArray();
 	*/
+
+	//s
+
+
 }
