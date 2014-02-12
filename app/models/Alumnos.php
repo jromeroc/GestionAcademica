@@ -8,6 +8,10 @@ class Alumnos extends Eloquent
 	{
 
 	}
-
+	public function list_grupos()
+	{
+			
+	}
 }
+//128
 ?>

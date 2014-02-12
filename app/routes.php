@@ -123,7 +123,7 @@ Route::group(array('prefix' => 'alumnos'), function(){
 			Route::get('/', 'AlumnosController@index');
 			Route::get('nuevo', 'AlumnosController@nuevo');
 			Route::get('informe', 'AlumnosController@informe');
-			
+			Route::post('list_grupo','AlumnosController@listGrupo');
 		});
 	});
 });

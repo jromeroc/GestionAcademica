@@ -71,13 +71,12 @@ class ObservadorController extends BaseController
 
 	public function show($id)
 	{
-		$grupos = Grupo::all()->lists('nombre','id');
 		$observador = Observador::find($id);
 		if (is_null ($observador))
 			{
 				App::abort(404);
 			}
-		return View::make('observador.show')->with(array('Observacion'=> $this->_observador,'grupos' => $grupos));
+		return View::make('observador.show')->with('Observacion',$observador);
 	}
 
 	public function edit($id)
