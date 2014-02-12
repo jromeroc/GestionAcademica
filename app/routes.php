@@ -10,7 +10,6 @@
 | and give it the Closure to execute when that URI is requested.
 |
 */
-
 Route::get('/', function(){
 	return View::make('home');
 });
@@ -64,11 +63,13 @@ Route::group(array('prefix' => 'carga_academica'), function(){
 			Route::get('/', 'CargaAcademicaController@informe');
 			Route::get('nuevo', 'CargaAcademicaController@nuevo');
 			Route::get('informes', 'CargaAcademicaController@informe');
-			Route::get('editar/{carga}', 'CargaAcademicaController@edit')->where('numero','[0-9]');
-			Route::get('asignar/{carga}', 'CargaAcademicaController@assign')->where('numero','[0-9]');
-			Route::get('eliminar/{carga}', 'CargaAcademicaController@delete')->where('numero','[0-9]');
+			Route::get('editar/{carga}', 'CargaAcademicaController@edit')->where('carga','[0-9]');
+			Route::get('asignar/{carga}', 'CargaAcademicaController@asignar')->where('carga','[0-9]');
+			Route::get('eliminar/{carga}', 'CargaAcademicaController@delete')->where('carga','[0-9]');
+			
 			Route::group(array('before' => 'csrf'), function(){
 				Route::post('nuevo', 'CargaAcademicaController@nuevo');
+				Route::post('editar/{carga}', 'CargaAcademicaController@editar')->where('carga','[0-9]');
 			});
 		});
 	});

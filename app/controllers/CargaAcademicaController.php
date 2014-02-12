@@ -26,12 +26,12 @@ class CargaAcademicaController extends BaseController
 			$data = Input::all();
 			$reglas = array(
 				'grupo' =>  'required|numeric',
-				'id_materia' =>  'required|numeric',
+				'materia' =>  'required|numeric',
 				'ih' =>  'required|numeric'
 			);
 			$mensajes = array(
-					'id_materia.required' => 'Debe selecionar una materia de la lista.',
-					'id_materia.numeric' => 'Debe selecionar una materia de la lista.',
+					'materia.required' => 'Debe selecionar una materia de la lista.',
+					'materia.numeric' => 'Debe selecionar una materia de la lista.',
 					'ih.required' => 'Debe ingresar la intensidad horaria.',
 					'required' => 'El campo :attribute es requerido.',
 					'numeric' => 'Se esperaba un valor numerico en el campo :attribute.');
@@ -73,27 +73,9 @@ class CargaAcademicaController extends BaseController
 		return Redirect::to('carga_academica/informes');
 	}
 
-	public function assign($id)
+	public function asignar ($id)
 	{
 		$infoCarga = $this->_carga->infoCarga($id);
-		return View::make('carga.assign')->with(array('infoCarga' => $infoCarga, 'cargaAssign' =>$this->_carga));
+		return View::make('carga.asignar')->with(array('infoCarga' => $infoCarga, 'cargaAssign' =>$this->_carga));
 	}
-
-	public function isValid($data)
-	{
-		$rules = array(
-           	'grupo' => 'required|numeric',
-    	    'materia' => 'required',
-            'ih' => 'required|numeric');
-
-		$validator = Validator::make($data, $rules);
-
-		if($validator->passes())
-		{
-			return true;
-		}
-
-		return false;
-	}
-
 }

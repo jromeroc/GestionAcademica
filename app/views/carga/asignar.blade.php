@@ -10,7 +10,8 @@
 @stop
 
 @section('content')
-	<h3>Asignación carga académica</h3> <a href="#modalAssign" role="button" class="btn" data-toggle="modal">Asignar</a>
+	<h3>Asignación carga académica</h3> 
+	<a href="#modalAssign" role="button" class="btn" data-toggle="modal">Asignar</a>
 	<table class="table table-condensed alert alert-info">
 		<tbody>
 			<th>Materia</th>

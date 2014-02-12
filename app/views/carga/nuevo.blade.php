@@ -38,9 +38,9 @@
 		{{ Form::label('materia', 'Materia', array('class' => 'col-sm-2 control-label'))}}
 
 		<div class="col-sm-10">
-			{{ Form::hidden('id_materia', Input::old('id_materia'), array('id' => 'id_materia')) }}
+			{{ Form::hidden('materia', Input::old('materia'), array('id' => 'materia')) }}
 			{{{ $errors->has('materia') ? '**' : '' }}}
-			{{ Form::input('text', 'materia', Input::old('materia_srch'), array('placeholder'=>'Materia', 'id'=>'materia_srch'))}}
+			{{ Form::input('text', 'materia_srch', Input::old('materia_srch'), array('placeholder'=>'Materia', 'id'=>'materia_srch'))}}
 		</div>
 	</div>
 
