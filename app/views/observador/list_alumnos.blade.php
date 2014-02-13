@@ -8,19 +8,21 @@
 	</thead>
 	<tbody>
 		<tr>
-			@foreach ($lista as $list)
+			<h1>
+				
+			</h1>
 			<td>
 				{{Form::checkbox('name', 'value');}}
 			</td>
-				{{$list->names}}
+				
 			<td>
-				{{$list->value}}
+				
 			</td>
 
 			<td>
 				
 			</td>
-			@endforeach
+			
 		</tr>
 	</tbody>
 </table>

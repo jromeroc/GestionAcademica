@@ -127,6 +127,8 @@ class ObservadorController extends BaseController
 	public function destroy($id)
 	{
 		//Eliminar Observacion
+		$this->_observador->destroy($id);
+		return Redirect::to('observador/informe');
 	}
 
 	public function isValid($data)
@@ -166,9 +168,10 @@ class ObservadorController extends BaseController
 
 	public function listGrupo($grupo)
 	{
-		$listGrupo = new Alumnos;
-		$listaGrupo = $listGrupo->list_alumnos;
-		return View::make('observador.list_alumnos')->with('lista',$listaGrupo);
+		$alumnos = new Alumnos;
+		$lista = $alumnos->list_grupos($grupo);
+		var_dump($lista);
+		return View::make('observador.list_alumnos');
 	}
 
 }
