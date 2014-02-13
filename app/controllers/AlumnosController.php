@@ -10,9 +10,5 @@ class AlumnosController extends BaseController
 	{
 		$this->_alumnos = new Alumnos();
 	}
-
-	public function listGrupo()
-	{
 		
-	}
 }

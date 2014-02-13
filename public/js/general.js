@@ -20,17 +20,4 @@ $(document).on('ready',function(){
 		}
 	});
 
-	$('#slt_list_grupo').on('change',function(){
-		$.ajax({
-			url:root+'alumnos/list_grupo',
-			data:{grupo:this.val()},
-			type:'post',
-			success:function(data)
-			{
-				$('#modal-list').modal('show');
-			}
-
-		},'html');
-	});
-
 });
