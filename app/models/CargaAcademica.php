@@ -27,7 +27,7 @@ class CargaAcademica extends Eloquent
 
 	public function infoCarga($id)
 	{
-		$infoCarga = $this->select('materias.name as materia_srch','materias.id as materia','grupos.id as grupo','carga_academica.ih','carga_academica.id as carga')
+		$infoCarga = $this->select('materias.name as materia_srch','materias.id as materia','grupos.id as grupo','grupos.nombre as name_grado','carga_academica.ih','carga_academica.id as carga')
 			->join('grupos','carga_academica.grupo', '=', 'grupos.id')
 			->join('materias','carga_academica.materia', '=', 'materias.id')
 			->where('carga_academica.id','=', $id)->first();

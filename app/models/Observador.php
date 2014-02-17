@@ -19,4 +19,4 @@ class Observador extends Eloquent
 	//s
 
 
-}
+}                        
