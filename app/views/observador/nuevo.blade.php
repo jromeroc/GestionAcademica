@@ -81,7 +81,7 @@
           <h4 class="modal-title">Seleccionar Alumnos Grado</h4>
         </div>
         <div class="modal-body">
-          @include('observador/list_alumnos')
+          
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>

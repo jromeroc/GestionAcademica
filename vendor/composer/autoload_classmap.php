@@ -8,7 +8,7 @@ $baseDir = dirname($vendorDir);
 return array(
     'AdministracionController' => $baseDir . '/app/controllers/AdministracionController.php',
     'Alumnos' => $baseDir . '/app/models/Alumnos.php',
-    'AlumnosController' => $baseDir . '/app/models/alumnos.php',
+    'AlumnosController' => $baseDir . '/app/controllers/AlumnosController.php',
     'Areas' => $baseDir . '/app/database/migrations/2013_10_10_212533_areas.php',
     'AsigObservaciones' => $baseDir . '/app/database/migrations/2014_01_19_231936_asig-observaciones.php',
     'AuthController' => $baseDir . '/app/controllers/AuthController.php',
@@ -684,6 +684,7 @@ return array(
     'Patchwork\\TurkishUtf8' => $vendorDir . '/patchwork/utf8/class/Patchwork/TurkishUtf8.php',
     'Patchwork\\Utf8' => $vendorDir . '/patchwork/utf8/class/Patchwork/Utf8.php',
     'Patchwork\\Utf8\\Bootup' => $vendorDir . '/patchwork/utf8/class/Patchwork/Utf8/Bootup.php',
+    'Periodos' => $baseDir . '/app/models/Periodos.php',
     'PermisosRole' => $baseDir . '/app/models/PermisosRole.php',
     'PermisosTableSeeder' => $baseDir . '/app/database/seeds/PermisosTableSeeder.php',
     'PermisosUser' => $baseDir . '/app/models/PermisosUser.php',

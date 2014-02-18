@@ -1,3 +1,17 @@
+@extends('layouts.master')
+
+@section('title')
+@parent
+.:: Observador ::.
+@stop
+
+
+<pre>
+	<?php
+		print_r($lista);
+	?>	
+</pre>
+
 <table class="table table-bordered table-hover">
 	<thead>
 		<tr>
@@ -8,19 +22,15 @@
 	</thead>
 	<tbody>
 		<tr>
-			<h1>
-				
-			</h1>
 			<td>
 				{{Form::checkbox('name', 'value');}}
 			</td>
-				
+				{{--{{$lista->id}}--}}
 			<td>
-				
+				{{--{{$lista->value}}--}}
 			</td>
 
 			<td>
-				
 			</td>
 			
 		</tr>
