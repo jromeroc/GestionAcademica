@@ -45,7 +45,6 @@
 					<label>{{$periodo}} Periodo</label>
 					{{Form::checkbox('periodo', $indice)}}
 			 	@endforeach
-			 	<input type="button" id="select_sesson" value="Todos los periodos">
 			</div>
 		</div>
 		<div class="form-group">
