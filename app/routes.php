@@ -110,7 +110,7 @@ Route::group(array('prefix' => 'observador'), function(){
 			Route::get('informe', 'ObservadorController@informe');
 			Route::get('show/{numero}', 'ObservadorController@show')->where('numero','[0-9]+');
 			Route::get('edit/{numero}', 'ObservadorController@edit')->where('numero','[0-9]+');
-			Route::post('grupo/{numero}','ObservadorController@listGrupo')->where('numero','[0-9]+');
+			Route::get('grupo/{numero}','ObservadorController@listGrupo')->where('numero','[0-9]+');
 			Route::get('delete/{numero}','ObservadorController@destroy')->where('numero','[0-9]+');
 			/*----------------------------*/
 			Route::post('nuevo', 'ObservadorController@nuevo');

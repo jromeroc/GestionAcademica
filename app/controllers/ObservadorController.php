@@ -170,8 +170,8 @@ class ObservadorController extends BaseController
 	{
 		$alumnos = new Alumnos;
 		$lista = $alumnos->list_grupos($grupo);
-		
-		return View::make('observador.list-alumnos', array('lista'=>$lista));
+		var_dump($lista);
+		//return View::make('observador.listalumnos', array('lista'=>$lista));
 	}
 }
 ?>
