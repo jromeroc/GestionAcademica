@@ -8,11 +8,11 @@ class Alumnos extends Eloquent
 	{
 
 	}
-	public function list_grupos($grupo)
+	public function listAlumGrupo($grupo)
 	{
-		$listaalum = DB::table('alumnos')->select(DB::raw("CONCAT_WS(' ',names,fname,lname) as value, id as id_alum"))
-		->where('grupo', '=', $grupo)->get()->toArray();
-		return $listaalum;
+		$lista = $this->select(DB::raw("CONCAT_WS(' ',names,fname,lname) as value, id as id_alum"))
+		->where('grupo', '=', $grupo)->get();
+		return $lista;
 	}
 }
 

@@ -5,6 +5,7 @@ $(document).on('ready',function(){
 			type:'get',
 			success:function(data)
 			{
+				$('#list-body').html(data);
 				$('#modal-list').modal('show');
 			}
 

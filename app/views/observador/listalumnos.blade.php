@@ -7,15 +7,17 @@
 		</tr>
 	</thead>
 	<tbody>
+		@foreach($lista as $alumnos)
 		<tr>
 			<td>
-				{{Form::checkbox('name', 'value');}}
+				{{Form::checkbox('name', $alumnos->id_alum)}}
 			</td>
-				{{$lista->id}}
-
 			<td>
+
+				{{$alumnos->value}}
 			</td>
 			
 		</tr>
+		@endforeach
 	</tbody>
 </table>
