@@ -48,15 +48,20 @@
 			</div>
 		</div>
 		<div class="form-group">
-		{{ Form::label('materia', 'Materia', array('class' => 'col-sm-2 control-label'))}}
-
-		<div class="col-sm-10">
-			{{ Form::hidden('materia', Input::old('materia'), array('id' => 'materia')) }}
-			{{{ $errors->has('materia') ? '**' : '' }}}
-			{{ Form::input('text', 'materia_srch', Input::old('materia_srch'), array('placeholder'=>'Materia', 'id'=>'materia_srch'))}}
+			{{ Form::label('materia', 'Materia', array('class' => 'col-sm-2 control-label'))}}
+			<div class="col-sm-10">
+				{{ Form::hidden('materia', Input::old('materia'), array('id' => 'materia')) }}
+				{{{ $errors->has('materia') ? '**' : '' }}}
+				{{ Form::input('text', 'materia_srch', Input::old('materia_srch'), array('placeholder'=>'Materia', 'id'=>'materia_srch'))}}
+			</div>
 		</div>
-	</div>
-      	
+		
+		<div class="form-group">
+          
+          <div class="col-sm-offset-2 col-sm-3">
+            {{form::submit('Asignar',array('class'=>'btn btn-success'))}}           
+          </div>
+        </div>      	
 	{{ Form::close();}}
 @stop
 
