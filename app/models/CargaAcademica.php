@@ -31,7 +31,7 @@ class CargaAcademica extends Eloquent
 			->join('grupos','carga_academica.grupo', '=', 'grupos.id')
 			->join('materias','carga_academica.materia', '=', 'materias.id')
 			->where('carga_academica.id','=', $id)->first();
-			return $infoCarga;
+		return $infoCarga;
 	}
 }
 

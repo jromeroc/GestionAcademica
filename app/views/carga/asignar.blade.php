@@ -38,8 +38,6 @@
 	        </div>
       	</div>
       	<div class="form-group">
-			{{ Form::label('listperiodo', 'Periodos', array('class' => 'col-sm-2 control-label'))}}
-			<div class="col-sm-10">
 			 	{{{ $errors->has('listperiodo') ? '**' : '' }}}
 			 	@foreach ($listperiodo as $indice => $periodo)
 					<label>{{$periodo}} Periodo</label>
