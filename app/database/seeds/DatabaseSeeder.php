@@ -31,6 +31,9 @@ class DatabaseSeeder extends Seeder {
 
 		$this->call('RoleTableSeeder');
 		$this->command->info('+++ Perfiles Creados...!!!');
+
+		$this->call('PeriodosTableSeeder');
+		$this->command->info('+++ Periodos Creados...!!!');
 	}
 
 }

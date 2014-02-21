@@ -15,6 +15,7 @@ class CreateMapCarga extends Migration {
 			$table->increments('id');
 			$table->integer('id_carga');
 			$table->integer('id_docente');
+			$table->string('nombre_materia');
 			$table->integer('periodo');
 			$table->timestamps();
 			$table->unique(array('id_carga','id_docente','periodo'));
