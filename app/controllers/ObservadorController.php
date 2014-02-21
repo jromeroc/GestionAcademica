@@ -11,7 +11,6 @@ class ObservadorController extends BaseController
 		$this->_observador = new Observador();
 	}
 
-
 	public function index()
 	{
       	return View::make("observador.index");
@@ -19,16 +18,13 @@ class ObservadorController extends BaseController
 
 	public function nuevo()
 	{
-		//
-		
-		//
 		$grupos = Grupo::all()->lists('nombre','id');
-		//--|  |--\\
-        //$grupos = array_unshift($grupos,'Seleccione-Grupo');
+		
         if(Input::get())
 		{
 			$data = Input::all();
 			$reglas = array(
+				'alums'		=>	'required',
 				'grupo' 		=>  'required|numeric',
 				'fecha' 		=>  'required',
 				'descripcion' 	=>  'required',
@@ -38,25 +34,45 @@ class ObservadorController extends BaseController
 			$mensajes = array(
 					'required' => 'El campo :attribute es requerido.',
 					'id_docente.required' => 'Por favor seleccione un docente',
-					'numeric' => 'Se esperaba un valor numerico en el campo :attribute.'
+					'numeric' => 'Se esperaba un valor numerico en el campo :attribute.',
+					'alums.required'=> 'No ha seleccionado ningun alumnos, revise el listado'
 			);
+				
 			
 			$validacion = Validator::make($data,$reglas,$mensajes);
-
+			
 			if ($validacion->fails()) 
 			{
-				return Redirect::to('observador/nuevo')->withInput()->withErrors($validacion);
+				return Redirect::to('observador/nuevo')->withInput()->withErrors($validacion)->with(array('datos'=>$data));
 			}
 			else
-			{	
+			{
+				//Asignar y guardar
 				$this->_observador->fill($data);
 				$this->_observador->save();
+				//asignaciones
+					//Obtener ID del registro
+						$fecha_ob = $data['fecha'];
+						$doc_ob = $data['id_docente'];
+						$descrip_ob = $data['descripcion'];
+					//llamar la consulta al modelo
+					//Obtener id de alumnos
+					$id_registro = $this->_observador->get_Id($fecha_ob,$doc_ob,$descrip_ob);	
+						foreach ($data['alums'] as $alumno) {
+							$this->_observador->save_map($id_registro,$alumno);
+						};
+						
+					//Guardar los datos en la tabla de mapeo
+				
 				return Redirect::to('observador/informe');
 			}
-		}else
+		}
+
+		else
 		{
 			return View::make('observador.nuevo')->with(array('observador'=> $this->_observador,'grupos' => $grupos));
 		}
+
 
 	}
 
@@ -95,10 +111,10 @@ class ObservadorController extends BaseController
 	public function update($id)
 	{
 		//Actualizar Observacion
-		// Creamos un nuevo objeto para nuestro nuevo usuario
+		// Creamos un nuevo objeto para nuestro nueva observacion
         $observador = Observador::find($id);
         
-        // Si el usuario no existe entonces lanzamos un error 404 :(
+        // Si la observacion no existe entonces lanzamos un error 404 :(
         if (is_null ($observador))
         {
             App::abort(404);
@@ -107,20 +123,20 @@ class ObservadorController extends BaseController
         // Obtenemos la data enviada por el usuario
         $data = Input::all();
         
-        // Revisamos si la data es válido
-        if ($user->isValid($data))
+        // Revisamos si la data es válida
+        if ($data->isValid($data))
         {
-            // Si la data es valida se la asignamos al usuario
-            $user->fill($data);
-            // Guardamos el usuario
-            $user->save();
-            // Y Devolvemos una redirección a la acción show para mostrar el usuario
-            return Redirect::route('observador.show', array($user->id));
+            // Si la data es valida se la asignamos al observacion
+            $data->fill($data);
+            // Guardamos el observacion
+            $data->save();
+            // Y Devolvemos una redirección a la acción show para mostrar la observacion
+            return Redirect::route('observador.show', array($data->id));
         }
         else
         {
             // En caso de error regresa a la acción edit con los datos y los errores encontrados
-            return Redirect::route('observador.edit', $user->id)->withInput()->withErrors($user->errors);
+            return Redirect::route('observador.edit', $data->id)->withInput()->withErrors($data->errors);
         }
 	}
 

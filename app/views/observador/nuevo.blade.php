@@ -31,7 +31,6 @@
       {{ Form::Text('fecha', null, array('placeholder' => 'Fecha Observacion', 'class' => 'col-sm-2 form-control')) }}
         </div>
       </div>
-
       <!-- Docente  !-->
       <div class="form-group">
       {{ Form::label('docente_srch', 'Docente',array('class' => 'col-sm-2 control-label')) }}
@@ -40,7 +39,7 @@
           <input type="hidden" name="id_docente" id="id_docente" class="form-group" value="">
         </div>
       </div>
-
+      <!-- Descripcion  !-->
       <div class="form-group">
       {{ Form::label('descripcion', 'Descripcion',array('class' => 'col-sm-2 control-label')) }}
         <div class="col-sm-2">
@@ -55,51 +54,50 @@
             {{ Form::select('grupo', $grupos, null)}}
           </div>
         </div>
-        <!-- Select alumno  !-->
-        <div class="form-group">
-            
+        <!-- Seleccionar alumnos  !-->
+        <div class="form-group"> 
           <div class="col-sm-offset-2 col-sm-4">            
             {{form::button('Seleccionar Alumnos',array('id'=>'slt_list_grupo','class'=>'col-sm-6 btn btn-info'))}}
-
           </div>
         </div>
-
+        <!-- Mensaje Alumnos !-->  
         <div class="form-group">
           <div class="col-sm-offset-2 col-sm-4">
-          <h3 id="msnalum"></h3>
+            <div class="alert " id="msnalum" style="display:none"></div>
           </div>
         </div>
 
         <!-- Guardar !-->    
         <div class="form-group">
-          
-          <div class="col-sm-offset-2 col-sm-3">
+          <div class="col-sm-offset-2 col-sm-2">
             {{form::submit('Guardar',array('class'=>'btn btn-success'))}}           
           </div>
-
         </div>
+        <!-- Modal Alumnos !--> 
+        <div class="modal fade" id="modal-list">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header alert alert-info">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Seleccione los alumnos para aplicar esta observacion</h4>
+              </div>
+                <div class="modal-body" id="list-body">
+                
+                </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-success" id="select-alums">Aceptar</button>
+
+              </div>
+            </div><!-- /.modal-content -->
+          </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+        <div>
 
 {{ Form::close() }}
-  
-  
-  <div class="modal fade" id="modal-list">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header alert alert-info">
-          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-          <h4 class="modal-title">Seleccione los alumnos para aplicar esta observacion</h4>
-        </div>
-        <div class="modal-body" id="list-body">
-          
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
-          <button type="button" class="btn btn-success" id="ProcessD">Aceptar</button>
 
-        </div>
-      </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
-  </div><!-- /.modal -->
+
+
 @stop
 
 @section('scripts')

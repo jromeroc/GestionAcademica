@@ -1,7 +1,6 @@
-var dataAlums;
+dataAlums= new Array();
 
-$(document).on('ready',function(){
-	
+$(document).on('ready',function(){	
 	$('#slt_list_grupo').on('click',function(){
 		$.ajax({
 			url:root+'observador/grupo/'+$('#grupo').val(),
@@ -9,26 +8,36 @@ $(document).on('ready',function(){
 			success:function(data)
 			{
 				$('#list-body').html(data);
+					
+				if (dataAlums.length) 
+				{
+					console.log(dataAlums.length);
+
+					for(var i in dataAlums){
+
+						$("[value="+dataAlums[i]['value']+"]").prop("checked", "checked");
+						console.log(dataAlums[i]['value']);
+					}
+				}
+				
 				$('#modal-list').modal('show');
+				
 				selectAll();
-				$('#ProcessD').on('click',function(){
+				
+				$('#select-alums').on('click',function(){
 					//$('input[name="select_all[]"]').serialize();
 					dataAlums = $('input[name="alums[]"]').serializeArray();
 					//alert(dataAlums.length);
 					console.log(dataAlums);
-					$('#modal-list').modal('hide');
 					
-					$('#msnalum').html(dataAlums.length+' Alumnos seleccionados');
-					/*
-					for(var i in dataAlums)
-					{
-						for (var j in i)
-						{
-  							alert('El valor de arr['+i+'] = ' + i[j]);
-							
-						}
-  					}
-  					*/
+					$('#modal-list').modal('hide');
+					if (dataAlums.length){
+					$('#msnalum').html(dataAlums.length+' Alumnos seleccionados').addClass('alert-success').removeClass('alert-danger').fadeIn('slow');	
+					}
+					else{
+						$('#msnalum').html('No se ha Seleccionado ningun alumno').addClass('alert-danger').removeClass('alert-success').fadeIn('slow');	
+
+					}
 				});
 				
 			}
@@ -36,8 +45,8 @@ $(document).on('ready',function(){
 		},'html');
 
 	});
-	
-});
+	});
+
 
 
 function selectAll()
