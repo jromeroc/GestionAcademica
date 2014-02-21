@@ -10,6 +10,14 @@ html {
   -webkit-text-size-adjust: 100%;
       -ms-text-size-adjust: 100%;
 }
+
+/*-- Asignaciones --*/
+
+#msnalum{
+  color: #91DE43;
+  text-shadow: 2px 2px 2px #09BD3F;
+}
+
 body {
   margin: 0;
 }

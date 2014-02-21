@@ -60,32 +60,41 @@
             
           <div class="col-sm-offset-2 col-sm-4">            
             {{form::button('Seleccionar Alumnos',array('id'=>'slt_list_grupo','class'=>'col-sm-6 btn btn-info'))}}
+
           </div>
         </div>
+
+        <div class="form-group">
+          <div class="col-sm-offset-2 col-sm-4">
+          <h3 id="msnalum"></h3>
+          </div>
+        </div>
+
         <!-- Guardar !-->    
         <div class="form-group">
           
           <div class="col-sm-offset-2 col-sm-3">
             {{form::submit('Guardar',array('class'=>'btn btn-success'))}}           
           </div>
+
         </div>
 
-
 {{ Form::close() }}
-
+  
+  
   <div class="modal fade" id="modal-list">
     <div class="modal-dialog">
       <div class="modal-content">
-        <div class="modal-header">
+        <div class="modal-header alert alert-info">
           <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-          <h4 class="modal-title">Seleccionar Alumnos Grado</h4>
+          <h4 class="modal-title">Seleccione los alumnos para aplicar esta observacion</h4>
         </div>
         <div class="modal-body" id="list-body">
           
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
-          <button type="button" class="btn btn-success">Aceptar</button>
+          <button type="button" class="btn btn-success" id="ProcessD">Aceptar</button>
 
         </div>
       </div><!-- /.modal-content -->
