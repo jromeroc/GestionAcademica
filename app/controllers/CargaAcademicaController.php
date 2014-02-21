@@ -77,7 +77,6 @@ class CargaAcademicaController extends BaseController
 	{	
 		$periodos = Periodos::all()->lists('nombre_periodo','id');
 		$infoCarga = $this->_carga->infoCarga($id);
-		$infoAll = $this->_carga->reportAll();
-		return View::make('carga.asignar')->with(array('infoCarga' => $infoCarga, 'cargaAssign' =>$this->_carga, 'listperiodo' => $periodos));
+		return View::make('carga.asignar')->with(array('infoCarga' => $infoCarga, 'cargaAssign' =>$this->_carga->infoAsignacion($id), 'listperiodo' => $periodos));
 	}
 }
