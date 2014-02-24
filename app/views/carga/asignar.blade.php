@@ -29,7 +29,21 @@
 		</thead>
 	</table>
 
-	{{ Form::model($infoCarga, array('url' => 'observador/nuevo', 'method' => 'POST','class'=>'form-horizontal col-sm -6'), array('role'=>'form'))}}
+	@if($errors->any())
+	<div class="alert alert-danger">
+		<button type="button" class="close" data-dismiss="alert">&times;</button>
+	    <strong>Por favor corrige los siguentes errores:</strong>
+	    <ul>
+			@foreach ($errors->all() as $error)
+	        	<li>{{ $error }}</li>
+	      	@endforeach
+		</ul>
+	</div>
+	@endif
+
+	{{ Form::model($infoCarga, array('url' => 'carga_academica/asignar/'.$infoCarga->carga,'class'=>'form-horizontal col-sm -6'), array('role'=>'form'))}}
+
+		
 		<div class="form-group">
       		{{ Form::label('docente_srch', 'Docente',array('class' => 'col-sm-2 control-label')) }}
 	        <div class="col-sm-2">
@@ -37,21 +51,20 @@
 	          {{ Form::Text('docente_srch', null, array('placeholder' => 'Docente', 'class' => 'col-sm-2 form-control')) }}
 	        </div>
       	</div>
-			 	{{{ $errors->has('listperiodo') ? '**' : '' }}}
-	 	@foreach ($listperiodo as $indice => $periodo)
-     	 	<div class="form-group">
-	        	<div class="col-sm-offset-2 col-sm-2">
-					{{Form::checkbox('periodo', $indice)}}
-					<label>{{$periodo}} Periodo</label>
+			{{{ $errors->has('listperiodo') ? '**' : '' }}}
+		 	@foreach ($listperiodo as $indice => $periodo)
+	     	 	<div class="form-group">
+		        	<div class="col-sm-offset-2 col-sm-2">
+						{{Form::checkbox('periodo[]', $indice)}}
+						<label>{{$periodo}} Periodo</label>
+					</div>
 				</div>
-			</div>
-	 	@endforeach
+		 	@endforeach
 		<div class="form-group">
 			{{ Form::label('materia', 'Materia', array('class' => 'col-sm-2 control-label'))}}
 			<div class="col-sm-10">
-				{{ Form::hidden('materia', Input::old('materia'), array('id' => 'materia')) }}
 				{{{ $errors->has('materia') ? '**' : '' }}}
-				{{ Form::input('text', 'materia_srch', Input::old('materia_srch'), array('placeholder'=>'Materia', 'id'=>'materia_srch'))}}
+				{{ Form::input('text', 'materia_name', Input::old('materia_name'), array('id'=>'materia_name','placeholder'=>'Materia'))}}
 			</div>
 		</div>
 		
@@ -82,7 +95,7 @@
 					<td>{{$infoAsignacion['docente']}}</td>
 					<td>{{$infoAsignacion['materia']}}</td>
 					<td>{{$infoAsignacion['periodo']}}</td>
-					<td><a href="" class="btn btn-info">Editar</a></td>
+					<td>{{ HTML::link('carga_academica/editar_asignacion/'. $infoAsignacion['nid'], 'Editar', array('class'=>'btn btn-primary'));}}</td>
 				</tr>
 			@endforeach
 		</tbody>

@@ -77,6 +77,46 @@ class CargaAcademicaController extends BaseController
 	{	
 		$periodos = Periodos::all()->lists('nombre_periodo','id');
 		$infoCarga = $this->_carga->infoCarga($id);
+
+		if(Input::get())
+		{
+			$data = Input::all();
+			$reglas = array(
+				'id_docente'	=>	'required',
+				'periodo' 		=>  'required',
+				'materia_name' 	=>  'required'
+			);
+
+			$mensajes = array(
+					'required' => 'El campo :attribute es requerido.',
+					'id_docente.required' => 'Seleccione un docente',
+					'periodo' => 'Seleccione el periodo al cual va asignar la carga',
+					'materia_name'=> 'No ha seleccionado ningun alumnos, revise el listado'
+			);
+
+			$validacion = Validator::make($data,$reglas,$mensajes);
+
+			if ($validacion->fails()) 
+			{
+				return Redirect::to('carga_academica/asignar/'.$id)->withInput()->withErrors($validacion)->with(array('datos'=>$data));
+			}
+			else
+			{
+				foreach ($data['periodo'] as $periodo) {
+					$infoSave = array($id, $data['id_docente'],$data['materia_name'],$periodo);
+					$this->_carga->asignaObservacion($infoSave);
+				}
+				return View::make('carga.asignar')->with(array('infoCarga' => $infoCarga, 'cargaAssign' =>$this->_carga->infoAsignacion($id), 'listperiodo' => $periodos));
+			}
+		}	
+
+
 		return View::make('carga.asignar')->with(array('infoCarga' => $infoCarga, 'cargaAssign' =>$this->_carga->infoAsignacion($id), 'listperiodo' => $periodos));
 	}
+
+	public function editar_asignacion($id)
+	{
+		
+	}
+
 }
