@@ -78,11 +78,7 @@ class ObservadorController extends BaseController
 	{
 		$observador = Observador::paginate();
 		$consulta = $this->_observador->selectobsv();
-        echo "<pre>";
-		print_r($consulta);        
-        echo "<pre>";
-
-        //return View::make('observador/list')->with('observaciones', $observador,'datos',$consulta);
+        return View::make('observador/list')->with(array('observaciones'=>$observador,'datos'=>$consulta));
 	}
 
 	public function save()

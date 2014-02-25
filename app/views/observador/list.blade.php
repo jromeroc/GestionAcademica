@@ -16,17 +16,21 @@
 	<table class="table table-striped" style="width: 900px">
     <tr>
         <th>Fecha</th>
-        <th>id_docente</th>
+        <th>Docente</th>
         <th>descripcion</th>
         <th>grupo</th>
-        <th>Acciones</th>
+        <th>Alumno</th>
+        <th></th>
     </tr>
-     @foreach ($observaciones as $info_Observador)
+     @foreach ($datos as $info_Observador)
     <tr>
-        <td>	{{ $info_Observador->fecha }}		</td>
-        <td>	{{ $info_Observador->id_docente }}	</td>
-        <td>	{{ $info_Observador->descripcion }}	</td>
-        <td>	{{ $info_Observador->grupo }}		</td>
+        <td>  <button id="fechaobsv"type="button" class="btn btn-default" data-container="body" data-toggle="popover" data-placement="left" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus.">
+              Popover on left
+</button></td>
+        <td>	{{ $info_Observador->docente}}</td>
+        <td>	{{ $info_Observador->descripcion }}</td>
+        <td>  {{ $info_Observador->namegroup }}</td>
+        <td>  {{ $info_Observador->alumname }}</td>
         <td>
           <button type="button" class="btn btn-info">Ver</button>
           
@@ -42,6 +46,7 @@
 
 @section('scripts')
   {{HTML::script('js/bootstrap.js')}}
+  {{HTML::script('js/general.js')}}
   {{HTML::script('js/jquery-1.11.0.js')}}
   {{HTML::script('js/bootstrap.min.js')}}
 @stop

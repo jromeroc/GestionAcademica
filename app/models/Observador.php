@@ -27,15 +27,22 @@ class Observador extends Eloquent
     }
     //Seleccionar los registros
     public function selectobsv(){
-        $observacion = $this->select(DB::raw("CONCAT_WS(' ',docentes.nombres,docentes.pri_apellido,docentes.seg_apellido) as docenten"),
-            'grupos.nombre as grado', 'obsv_disciplinario.id as id_obsv',
-            DB::raw("CONCAT_WS(' ',alumnos.lname,alumnos.fname,alumnos.names) as alumno"),
-            'map_obs_academico.id_obsv as id_obsvM','map_obs_academico.id_alumno as id_alumnom',
-            'alumnos.id as idalum','docentes.id as id_docente','obsv_disciplinario.id_docente as id_docenteo')
-            ->join('map_obs_academico','obsv_disciplinario.id_obsv','=','map_obs_academico.id_obsv')
-            ->join('map_obs_academico','alumnos.id','=','map_obs_academico.idalumno')
-            ->get();
-        return $$observacion;
+        $observacion = DB::select("SELECT
+        obsv_disciplinario.id AS id,
+        obsv_disciplinario.fecha AS fecha,
+        obsv_disciplinario.id_docente AS id_docente,
+        CONCAT_WS(' ', docentes.nombres,docentes.pri_apellido,docentes.seg_apellido) AS docente,
+        obsv_disciplinario.descripcion AS descripcion,
+        obsv_disciplinario.grupo AS grupo,
+        grupos.nombre AS namegroup,
+        map_obs_academico.id_alumno AS idalumn,
+        CONCAT_WS(' ', alumnos.names,alumnos.fname,alumnos.lname) AS alumname
+        FROM
+        `alumnos` alumnos INNER JOIN `map_obs_academico` map_obs_academico ON alumnos.`id` = map_obs_academico.`id_alumno`
+        INNER JOIN `obsv_disciplinario` obsv_disciplinario ON map_obs_academico.`id_obsv` = obsv_disciplinario.`id`
+        INNER JOIN `docentes` docentes ON obsv_disciplinario.`id_docente` = docentes.`id`
+        INNER JOIN `grupos` grupos ON obsv_disciplinario.`grupo` = grupos.`id`");
+        return $observacion;
     }
 
 }                        
