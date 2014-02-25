@@ -24,7 +24,7 @@ class ObservadorController extends BaseController
 		{
 			$data = Input::all();
 			$reglas = array(
-				'alums'		=>	'required',
+				'alums'			=>	'required',
 				'grupo' 		=>  'required|numeric',
 				'fecha' 		=>  'required',
 				'descripcion' 	=>  'required',
@@ -55,15 +55,13 @@ class ObservadorController extends BaseController
 						$fecha_ob = $data['fecha'];
 						$doc_ob = $data['id_docente'];
 						$descrip_ob = $data['descripcion'];
-					//llamar la consulta al modelo
-					//Obtener id de alumnos
-					$id_registro = $this->_observador->get_Id($fecha_ob,$doc_ob,$descrip_ob);	
+						//Obtener id de la observacion
+						$id_registro = $this->_observador->get_Id($fecha_ob,$doc_ob,$descrip_ob);
+						$id_registro = $id_registro->id;				
 						foreach ($data['alums'] as $alumno) {
 							$this->_observador->save_map($id_registro,$alumno);
 						};
-						
-					//Guardar los datos en la tabla de mapeo
-				
+								
 				return Redirect::to('observador/informe');
 			}
 		}
@@ -79,7 +77,12 @@ class ObservadorController extends BaseController
 	public function informe()
 	{
 		$observador = Observador::paginate();
-        return View::make('observador/list')->with('observaciones', $observador);
+		$consulta = $this->_observador->selectobsv();
+        echo "<pre>";
+		print_r($consulta);        
+        echo "<pre>";
+
+        //return View::make('observador/list')->with('observaciones', $observador,'datos',$consulta);
 	}
 
 	public function save()

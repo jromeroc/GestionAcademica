@@ -102,7 +102,8 @@ class CargaAcademicaController extends BaseController
 			}
 			else
 			{
-				foreach ($data['periodo'] as $periodo) {
+				foreach ($data['periodo'] as $periodo)
+				{
 					$infoSave = array($id, $data['id_docente'],$data['materia_name'],$periodo);
 					$this->_carga->asignaObservacion($infoSave);
 				}

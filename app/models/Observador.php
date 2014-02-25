@@ -10,23 +10,32 @@ class Observador extends Eloquent
         $consulta = $this->select('id')
         ->where('id_docente','=',$id_docente)
         ->where('fecha','=',$fecha)
-        ->where('descripcion','=',$descripcion)->get()->toArray();
+        ->where('descripcion','=',$descripcion)->first();
         return $consulta;
     }
 
-    public function save_map($observacion,$alumnos){
-        DB::table('map_obs_academico')->insert
-        (
-            array('id_obsv' => $observacion, 'id_alumno' => $alumnos)
-        );
+    public function save_map($id_obsv,$id_alumn){ 
+
+        DB::table('map_obs_academico')->insert(
+            array
+                (
+                    'id_obsv'   =>$id_obsv,
+                    'id_alumno' =>$id_alumn
+                )
+            );
+
     }
-
-    //Enviar los datos al formulario de Editar
-    /*
-  	$listCargaAsign = $this->select('map_obs_academico.id_obsv as id_obsv','obsv_disciplinario.id as id-obsv')
-		->join('map_carga','carga_academica.id','=','map_carga.id_carga')
-		->join('grupos','carga_academica.grupo','=','grupos.id')->get()->toArray();
-	*/
-
+    //Seleccionar los registros
+    public function selectobsv(){
+        $observacion = $this->select(DB::raw("CONCAT_WS(' ',docentes.nombres,docentes.pri_apellido,docentes.seg_apellido) as docenten"),
+            'grupos.nombre as grado', 'obsv_disciplinario.id as id_obsv',
+            DB::raw("CONCAT_WS(' ',alumnos.lname,alumnos.fname,alumnos.names) as alumno"),
+            'map_obs_academico.id_obsv as id_obsvM','map_obs_academico.id_alumno as id_alumnom',
+            'alumnos.id as idalum','docentes.id as id_docente','obsv_disciplinario.id_docente as id_docenteo')
+            ->join('map_obs_academico','obsv_disciplinario.id_obsv','=','map_obs_academico.id_obsv')
+            ->join('map_obs_academico','alumnos.id','=','map_obs_academico.idalumno')
+            ->get();
+        return $$observacion;
+    }
 
 }                        
