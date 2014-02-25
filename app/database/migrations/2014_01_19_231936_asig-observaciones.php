@@ -13,9 +13,8 @@ class AsigObservaciones extends Migration {
 	{
 		//Crear tabla asig-observaciones
 		Schema::create('map_obs_academico', function($table){
-			$table->increments('id_obsv');
+			$table->integer('id_obsv');
 			$table->integer('id_alumno');
-			$table->timestamps();
 		});
 	}
 	/**
