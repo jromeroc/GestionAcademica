@@ -7,16 +7,16 @@ class CargaAcademica extends Eloquent
 
 	public function reportAll($id, $tipo = true)
 	{
-		$listCargaAsign = $this->select("CONCAT_WS(' ',docentes.nombres,docentes.pri_apellido,docentes.seg_apellido) as docente",'map_carga.id as nid', 'map_carga.nombre_materia as materia', 'map_carga.periodo as periodo', 'grupos.nombre as grado')
+		$consulta = $this->select(DB::raw("CONCAT_WS(' ',docentes.nombres,docentes.pri_apellido,docentes.seg_apellido) as docente"),'map_carga.id as nid', 'map_carga.nombre_materia as materia', 'map_carga.periodo as periodo', 'grupos.nombre as grado')
 			->join('map_carga','carga_academica.id','=','map_carga.id_carga')
 			->join('grupos','carga_academica.grupo','=','grupos.id')
 			->join('docentes','map_carga.id_docente','=','docentes.id')
 			->join('materias','carga_academica.materia','=','materias.id');
 		
 		if ($tipo) {
-			$listCargaAsign->where('map_carga.id_carga','=',$id)->get()->toArray();
+			$listCargaAsign = $consulta->where('map_carga.id_carga','=',$id)->get()->toArray();
 		} else {
-			$listCargaAsign->where('map_carga.id','=',$id)->get()->toArray();
+			$listCargaAsign = $consulta->where('map_carga.id','=',$id)->first();
 		}
 		
 		return $listCargaAsign;
