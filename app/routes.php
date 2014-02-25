@@ -66,7 +66,7 @@ Route::group(array('prefix' => 'carga_academica'), function(){
 
 			Route::get('editar/{carga}', 'CargaAcademicaController@edit')->where('carga','[0-9]');
 			Route::get('asignar/{carga}', 'CargaAcademicaController@asignar')->where('carga','[0-9]');
-			Route::get('editar_asignacion/{carga}', 'CargaAcademicaController@asignar')->where('carga','[0-9]');
+			Route::get('editar_asignacion/{carga}', 'CargaAcademicaController@asignacion_edit')->where('carga','[0-9]+');
 			Route::get('eliminar/{carga}', 'CargaAcademicaController@delete')->where('carga','[0-9]');
 
 			Route::group(array('before' => 'csrf'), function(){

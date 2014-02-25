@@ -115,9 +115,11 @@ class CargaAcademicaController extends BaseController
 		return View::make('carga.asignar')->with(array('infoCarga' => $infoCarga, 'cargaAssign' =>$this->_carga->infoAsignacion($id), 'listperiodo' => $periodos));
 	}
 
-	public function editar_asignacion($id)
+	public function asignacion_edit($id)
 	{
-		
+		$infoAsign = $this->carga->reportAll($id, false);
+		return View::make('carga.edit_asignacion')->with(array('$infoAsign' => $infoAsign, 'listperiodo' => $periodos));
+
 	}
 
 }
