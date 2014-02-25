@@ -23,9 +23,8 @@
 	</div>
 	@endif
 
-	{{ Form::model($infoCarga, array('url' => 'carga_academica/asignar/'.$infoCarga->carga,'class'=>'form-horizontal col-sm -6'), array('role'=>'form'))}}
+	{{ Form::model($infoAsign, array('url' => 'carga_academica/asignar/'.$infoAsign->nid,'class'=>'form-horizontal col-sm -6'), array('role'=>'form'))}}
 
-		
 		<div class="form-group">
       		{{ Form::label('docente_srch', 'Docente',array('class' => 'col-sm-2 control-label')) }}
 	        <div class="col-sm-2">
