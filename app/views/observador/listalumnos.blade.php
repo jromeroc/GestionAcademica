@@ -5,13 +5,18 @@
 		</tr>
 	</thead>
 	<tbody>
+
+
 		@foreach($lista as $alumnos)
 		<tr>
 			<td>
-				{{Form::checkbox('alums[]', $alumnos->id_alum,false,array('class'=>'ck'))}}
-				{{$alumnos->value}}
+			@if(in_array($alumnos->id_alum), $alums)
+				{{Form::checkbox('alums[]',$alumnos->id_alum,true,array('class'=>'ck'))}}
+			@else
+				{{Form::checkbox('alums[]',$alumnos->id_alum,false,array('class'=>'ck'))}}
+			@endif
+			{{$alumnos->value}}
 			</td>
-			
 		</tr>
 		@endforeach
 	</tbody>

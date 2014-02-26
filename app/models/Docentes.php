@@ -14,7 +14,6 @@ class Docentes extends Eloquent
 		return $list_docente;
 	}
 }
-		//$list_docente = DB::query('CONCAT_WS(" ",nombres,pri_apellido,seg_apellido) as value','id as id')->'where("CONCAT_WS(" ",nombres,pri_apellido,seg_apellido as value)","LIKE", "%".$find."%")')->get()->toArray();	
-		//$list_docente = ('id as ID', "CONCAT_WS(' ', nombres , pri_apellido , seg_apellido) as value")->where('value', "LIKE", "%".Input::get('term')."%")->get()->toArray();
+		
 
 ?>

@@ -19,7 +19,4 @@ $(document).on('ready',function(){
 			$("#id_docente").val(ui.item.id);
 		}
 	});
-	$('#fechaobsv').on('click'){
-		alert('Hola')
-	});
 });

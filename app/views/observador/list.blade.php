@@ -13,7 +13,7 @@
 
 	<h2>Lista de Observaciones</h2>
 
-	<table class="table table-striped" style="width: 900px">
+	<table class="table table-striped">
     <tr>
         <th>Fecha</th>
         <th>Docente</th>
@@ -24,19 +24,16 @@
     </tr>
      @foreach ($datos as $info_Observador)
     <tr>
-        <td>  <button id="fechaobsv"type="button" class="btn btn-default" data-container="body" data-toggle="popover" data-placement="left" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus.">
-              Popover on left
-</button></td>
-        <td>	{{ $info_Observador->docente}}</td>
-        <td>	{{ $info_Observador->descripcion }}</td>
-        <td>  {{ $info_Observador->namegroup }}</td>
-        <td>  {{ $info_Observador->alumname }}</td>
+        <td>  {{ $info_Observador->fecha}}       </td>
+        <td>	{{ $info_Observador->docente}}     </td>
+        <td>	{{ $info_Observador->descripcion}} </td>
+        <td>  {{ $info_Observador->namegroup}}   </td>
+        <td>  {{ $info_Observador->alumname}}    </td>
         <td>
-          <button type="button" class="btn btn-info">Ver</button>
           
-          {{ HTML::link('observador/edit/'. $info_Observador->id, 'Editar', array('class'=>'btn btn-primary'));}}
+          {{ HTML::link('observador/edit/'.$info_Observador->id, 'Editar', array('class'=>'btn btn-info'));}}
 
-          {{ HTML::link('observador/delete/'. $info_Observador->id, 'Eliminar', array('class'=>'btn btn-danger'));}}
+          {{ HTML::link('observador/delete/'. $info_Observador->id.'/'.$info_Observador->idalumn, 'Eliminar', array('class'=>'btn btn-danger'));}}
         </td>
     </tr>
     @endforeach

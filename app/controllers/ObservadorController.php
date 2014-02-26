@@ -98,19 +98,29 @@ class ObservadorController extends BaseController
 
 	public function edit($id)
 	{
+		$i=0;
+		$consultaob = $this->_observador->findObsv($id);
+		$alumnos=$this->_observador->findAlumns($id);
 		$grupos = Grupo::all()->lists('nombre','id');
 		$observador = Observador::find($id);
 		if (is_null ($observador))
 		{
 			App::abort(404);
 		}
-		return View::make('observador.edit')->with(array('Observacion'=> $this->_observador,'grupos' => $grupos));
+
+		$alumSelect = array();
+		foreach ($alumnos as $key => $value) {
+			$alumSelect[] = ($value->id_alumno);
+			
+		}
+
+		return View::make('observador.edit')->with(array('Observacion'=> $this->_observador,'grupos' => $grupos,'datos'=>$consultaob,'alums'=>$alumSelect));
 	}
 
 	public function update($id)
 	{
 		//Actualizar Observacion
-		// Creamos un nuevo objeto para nuestro nueva observacion
+		// Creamos un nuevo objeto para nuestra observacion
         $observador = Observador::find($id);
         
         // Si la observacion no existe entonces lanzamos un error 404 :(
@@ -139,10 +149,10 @@ class ObservadorController extends BaseController
         }
 	}
 
-	public function destroy($id)
+	public function destroy($id,$idalumn)
 	{
 		//Eliminar Observacion
-		$this->_observador->destroy($id);
+		$this->_observador->delete_map($id,$idalumn);
 		return Redirect::to('observador/informe');
 	}
 
