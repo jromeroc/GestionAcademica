@@ -23,29 +23,25 @@
 	</div>
 	@endif
 
-	{{ Form::model($infoAsign, array('url' => 'carga_academica/asignar/'.$infoAsign->nid,'class'=>'form-horizontal col-sm -6'), array('role'=>'form'))}}
+	<div class="alert alert-info">
+		<h4>
+			{{$listperiodo[$infoAsign->periodo]}} Periodo
+		</h4>
+	</div>
 
+	{{ Form::model($infoAsign, array('url' => 'carga_academica/asignar/'.$infoAsign->nid,'class'=>'form-horizontal col-sm-6'), array('role'=>'form'))}}
 		<div class="form-group">
       		{{ Form::label('docente_srch', 'Docente',array('class' => 'col-sm-2 control-label')) }}
 	        <div class="col-sm-2">
-	          {{ Form::hidden('id_docente', Input::old('id_docente'), array('id' => 'id_docente')) }}
-	          {{ Form::Text('docente_srch', null, array('placeholder' => 'Docente', 'class' => 'col-sm-2 form-control')) }}
+	          {{ Form::hidden('id_docente', $infoAsign->id_docente, array('id' => 'id_docente')) }}
+	          {{ Form::Text('docente_srch', $infoAsign->docente, array('placeholder' => 'Docente', 'class' => 'col-sm-2 form-control')) }}
 	        </div>
       	</div>
-			{{{ $errors->has('listperiodo') ? '**' : '' }}}
-		 	@foreach ($listperiodo as $indice => $periodo)
-	     	 	<div class="form-group">
-		        	<div class="col-sm-offset-2 col-sm-2">
-						{{Form::checkbox('periodo[]', $indice)}}
-						<label>{{$periodo}} Periodo</label>
-					</div>
-				</div>
-		 	@endforeach
 		<div class="form-group">
-			{{ Form::label('materia', 'Materia', array('class' => 'col-sm-2 control-label'))}}
+			{{ Form::label('materia', 'Materia Alias', array('class' => 'col-sm-2 control-label'))}}
 			<div class="col-sm-10">
 				{{{ $errors->has('materia') ? '**' : '' }}}
-				{{ Form::input('text', 'materia_name', Input::old('materia_name'), array('id'=>'materia_name','placeholder'=>'Materia'))}}
+				{{ Form::input('text', 'materia_name', $infoAsign->materia, array('id'=>'materia_name','placeholder'=>'Materia'))}}
 			</div>
 		</div>
 		

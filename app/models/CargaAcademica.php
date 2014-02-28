@@ -61,6 +61,14 @@ class CargaAcademica extends Eloquent
 			'periodo'=>$datainfo[3]));
 	}
 
+	public function updateCarga($dataUpdate)
+	{
+		$this->update(array(
+			'grupo' => '',
+			'materia' => '',
+			'ih' => ''))->where('id',$dataUpdate[0]);
+	}
+
 
 }
 
