@@ -24,19 +24,7 @@ class CargaAcademicaController extends BaseController
 		if(Input::get())
 		{
 			$data = Input::all();
-			$reglas = array(
-				'grupo' =>  'required|numeric',
-				'materia' =>  'required|numeric',
-				'ih' =>  'required|numeric'
-			);
-			$mensajes = array(
-					'materia.required' => 'Debe selecionar una materia de la lista.',
-					'materia.numeric' => 'Debe selecionar una materia de la lista.',
-					'ih.required' => 'Debe ingresar la intensidad horaria.',
-					'required' => 'El campo :attribute es requerido.',
-					'numeric' => 'Se esperaba un valor numerico en el campo :attribute.');
-
-			$validacion = Validator::make($data,$reglas,$mensajes);
+			$validacion = $this->isValid($data);
 
 			if ($validacion->fails()) 
 			{
@@ -58,13 +46,24 @@ class CargaAcademicaController extends BaseController
 	{
 		$grupos = Grupo::all()->lists('nombre','id');
 		$carga = $this->_carga->infoCarga($id);
-		
+		echo "<pre>";
+			print_r($carga);
+		echo "</pre>";
 		if (is_null($carga))
 		{
 			return "error";
 		}
-		
-		return View::make('carga.editar')->with(array('carga' => $carga, 'grupos' => $grupos));
+
+		if(Input::get())
+		{
+			$data = Input::all();
+		}
+		else
+		{
+
+		}
+			
+		//return View::make('carga.editar')->with(array('carga' => $carga, 'grupos' => $grupos));
 	}
 
 	public function delete($id)
@@ -124,6 +123,24 @@ class CargaAcademicaController extends BaseController
 		echo "</pre>";
 		*/return View::make('carga.edit_asignacion')->with(array('infoAsign' => $infoAsign, 'listperiodo' => $periodos));
 
+	}
+
+	public function isValid($arrayData)
+	{
+		
+		$reglas = array(
+			'grupo' =>  'required|numeric',
+			'materia' =>  'required|numeric',
+			'ih' =>  'required|numeric'
+		);
+		$mensajes = array(
+			'materia.required' => 'Debe selecionar una materia de la lista.',
+			'materia.numeric' => 'Debe selecionar una materia de la lista.',
+			'ih.required' => 'Debe ingresar la intensidad horaria.',
+			'required' => 'El campo :attribute es requerido.',
+			'numeric' => 'Se esperaba un valor numerico en el campo :attribute.');
+
+			return Validator::make($arrayData,$reglas,$mensajes);
 	}
 
 }

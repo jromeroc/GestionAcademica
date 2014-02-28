@@ -57,7 +57,7 @@ class CreateAlumnos extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('alumnos2013_2014');
+		Schema::drop('alumnos');
 	}
 
 }

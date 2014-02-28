@@ -84,7 +84,7 @@
 			</tr>
 			<tr>
 				<th>Docente</th>
-				<th>Materia</th>
+				<th>Materia Alias</th>
 				<th>Periodo</th>
 				<th></th>
 			</tr>
