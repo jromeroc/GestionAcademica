@@ -98,9 +98,7 @@ class ObservadorController extends BaseController
 
 	public function edit($id)
 	{
-		$i=0;
 		$consultaob = $this->_observador->findObsv($id);
-		$alumnos=$this->_observador->findAlumns($id);
 		$grupos = Grupo::all()->lists('nombre','id');
 		$observador = Observador::find($id);
 		if (is_null ($observador))
@@ -108,13 +106,7 @@ class ObservadorController extends BaseController
 			App::abort(404);
 		}
 
-		$alumSelect = array();
-		foreach ($alumnos as $key => $value) {
-			$alumSelect[] = ($value->id_alumno);
-			
-		}
-
-		return View::make('observador.edit')->with(array('Observacion'=> $this->_observador,'grupos' => $grupos,'datos'=>$consultaob,'alums'=>$alumSelect));
+		return View::make('observador.edit')->with(array('Observacion'=> $this->_observador,'grupos' => $grupos,'datos'=>$consultaob));
 	}
 
 	public function update($id)
@@ -193,9 +185,15 @@ class ObservadorController extends BaseController
 
 	public function listGrupo($grupo)
 	{
-		$alumnos = new Alumnos;
-		$lista = $alumnos->listAlumGrupo($grupo);
-		return View::make('observador.listalumnos', array('lista'=>$lista));
+		
+		$alumnos=$this->_observador->findAlumns(Input::get('id'));
+		$alumSelect = array();
+		foreach ($alumnos as $key => $value) {
+			$alumSelect[] = ($value->id_alumno);	
+		}
+		$alumnosM = new Alumnos;
+		$lista = $alumnosM->listAlumGrupo($grupo);
+		return View::make('observador.listalumnos', array('lista'=>$lista,'alums'=>$alumSelect));
 	}
 }
 ?>

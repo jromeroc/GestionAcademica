@@ -72,10 +72,13 @@
             <div class="alert " id="msnalum" style="display:none"></div>
           </div>
         </div>
+          <input type="hidden" name="id_observacion" id="id_observacion" class="form-control" value="{{$datos['id']}}">
 
         <!-- Guardar !-->    
         <div class="form-group">
           <div class="col-sm-offset-2 col-sm-2">
+            {{ HTML::link('observador/informe', 'Cancelar', array('class'=>'btn btn-info'));}}
+
             {{form::submit('Guardar',array('class'=>'btn btn-success'))}}           
           </div>
         </div>
@@ -87,9 +90,9 @@
               <div class="modal-header alert alert-info">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                 <h4 class="modal-title">Seleccione los alumnos para aplicar esta observacion</h4>
+                  
               </div>
                 <div class="modal-body" id="list-body">
-                  
                 </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>

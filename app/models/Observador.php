@@ -65,5 +65,12 @@ class Observador extends Eloquent
         $observacion=DB::table('map_obs_academico')->select('id_alumno')->where('id_obsv','=',$idob)->get();
         return $observacion;
     }
-
+/*
+    public function update_obsv(){
+        $update->DB::table('users')
+            ->where('id', 1)
+            ->update(array('votes' => 1));
+        return $update;
+    }
+*/
 }                        

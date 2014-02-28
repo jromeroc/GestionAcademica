@@ -29,6 +29,7 @@ class SubmenuTableSeeder extends Seeder {
             'url' => 'informe',
             'estado' => '1'
         ));
+        
     }
 
 }

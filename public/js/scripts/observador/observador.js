@@ -1,9 +1,10 @@
 dataAlums= new Array();
-
+var id = 0;
 $(document).on('ready',function(){	
 	$('#slt_list_grupo').on('click',function(){
 		$.ajax({
 			url:root+'observador/grupo/'+$('#grupo').val(),
+			data:{id:$('#id_observacion').val() },
 			type:'get',
 			success:function(data)
 			{
@@ -25,9 +26,8 @@ $(document).on('ready',function(){
 				selectAll();
 				
 				$('#select-alums').on('click',function(){
-					//$('input[name="select_all[]"]').serialize();
+					
 					dataAlums = $('input[name="alums[]"]').serializeArray();
-					//alert(dataAlums.length);
 					console.log(dataAlums);
 					
 					$('#modal-list').modal('hide');
