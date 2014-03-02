@@ -119,6 +119,7 @@ Route::group(array('prefix' => 'observador'), function(){
 			Route::post('nuevo', 'ObservadorController@nuevo');
 			Route::post('informe', 'ObservadorController@informe');
 			Route::post('edit', 'ObservadorController@edit');
+			Route::post('update/{numero}', 'ObservadorController@update')->where('numero','[0-9]+');
 		});
 	});
 });

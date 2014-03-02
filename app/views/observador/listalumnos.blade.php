@@ -8,7 +8,7 @@
 		@foreach($lista as $alumnos)
 		<tr>
 			<td>
-			@if(in_array($alumnos->id_alum, $alums))
+			@if(in_array($alumnos->id_alum, $alums, true))
 				{{Form::checkbox('alums[]',$alumnos->id_alum,true,array('class'=>'ck'))}}
 			@else
 				{{Form::checkbox('alums[]',$alumnos->id_alum,false,array('class'=>'ck'))}}

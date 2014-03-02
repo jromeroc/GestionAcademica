@@ -36,7 +36,6 @@ $(document).on('ready',function(){
 					}
 					else{
 						$('#msnalum').html('No se ha Seleccionado ningun alumno').addClass('alert-danger').removeClass('alert-success').fadeIn('slow');	
-
 					}
 				});
 				

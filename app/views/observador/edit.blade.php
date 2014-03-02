@@ -22,9 +22,8 @@
     </div>
   @endif
 
-{{ Form::model($Observacion, array('url' => 'observador/edit', 'method' => 'POST','class'=>'form-horizontal col-sm -6'), array('role'=>'form'))}}
+{{ Form::model($Observacion, array('url' => 'observador/update/'.$datos['id'], 'method' => 'POST','class'=>'form-horizontal col-sm -6'), array('role'=>'form'))}}
       <!-- Fecha  !-->
-
       <div class="form-group">
         {{ Form::label('fecha', 'Fecha', array('class' => 'col-sm-2 control-label')) }}
         <div class="col-sm-2">
@@ -37,7 +36,7 @@
         {{ Form::label('docente_srch', 'Docente',array('class' => 'col-sm-2 control-label')) }}
         <div class="col-sm-2">
           {{ Form::Text('docente_srch', $datos['docente'] , array('placeholder' => 'Docente', 'class' => 'col-sm-2 form-control')) }}
-          <input type="hidden" name="id_docente" id="id_docente" class="form-group" value="$datos['id_docente']">
+          {{ Form::hidden('id_docente', Input::old('id_docente'), array('id' => 'id_docente')) }}
         </div>
       </div>
 
@@ -72,12 +71,13 @@
             <div class="alert " id="msnalum" style="display:none"></div>
           </div>
         </div>
-          <input type="hidden" name="id_observacion" id="id_observacion" class="form-control" value="{{$datos['id']}}">
+
+          {{ Form::hidden('id_observacion',$datos['id'], Input::old('id_observacion'), array('id' => 'id_observacion')) }}
 
         <!-- Guardar !-->    
         <div class="form-group">
           <div class="col-sm-offset-2 col-sm-2">
-            {{ HTML::link('observador/informe', 'Cancelar', array('class'=>'btn btn-info'));}}
+            {{ HTML::link('observador/informe', 'Cancelar', array('class'=>'btn btn-primary'));}}
 
             {{form::submit('Guardar',array('class'=>'btn btn-success'))}}           
           </div>

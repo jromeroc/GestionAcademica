@@ -111,34 +111,7 @@ class ObservadorController extends BaseController
 
 	public function update($id)
 	{
-		//Actualizar Observacion
-		// Creamos un nuevo objeto para nuestra observacion
-        $observador = Observador::find($id);
-        
-        // Si la observacion no existe entonces lanzamos un error 404 :(
-        if (is_null ($observador))
-        {
-            App::abort(404);
-        }
-        
-        // Obtenemos la data enviada por el usuario
-        $data = Input::all();
-        
-        // Revisamos si la data es válida
-        if ($data->isValid($data))
-        {
-            // Si la data es valida se la asignamos al observacion
-            $data->fill($data);
-            // Guardamos el observacion
-            $data->save();
-            // Y Devolvemos una redirección a la acción show para mostrar la observacion
-            return Redirect::route('observador.show', array($data->id));
-        }
-        else
-        {
-            // En caso de error regresa a la acción edit con los datos y los errores encontrados
-            return Redirect::route('observador.edit', $data->id)->withInput()->withErrors($data->errors);
-        }
+		
 	}
 
 	public function destroy($id,$idalumn)
@@ -193,6 +166,9 @@ class ObservadorController extends BaseController
 		}
 		$alumnosM = new Alumnos;
 		$lista = $alumnosM->listAlumGrupo($grupo);
+		echo "<pre>";
+		print_r($alumnosM);
+		echo "</pre>";
 		return View::make('observador.listalumnos', array('lista'=>$lista,'alums'=>$alumSelect));
 	}
 }

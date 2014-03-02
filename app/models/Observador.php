@@ -55,7 +55,7 @@ class Observador extends Eloquent
     }
 
     public function findObsv($idob){
-        $observacion=$this->select(DB::raw("CONCAT_WS(' ',docentes.nombres,docentes.pri_apellido,docentes.seg_apellido) as docente"),'fecha','id_docente','descripcion','grupo','docentes.id')
+        $observacion=$this->select(DB::raw("CONCAT_WS(' ',docentes.nombres,docentes.pri_apellido,docentes.seg_apellido) as docente"),'fecha','id_docente','descripcion','grupo','obsv_disciplinario.id')
         ->join('docentes','docentes.id','=','obsv_disciplinario.id_docente')
         ->where('obsv_disciplinario.id','=',$idob)
         ->first()->toArray();
@@ -65,12 +65,5 @@ class Observador extends Eloquent
         $observacion=DB::table('map_obs_academico')->select('id_alumno')->where('id_obsv','=',$idob)->get();
         return $observacion;
     }
-/*
-    public function update_obsv(){
-        $update->DB::table('users')
-            ->where('id', 1)
-            ->update(array('votes' => 1));
-        return $update;
-    }
-*/
-}                        
+
+}
