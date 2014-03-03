@@ -36,7 +36,7 @@
         {{ Form::label('docente_srch', 'Docente',array('class' => 'col-sm-2 control-label')) }}
         <div class="col-sm-2">
           {{ Form::Text('docente_srch', $datos['docente'] , array('placeholder' => 'Docente', 'class' => 'col-sm-2 form-control')) }}
-          {{ Form::hidden('id_docente', Input::old('id_docente'), array('id' => 'id_docente')) }}
+          {{ Form::hidden('id_docente', $datos['id_docente'], array('id' => 'id_docente')) }}
         </div>
       </div>
 
@@ -61,6 +61,7 @@
         <div class="form-group"> 
           <div class="col-sm-offset-2 col-sm-4">            
             {{form::button('Seleccionar Alumnos',array('id'=>'slt_list_grupo','class'=>'col-sm-6 btn btn-info'))}}
+            {{ Form::hidden('id_observacion',$datos['id'], array('id' => 'id_observacion')) }}
 
           </div>
         </div>
@@ -72,7 +73,6 @@
           </div>
         </div>
 
-          {{ Form::hidden('id_observacion',$datos['id'], Input::old('id_observacion'), array('id' => 'id_observacion')) }}
 
         <!-- Guardar !-->    
         <div class="form-group">

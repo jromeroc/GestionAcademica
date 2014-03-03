@@ -9,6 +9,7 @@ class ObservadorController extends BaseController
 	public function __construct()
 	{
 		$this->_observador = new Observador();
+		
 	}
 
 	public function index()
@@ -111,6 +112,83 @@ class ObservadorController extends BaseController
 
 	public function update($id)
 	{
+		$data = Input::all();
+
+		$reglas = array(
+				'grupo' 		=>  'required|numeric',
+				'fecha' 		=>  'required',
+				'descripcion' 	=>  'required',
+				'id_docente' 	=>  'required'
+			);
+
+		$mensajes = array(
+				'required' => 'El campo :attribute es requerido.',
+				'id_docente.required' => 'Por favor seleccione un docente',
+				'numeric' => 'Se esperaba un valor numerico en el campo :attribute.',
+				'alums.required'=> 'No ha seleccionado ningun alumno, revise el listado'
+			);
+
+		$validacion = Validator::make($data,$reglas,$mensajes);
+			
+			if ($validacion->fails())
+			{
+				return Redirect::to('observador/edit/'.$data['id_observacion'])->withInput()->withErrors($validacion);
+			}
+			else
+			{
+				//Asignar y guardar
+				$this->_observador->fill($data);
+					if (Input::get('alums')==NULL)
+					{
+						
+						$idob=Input::get('id_observacion');
+						$fecha=$data['fecha'];
+						$id_docente=$data['id_docente'];
+						$descripcion=$data['descripcion'];
+						$grupo=$data['grupo'];
+						$guardar=$this->_observador->updateob($idob,$fecha,$id_docente,$descripcion,$grupo);
+						return Redirect::to('observador/informe');
+						
+					}
+					else{
+						$idob=Input::get('id_observacion');
+						$fecha=$data['fecha'];
+						$id_docente=$data['id_docente'];
+						$descripcion=$data['descripcion'];
+						$grupo=$data['grupo'];
+						$guardar=$this->_observador->updateob($idob,$fecha,$id_docente,$descripcion,$grupo);
+						//-- Guardar Alumnos
+						$arreglo = array();
+						$data=$this->_observador->selectobsv();
+						echo "<pre>";
+						print_r($dataob);
+						echo "</pre>";
+						//Traer los alumnos de la tabla de Mapeo
+						$idob=Input::get('id_observacion');
+						$alums=$this->_observador->srch_alumsMap($idob);
+							foreach($alums as $array)
+				        	{
+				            	foreach ($array as $key) 
+				            	{
+				                	$arreglo[]=$key;
+				            	}
+				        }
+						$alumsT = $arreglo;
+						//$alumsU = $data['alums'];
+
+						//$compare = array_diff($alumsT, $alumsU);
+
+
+						//return Redirect::to('observador/informe');
+
+					}
+
+			}
+	}
+
+
+	public function updatealums($id)
+	{
 		
 	}
 
@@ -158,17 +236,17 @@ class ObservadorController extends BaseController
 
 	public function listGrupo($grupo)
 	{
+
+		$alumnos=$this->_observador->findAlumn(Input::get('id'));
 		
-		$alumnos=$this->_observador->findAlumns(Input::get('id'));
 		$alumSelect = array();
 		foreach ($alumnos as $key => $value) {
 			$alumSelect[] = ($value->id_alumno);	
 		}
+
 		$alumnosM = new Alumnos;
 		$lista = $alumnosM->listAlumGrupo($grupo);
-		echo "<pre>";
-		print_r($alumnosM);
-		echo "</pre>";
+		
 		return View::make('observador.listalumnos', array('lista'=>$lista,'alums'=>$alumSelect));
 	}
 }
