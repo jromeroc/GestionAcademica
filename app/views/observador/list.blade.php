@@ -1,24 +1,44 @@
 @extends('layouts.master')
 
+
 @section('title')
 @parent
 .:: Observaciones ::.
 @stop
 
 @section('modulo')
-	<h1>Observaciones <small>Todas las Observaciones</small></h1>
+  <h1>Observaciones <small>Todas las Observaciones</small></h1>
 @stop
-
 @section('content')
 
 	<h2>Lista de Observaciones</h2>
+  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+    {{ Form::model($observaciones, array('url' => 'observador/informe', 'method' => 'POST','class'=>'form-inline col-sm-12'), array('role'=>'form'))}}
+      
+      <span><strong>Fecha Inicio</strong></span>
+      <input type="date" name="datepickerini" id="datepickerini" class="form-control" value="">
+      
+      <span><strong>Fecha Fin</strong></span>
+      <input type="date" name="datepickerfin" id="datepickerfin" class="form-control" value="">
+      
+      <span><strong>Alumno</strong></span>
+      <input type="text" name="alum_srch" id="alum_srch" class="form-control" value="">
+      <input type="hidden" name="id_alumno" id="id_alumno" class="form-group" value="">
+      
+      <span><strong>Grado</strong></span>
+      {{{ $errors->has('grupo') ? '**' : '' }}}
+      {{ Form::select('grupo', $grupos, null)}}
 
+      <button type="submit" class="btn btn-success">Buscar</button>
+    {{Form::close()}}
+  </div>
+    <br>
 	<table class="table table-striped">
-    <tr>
+    <tr class="info">
         <th>Fecha</th>
         <th>Docente</th>
-        <th>descripcion</th>
-        <th>grupo</th>
+        <th>Descripción</th>
+        <th>Grupo</th>
         <th>Alumno</th>
         <th></th>
     </tr>
@@ -42,8 +62,5 @@
 @stop
 
 @section('scripts')
-  {{HTML::script('js/bootstrap.js')}}
-  {{HTML::script('js/general.js')}}
-  {{HTML::script('js/jquery-1.11.0.js')}}
-  {{HTML::script('js/bootstrap.min.js')}}
+  {{HTML::script('js/scripts/observador/observador.js')}}
 @stop

@@ -124,19 +124,35 @@ Route::group(array('prefix' => 'observador'), function(){
 		});
 	});
 });
-
+/*
+	--Rutas para Alumnos
+*/
 Route::group(array('prefix' => 'alumnos'), function(){
 	Route::group(array('before' => 'auth'), function(){
 		Route::group(array('before' => 'permit'), function(){
-			
+			Route::get('buscar', 'AlumnosController@autocompletar');			
 		});
 	});
 });
-
+/*
+	--Rutas para Docentes
+*/
 Route::group(array('prefix' => 'docentes'), function(){
 	Route::group(array('before' => 'auth'), function(){
 		Route::group(array('before' => 'permit'), function(){
 			Route::get('buscar', 'DocentesController@autocompletar');			
+		});
+	});
+});
+
+/*
+	--Rutas para Matriculas
+*/
+Route::group(array('prefix' => 'matriculas'), function(){
+	Route::group(array('before' => 'auth'), function(){
+		Route::group(array('before' => 'permit'), function(){
+			Route::get('/', 'MatriculasController@MatriculaAlum');
+			Route::get('nueva', 'MatriculasController@nueva');
 		});
 	});
 });

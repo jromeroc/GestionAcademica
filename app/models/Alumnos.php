@@ -6,7 +6,11 @@ class Alumnos extends Eloquent
 
 	public function autocompletar($find)
 	{
-
+		$list_alum = $this->select(DB::raw("CONCAT_WS(' ',names,fname,lname) as value, id"))
+		->whereRaw("CONCAT_WS(' ',names,fname,lname) LIKE '%".$find."%'")
+		->get();
+		
+		return $list_alum;
 	}
 	public function listAlumGrupo($grupo)
 	{

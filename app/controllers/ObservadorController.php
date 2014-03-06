@@ -14,7 +14,11 @@ class ObservadorController extends BaseController
 
 	public function index()
 	{
-      	return View::make("observador.index");
+		$grupos = Grupo::all()->lists('nombre','id');
+		$observador = Observador::paginate();
+		$consulta = $this->_observador->selectobsv();		
+
+        return View::make('observador/list')->with(array('observaciones'=>$observador,'datos'=>$consulta,'grupos'=>$grupos));
 	}
 
 	public function nuevo()
@@ -77,24 +81,17 @@ class ObservadorController extends BaseController
 
 	public function informe()
 	{
+		$grupos = Grupo::all()->lists('nombre','id');
 		$observador = Observador::paginate();
-		$consulta = $this->_observador->selectobsv();
-        return View::make('observador/list')->with(array('observaciones'=>$observador,'datos'=>$consulta));
-	}
+		$consulta =$this->_observador->selectobsv();
 
-	public function save()
-	{
+		if (Input::all()) {
+			$data=Input::all();
+			
+			$consulta = $this->_observador->selectobsv($data['datepickerini'],$data['datepickerfin'],$data['id_alumno']);
+		}
+        return View::make('observador/list')->with(array('observaciones'=>$observador,'datos'=>$consulta,'grupos'=>$grupos));
 		
-	}
-
-	public function show($id)
-	{
-		$observador = Observador::find($id);
-		if (is_null ($observador))
-			{
-				App::abort(404);
-			}
-		return View::make('observador.show')->with('Observacion',$observador);
 	}
 
 	public function edit($id)
@@ -147,55 +144,59 @@ class ObservadorController extends BaseController
 						$descripcion=$data['descripcion'];
 						$grupo=$data['grupo'];
 						$guardar=$this->_observador->updateob($idob,$fecha,$id_docente,$descripcion,$grupo);
-						return Redirect::to('observador/informe');
-						
+						return Redirect::to('observador/informe');	
 					}
 					else{
+
 						$idob=Input::get('id_observacion');
 						$fecha=$data['fecha'];
 						$id_docente=$data['id_docente'];
 						$descripcion=$data['descripcion'];
 						$grupo=$data['grupo'];
 						$guardar=$this->_observador->updateob($idob,$fecha,$id_docente,$descripcion,$grupo);
-						//-- Guardar Alumnos
-						$arreglo = array();
-						$data=$this->_observador->selectobsv();
-						echo "<pre>";
-						print_r($dataob);
-						echo "</pre>";
-						//Traer los alumnos de la tabla de Mapeo
-						$idob=Input::get('id_observacion');
-						$alums=$this->_observador->srch_alumsMap($idob);
-							foreach($alums as $array)
-				        	{
-				            	foreach ($array as $key) 
-				            	{
-				                	$arreglo[]=$key;
-				            	}
-				        }
-						$alumsT = $arreglo;
-						//$alumsU = $data['alums'];
-
-						//$compare = array_diff($alumsT, $alumsU);
-
-
-						//return Redirect::to('observador/informe');
-
+						$this->updatealums($idob);
+						return Redirect::to('observador/informe');
 					}
 
 			}
 	}
 
-
 	public function updatealums($id)
 	{
+		$data = Input::all();
 		
+		$idob=Input::get('id_observacion');	
+		$alumns = array();															
+		$alums=$this->_observador->srch_alumsMap($idob);
+		foreach($alums as $array)
+			{
+			   	foreach ($array as $key) 
+			     	{
+			           	$alumns[]=$key;
+			       	}
+			}
+			
+			$alumsT = $alumns;
+			$alumsU = $data['alums'];
+			$eliminar = array_diff($alumsT, $alumsU);
+			foreach ($eliminar as $borrar_alum) 
+				{
+					$delete = $this->_observador->up_delete_Map($idob,$borrar_alum);
+				}
+
+			$crear = array_diff($alumsU, $alumsT);
+			
+			foreach ($crear as $añadir_alum) 
+				{
+					$create = $this->_observador->up_create_Map($idob,$añadir_alum);
+				}
 	}
 
 	public function destroy($id,$idalumn)
 	{
 		//Eliminar Observacion
 		$this->_observador->delete_map($id,$idalumn);
+
 		return Redirect::to('observador/informe');
 	}
 

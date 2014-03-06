@@ -19,4 +19,14 @@ $(document).on('ready',function(){
 			$("#id_docente").val(ui.item.id);
 		}
 	});
+
+	$('#alum_srch').autocomplete({
+		method:'get',
+		source:root+'alumnos/buscar',
+		minLenght:2,
+		select: function(event,ui)
+		{
+			$("#id_alumno").val(ui.item.id);
+		}
+	});
 });

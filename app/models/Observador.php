@@ -36,10 +36,9 @@ class Observador extends Eloquent
     }
     
     //Seleccionar los registros
-    public function selectobsv()
+    public function selectobsv($fechaini='',$fechafin='',$alum='',$grado='')
     {
-        $observacion = DB::select
-            ("SELECT
+        $consulta = "SELECT
                 obsv_disciplinario.id AS id,
                 obsv_disciplinario.fecha AS fecha,
                 obsv_disciplinario.id_docente AS id_docente,
@@ -53,8 +52,32 @@ class Observador extends Eloquent
                 `alumnos` alumnos INNER JOIN `map_obs_academico` map_obs_academico ON alumnos.`id` = map_obs_academico.`id_alumno`
                 INNER JOIN `obsv_disciplinario` obsv_disciplinario ON map_obs_academico.`id_obsv` = obsv_disciplinario.`id`
                 INNER JOIN `docentes` docentes ON obsv_disciplinario.`id_docente` = docentes.`id`
-                INNER JOIN `grupos` grupos ON obsv_disciplinario.`grupo` = grupos.`id`"
-            );
+                INNER JOIN `grupos` grupos ON obsv_disciplinario.`grupo` = grupos.`id`";
+            
+                
+            
+        if ( $fechaini || $fechafin || $alum || $grado) 
+        {
+            $consulta .= " WHERE ";
+        }
+        if ((!empty($fechaini) && !empty($fechafin)) && !empty($alum)) 
+        {
+            $consulta .= " obsv_disciplinario.fecha between '".$fechaini."' AND '".$fechafin."'"." AND map_obs_academico.id_alumno = ".$alum;
+            $observacion = DB::select($consulta);
+            return $observacion;
+        }
+
+        if(!empty($fechaini) && !empty($fechafin))
+        {
+            $consulta .= " obsv_disciplinario.fecha between '".$fechaini."' AND '".$fechafin."'";
+        }
+
+        if(!empty($alum))
+        {
+            $consulta .= " map_obs_academico.id_alumno = ".$alum;
+        }
+      
+        $observacion = DB::select($consulta);
         return $observacion;
     }
     
@@ -84,11 +107,19 @@ class Observador extends Eloquent
         ->update(array('fecha'=>$fecha,'descripcion'=>$descripcion,'grupo'=>$grupo,'id_docente'=>$id_docente));
     }
 
-    public function update_map($idob,$alums){
-        $observacion=DB::table('map_obs_academico')
-        ->where('id_obsv','=',$idob)
-        ->update(array());
-
+    public function up_create_Map($idob,$alums){
+        $create=DB::table('map_obs_academico')->insert(
+            array
+                (
+                    'id_obsv'   =>$idob,
+                    'id_alumno' =>$alums
+                )
+            );
     }
-
+    public function up_delete_Map($idob,$alums){
+        $delete=DB::table('map_obs_academico')
+        ->where('id_obsv','=',$idob)
+        ->where('id_alumno','=',$alums)
+        ->delete();
+    }
 }

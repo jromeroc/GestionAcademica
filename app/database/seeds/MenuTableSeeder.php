@@ -27,9 +27,14 @@ class MenuTableSeeder extends Seeder {
             'url' => 'logros',
             'estado' => '1'
         ));
-         Menu::create(array(
+        Menu::create(array(
             'name_item' => 'Observador',
             'url' => 'observador',
+            'estado' => '1'
+        ));
+        Menu::create(array(
+            'name_item' => 'Matriculas',
+            'url' => 'matriculas',
             'estado' => '1'
         ));
     }

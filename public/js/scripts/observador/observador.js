@@ -1,6 +1,23 @@
 dataAlums= new Array();
 var id = 0;
-$(document).on('ready',function(){	
+$(document).on('ready',function(){
+
+	
+		$( "#datepickerini" ).datepicker({
+			changeMonth: true, 
+			changeYear: true,
+			dateFormat: "yy-mm-dd"
+		
+		});
+	
+		$( "#datepickerfin" ).datepicker({
+			changeMonth: true,
+			changeYear: true,
+			dateFormat: "yy-mm-dd"
+		});
+
+
+
 	$('#slt_list_grupo').on('click',function(){
 		$.ajax({
 			url:root+'observador/grupo/'+$('#grupo').val(),
