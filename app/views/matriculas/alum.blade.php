@@ -25,22 +25,22 @@
 	@endif
 	{{-- Formulario --}}
 
-  	{{ Form::model(array('url' => 'matriculas/nueva', 'method' => 'POST','class'=>'col-sm -6'), array('role'=>'form'))}}
+  	{{ Form::open(array('url' => 'matriculas/nuevo', 'method' => 'POST','class'=>'col-sm -6'), array('role'=>'form'))}}
   		
       	<!-- Año Matricula  !-->
   		<div class="form-group col-sm-12">
-      		{{ Form::label('Año Matricula', 'Año Matricula', array('class' => 'col-sm-2 control-label')) }}
-        	<div class="col-sm-3">
-      			<select name="año Matricula" id="año_matricula" class="form-control">
-      				<option value="NULL">Seleccione un año</option>
+      		{{ Form::label('año_matricula', 'Año Matricula', array('class' => 'col-sm-2 control-label')) }}
+        	<div class="col-sm-2">
+      			<select name="año_matricula" id="año_matricula" class="form-control">
+      				<option value="$año">2013-2014</option>
       			</select>
       		</div>
         </div>
 
   		<div class="form-group col-sm-12">
-      		
+      		{{ Form::label('tipo_reg', 'Tipo de Registro', array('class' => 'col-sm-2 control-label')) }}
       		<!-- Inscripcion  !-->
-  			<div class="col-sm-3">
+  			<div class="col-sm-1">
   				<div class="checkbox">
   					<label>
   						<input type="checkbox" value="">
@@ -50,7 +50,7 @@
       		</div>
 
       		<!-- Matricula  !-->
-  			<div class="col-sm-3">
+  			<div class="col-sm-1">
   				<div class="checkbox">
   					<label>
   						<input type="checkbox" value="">
@@ -64,7 +64,7 @@
       	<!-- Fecha  !-->
   		<div class="form-group col-sm-12">
 
-      		{{ Form::label('fecha_Matricula', 'Fecha matricula', array('class' => 'col-sm-2 control-label')) }}
+      		{{ Form::label('fecha_matricula', 'Fecha matricula', array('class' => 'col-sm-2 control-label')) }}
         	<div class="col-sm-2">
       			{{ Form::Text('fecha_matricula', null, array('placeholder' => 'Fecha Matricula', 'class' => 'col-sm-2 form-control')) }}
         	</div>
@@ -87,7 +87,7 @@
         <!-- Apellido 1  !-->
   		<div class="form-group col-sm-12">
 
-      		{{ Form::label('fname', 'Primer apellido', array('class' => 'col-sm-2 control-label')) }}
+      		{{ Form::label('fnane', 'Primer apellido', array('class' => 'col-sm-2 control-label')) }}
         	<div class="col-sm-2">
       			{{ Form::Text('fnane', null, array('placeholder' => 'Apellido 1', 'class' => 'col-sm-2 form-control')) }}
         	</div>
@@ -96,7 +96,7 @@
         <!-- Apellido 2  !-->
   		<div class="form-group col-sm-12">
 
-      		{{ Form::label('lname', 'Segundo apellido', array('class' => 'col-sm-2 control-label')) }}
+      		{{ Form::label('lnane', 'Segundo apellido', array('class' => 'col-sm-2 control-label')) }}
         	<div class="col-sm-2">
       			{{ Form::Text('lnane', null, array('placeholder' => 'Apellido 2', 'class' => 'col-sm-2 form-control')) }}
         	</div>
@@ -105,7 +105,7 @@
         <!-- Tipo Documento  !-->
   		<div class="form-group col-sm-12">
       		{{ Form::label('tipo_doc', 'Tipo Documento', array('class' => 'col-sm-2 control-label')) }}
-        	<div class="col-sm-3">
+        	<div class="col-sm-2">
       			<select name="tipo_doc" id="tipo_doc" class="form-control">
       				<option value="NULL">Seleccione Tipo documento</option>
       			</select>
@@ -123,10 +123,169 @@
 
         <!-- Pais Nacimiento  !-->
   		<div class="form-group col-sm-12">
-      		{{ Form::label('P_nac', 'Pais de nacimiento', array('class' => 'col-sm-2 control-label')) }}
+      		{{ Form::label('p_nac', 'Pais de nacimiento', array('class' => 'col-sm-2 control-label')) }}
         	<div class="col-sm-2">
-      			{{ Form::Text('p__nac', null, array('placeholder' => 'Pais Nacimiento', 'class' => 'col-sm-2 form-control')) }}
+      			{{ Form::Text('p_nac', null, array('placeholder' => 'Pais Nacimiento', 'class' => 'col-sm-2 form-control')) }}
       		</div>
         </div>
-  	{{Form::close()}}
+
+        <!-- Ciudad Nacimiento  !-->
+  		<div class="form-group col-sm-12">
+      		{{ Form::label('c_nac', 'Ciudad de nacimiento', array('class' => 'col-sm-2 control-label')) }}
+        	<div class="col-sm-2">
+      			{{ Form::Text('c_nac', null, array('placeholder' => 'Ciudad Nacimiento', 'class' => 'col-sm-2 form-control')) }}
+      		</div>
+        </div>
+
+        <!-- Genero  !-->
+
+        <div class="form-group col-sm-12">
+      		{{ Form::label('Sexo', 'Sexo', array('class' => 'col-sm-2 control-label')) }}
+      		
+      		<!-- Masculino  !-->
+  			<div class="col-sm-1">
+  				<div class="radio">
+  					<label>
+  						<input type="radio" name="genero" value="Hombre">
+  						M
+  					</label>
+  				</div>
+      		</div>
+
+      		<!-- Femenino  !-->
+  			<div class="col-sm-1">
+  				<div class="radio">
+  					<label>
+  						<input type="radio" name="genero" value="Mujer">
+  						F
+  					</label>
+  				</div>
+      		</div>
+
+      	</div>
+
+      	<!-- Grupo Sanguineo  !-->
+  		<div class="form-group col-sm-12">
+      		{{ Form::label('g_sang', 'Grupo Sanguineo', array('class' => 'col-sm-2 control-label')) }}
+        	<div class="col-sm-2">
+      			{{ Form::Text('g_sang', null, array('placeholder' => 'Grupo Sanguineo', 'class' => 'col-sm-2 form-control')) }}
+      		</div>
+        </div>
+
+        <!-- RH  !-->
+
+        <div class="form-group col-sm-12">
+      		{{ Form::label('RH', 'RH', array('class' => 'col-sm-2 control-label')) }}
+      		
+      		<!-- Positivo  !-->
+  			<div class="col-sm-1">
+  				<div class="radio">
+  					<label>
+  						<input type="radio" name="RH" value="Hombre">
+  						+
+  					</label>
+  				</div>
+      		</div>
+
+      		<!-- Negativo  !-->
+  			<div class="col-sm-1">
+  				<div class="radio">
+  					<label>
+  						<input type="radio" name="RH" value="Mujer">
+  						-
+  					</label>
+  				</div>
+      		</div>
+
+      	</div>
+
+      	<!-- EPS  !-->
+  		<div class="form-group col-sm-12">
+      		{{ Form::label('eps', 'Eps', array('class' => 'col-sm-2 control-label')) }}
+        	<div class="col-sm-2">
+      			{{ Form::Text('eps', null, array('placeholder' => 'Eps', 'class' => 'col-sm-2 form-control')) }}
+      		</div>
+        </div>
+
+        <!-- Tipo de hermano  !-->
+        <div class="form-group col-sm-12">
+      		{{ Form::label('t_hermano', 'Tipo de hermano', array('class' => 'col-sm-2 control-label')) }}
+      	</div>
+
+        <div class="form-group col-sm-6">
+      		<!-- No tiene  !-->
+  			<div class="col-sm-3">
+  				<div class="radio">
+  					<label>
+  						<input type="radio" name="T-Herm" value="0">
+  						No aplica
+  					</label>
+  				</div>
+      		</div>
+
+      		<!-- Mayor  !-->
+  			<div class="col-sm-3">
+  				<div class="radio">
+  					<label>
+  						<input type="radio" name="T-Herm" value="1">
+  						Mayor
+  					</label>
+  				</div>
+      		</div>
+
+      		<!-- Menor  !-->
+  			<div class="col-sm-3">
+  				<div class="radio">
+  					<label>
+  						<input type="radio" name="T-Herm" value="1">
+  						Mayor
+  					</label>
+  				</div>
+      		</div>
+
+      	</div>
+      		
+      	<!-- Direccion de residencia  !-->
+  		<div class="form-group col-sm-12">
+      		{{ Form::label('direcc', 'Direccion de Residencia', array('class' => 'col-sm-2 control-label')) }}
+        	<div class="col-sm-2">
+      			{{ Form::Text('direcc', null, array('placeholder' => 'Direccion de Residencia', 'class' => 'col-sm-2 form-control')) }}
+      		</div>
+        </div>
+
+        <!-- Fijo  !-->
+  		<div class="form-group col-sm-12">
+      		{{ Form::label('fijo', 'Telefono', array('class' => 'col-sm-2 control-label')) }}
+        	<div class="col-sm-2">
+      			{{ Form::Text('fijo', null, array('placeholder' => 'Telefono', 'class' => 'col-sm-2 form-control')) }}
+      		</div>
+        </div>
+
+        <!-- Celular  !-->
+  		<div class="form-group col-sm-12">
+      		{{ Form::label('cel', 'Celular', array('class' => 'col-sm-2 control-label')) }}
+        	<div class="col-sm-2">
+      			{{ Form::Text('cel', null, array('placeholder' => 'Celular', 'class' => 'col-sm-2 form-control')) }}
+      		</div>
+        </div>
+
+        <!-- Email  !-->
+  		<div class="form-group col-sm-12">
+      		{{ Form::label('email', 'E-Mail', array('class' => 'col-sm-2 control-label')) }}
+        	<div class="col-sm-2">
+      			{{ Form::email('email', null, array('placeholder' => 'E-Mail', 'class' => 'col-sm-2 form-control')) }}
+      		</div>
+        </div>
+
+        <!-- Submit !-->
+        <div class="form-group col-sm-12">
+        	<div class="col-sm-6">
+        		{{form::submit('Guardar Matricula',array('class'=>'btn btn-success col-sm-4'))}}
+      		</div>
+        </div>
+
+        <input type="hidden" name="papa" id="papa" class="form-group" value="">
+        <input type="hidden" name="mama" id="mama" class="form-group" value="">
+        <input type="hidden" name="acudiente" id="acudiente" class="form-group" value="">
+    {{Form::close()}}
 @stop

@@ -152,7 +152,7 @@ Route::group(array('prefix' => 'matriculas'), function(){
 	Route::group(array('before' => 'auth'), function(){
 		Route::group(array('before' => 'permit'), function(){
 			Route::get('/', 'MatriculasController@MatriculaAlum');
-			Route::get('nueva', 'MatriculasController@nueva');
+			Route::post('nuevo', 'MatriculasController@nuevo');
 		});
 	});
 });
