@@ -29,76 +29,71 @@
   		
       	<!-- Año Matricula  !-->
   		<div class="form-group col-sm-12">
-      		{{ Form::label('año_matricula', 'Año Matricula', array('class' => 'col-sm-2 control-label')) }}
-        	<div class="col-sm-2">
-      			<select name="año_matricula" id="año_matricula" class="form-control">
-      				<option value="$año">2013-2014</option>
-      			</select>
-      		</div>
-        </div>
-
-  		<div class="form-group col-sm-12">
-      		{{ Form::label('tipo_reg', 'Tipo de Registro', array('class' => 'col-sm-2 control-label')) }}
-      		<!-- Inscripcion  !-->
-  			<div class="col-sm-1">
-  				<div class="checkbox">
-  					<label>
-  						<input type="checkbox" value="">
-  						Inscripcion
-  					</label>
-  				</div>
-      		</div>
-
-      		<!-- Matricula  !-->
-  			<div class="col-sm-1">
-  				<div class="checkbox">
-  					<label>
-  						<input type="checkbox" value="">
-  						Matricula
-  					</label>
-  				</div>
-      		</div>
-
+      	{{ Form::label('year_matricula', 'Año Matricula', array('class' => 'col-sm-2 control-label')) }}
+        <div class="col-sm-2">
+      		{{ Form::select('year_matricula', array($años['year'] => '2013-2014',$años['lastY'] => '2012-2013',$años['nextY'] => '2014-2015')); }}
       	</div>
+      </div>
 
-      	<!-- Fecha  !-->
+  		<div class="form-group col-sm-12">
+      	{{ Form::label('tipo_reg', 'Tipo de Registro', array('class' => 'col-sm-2 control-label')) }}
+        
+        <!-- Inscripcion  !-->
+        <div class="col-sm-1">
+          <div class="radio">
+            <label>
+              <input type="radio" id="Inscripcion" name="T-reg" value="1">
+              Inscripcion
+            </label>
+          </div>
+        </div>
+
+      	<!-- Inscripcion  !-->
+        <div class="col-sm-1">
+          <div class="radio">
+            <label>
+              <input type="radio" id="Matricula" name="T-reg" value="1">
+              Matricula
+            </label>
+          </div>
+        </div>
+
+      <!-- Fecha  !-->
   		<div class="form-group col-sm-12">
 
-      		{{ Form::label('fecha_matricula', 'Fecha matricula', array('class' => 'col-sm-2 control-label')) }}
-        	<div class="col-sm-2">
-      			{{ Form::Text('fecha_matricula', null, array('placeholder' => 'Fecha Matricula', 'class' => 'col-sm-2 form-control')) }}
-        	</div>
-        </div>
+      	{{ Form::label('fecha_matricula', 'Fecha matricula', array('class' => 'col-sm-2 control-label')) }}
+       	<div class="col-sm-2">
+      		{{ Form::Text('fecha_matricula', null, array('placeholder' => 'Fecha Matricula', 'class' => 'col-sm-2 form-control')) }}
+       	</div>
+      </div>
       	
-      	<!-- Grado  !-->
-        <div class="form-group col-sm-12">
+      <!-- Grado  !-->
+      <div class="form-group col-sm-12">
 			
-		</div>
+		  </div>
 
-		<!-- Nombre  !-->
+		  <!-- Nombre  !-->
   		<div class="form-group col-sm-12">
-
-      		{{ Form::label('nombre_alum', 'Nombre', array('class' => 'col-sm-2 control-label')) }}
-        	<div class="col-sm-2">
-      			{{ Form::Text('nombre_alum', null, array('placeholder' => 'Nombre', 'class' => 'col-sm-2 form-control')) }}
-        	</div>
+    		{{ Form::label('alum', 'Nombre', array('class' => 'col-sm-2 control-label')) }}
+        <div class="col-sm-2">
+      		{{ Form::Text('alum', null, array('placeholder' => 'Nombre', 'class' => 'col-sm-2 form-control')) }}
         </div>
+      </div>
 
-        <!-- Apellido 1  !-->
+      <!-- Apellido 1  !-->
   		<div class="form-group col-sm-12">
+     		{{ Form::label('fnane', 'Primer apellido', array('class' => 'col-sm-2 control-label')) }}
+       	<div class="col-sm-2">
+     			{{ Form::Text('fnane', null, array('placeholder' => 'Primer Apellido', 'class' => 'col-sm-2 form-control')) }}
+       	</div>
+      </div>
 
-      		{{ Form::label('fnane', 'Primer apellido', array('class' => 'col-sm-2 control-label')) }}
-        	<div class="col-sm-2">
-      			{{ Form::Text('fnane', null, array('placeholder' => 'Apellido 1', 'class' => 'col-sm-2 form-control')) }}
-        	</div>
-        </div>
-
-        <!-- Apellido 2  !-->
+      <!-- Apellido 2  !-->
   		<div class="form-group col-sm-12">
 
       		{{ Form::label('lnane', 'Segundo apellido', array('class' => 'col-sm-2 control-label')) }}
         	<div class="col-sm-2">
-      			{{ Form::Text('lnane', null, array('placeholder' => 'Apellido 2', 'class' => 'col-sm-2 form-control')) }}
+      			{{ Form::Text('lnane', null, array('placeholder' => 'Segundo Apellido', 'class' => 'col-sm-2 form-control')) }}
         	</div>
         </div>
 
@@ -288,4 +283,10 @@
         <input type="hidden" name="mama" id="mama" class="form-group" value="">
         <input type="hidden" name="acudiente" id="acudiente" class="form-group" value="">
     {{Form::close()}}
+
+
+@stop
+
+@section('scripts')
+  {{HTML::script('js/scripts/matriculas/matriculas.js')}}
 @stop

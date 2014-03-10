@@ -12,25 +12,32 @@ class MatriculasController extends BaseController
 	}
 
 	public function MatriculaAlum(){
-		$años = array();
 		$month = date("m");
-		$Year;
+		$year;
 		if ($month > 7) {
-			$Year=date('y')+1;
+			$year=date('Y')+1;
 		}
 		elseif ($month < 8) {
-			$Year=date('Y');
+			$year=date('Y');
 		}
-		elseif(){
-
-		}
-		echo "Mes actual: $month <br> Año: $Year ";
-		return View::Make('matriculas.alum')->with('año',$Year);
+		$lastY = $year - 1;
+		$nextY = $year + 1;
+		$años = array("year"=>$year,"lastY"=>$lastY,"nextY"=>$nextY);
+		return View::Make('matriculas.alum')->with('años',$años);
 	}
 
 	public function nuevo(){
-		return "Hola mundo".$año;
+		return "Hola mundo";
 	}
+
+	public function searchalum($year){
+		if(Input::get('term'))
+		{
+			$found = $this->_matricula->autoComplete(Input::get('term'),$year);
+			return Response::json($found);
+		}
+	}
+
 }
 
 ?>

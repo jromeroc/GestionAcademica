@@ -153,6 +153,7 @@ Route::group(array('prefix' => 'matriculas'), function(){
 		Route::group(array('before' => 'permit'), function(){
 			Route::get('/', 'MatriculasController@MatriculaAlum');
 			Route::post('nuevo', 'MatriculasController@nuevo');
+			Route::get('buscaralum/{numero}', 'MatriculasController@searchalum')->where('numero','[0-9]+');
 		});
 	});
 });

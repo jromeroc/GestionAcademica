@@ -16,8 +16,6 @@ $(document).on('ready',function(){
 			dateFormat: "yy-mm-dd"
 		});
 
-
-
 	$('#slt_list_grupo').on('click',function(){
 		$.ajax({
 			url:root+'observador/grupo/'+$('#grupo').val(),
