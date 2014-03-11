@@ -12,6 +12,9 @@ class MatriculasController extends BaseController
 	}
 
 	public function MatriculaAlum(){
+		
+		$tipos = Tipodoc::all()->lists('name_tipodoc','id_tipodoc');
+		$grados = Grado::all()->lists('nombre','id');
 		$month = date("m");
 		$year;
 		if ($month > 7) {
@@ -22,8 +25,9 @@ class MatriculasController extends BaseController
 		}
 		$lastY = $year - 1;
 		$nextY = $year + 1;
+
 		$años = array("year"=>$year,"lastY"=>$lastY,"nextY"=>$nextY);
-		return View::Make('matriculas.alum')->with('años',$años);
+		return View::Make('matriculas.alum')->with(array('años' => $años,'tipodoc'=>$tipos,'grado'=>$grados ));
 	}
 
 	public function nuevo(){
@@ -33,11 +37,12 @@ class MatriculasController extends BaseController
 	public function searchalum($year){
 		if(Input::get('term'))
 		{
-			$found = $this->_matricula->autoComplete(Input::get('term'),$year);
+			$found = $this->_matricula->autoCompletename(Input::get('term'),$year);
 			return Response::json($found);
 		}
 	}
-
+		
 }
+
 
 ?>

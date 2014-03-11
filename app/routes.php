@@ -157,3 +157,11 @@ Route::group(array('prefix' => 'matriculas'), function(){
 		});
 	});
 });
+Route::group(array('prefix' => 'location'), function(){
+	Route::group(array('before' => 'auth'), function(){
+		Route::group(array('before' => 'permit'), function(){
+			Route::get('buscarpais/', 'LocationController@searchpais');
+			Route::get('buscarcity/', 'LocationController@searchcity');
+		});
+	});
+});

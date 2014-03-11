@@ -16,7 +16,7 @@ class ObservadorController extends BaseController
 	{
 		$grupos = Grupo::all()->lists('nombre','id');
 		$observador = Observador::paginate();
-		$consulta = $this->_observador->selectobsv();		
+		$consulta = $this->_observador->selectobsv();
 
         return View::make('observador/list')->with(array('observaciones'=>$observador,'datos'=>$consulta,'grupos'=>$grupos));
 	}

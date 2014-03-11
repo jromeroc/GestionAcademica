@@ -3,7 +3,7 @@
 class Matriculas extends Eloquent
 {
 
-	public function autoComplete($alum,$year)
+	public function autoCompletename($alum,$year)
 	{	
 		switch ($year) 
 		{
@@ -19,11 +19,11 @@ class Matriculas extends Eloquent
 		        break;
 		}
 
-		$colsult = DB::table($tabla)->select(DB::raw("CONCAT_WS(' ',ape1_alum,ape2_alum,seg_apellido) as value, id_alum"))
-		->whereRaw("CONCAT_WS(' ',ape1_alum,ape2_alum,seg_apellido) LIKE '%".$alum."%'")
+		$consult = DB::table($tabla)->select(DB::raw("CONCAT_WS(' ',lname,fname,names) as value, id"))
+		->whereRaw("CONCAT_WS(' ',lname,fname,names) LIKE '%".$alum."%'")
 		->get();
-		return $list_alum;
+		return $consult;
 	}
-
+	
 }
 ?>

@@ -96,8 +96,6 @@
 
 {{ Form::close() }}
 
-
-
 @stop
 
 @section('scripts')

@@ -8,10 +8,11 @@ $(document).on('ready',function(){
 
 	$('#alum').autocomplete({
 		method:'get',
-		source:root+'matriculas/buscaralum/'+$("#year_matricula").val(),
+		source:root+'matriculas/buscaralum',
 		minLenght:2,
 		select: function(event,ui)
 		{
+			$("#id_alum").val(ui.item.id);
 		}
 	});
 

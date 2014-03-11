@@ -29,4 +29,24 @@ $(document).on('ready',function(){
 			$("#id_alumno").val(ui.item.id);
 		}
 	});
+
+	$('#pais_srch').autocomplete({
+		method:'get',
+		source:root+'location/buscarpais',
+		minLenght:2,
+		select: function(event,ui)
+		{
+			$("#id_pais").val(ui.item.id);
+		}
+	});
+
+	$('#city_srch').autocomplete({
+		method:'get',
+		source:root+'location/buscarcity',
+		minLenght:2,
+		select: function(event,ui)
+		{
+			$("#id_ciudad").val(ui.item.id);
+		}
+	});
 });

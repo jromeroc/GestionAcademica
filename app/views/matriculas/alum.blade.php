@@ -48,7 +48,7 @@
           </div>
         </div>
 
-      	<!-- Inscripcion  !-->
+      	<!-- Matricula  !-->
         <div class="col-sm-1">
           <div class="radio">
             <label>
@@ -69,6 +69,13 @@
       	
       <!-- Grado  !-->
       <div class="form-group col-sm-12">
+          {{ Form::label('grado', 'Grado', array('class' => 'col-sm-2 control-label')) }}
+
+          <div class="col-sm-3">
+            {{{ $errors->has('grado') ? '**' : '' }}}
+            {{ Form::select('grado', $grado, null)}}
+
+          </div>
 			
 		  </div>
 
@@ -79,7 +86,8 @@
       		{{ Form::Text('alum', null, array('placeholder' => 'Nombre', 'class' => 'col-sm-2 form-control')) }}
         </div>
       </div>
-
+      {{ Form::hidden('id_alum',null, array('id' => 'id_alum')) }}
+      
       <!-- Apellido 1  !-->
   		<div class="form-group col-sm-12">
      		{{ Form::label('fnane', 'Primer apellido', array('class' => 'col-sm-2 control-label')) }}
@@ -90,45 +98,43 @@
 
       <!-- Apellido 2  !-->
   		<div class="form-group col-sm-12">
-
-      		{{ Form::label('lnane', 'Segundo apellido', array('class' => 'col-sm-2 control-label')) }}
-        	<div class="col-sm-2">
+      	{{ Form::label('lnane', 'Segundo apellido', array('class' => 'col-sm-2 control-label')) }}
+        <div class="col-sm-2">
       			{{ Form::Text('lnane', null, array('placeholder' => 'Segundo Apellido', 'class' => 'col-sm-2 form-control')) }}
-        	</div>
         </div>
+      </div>
 
-        <!-- Tipo Documento  !-->
+      <!-- Tipo Documento  !-->
   		<div class="form-group col-sm-12">
-      		{{ Form::label('tipo_doc', 'Tipo Documento', array('class' => 'col-sm-2 control-label')) }}
-        	<div class="col-sm-2">
-      			<select name="tipo_doc" id="tipo_doc" class="form-control">
-      				<option value="NULL">Seleccione Tipo documento</option>
-      			</select>
-      		</div>
+        {{ Form::label('tipo_doc', 'Tipo Documento', array('class' => 'col-sm-2 control-label')) }}
+        <div class="col-sm-2">
+          {{{ $errors->has('tipos') ? '**' : '' }}}
+          {{ Form::select('tipos', $tipodoc, null)}}
         </div>
+      </div>
 
-        <!-- Numero Documento  !-->
+      <!-- Numero Documento  !-->
   		<div class="form-group col-sm-12">
+        {{ Form::label('n_document', 'Numero Identidad', array('class' => 'col-sm-2 control-label')) }}
+       	<div class="col-sm-2">
+        	{{ Form::Text('n_document', null, array('placeholder' => 'Numero de identidad', 'class' => 'col-sm-2 form-control')) }}
+      	</div>
+      </div>
 
-      		{{ Form::label('n_document', 'Numero Identidad', array('class' => 'col-sm-2 control-label')) }}
-        	<div class="col-sm-2">
-      			{{ Form::Text('n_document', null, array('placeholder' => 'Numero de identidad', 'class' => 'col-sm-2 form-control')) }}
-        	</div>
-        </div>
-
-        <!-- Pais Nacimiento  !-->
+      <!-- Pais Nacimiento  !-->
   		<div class="form-group col-sm-12">
-      		{{ Form::label('p_nac', 'Pais de nacimiento', array('class' => 'col-sm-2 control-label')) }}
-        	<div class="col-sm-2">
-      			{{ Form::Text('p_nac', null, array('placeholder' => 'Pais Nacimiento', 'class' => 'col-sm-2 form-control')) }}
-      		</div>
-        </div>
+      	{{ Form::label('pais_srch', 'Pais de nacimiento', array('class' => 'col-sm-2 control-label')) }}
+       	<div class="col-sm-2">
+      		{{ Form::Text('pais_srch', null, array('placeholder' => 'Pais Nacimiento', 'class' => 'col-sm-2 form-control')) }}
+      	</div>
+      </div>
+      {{ Form::hidden('id_pais',null, array('id' => 'id_pais')) }}
 
         <!-- Ciudad Nacimiento  !-->
   		<div class="form-group col-sm-12">
-      		{{ Form::label('c_nac', 'Ciudad de nacimiento', array('class' => 'col-sm-2 control-label')) }}
+      		{{ Form::label('city_srch', 'Ciudad de nacimiento', array('class' => 'col-sm-2 control-label')) }}
         	<div class="col-sm-2">
-      			{{ Form::Text('c_nac', null, array('placeholder' => 'Ciudad Nacimiento', 'class' => 'col-sm-2 form-control')) }}
+      			{{ Form::Text('city_srch', null, array('placeholder' => 'Ciudad Nacimiento', 'class' => 'col-sm-2 form-control')) }}
       		</div>
         </div>
 
@@ -279,14 +285,14 @@
       		</div>
         </div>
 
-        <input type="hidden" name="papa" id="papa" class="form-group" value="">
-        <input type="hidden" name="mama" id="mama" class="form-group" value="">
-        <input type="hidden" name="acudiente" id="acudiente" class="form-group" value="">
+        {{ Form::hidden('papa',null, array('id' => 'papa')) }}
+        {{ Form::hidden('mama',null, array('id' => 'mama')) }}
+        {{ Form::hidden('acudiente',null, array('id' => 'acudiente')) }}
     {{Form::close()}}
 
 
 @stop
 
-@section('scripts')
-  {{HTML::script('js/scripts/matriculas/matriculas.js')}}
+@section('scripts') 
+  {{ HTML::script('js/scripts/matriculas/matriculas.js') }}
 @stop
