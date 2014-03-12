@@ -12,7 +12,8 @@
 @section('content')
 
 	{{-- Errores --}}
-	@if ($errors->any())
+	
+  @if ($errors->any())
 	    <div class="alert alert-danger">
 	      <button type="button" class="close" data-dismiss="alert">&times;</button>
 	      <strong>Por favor corrige los siguentes errores:</strong>
@@ -23,6 +24,7 @@
 	      </ul>
 	    </div>
 	@endif
+
 	{{-- Formulario --}}
 
   	{{ Form::open(array('url' => 'matriculas/nuevo', 'method' => 'POST','class'=>'col-sm -6'), array('role'=>'form'))}}
@@ -125,68 +127,68 @@
   		<div class="form-group col-sm-12">
       	{{ Form::label('pais_srch', 'Pais de nacimiento', array('class' => 'col-sm-2 control-label')) }}
        	<div class="col-sm-2">
-      		{{ Form::Text('pais_srch', null, array('placeholder' => 'Pais Nacimiento', 'class' => 'col-sm-2 form-control')) }}
+          {{ Form::Text('pais_srch', null, array('placeholder' => 'Pais Nacimiento', 'class' => 'col-sm-2 form-control')) }}
+        </div>
+      </div>
+      {{ Form::hidden('id_pais',null, array('id' => 'id_pais')) }}  
+
+      <!-- Ciudad Nacimiento  !-->
+  		<div class="form-group col-sm-12">
+        {{ Form::label('city_srch', 'Ciudad de nacimiento', array('class' => 'col-sm-2 control-label')) }}
+        <div class="col-sm-2">
+      		{{ Form::Text('city_srch', null, array('placeholder' => 'Ciudad Nacimiento', 'class' => 'col-sm-2 form-control')) }}
       	</div>
       </div>
-      {{ Form::hidden('id_pais',null, array('id' => 'id_pais')) }}
+      {{ Form::hidden('id_city',null, array('id' => 'id_city')) }}
 
-        <!-- Ciudad Nacimiento  !-->
-  		<div class="form-group col-sm-12">
-      		{{ Form::label('city_srch', 'Ciudad de nacimiento', array('class' => 'col-sm-2 control-label')) }}
-        	<div class="col-sm-2">
-      			{{ Form::Text('city_srch', null, array('placeholder' => 'Ciudad Nacimiento', 'class' => 'col-sm-2 form-control')) }}
-      		</div>
-        </div>
-
-        <!-- Genero  !-->
-
-        <div class="form-group col-sm-12">
-      		{{ Form::label('Sexo', 'Sexo', array('class' => 'col-sm-2 control-label')) }}
-      		
-      		<!-- Masculino  !-->
+      <!-- Genero  !-->
+      <div class="form-group col-sm-12">
+      	{{ Form::label('Sexo', 'Sexo', array('class' => 'col-sm-2 control-label')) }}
+      	
+        <!-- Masculino  !-->
   			<div class="col-sm-1">
-  				<div class="radio">
-  					<label>
-  						<input type="radio" name="genero" value="Hombre">
-  						M
-  					</label>
-  				</div>
-      		</div>
-
-      		<!-- Femenino  !-->
-  			<div class="col-sm-1">
-  				<div class="radio">
-  					<label>
-  						<input type="radio" name="genero" value="Mujer">
-  						F
-  					</label>
-  				</div>
-      		</div>
-
+  			  <div class="radio">
+  			    <label>
+  					  <input type="radio" name="genero" value="Hombre">
+  					  M
+  			    </label>
+  			  </div>
       	</div>
 
-      	<!-- Grupo Sanguineo  !-->
-  		<div class="form-group col-sm-12">
-      		{{ Form::label('g_sang', 'Grupo Sanguineo', array('class' => 'col-sm-2 control-label')) }}
-        	<div class="col-sm-2">
-      			{{ Form::Text('g_sang', null, array('placeholder' => 'Grupo Sanguineo', 'class' => 'col-sm-2 form-control')) }}
-      		</div>
+        <!-- Femenino  !-->
+        <div class="col-sm-1">
+          <div class="radio">
+            <label>
+              <input type="radio" name="genero" value="Mujer">
+              F
+            </label>
+          </div>
         </div>
 
-        <!-- RH  !-->
+      </div>
 
-        <div class="form-group col-sm-12">
-      		{{ Form::label('RH', 'RH', array('class' => 'col-sm-2 control-label')) }}
+      <!-- Grupo Sanguineo  !-->
+  		<div class="form-group col-sm-12">
+      	{{ Form::label('g_sang', 'Grupo Sanguineo', array('class' => 'col-sm-2 control-label')) }}
+       	<div class="col-sm-2">
+      		{{ Form::Text('g_sang', null, array('placeholder' => 'Grupo Sanguineo', 'class' => 'col-sm-2 form-control')) }}
+      	</div>
+      </div>
+
+      <!-- RH  !-->
+
+      <div class="form-group col-sm-12">
+      {{ Form::label('RH', 'RH', array('class' => 'col-sm-2 control-label')) }}
       		
-      		<!-- Positivo  !-->
+      	<!-- Positivo  !-->
   			<div class="col-sm-1">
   				<div class="radio">
   					<label>
-  						<input type="radio" name="RH" value="Hombre">
-  						+
+  					   <input type="radio" name="RH" value="Hombre">
+  					   +
   					</label>
   				</div>
-      		</div>
+      	</div>
 
       		<!-- Negativo  !-->
   			<div class="col-sm-1">
@@ -196,7 +198,7 @@
   						-
   					</label>
   				</div>
-      		</div>
+      	</div>
 
       	</div>
 

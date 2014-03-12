@@ -1,4 +1,5 @@
 $(document).on('ready',function(){
+	
 	$( "#fecha_matricula" ).datepicker({
 			changeMonth: true, 
 			changeYear: true,
@@ -8,7 +9,7 @@ $(document).on('ready',function(){
 
 	$('#alum').autocomplete({
 		method:'get',
-		source:root+'matriculas/buscaralum',
+		source:root+'matriculas/buscaralum/'+$("#year_matricula").val(),
 		minLenght:2,
 		select: function(event,ui)
 		{

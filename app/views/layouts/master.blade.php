@@ -14,6 +14,7 @@
         {{ HTML::style('css/jquery-ui-1.10.4.custom.css') }}
         {{ HTML::style('css/estilos.css') }}
         {{ HTML::style('css/estructura.css') }}
+        <link rel="icon" type="image/vnd.microsoft.icon" href="public/favicon.ico"/>
         <!-- Just for debugging purposes. Don't actually copy this line! -->
         <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
 

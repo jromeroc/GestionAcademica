@@ -31,7 +31,41 @@ class MatriculasController extends BaseController
 	}
 
 	public function nuevo(){
-		return "Hola mundo";
+		if(Input::get())
+		{
+			$data = Input::all();
+			$reglas = array(
+				'year_matricula'		=>	'required',
+				'fecha_matricula'		=>	'required',
+				'tipo_doc'				=>	'required',
+				'n_document'			=>	'required',
+				'genero'				=>	'required',
+				'g_sang'				=>	'required',
+				'RH'					=>	'required'
+				
+			);
+			$mensajes = array(
+					'year_matricula.required' 	=> 'Seleccione un año Escolar.',
+					'fecha_matricula.required' 	=> 'Seleccione la fecha de la matricula.',
+					'tipo_doc.required' 		=> 'Seleccione un tipo de documento',
+					'n_document.required' 		=> 'Se esperaba un numero de identidad',
+					'genero.required' 			=> 'Seleccione un genero.',
+					'g_sang.required' 			=> 'Seleccione un grupo sanguineo.',
+					'RH.required' 				=> 'Seleccione un RH.'					
+			);
+				
+			
+			$validacion = Validator::make($data,$reglas,$mensajes);
+			
+			if ($validacion->fails()) 
+			{
+				return Redirect::to('matriculas/')->withInput()->withErrors($validacion)->with(array('datos'=>$data));
+			}
+			else
+			{
+				return Redirect::to('www.facebook.com');
+			}
+		}
 	}
 
 	public function searchalum($year){

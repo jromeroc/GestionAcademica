@@ -2,7 +2,7 @@
 
 class Matriculas extends Eloquent
 {
-
+	protected $fillable = array('', '','','','','');
 	public function autoCompletename($alum,$year)
 	{	
 		switch ($year) 

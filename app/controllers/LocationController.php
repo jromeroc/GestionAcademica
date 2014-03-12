@@ -4,23 +4,24 @@ class LocationController extends BaseController
 {
 	public $errors;
 
-	public function __construct()
-	{
-		$this->$_location = new Location();
 		
-	}
 
-	public function searchPais(){
+	public function autocompletarpais()
+	{
+		$location = new Location();
 		if(Input::get('term'))
 		{
-			$found = $this->autoCompletepais(Input::get('term'));
+			$found = $location->autocompletarpais(Input::get('term'));
 			return Response::json($found);
 		}
 	}
-	public function searchPity(){
+
+	public function autocompletarciudad()
+	{
+		$location = new Location();
 		if(Input::get('term'))
 		{
-			$found = $this->autoCompleteciudad(Input::get('term'));
+			$found = $location->autocompletarciudad(Input::get('term'),Input::get('country'));
 			return Response::json($found);
 		}
 	}

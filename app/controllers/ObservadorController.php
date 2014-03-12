@@ -76,7 +76,6 @@ class ObservadorController extends BaseController
 			return View::make('observador.nuevo')->with(array('observador'=> $this->_observador,'grupos' => $grupos));
 		}
 
-
 	}
 
 	public function informe()

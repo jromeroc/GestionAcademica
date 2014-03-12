@@ -2,19 +2,22 @@
 
 class Location extends BaseController
 {
-	public function autoCompletepais($pais)
-	{	
-		$consult = DB::table('paises')->select("name_pais as value, id_pais as id")
-		->whereRaw("name_pais LIKE '%".$pais."%'")
+
+	public function autocompletarpais($find)
+	{
+		$listPais = DB::table('paises')->select("name_pais AS value" , "id_pais AS id")
+		->whereRaw("name_pais LIKE '%".$find."%'")
 		->get();
-		return $consult;
+		return $listPais;
 	}
 
-	public function autoCompleteciudad($city)
-	{	
-		$consult = DB::table('ciudades')->select("nombre_ciudad as value, id_pais_ciudad as idpais, id_ciudad as id")
-		->whereRaw("nombre_ciudad LIKE '%".$city."%'")
+	public function autocompletarciudad($find,$id_pais)
+	{
+		$listCity = DB::table('ciudades')
+			->where("nombre_ciudad","LIKE","'%".$find."%'")
+			->where("id_pais_ciudad", "=" , $id_pais)
+			->select("nombre_ciudad AS value , id_ciudad AS id")
 		->get();
-		return $consult;
+		return $listCity;
 	}
 }

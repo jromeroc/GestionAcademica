@@ -31,6 +31,7 @@ $(document).on('ready',function(){
 	});
 
 	$('#pais_srch').autocomplete({
+		
 		method:'get',
 		source:root+'location/buscarpais',
 		minLenght:2,
@@ -40,13 +41,15 @@ $(document).on('ready',function(){
 		}
 	});
 
-	$('#city_srch').autocomplete({
+	$('#city_srch').autocomplete({		
 		method:'get',
 		source:root+'location/buscarcity',
+		data: {country: $('#id_pais').val()},
 		minLenght:2,
 		select: function(event,ui)
 		{
-			$("#id_ciudad").val(ui.item.id);
+			$("#id_city").val(ui.item.id);
 		}
 	});
+
 });
