@@ -44,7 +44,7 @@
         <div class="col-sm-1">
           <div class="radio">
             <label>
-              <input type="radio" id="Inscripcion" name="T-reg" value="1">
+              <input type="radio" id="Inscripcion" name="T-reg" value="0">
               Inscripcion
             </label>
           </div>
@@ -61,7 +61,7 @@
         </div>
 
       <!-- Fecha  !-->
-  		<div class="form-group col-sm-12">
+  		<div class="form-group col-sm-12" style="display:none" id="fecha">
 
       	{{ Form::label('fecha_matricula', 'Fecha matricula', array('class' => 'col-sm-2 control-label')) }}
        	<div class="col-sm-2">
@@ -92,9 +92,9 @@
       
       <!-- Apellido 1  !-->
   		<div class="form-group col-sm-12">
-     		{{ Form::label('fnane', 'Primer apellido', array('class' => 'col-sm-2 control-label')) }}
+     		{{ Form::label('fname', 'Primer apellido', array('class' => 'col-sm-2 control-label')) }}
        	<div class="col-sm-2">
-     			{{ Form::Text('fnane', null, array('placeholder' => 'Primer Apellido', 'class' => 'col-sm-2 form-control')) }}
+     			{{ Form::Text('fname', null, array('placeholder' => 'Primer Apellido', 'class' => 'col-sm-2 form-control')) }}
        	</div>
       </div>
 
@@ -110,8 +110,8 @@
   		<div class="form-group col-sm-12">
         {{ Form::label('tipo_doc', 'Tipo Documento', array('class' => 'col-sm-2 control-label')) }}
         <div class="col-sm-2">
-          {{{ $errors->has('tipos') ? '**' : '' }}}
-          {{ Form::select('tipos', $tipodoc, null)}}
+          {{{ $errors->has('tipo_doc') ? '**' : '' }}}
+          {{ Form::select('tipo_doc', $tipodoc, null)}}
         </div>
       </div>
 
@@ -149,7 +149,7 @@
   			<div class="col-sm-1">
   			  <div class="radio">
   			    <label>
-  					  <input type="radio" name="genero" value="Hombre">
+  					  <input type="radio" name="genero" id="genero" value="1">
   					  M
   			    </label>
   			  </div>
@@ -159,7 +159,7 @@
         <div class="col-sm-1">
           <div class="radio">
             <label>
-              <input type="radio" name="genero" value="Mujer">
+              <input type="radio" name="genero" id="genero" value="0">
               F
             </label>
           </div>
@@ -181,20 +181,20 @@
       {{ Form::label('RH', 'RH', array('class' => 'col-sm-2 control-label')) }}
       		
       	<!-- Positivo  !-->
-  			<div class="col-sm-1">
-  				<div class="radio">
-  					<label>
-  					   <input type="radio" name="RH" value="Hombre">
-  					   +
-  					</label>
-  				</div>
-      	</div>
+        <div class="col-sm-1">
+          <div class="radio">
+            <label>
+              <input type="radio" name="RH" id="RH" value="+">
+              +
+            </label>
+          </div>
+        </div>
 
-      		<!-- Negativo  !-->
+      	<!-- Negativo  !-->
   			<div class="col-sm-1">
   				<div class="radio">
   					<label>
-  						<input type="radio" name="RH" value="Mujer">
+  						<input type="radio" name="RH" id="RH" value="-">
   						-
   					</label>
   				</div>
@@ -202,13 +202,13 @@
 
       	</div>
 
-      	<!-- EPS  !-->
+      <!-- EPS  !-->
   		<div class="form-group col-sm-12">
-      		{{ Form::label('eps', 'Eps', array('class' => 'col-sm-2 control-label')) }}
-        	<div class="col-sm-2">
-      			{{ Form::Text('eps', null, array('placeholder' => 'Eps', 'class' => 'col-sm-2 form-control')) }}
-      		</div>
-        </div>
+      {{ Form::label('eps', 'Eps', array('class' => 'col-sm-2 control-label')) }}
+       	<div class="col-sm-2">
+      		{{ Form::Text('eps', null, array('placeholder' => 'Eps', 'class' => 'col-sm-2 form-control')) }}
+      	</div>
+      </div>
 
         <!-- Tipo de hermano  !-->
         <div class="form-group col-sm-12">
@@ -220,7 +220,7 @@
   			<div class="col-sm-3">
   				<div class="radio">
   					<label>
-  						<input type="radio" name="T-Herm" value="0">
+  						<input type="radio" name="T-Herm" id="T-Herm" value="0">
   						No aplica
   					</label>
   				</div>
@@ -230,18 +230,18 @@
   			<div class="col-sm-3">
   				<div class="radio">
   					<label>
-  						<input type="radio" name="T-Herm" value="1">
+  						<input type="radio" name="T-Herm" id="T-Herm" value="1">
   						Mayor
   					</label>
   				</div>
       		</div>
-
+          
       		<!-- Menor  !-->
   			<div class="col-sm-3">
   				<div class="radio">
   					<label>
-  						<input type="radio" name="T-Herm" value="1">
-  						Mayor
+  						<input type="radio" name="T-Herm" id="T-Herm" value="2">
+  						Menor
   					</label>
   				</div>
       		</div>
@@ -291,8 +291,6 @@
         {{ Form::hidden('mama',null, array('id' => 'mama')) }}
         {{ Form::hidden('acudiente',null, array('id' => 'acudiente')) }}
     {{Form::close()}}
-
-
 @stop
 
 @section('scripts') 

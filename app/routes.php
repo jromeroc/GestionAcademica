@@ -166,7 +166,7 @@ Route::group(array('prefix' => 'location'), function(){
 	Route::group(array('before' => 'auth'), function(){
 		Route::group(array('before' => 'permit'), function(){
 			Route::get('buscarpais', 'LocationController@autocompletarpais');
-			Route::get('buscarcity', 'LocationController@autocompletarciudad');
+			Route::get('buscarciudad', 'LocationController@autocompletarciudad');
 		});
 	});
 });

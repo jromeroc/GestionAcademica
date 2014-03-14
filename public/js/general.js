@@ -43,7 +43,7 @@ $(document).on('ready',function(){
 
 	$('#city_srch').autocomplete({		
 		method:'get',
-		source:root+'location/buscarcity',
+		source:root+'location/buscarciudad',
 		data: {country: $('#id_pais').val()},
 		minLenght:2,
 		select: function(event,ui)

@@ -35,26 +35,27 @@ class MatriculasController extends BaseController
 		{
 			$data = Input::all();
 			$reglas = array(
+				'alum'					=>	'required',
+				'fname'					=>	'required',
 				'year_matricula'		=>	'required',
-				'fecha_matricula'		=>	'required',
-				'tipo_doc'				=>	'required',
-				'n_document'			=>	'required',
 				'genero'				=>	'required',
-				'g_sang'				=>	'required',
-				'RH'					=>	'required'
-				
+				'grado'					=>	'required'
 			);
 			$mensajes = array(
+					'alum.required'			 	=> 'Digite el nombre del alumno.',
+					'fname.required' 			=> 'Digite el apellido del alumno.',
 					'year_matricula.required' 	=> 'Seleccione un año Escolar.',
-					'fecha_matricula.required' 	=> 'Seleccione la fecha de la matricula.',
-					'tipo_doc.required' 		=> 'Seleccione un tipo de documento',
-					'n_document.required' 		=> 'Se esperaba un numero de identidad',
-					'genero.required' 			=> 'Seleccione un genero.',
-					'g_sang.required' 			=> 'Seleccione un grupo sanguineo.',
-					'RH.required' 				=> 'Seleccione un RH.'					
+					'genero.required' 			=> 'Seleccione un genero.',					
+					'grado.required' 			=> 'Seleccione un grado.'				
 			);
-				
-			
+			if (Input::get('T-reg')==1) {
+				$reglas['fecha_matricula'] = 'required';
+				$mensajes['fecha_matricula.required'] = 'Seleccione la fecha de la matricula.';
+				$tabla = $this->asignTabla($data['year_matricula']);
+				$codigoMatri = $this->_matricula->cod_matri($tabla);
+				$codigoMatri = $codigoMatri +1;
+			}
+
 			$validacion = Validator::make($data,$reglas,$mensajes);
 			
 			if ($validacion->fails()) 
@@ -63,19 +64,38 @@ class MatriculasController extends BaseController
 			}
 			else
 			{
-				return Redirect::to('www.facebook.com');
+				$tabla = $this->asignTabla($data['year_matricula']);
+				
+				$data['codigoMatri']=$codigoMatri;
+				$save = $this->_matricula->saveMatricula($data,$tabla);
+				return Redirect::to('matriculas/');
 			}
 		}
 	}
-
 	public function searchalum($year){
+		$tabla = $this->asignTabla($year);
 		if(Input::get('term'))
 		{
-			$found = $this->_matricula->autoCompletename(Input::get('term'),$year);
+			$found = $this->_matricula->autoCompletename(Input::get('term'),$year,$tabla);
 			return Response::json($found);
 		}
 	}
-		
+	public function asignTabla($year){
+			switch ($year)
+			{
+	    		case ($year = date('Y'))&&(date('m')<=7):
+			        $tablaAlumnos = "alumnos_last";
+			        break;
+	    		case $year < date('Y'):
+			        $tablaAlumnos = "alumnos_fecha";
+			        break;
+	    		case ($year > date('Y'))&&(date('m')>=8):
+			        $tablaAlumnos = "alumnos";
+			        break;
+			}
+			return $tablaAlumnos;
+		}
+	
 }
 
 
