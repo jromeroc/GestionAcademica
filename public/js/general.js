@@ -52,4 +52,13 @@ $(document).on('ready',function(){
 		}
 	});
 
+	$('#city_exp').autocomplete({		
+		method:'get',
+		source:root+'location/buscarciudadU',
+		minLenght:2,
+		select: function(event,ui)
+		{
+			$("#id_city_exp").val(ui.item.id);
+		}
+	});
 });

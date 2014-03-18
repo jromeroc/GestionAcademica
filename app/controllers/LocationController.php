@@ -25,4 +25,13 @@ class LocationController extends BaseController
 			return Response::json($found);
 		}
 	}
+	public function autocompletarciudadU()
+	{
+		$location = new Location();
+		if(Input::get('term'))
+		{
+			$found = $location->autocompletarciudadU(Input::get('term'));
+			return Response::json($found);
+		}
+	}
 }

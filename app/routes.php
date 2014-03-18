@@ -154,6 +154,7 @@ Route::group(array('prefix' => 'matriculas'), function(){
 			Route::get('/', 'MatriculasController@MatriculaAlum');
 			Route::post('nuevo', 'MatriculasController@nuevo');
 			Route::get('buscaralum/{numero}', 'MatriculasController@searchalum')->where('numero','[0-9]+');
+			Route::get('infocomp', 'MatriculasController@infocomp');
 		});
 	});
 });
@@ -167,6 +168,7 @@ Route::group(array('prefix' => 'location'), function(){
 		Route::group(array('before' => 'permit'), function(){
 			Route::get('buscarpais', 'LocationController@autocompletarpais');
 			Route::get('buscarciudad', 'LocationController@autocompletarciudad');
+			Route::get('buscarciudadU', 'LocationController@autocompletarciudadU');
 		});
 	});
 });

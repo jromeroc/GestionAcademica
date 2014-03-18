@@ -29,6 +29,8 @@ $(document).on('ready',function(){
 			$("#n_document").val(ui.item.num_document);
 			$("#pais_srch").val(ui.item.name_pais);
 			$("#id_pais").val(ui.item.id_pais);
+			$("#id_city_exp").val(ui.item.exp_document);
+			$("#city_exp").val(ui.item.nombre_ciudad);
 			$("#city_srch").val(ui.item.nombre_ciudad);
 			$("#id_city").val(ui.item.id_ciudad);
 			$("#genero[value='"+ui.item.sexo+"']").prop("checked", true);				
@@ -45,5 +47,10 @@ $(document).on('ready',function(){
 			$("#email").val(ui.item.mail);
 		}
 	});
-
+	$( "#exp_document" ).datepicker({
+			changeMonth: true, 
+			changeYear: true,
+			dateFormat: "yy-mm-dd"
+		
+	});
 });

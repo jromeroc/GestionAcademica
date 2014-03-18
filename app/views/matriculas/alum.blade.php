@@ -3,7 +3,7 @@
 
 @section('title')
 @parent
-.:: Observaciones ::.
+.:: Matriculas ::.
 @stop
 
 @section('modulo')
@@ -68,7 +68,8 @@
       		{{ Form::Text('fecha_matricula', null, array('placeholder' => 'Fecha Matricula', 'class' => 'col-sm-2 form-control')) }}
        	</div>
       </div>
-      	
+      
+
       <!-- Grado  !-->
       <div class="form-group col-sm-12">
           {{ Form::label('grado', 'Grado', array('class' => 'col-sm-2 control-label')) }}
@@ -116,13 +117,22 @@
       </div>
 
       <!-- Numero Documento  !-->
-  		<div class="form-group col-sm-12">
+      <div class="form-group col-sm-12">
         {{ Form::label('n_document', 'Numero Identidad', array('class' => 'col-sm-2 control-label')) }}
-       	<div class="col-sm-2">
-        	{{ Form::Text('n_document', null, array('placeholder' => 'Numero de identidad', 'class' => 'col-sm-2 form-control')) }}
-      	</div>
-      </div>
+        <div class="col-sm-2">
+          {{ Form::Text('n_document', null, array('placeholder' => 'Numero de identidad', 'class' => 'col-sm-2 form-control')) }}
+        </div>
+      </div>      
 
+      <!-- Exp Documento  !-->
+      <div class="form-group col-sm-12">
+        {{ Form::label('city_exp', 'Ciudad de Expedicion', array('class' => 'col-sm-2 control-label')) }}
+        <div class="col-sm-2">
+          {{ Form::Text('city_exp', null, array('placeholder' => 'Ciudad Expedicion', 'class' => 'col-sm-2 form-control')) }}
+        </div>
+      </div>
+      {{ Form::hidden('id_city_exp',null, array('id' => 'id_city_exp')) }}
+ 
       <!-- Pais Nacimiento  !-->
   		<div class="form-group col-sm-12">
       	{{ Form::label('pais_srch', 'Pais de nacimiento', array('class' => 'col-sm-2 control-label')) }}

@@ -7,7 +7,8 @@ class Matriculas extends Eloquent
 	{	
 		$consult = DB::table($tablaAlumnos)->select("*",DB::raw("CONCAT_WS(' ',lname,fname,names) as value, id"))
 		->join('paises',$tablaAlumnos.'.pais_born', '=', 'paises.id_pais')
-		->join('ciudades',$tablaAlumnos.'.city_born', '=', 'ciudades.id_ciudad')
+        ->join('ciudades as city_b',$tablaAlumnos.'.city_born', '=', 'city_b.id_ciudad')
+        ->join('ciudades as city_e',$tablaAlumnos.'.exp_document', '=', 'city_e.id_ciudad')
 		->whereRaw("CONCAT_WS(' ',lname,fname,names) LIKE '%".$alum."%'")
 		->get();
 		return $consult;
@@ -25,7 +26,7 @@ class Matriculas extends Eloquent
     			'grado' => $data['grado'],
     			'fname' => $data['fname'],
     			'lname' => $data['lnane'],
-    			'names' => "",
+    			'names' => $data['alum'],
     			'tipo_document' => $data['tipo_doc'],
     			'num_document' => $data['n_document'],
     			'pais_born' => $data['id_pais'],
@@ -34,7 +35,7 @@ class Matriculas extends Eloquent
     			'grupo_san' => $data['g_sang'],
     			'rh' => $data['RH'],
     			'eps' => $data['eps'],
-    			//'tipo_hermano' => $data[''],
+    			'tipo_hermano' => $data['T-Herm'],
     			'direccion' => $data['direcc'],
     			'telefono' => $data['fijo'],
     			'celular' => $data['cel'],
@@ -43,9 +44,42 @@ class Matriculas extends Eloquent
     			'mama' => $data['mama'],
     			'acudiente' => $data['acudiente'],
     			//'lastschool' => $data[''],
+                'exp_document' => $data['exp_document'],
     			'matricula' => $data['codigoMatri'],
     		)
 		);
+    }
+
+    public function saveInscripcion($data,$tabla){
+        DB::table($tabla)->insert(
+            array(
+                'matriculado' => $data['T-reg'],
+                'date_matricula' => $data['fecha_matricula'],
+                'grado' => $data['grado'],
+                'fname' => $data['fname'],
+                'lname' => $data['lnane'],
+                'names' => $data['alum'],
+                'tipo_document' => $data['tipo_doc'],
+                'num_document' => $data['n_document'],
+                'pais_born' => $data['id_pais'],
+                'city_born' => $data['id_city'],
+                'sexo' => $data['genero'],
+                'grupo_san' => $data['g_sang'],
+                'rh' => $data['RH'],
+                'eps' => $data['eps'],
+                'tipo_hermano' => $data['T-Herm'],
+                'direccion' => $data['direcc'],
+                'telefono' => $data['fijo'],
+                'celular' => $data['cel'],
+                'mail' => $data['email'],
+                'papa' => $data['papa'],
+                'mama' => $data['mama'],
+                'acudiente' => $data['acudiente'],
+                //'lastschool' => $data[''],
+            )
+        );
 	}
+
+
 }
 ?>
