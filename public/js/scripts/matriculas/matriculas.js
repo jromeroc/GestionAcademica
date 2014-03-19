@@ -45,9 +45,10 @@ $(document).on('ready',function(){
 			$("#cel").val(ui.item.celular);
 			$("#fijo").val(ui.item.telefono);
 			$("#email").val(ui.item.mail);
+			$("#fecha_nac").val(ui.item.date_born);
 		}
 	});
-	$( "#exp_document" ).datepicker({
+	$( "#fecha_nac" ).datepicker({
 			changeMonth: true, 
 			changeYear: true,
 			dateFormat: "yy-mm-dd"

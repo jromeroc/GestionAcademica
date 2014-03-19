@@ -7,8 +7,7 @@ class Matriculas extends Eloquent
 	{	
 		$consult = DB::table($tablaAlumnos)->select("*",DB::raw("CONCAT_WS(' ',lname,fname,names) as value, id"))
 		->join('paises',$tablaAlumnos.'.pais_born', '=', 'paises.id_pais')
-        ->join('ciudades as city_b',$tablaAlumnos.'.city_born', '=', 'city_b.id_ciudad')
-        ->join('ciudades as city_e',$tablaAlumnos.'.exp_document', '=', 'city_e.id_ciudad')
+        ->join('ciudades',$tablaAlumnos.'.city_born', '=', 'ciudades.id_ciudad')
 		->whereRaw("CONCAT_WS(' ',lname,fname,names) LIKE '%".$alum."%'")
 		->get();
 		return $consult;
@@ -44,8 +43,9 @@ class Matriculas extends Eloquent
     			'mama' => $data['mama'],
     			'acudiente' => $data['acudiente'],
     			//'lastschool' => $data[''],
-                'exp_document' => $data['exp_document'],
+                'exp_document' => $data['id_city_exp'],
     			'matricula' => $data['codigoMatri'],
+                'date_born' => $data['fecha_nac']
     		)
 		);
     }

@@ -41,14 +41,16 @@ class MatriculasController extends BaseController
 				'fname'					=>	'required',
 				'year_matricula'		=>	'required',
 				'genero'				=>	'required',
-				'grado'					=>	'required'
+				'grado'					=>	'required',
+				'T-reg'					=>  'required'
 			);
 			$mensajes = array(
 					'alum.required'			 	=> 'Digite el nombre del alumno.',
 					'fname.required' 			=> 'Digite el apellido del alumno.',
 					'year_matricula.required' 	=> 'Seleccione un año Escolar.',
 					'genero.required' 			=> 'Seleccione un genero.',					
-					'grado.required' 			=> 'Seleccione un grado.'				
+					'grado.required' 			=> 'Seleccione un grado.',				
+					'T-reg.required' 			=> 'Seleccione Inscripcion o Matricula.'				
 			);
 
 			if (Input::get('T-reg')==1) 
@@ -59,7 +61,7 @@ class MatriculasController extends BaseController
 				$codigoMatri = $this->_matricula->cod_matri($tabla);
 				$codigoMatri = $codigoMatri +1;
 				$validacion = Validator::make($data,$reglas,$mensajes);
-				if ($validacion->fails()) 
+				if ($validacion->fails())
 				{
 					return Redirect::to('matriculas/')->withInput()->withErrors($validacion)->with(array('datos'=>$data));
 				}
@@ -67,9 +69,10 @@ class MatriculasController extends BaseController
 				{
 					$tabla = $this->asignTabla($data['year_matricula']);
 					$data['codigoMatri']=$codigoMatri;
-					$datosC = array('codigoMatri'=>$data['codigoMatri'] , 'nombres' => $data['alum'] );
-					$save = $this->_matricula->saveMatricula($data,$tabla);
-					return Redirect::to('matriculas/infocomp')->with('datos',$datosC);
+					//$save = $this->_matricula->saveMatricula($data,$tabla);
+					$infoM = array('name'=>$data['alum'],'matricula'=>$data['codigoMatri']);
+					return View::make('matriculas.info-complementaria')->with(array('name' => $data['alum'],'matricula'=>$data['codigoMatri'] ));
+					//return Redirect::to('matriculas/infocomp')->with('info_A',$infoM);
 				}
 			}
 			if (Input::get('T-reg')==0) 
@@ -77,16 +80,17 @@ class MatriculasController extends BaseController
 				$validacion = Validator::make($data,$reglas,$mensajes);
 				if ($validacion->fails()) 
 				{
-					return Redirect::to('matriculas/')->withInput()->withErrors($validacion)->with(array('datos'=>$data));
+					return View::make('matriculas/')->withInput()->withErrors($validacion)->with(array('datos'=>$data));
 				}
 
 				else
 				{
 					$tabla = $this->asignTabla($data['year_matricula']);
-					$save = $this->_matricula->saveInscripcion($data,$tabla);
-					return Redirect::to('matriculas/infocomp')->with('nombres',$data['alum']);
+					//$save = $this->_matricula->saveInscripcion($data,$tabla);
+					return Redirect::to('matriculas.info-complementaria')->with(array('name' => $data['alum'],'matricula'=>$data['codigoMatri'] ));
+					$infoM = array('name'=>$data['alum']);
+					//return Redirect::to('matriculas/infocomp')->with('info_A',$infoM);
 				}
-
 			}
 			
 		}

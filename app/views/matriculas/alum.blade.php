@@ -107,6 +107,14 @@
         </div>
       </div>
 
+      <!-- Fecha nacimiento  !-->
+      <div class="form-group col-sm-12">
+        {{ Form::label('fecha_nac', 'Fecha de nacimiento', array('class' => 'col-sm-2 control-label')) }}
+        <div class="col-sm-2">
+          {{ Form::Text('fecha_nac', null, array('placeholder' => 'Fecha de Nacimiento', 'class' => 'col-sm-2 form-control')) }}
+        </div>
+      </div>
+
       <!-- Tipo Documento  !-->
   		<div class="form-group col-sm-12">
         {{ Form::label('tipo_doc', 'Tipo Documento', array('class' => 'col-sm-2 control-label')) }}
