@@ -304,7 +304,6 @@
         		{{form::submit('Guardar Matricula',array('class'=>'btn btn-success col-sm-4'))}}
       		</div>
         </div>
-
         {{ Form::hidden('papa',null, array('id' => 'papa')) }}
         {{ Form::hidden('mama',null, array('id' => 'mama')) }}
         {{ Form::hidden('acudiente',null, array('id' => 'acudiente')) }}

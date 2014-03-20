@@ -155,6 +155,8 @@ Route::group(array('prefix' => 'matriculas'), function(){
 			Route::post('nuevo', 'MatriculasController@nuevo');
 			Route::get('buscaralum/{numero}', 'MatriculasController@searchalum')->where('numero','[0-9]+');
 			Route::get('infocomp', 'MatriculasController@infocomp');
+			Route::get('srchP', 'MatriculasController@srchP');
+			Route::POST('saveP', 'MatriculasController@saveP');
 		});
 	});
 });

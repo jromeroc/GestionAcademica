@@ -80,6 +80,11 @@ class Matriculas extends Eloquent
         );
 	}
 
+    public function srchP($id){
+        $padre = DB::table('padres_cch')->select('*')->where('id_padre','=',$id)->get();
+        return $padre;
+    }
+
 
 }
 ?>

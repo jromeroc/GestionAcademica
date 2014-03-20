@@ -54,4 +54,8 @@ $(document).on('ready',function(){
 			dateFormat: "yy-mm-dd"
 		
 	});
+
+	var datosp = $("#datosp").val();
+
+	
 });
