@@ -94,7 +94,9 @@ class MatriculasController extends BaseController
 					$tipos = Tipodoc::all()->lists('name_tipodoc','id_tipodoc');
 					$tabla = $this->asignTabla($data['year_matricula']);
 					//$save = $this->_matricula->saveInscripcion($data,$tabla);
-					if ($data['papa']) {
+					if ($data['papa']) 
+					{
+
 						$dateP = $this->_matricula->srchP($data['papa']);
 						$papa = get_object_vars($dateP[0]);
 						if ($data['mama']) {
@@ -104,7 +106,8 @@ class MatriculasController extends BaseController
 						}
 						return View::make('matriculas.info-complementaria')->with(array('name' => $data['alum'],'tipoR'=>$data['T-reg'],'tipodoc'=>$tipos,'papa'=>$papa,));
 					}
-					if ($data['mama']) {
+					if ($data['mama']) 
+					{
 						$dateM = $this->_matricula->srchP($data['mama']);
 						$mama = get_object_vars($dateM[0]);
 						if ($data['papa']) {

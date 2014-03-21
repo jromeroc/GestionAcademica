@@ -85,6 +85,5 @@ class Matriculas extends Eloquent
         return $padre;
     }
 
-
 }
 ?>
