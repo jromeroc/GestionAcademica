@@ -85,5 +85,31 @@ class Matriculas extends Eloquent
         return $padre;
     }
 
+    public function srchA($id){
+        $acudiente = DB::table('acudiente')->select('*')->where('id_acudiente','=',$id)->get();
+        return $acudiente;
+    }
+    public function autoCompleteP($padre){
+        $papa = DB::table('padres_cch')->select("*",DB::raw("CONCAT_WS(' ', nombres_padre, apel1_padre, apel2_padre) as value , id_padre as id"))
+        ->whereRaw("CONCAT_WS(' ', nombres_padre, apel1_padre, apel2_padre) LIKE '%".$padre."%'")
+        ->get();
+        return $papa;
+    }
+
+    public function autoCompleteA($acu){
+        $papa = DB::table('acudiente')->select("*",'id_acudiente as id','nombre_acudiente as value' )
+        ->whereRaw("nombre_acudiente LIKE '%".$acu."%'")
+        ->get();
+        return $papa;
+    }
+
+    public function UpdateP(){
+        $papa = DB::table('padres_cch')->where->('datosp','=','')
+        ->update(
+            array(
+                
+            )
+        );
+    }
 }
 ?>

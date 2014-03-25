@@ -32,7 +32,7 @@
           <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 
             <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
-              <h3 class="panel-title">Inscripción </strong></h3>
+              <h3 class="panel-title"><strong> Inscripción </strong></h3>
             </div>
 
             <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
@@ -70,7 +70,7 @@
         @endif
       </div>
     </div>
-    <input type="hidden" name="datosp" id="datosp" class="form-control" value="{{$papa}}">
+    <input type="hidden" name="datosp" id="datosp" class="form-control" value="{{$papa['id_padre']}}">
     
     <!-- Ape1 papa -->
     <div class="form-group col-sm-12">
@@ -98,13 +98,13 @@
 
     <!-- Tipo Documento  !-->
       <div class="form-group col-sm-12">
-        {{ Form::label('tipo_doc', 'Tipo Documento', array('class' => 'col-sm-2 control-label')) }}
+        {{ Form::label('tipo_docP', 'Tipo Documento', array('class' => 'col-sm-2 control-label')) }}
         <div class="col-sm-2">
-          {{{ $errors->has('tipo_doc') ? '**' : '' }}}
+          {{{ $errors->has('tipo_docP') ? '**' : '' }}}
           @if($papa)
-          {{ Form::select('tipo_doc', $tipodoc, $papa['id_tipodoc_padre'])}}
+          {{ Form::select('tipo_docP', $tipodoc, $papa['id_tipodoc_padre'])}}
           @else
-          {{ Form::select('tipo_doc', $tipodoc, null)}}
+          {{ Form::select('tipo_docP', $tipodoc, null)}}
           @endif
         </div>
       </div>
@@ -186,12 +186,23 @@
       {{ Form::label('emailP', 'Correo Electronico', array('class' => 'col-sm-2 control-label')) }}
       <div class="col-sm-2">
         @if($papa)
-        {{ Form::Text('emailP', null, array('placeholder' => 'Email', 'class' => 'col-sm-2 form-control')) }}
+        {{ Form::Text('emailP', $papa['email_padre'], array('placeholder' => 'Email', 'class' => 'col-sm-2 form-control')) }}
         @else
         {{ Form::Text('emailP', null, array('placeholder' => 'Email', 'class' => 'col-sm-2 form-control')) }}
         @endif
       </div>  
     </div>
+
+    <?php 
+    if (isset($codM)) {
+      $datos = array('codM' => $codM,'alum'=>$name);
+    }else{
+      $datos = array('alum'=>$name);
+    }
+      print_r($datos)
+    ?>
+
+    <input type="hidden" name="datosAd" id="datosAd" class="form-control" value="{{$datos}}">
 
   <!-- Submit !-->
   <div class="form-group col-sm-12">
@@ -206,7 +217,6 @@
     <!-- MAMA -->
   <div class="tab-pane fade" id="mama">
       <br>
-
     {{ Form::open(array('url' => 'matriculas/saveM', 'method' => 'POST','class'=>'col-sm -6'), array('role'=>'form'))}}
     
     <!-- Nombre mama -->
@@ -220,7 +230,7 @@
         @endif
       </div>
     </div>
-    <input type="hidden" name="datosm" id="datosm" class="form-control" value="{{$mama}}">
+    <input type="hidden" name="datosm" id="datosm" class="form-control" value="{{$mama['id_padre']}}">
     
     <!-- Ape1 mama -->
     <div class="form-group col-sm-12">
@@ -248,13 +258,13 @@
 
     <!-- Tipo Documento  !-->
       <div class="form-group col-sm-12">
-        {{ Form::label('tipo_doc', 'Tipo Documento', array('class' => 'col-sm-2 control-label')) }}
+        {{ Form::label('tipo_docM', 'Tipo Documento', array('class' => 'col-sm-2 control-label')) }}
         <div class="col-sm-2">
-          {{{ $errors->has('tipo_doc') ? '**' : '' }}}
+          {{{ $errors->has('tipo_docM') ? '**' : '' }}}
           @if($papa)
-          {{ Form::select('tipo_doc', $tipodoc, $mama['id_tipodoc_padre'])}}
+          {{ Form::select('tipo_docM', $tipodoc, $mama['id_tipodoc_padre'])}}
           @else
-          {{ Form::select('tipo_doc', $tipodoc, null)}}
+          {{ Form::select('tipo_docM', $tipodoc, null)}}
           @endif
         </div>
       </div>
@@ -348,55 +358,72 @@
       {{form::submit('Guardar información Mamá',array('class'=>'btn btn-success col-sm-6'))}}
     </div>
     
-
     {{Form::close()}}
   </div>
 
 
-
+  <div class="tab-pane fade" id="acudiente">
     <!-- ACUDIENTE -->
     {{ Form::open(array('url' => 'matriculas/saveM', 'method' => 'POST','class'=>'col-sm -6'), array('role'=>'form'))}}
-
-  <div class="tab-pane fade" id="acudiente">
-  <br>
+    <br>
     <!-- Nombre Acudiente -->
     <div class="form-group col-sm-12">
       {{ Form::label('nameA', 'Nombre', array('class' => 'col-sm-2 control-label')) }}
       <div class="col-sm-2">
-        {{ Form::Text('nameA', null, array('placeholder' => 'Nombre', 'class' => 'col-sm-2 form-control')) }}
-      </div>  
+      @if($acudiente)
+        {{ Form::Text('nameA',$acudiente['nombre_acudiente'], array('placeholder' => 'Nombre', 'class' => 'col-sm-2 form-control')) }}
+      @else
+        {{ Form::Text('nameA',null, array('placeholder' => 'Nombre', 'class' => 'col-sm-2 form-control')) }}
+      @endif
+      </div>
     </div>
-    
-    <!-- Parentesco   -->
+    <input type="hidden" name="datosA" id="datosA" class="form-control" value="{{$acudiente['id_acudiente']}}">
+    <!-- Parentesco -->
     <div class="form-group col-sm-12">
       {{ Form::label('ParentA', 'Parentesco', array('class' => 'col-sm-2 control-label')) }}
       <div class="col-sm-2">
+      @if($acudiente)
+        {{ Form::Text('ParentA', $acudiente['parentesco_acudiente'], array('placeholder' => 'Parentesco', 'class' => 'col-sm-2 form-control')) }}
+      @else
         {{ Form::Text('ParentA', null, array('placeholder' => 'Parentesco', 'class' => 'col-sm-2 form-control')) }}
-      </div>  
+      @endif
+      </div>
     </div>
 
-    <!-- Telefono   -->
+    <!-- Telefono -->
     <div class="form-group col-sm-12">
       {{ Form::label('telA', 'Telefono Fijo', array('class' => 'col-sm-2 control-label')) }}
       <div class="col-sm-2">
+      @if($acudiente)
+        {{ Form::Text('telA', $acudiente['telefono_acudiente'], array('placeholder' => 'Telefono Fijo', 'class' => 'col-sm-2 form-control')) }}
+      @else  
         {{ Form::Text('telA', null, array('placeholder' => 'Telefono Fijo', 'class' => 'col-sm-2 form-control')) }}
-      </div>  
+      @endif
+      </div>
     </div>
     
-    <!-- Celular   -->
+    <!-- Celular -->
     <div class="form-group col-sm-12">
       {{ Form::label('celA', 'Celular', array('class' => 'col-sm-2 control-label')) }}
       <div class="col-sm-2">
+      @if($acudiente)
+        {{ Form::Text('celA',$acudiente['celular_acudiente'], array('placeholder' => 'Celular', 'class' => 'col-sm-2 form-control')) }}
+      @else  
         {{ Form::Text('celA', null, array('placeholder' => 'Celular', 'class' => 'col-sm-2 form-control')) }}
-      </div>  
+      @endif
+      </div>
     </div>
 
-    <!-- Telefono Oficina  -->
+    <!-- Telefono Oficina -->
     <div class="form-group col-sm-12">
       {{ Form::label('telOfA', 'Telefono Oficina', array('class' => 'col-sm-2 control-label')) }}
       <div class="col-sm-2">
+      @if($acudiente)
+        {{ Form::Text('telOfA', $acudiente['teloficina_acudiente'], array('placeholder' => 'Telefono Oficina', 'class' => 'col-sm-2 form-control')) }}
+      @else  
         {{ Form::Text('telOfA', null, array('placeholder' => 'Telefono Oficina', 'class' => 'col-sm-2 form-control')) }}
-      </div>  
+      @endif
+      </div>
     </div>
 
     <!-- Submit !-->
@@ -407,6 +434,19 @@
 
   </div>
 
+
+  <div class="tab-pane fade" id="correspondencia">
+    
+    <!-- Submit !-->
+    <div class="form-group col-sm-12">
+      {{form::submit('Guardar información',array('class'=>'btn btn-success col-sm-6'))}}
+    </div>
+  </div>
+
+    {{Form::close()}}
+
+
+  </div>   
 
   <div class="tab-pane fade" id="correspondencia">
     

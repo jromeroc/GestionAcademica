@@ -156,7 +156,12 @@ Route::group(array('prefix' => 'matriculas'), function(){
 			Route::get('buscaralum/{numero}', 'MatriculasController@searchalum')->where('numero','[0-9]+');
 			Route::get('infocomp', 'MatriculasController@infocomp');
 			Route::get('srchP', 'MatriculasController@srchP');
-			Route::POST('saveP', 'MatriculasController@saveP');
+			Route::post('saveP', 'MatriculasController@saveP');
+			
+			//Autocompletar papa - mama - acudiente
+			
+			Route::get('buscar_padre/{numero}', 'MatriculasController@srch_papa')->where('numero','[0-9]+');
+			Route::get('buscar_acudiente/{numero}', 'MatriculasController@srch_acudiente')->where('numero','[0-9]+');
 		});
 	});
 });

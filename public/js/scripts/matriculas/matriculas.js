@@ -55,7 +55,55 @@ $(document).on('ready',function(){
 		
 	});
 
-	var datosp = $("#datosp").val();
+	$('#nameP').autocomplete({		
+		type: "get",
+		source:root+'matriculas/buscar_padre/'+$('#datosp').val(),
+		select: function(event,ui){
+			$("#datosp").val(ui.item.id);
+			$("#nameP").val(ui.item.nombres_padre);
+			$("#fnameP").val(ui.item.apel1_padre);
+			$("#lnameP").val(ui.item.apel2_padre);
+			$("#tipo_docP").val(ui.item.id_tipodoc_padre);
+			$("#Num_docP").val(ui.item.numdoc_padre);
+			$("#profP").val(ui.item.profesion_padre);
+			$("#ocP").val(ui.item.ocupacion_padre);
+			$("#empP").val(ui.item.empresa_padre);
+			$("#fijoP").val(ui.item.tel_casa_padre);
+			$("#celP").val(ui.item.celular_padre);
+			$("#emailP").val(ui.item.email_padre);	
+		}
+	});
 
-	
+	$('#nameM').autocomplete({		
+		type: "get",
+		source:root+'matriculas/buscar_padre/'+$('#datosp').val(),
+		select: function(event,ui){
+			$("#datosm").val(ui.item.id);
+			$("#nameM").val(ui.item.nombres_padre);
+			$("#fnameM").val(ui.item.apel1_padre);
+			$("#lnameM").val(ui.item.apel2_padre);
+			$("#tipo_docM").val(ui.item.id_tipodoc_padre);
+			$("#Num_docM").val(ui.item.numdoc_padre);
+			$("#profM").val(ui.item.profesion_padre);
+			$("#ocM").val(ui.item.ocupacion_padre);
+			$("#empM").val(ui.item.empresa_padre);
+			$("#fijoM").val(ui.item.tel_casa_padre);
+			$("#celM").val(ui.item.celular_padre);
+			$("#emailM").val(ui.item.email_padre);	
+		}
+	});
+
+	$('#nameA').autocomplete({		
+		type: "get",
+		source:root+'matriculas/buscar_acudiente/'+$('#datosA').val(),
+		select: function(event,ui){
+			$("#datosA").val(ui.item.id);
+			$("#nameA").val(ui.item.nombre_acudiente);
+			$("#ParentA").val(ui.item.parentesco_acudiente);
+			$("#telA").val(ui.item.telefono_acudiente);
+			$("#celA").val(ui.item.celular_acudiente);
+			$("#telOfA").val(ui.item.teloficina_acudiente);
+		}
+	});
+
 });
