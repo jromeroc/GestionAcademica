@@ -57,26 +57,27 @@
     <!-- PAPA -->
   <div class="tab-pane fade in active" id="papa">
   <br>
-    {{ Form::open(array('url' => 'matriculas/saveP', 'method' => 'POST','class'=>'col-sm -6'), array('role'=>'form'))}}
+    {{ Form::open(array('url' => 'matriculas/savePadre', 'method' => 'POST','class'=>'col-sm -6'), array('role'=>'form'))}}
     
     <!-- Nombre papa -->
     <div class="form-group col-sm-12">
       {{ Form::label('nameP', 'Nombre', array('class' => 'col-sm-2 control-label')) }}
       <div class="col-sm-2">
-        @if($papa)
+        @if(isset($papa))
         {{ Form::Text('nameP',$papa['nombres_padre'], array('placeholder' => 'Nombre', 'class' => 'col-sm-2 form-control')) }}
         @else
         {{ Form::Text('nameP',null, array('placeholder' => 'Nombre', 'class' => 'col-sm-2 form-control')) }}
         @endif
       </div>
     </div>
+    @if(isset($papa))
     <input type="hidden" name="datosp" id="datosp" class="form-control" value="{{$papa['id_padre']}}">
-    
+    @endif
     <!-- Ape1 papa -->
     <div class="form-group col-sm-12">
       {{ Form::label('fnameP', 'Primer Apellido', array('class' => 'col-sm-2 control-label')) }}
       <div class="col-sm-2">
-        @if($papa)
+        @if(isset($papa))
         {{ Form::Text('fnameP', $papa['apel1_padre'], array('placeholder' => 'Primer Apellido', 'class' => 'col-sm-2 form-control')) }}
         @else
         {{ Form::Text('fnameP', null, array('placeholder' => 'Primer Apellido', 'class' => 'col-sm-2 form-control')) }}
@@ -88,7 +89,7 @@
     <div class="form-group col-sm-12">
       {{ Form::label('lnameP', 'Segundo Apellido', array('class' => 'col-sm-2 control-label')) }}
       <div class="col-sm-2">
-        @if($papa)
+        @if(isset($papa))
           {{ Form::Text('lnameP', $papa['apel2_padre'], array('placeholder' => 'Segundo Apellido', 'class' => 'col-sm-2 form-control')) }}
         @else
           {{ Form::Text('lnameP', null, array('placeholder' => 'Segundo Apellido', 'class' => 'col-sm-2 form-control')) }}
@@ -101,7 +102,7 @@
         {{ Form::label('tipo_docP', 'Tipo Documento', array('class' => 'col-sm-2 control-label')) }}
         <div class="col-sm-2">
           {{{ $errors->has('tipo_docP') ? '**' : '' }}}
-          @if($papa)
+          @if(isset($papa))
           {{ Form::select('tipo_docP', $tipodoc, $papa['id_tipodoc_padre'])}}
           @else
           {{ Form::select('tipo_docP', $tipodoc, null)}}
@@ -113,7 +114,7 @@
     <div class="form-group col-sm-12">
       {{ Form::label('Num_docP', 'Numero Identidad', array('class' => 'col-sm-2 control-label')) }}
       <div class="col-sm-2">
-          @if($papa)
+          @if(isset($papa))
           {{ Form::Text('Num_docP', $papa['numdoc_padre'], array('placeholder' => 'Numero Identidad', 'class' => 'col-sm-2 form-control')) }}
           @else
           {{ Form::Text('Num_docP', null, array('placeholder' => 'Numero Identidad', 'class' => 'col-sm-2 form-control')) }}
@@ -125,7 +126,7 @@
     <div class="form-group col-sm-12">
       {{ Form::label('profP', 'Profesion', array('class' => 'col-sm-2 control-label')) }}
       <div class="col-sm-2">
-        @if($papa)
+        @if(isset($papa))
         {{ Form::Text('profP', $papa['profesion_padre'], array('placeholder' => 'Profesion ', 'class' => 'col-sm-2 form-control')) }}
         @else
         {{ Form::Text('profP', null, array('placeholder' => 'Profesion ', 'class' => 'col-sm-2 form-control')) }}
@@ -137,7 +138,7 @@
     <div class="form-group col-sm-12">
       {{ Form::label('ocP', 'Ocupacion', array('class' => 'col-sm-2 control-label')) }}
       <div class="col-sm-2">
-        @if($papa)
+        @if(isset($papa))
         {{ Form::Text('ocP', $papa['ocupacion_padre'] , array('placeholder' => 'Ocupacion ', 'class' => 'col-sm-2 form-control')) }}
         @else
         {{ Form::Text('ocP', null, array('placeholder' => 'Ocupacion ', 'class' => 'col-sm-2 form-control')) }}
@@ -149,7 +150,7 @@
     <div class="form-group col-sm-12">
       {{ Form::label('empP', 'Empresa', array('class' => 'col-sm-2 control-label')) }}
       <div class="col-sm-2">
-        @if($papa)
+        @if(isset($papa))
         {{ Form::Text('empP', $papa['empresa_padre'], array('placeholder' => 'Empresa ', 'class' => 'col-sm-2 form-control')) }}
         @else
         {{ Form::Text('empP', null, array('placeholder' => 'Empresa ', 'class' => 'col-sm-2 form-control')) }}
@@ -161,10 +162,22 @@
     <div class="form-group col-sm-12">
         {{ Form::label('fijoP', 'Telefono', array('class' => 'col-sm-2 control-label')) }}
       <div class="col-sm-2">
-        @if($papa)
+        @if(isset($papa))
         {{ Form::Text('fijoP', $papa['tel_casa_padre'] , array('placeholder' => 'Telefono Casa ', 'class' => 'col-sm-2 form-control')) }}
         @else
         {{ Form::Text('fijoP', null, array('placeholder' => 'Telefono Casa ', 'class' => 'col-sm-2 form-control')) }}
+        @endif
+      </div>  
+    </div>
+
+    <!-- Tel Oficina -->
+    <div class="form-group col-sm-12">
+        {{ Form::label('TofP', 'Telefono', array('class' => 'col-sm-2 control-label')) }}
+      <div class="col-sm-2">
+        @if(isset($papa))
+        {{ Form::Text('TofP', $papa['tel_oficina_padre'] , array('placeholder' => 'Telefono Casa ', 'class' => 'col-sm-2 form-control')) }}
+        @else
+        {{ Form::Text('TofP', null, array('placeholder' => 'Telefono Oficina ', 'class' => 'col-sm-2 form-control')) }}
         @endif
       </div>  
     </div>
@@ -173,7 +186,7 @@
     <div class="form-group col-sm-12">
       {{ Form::label('celP', 'Celular', array('class' => 'col-sm-2 control-label')) }}
       <div class="col-sm-2">
-        @if($papa)
+        @if(isset($papa))
         {{ Form::Text('celP', $papa['celular_padre'], array('placeholder' => 'Celular', 'class' => 'col-sm-2 form-control')) }}
         @else
         {{ Form::Text('celP', null, array('placeholder' => 'Celular', 'class' => 'col-sm-2 form-control')) }}
@@ -185,7 +198,7 @@
     <div class="form-group col-sm-12">
       {{ Form::label('emailP', 'Correo Electronico', array('class' => 'col-sm-2 control-label')) }}
       <div class="col-sm-2">
-        @if($papa)
+        @if(isset($papa))
         {{ Form::Text('emailP', $papa['email_padre'], array('placeholder' => 'Email', 'class' => 'col-sm-2 form-control')) }}
         @else
         {{ Form::Text('emailP', null, array('placeholder' => 'Email', 'class' => 'col-sm-2 form-control')) }}
@@ -193,16 +206,25 @@
       </div>  
     </div>
 
-    <?php 
-    if (isset($codM)) {
-      $datos = array('codM' => $codM,'alum'=>$name);
-    }else{
-      $datos = array('alum'=>$name);
-    }
-      print_r($datos)
-    ?>
 
-    <input type="hidden" name="datosAd" id="datosAd" class="form-control" value="{{$datos}}">
+    @if(!empty($codM))
+      <input type="hidden" name="codM" id="codM" class="form-control" value="{{$codM}}">
+    @endif
+
+    @if(!empty($name))
+      <input type="hidden" name="alum" id="alum" class="form-control" value="{{$name}}">
+    @endif
+    @if(!empty($tipoR))
+      <input type="hidden" name="T-Reg" id="T-Reg" class="form-control" value="{{$tipoR}}">
+    @endif
+    <input type="hidden" name="genero" id="genero" class="form-control" value="1">
+
+    @if(!empty($papa))
+    <input type="hidden" name="papa" id="papa" class="form-control" value="{{$papa}}">
+    @endif
+
+
+
 
   <!-- Submit !-->
   <div class="form-group col-sm-12">
@@ -211,178 +233,207 @@
   {{Form::close()}}
   </div>
 
-
-
-
     <!-- MAMA -->
   <div class="tab-pane fade" id="mama">
       <br>
-    {{ Form::open(array('url' => 'matriculas/saveM', 'method' => 'POST','class'=>'col-sm -6'), array('role'=>'form'))}}
+    {{ Form::open(array('url' => 'matriculas/savePadre', 'method' => 'POST','class'=>'col-sm -6'), array('role'=>'form'))}}
     
     <!-- Nombre mama -->
     <div class="form-group col-sm-12">
-      {{ Form::label('nameM', 'Nombre', array('class' => 'col-sm-2 control-label')) }}
+      {{ Form::label('nameP', 'Nombre', array('class' => 'col-sm-2 control-label')) }}
       <div class="col-sm-2">
-        @if($mama)
-        {{ Form::Text('nameM',$mama['nombres_padre'], array('placeholder' => 'Nombre', 'class' => 'col-sm-2 form-control')) }}
+        @if(isset($mama))
+        {{ Form::Text('nameP',$mama['nombres_padre'], array('placeholder' => 'Nombre', 'class' => 'col-sm-2 form-control')) }}
         @else
-        {{ Form::Text('nameM',null, array('placeholder' => 'Nombre', 'class' => 'col-sm-2 form-control')) }}
+        {{ Form::Text('nameP',null, array('placeholder' => 'Nombre', 'class' => 'col-sm-2 form-control')) }}
         @endif
       </div>
     </div>
-    <input type="hidden" name="datosm" id="datosm" class="form-control" value="{{$mama['id_padre']}}">
-    
+    @if(isset($mama))
+    <input type="hidden" name="datosm" id="datosp" class="form-control" value="{{$mama['id_padre']}}">
+    @endif
     <!-- Ape1 mama -->
     <div class="form-group col-sm-12">
-      {{ Form::label('fnameM', 'Primer Apellido', array('class' => 'col-sm-2 control-label')) }}
+      {{ Form::label('fnameP', 'Primer Apellido', array('class' => 'col-sm-2 control-label')) }}
       <div class="col-sm-2">
-        @if($mama)
-        {{ Form::Text('fnameM', $mama['apel1_padre'], array('placeholder' => 'Primer Apellido', 'class' => 'col-sm-2 form-control')) }}
+        @if(isset($mama))
+        {{ Form::Text('fnameP', $mama['apel1_padre'], array('placeholder' => 'Primer Apellido', 'class' => 'col-sm-2 form-control')) }}
         @else
-        {{ Form::Text('fnameM', null, array('placeholder' => 'Primer Apellido', 'class' => 'col-sm-2 form-control')) }}
+        {{ Form::Text('fnameP', null, array('placeholder' => 'Primer Apellido', 'class' => 'col-sm-2 form-control')) }}
         @endif
       </div>  
     </div>
     
     <!-- Ape2 mama -->
     <div class="form-group col-sm-12">
-      {{ Form::label('lnameM', 'Segundo Apellido', array('class' => 'col-sm-2 control-label')) }}
+      {{ Form::label('lnameP', 'Segundo Apellido', array('class' => 'col-sm-2 control-label')) }}
       <div class="col-sm-2">
-        @if($mama)
-          {{ Form::Text('lnameM', $mama['apel2_padre'], array('placeholder' => 'Segundo Apellido', 'class' => 'col-sm-2 form-control')) }}
+        @if(isset($mama))
+          {{ Form::Text('lnameP', $mama['apel2_padre'], array('placeholder' => 'Segundo Apellido', 'class' => 'col-sm-2 form-control')) }}
         @else
-          {{ Form::Text('lnameM', null, array('placeholder' => 'Segundo Apellido', 'class' => 'col-sm-2 form-control')) }}
+          {{ Form::Text('lnameP', null, array('placeholder' => 'Segundo Apellido', 'class' => 'col-sm-2 form-control')) }}
         @endif
       </div>  
     </div>
 
     <!-- Tipo Documento  !-->
       <div class="form-group col-sm-12">
-        {{ Form::label('tipo_docM', 'Tipo Documento', array('class' => 'col-sm-2 control-label')) }}
+        {{ Form::label('tipo_docP', 'Tipo Documento', array('class' => 'col-sm-2 control-label')) }}
         <div class="col-sm-2">
-          {{{ $errors->has('tipo_docM') ? '**' : '' }}}
-          @if($papa)
-          {{ Form::select('tipo_docM', $tipodoc, $mama['id_tipodoc_padre'])}}
+          {{{ $errors->has('tipo_docP') ? '**' : '' }}}
+          @if(isset($mama))
+          {{ Form::select('tipo_docP', $tipodoc, $mama['id_tipodoc_padre'])}}
           @else
-          {{ Form::select('tipo_docM', $tipodoc, null)}}
+          {{ Form::select('tipo_docP', $tipodoc, null)}}
           @endif
         </div>
       </div>
 
-
     <!-- Numero Doc -->
     <div class="form-group col-sm-12">
-      {{ Form::label('Num_docM', 'Numero Identidad', array('class' => 'col-sm-2 control-label')) }}
+      {{ Form::label('Num_docP', 'Numero Identidad', array('class' => 'col-sm-2 control-label')) }}
       <div class="col-sm-2">
-          @if($mama)
-          {{ Form::Text('Num_docM', $mama['numdoc_padre'], array('placeholder' => 'Numero Identidad', 'class' => 'col-sm-2 form-control')) }}
+          @if(isset($mama))
+          {{ Form::Text('Num_docP', $mama['numdoc_padre'], array('placeholder' => 'Numero Identidad', 'class' => 'col-sm-2 form-control')) }}
           @else
-          {{ Form::Text('Num_docM', null, array('placeholder' => 'Numero Identidad', 'class' => 'col-sm-2 form-control')) }}
+          {{ Form::Text('Num_docP', null, array('placeholder' => 'Numero Identidad', 'class' => 'col-sm-2 form-control')) }}
           @endif
       </div>  
     </div>
 
     <!-- Profesion -->
     <div class="form-group col-sm-12">
-      {{ Form::label('profM', 'Profesion', array('class' => 'col-sm-2 control-label')) }}
+      {{ Form::label('profP', 'Profesion', array('class' => 'col-sm-2 control-label')) }}
       <div class="col-sm-2">
-        @if($mama)
-        {{ Form::Text('profM', $mama['profesion_padre'], array('placeholder' => 'Profesion ', 'class' => 'col-sm-2 form-control')) }}
+        @if(isset($mama))
+        {{ Form::Text('profP', $mama['profesion_padre'], array('placeholder' => 'Profesion ', 'class' => 'col-sm-2 form-control')) }}
         @else
-        {{ Form::Text('profM', null, array('placeholder' => 'Profesion ', 'class' => 'col-sm-2 form-control')) }}
+        {{ Form::Text('profP', null, array('placeholder' => 'Profesion ', 'class' => 'col-sm-2 form-control')) }}
         @endif
       </div>  
     </div>
 
     <!-- Ocupacion -->
     <div class="form-group col-sm-12">
-      {{ Form::label('ocM', 'Ocupacion', array('class' => 'col-sm-2 control-label')) }}
+      {{ Form::label('ocP', 'Ocupacion', array('class' => 'col-sm-2 control-label')) }}
       <div class="col-sm-2">
-        @if($mama)
-        {{ Form::Text('ocM', $mama['ocupacion_padre'] , array('placeholder' => 'Ocupacion ', 'class' => 'col-sm-2 form-control')) }}
+        @if(isset($mama))
+        {{ Form::Text('ocP', $mama['ocupacion_padre'] , array('placeholder' => 'Ocupacion ', 'class' => 'col-sm-2 form-control')) }}
         @else
-        {{ Form::Text('ocM', null, array('placeholder' => 'Ocupacion ', 'class' => 'col-sm-2 form-control')) }}
+        {{ Form::Text('ocP', null, array('placeholder' => 'Ocupacion ', 'class' => 'col-sm-2 form-control')) }}
         @endif
       </div>  
     </div>
 
     <!-- Empresa -->
     <div class="form-group col-sm-12">
-      {{ Form::label('empM', 'Empresa', array('class' => 'col-sm-2 control-label')) }}
+      {{ Form::label('empP', 'Empresa', array('class' => 'col-sm-2 control-label')) }}
       <div class="col-sm-2">
-        @if($mama)
-        {{ Form::Text('empM', $mama['empresa_padre'], array('placeholder' => 'Empresa ', 'class' => 'col-sm-2 form-control')) }}
+        @if(isset($mama))
+        {{ Form::Text('empP', $mama['empresa_padre'], array('placeholder' => 'Empresa ', 'class' => 'col-sm-2 form-control')) }}
         @else
-        {{ Form::Text('empM', null, array('placeholder' => 'Empresa ', 'class' => 'col-sm-2 form-control')) }}
+        {{ Form::Text('empP', null, array('placeholder' => 'Empresa ', 'class' => 'col-sm-2 form-control')) }}
         @endif
       </div>  
     </div>
 
     <!-- Tel Fijo -->
     <div class="form-group col-sm-12">
-        {{ Form::label('fijoM', 'Telefono', array('class' => 'col-sm-2 control-label')) }}
+        {{ Form::label('fijoP', 'Telefono', array('class' => 'col-sm-2 control-label')) }}
       <div class="col-sm-2">
-        @if($mama)
-        {{ Form::Text('fijoM', $mama['tel_casa_padre'] , array('placeholder' => 'Telefono Casa ', 'class' => 'col-sm-2 form-control')) }}
+        @if(isset($mama))
+        {{ Form::Text('fijoP', $mama['tel_casa_padre'] , array('placeholder' => 'Telefono Casa ', 'class' => 'col-sm-2 form-control')) }}
         @else
-        {{ Form::Text('fijoM', null, array('placeholder' => 'Telefono Casa ', 'class' => 'col-sm-2 form-control')) }}
+        {{ Form::Text('fijoP', null, array('placeholder' => 'Telefono Casa ', 'class' => 'col-sm-2 form-control')) }}
+        @endif
+      </div>  
+    </div>
+
+    <!-- Tel Oficina -->
+    <div class="form-group col-sm-12">
+        {{ Form::label('TofP', 'Telefono', array('class' => 'col-sm-2 control-label')) }}
+      <div class="col-sm-2">
+        @if(isset($mama))
+        {{ Form::Text('TofP', $mama['tel_oficina_padre'] , array('placeholder' => 'Telefono Casa ', 'class' => 'col-sm-2 form-control')) }}
+        @else
+        {{ Form::Text('TofP', null, array('placeholder' => 'Telefono Oficina ', 'class' => 'col-sm-2 form-control')) }}
         @endif
       </div>  
     </div>
 
     <!-- Celular -->
     <div class="form-group col-sm-12">
-      {{ Form::label('celM', 'Celular', array('class' => 'col-sm-2 control-label')) }}
+      {{ Form::label('celP', 'Celular', array('class' => 'col-sm-2 control-label')) }}
       <div class="col-sm-2">
-        @if($mama)
-        {{ Form::Text('celM', $mama['celular_padre'], array('placeholder' => 'Celular', 'class' => 'col-sm-2 form-control')) }}
+        @if(isset($mama))
+        {{ Form::Text('celP', $mama['celular_padre'], array('placeholder' => 'Celular', 'class' => 'col-sm-2 form-control')) }}
         @else
-        {{ Form::Text('celM', null, array('placeholder' => 'Celular', 'class' => 'col-sm-2 form-control')) }}
+        {{ Form::Text('celP', null, array('placeholder' => 'Celular', 'class' => 'col-sm-2 form-control')) }}
         @endif
       </div>  
     </div>
 
+    <!-- E-Mail -->
     <div class="form-group col-sm-12">
-      {{ Form::label('emailM', 'Correo Electronico', array('class' => 'col-sm-2 control-label')) }}
+      {{ Form::label('emailP', 'Correo Electronico', array('class' => 'col-sm-2 control-label')) }}
       <div class="col-sm-2">
-        @if($papa)
-        {{ Form::Text('emailM', $mama['email_padre'], array('placeholder' => 'Email', 'class' => 'col-sm-2 form-control')) }}
+        @if(isset($mama))
+        {{ Form::Text('emailP', $mama['email_padre'], array('placeholder' => 'Email', 'class' => 'col-sm-2 form-control')) }}
         @else
-        {{ Form::Text('emailM', null, array('placeholder' => 'Email', 'class' => 'col-sm-2 form-control')) }}
+        {{ Form::Text('emailP', null, array('placeholder' => 'Email', 'class' => 'col-sm-2 form-control')) }}
         @endif
       </div>  
     </div>
 
-    <!-- Submit !-->
-    <div class="form-group col-sm-12">
-      {{form::submit('Guardar información Mamá',array('class'=>'btn btn-success col-sm-6'))}}
-    </div>
-    
-    {{Form::close()}}
+
+    @if(!empty($codM))
+      <input type="hidden" name="codM" id="codM" class="form-control" value="{{$codM}}">
+    @endif
+
+    @if(!empty($name))
+      <input type="hidden" name="alum" id="alum" class="form-control" value="{{$name}}">
+    @endif
+
+    <input type="hidden" name="genero" id="genero" class="form-control" value="0">
+
+    @if(!empty($mama))
+      <input type="hidden" name="mama" id="mama" class="form-control" value="{{$mama}}">
+    @endif
+
+    @if(!empty($tipoR))
+      <input type="hidden" name="T-Reg" id="T-Reg" class="form-control" value="{{$tipoR}}">
+    @endif
+  <!-- Submit !-->
+  <div class="form-group col-sm-12">
+    {{form::submit('Guardar información',array('class'=>'btn btn-success col-sm-6'))}}
+  </div>
+  {{Form::close()}}
   </div>
 
+    <!-- ACUDIENTE -->
 
   <div class="tab-pane fade" id="acudiente">
-    <!-- ACUDIENTE -->
     {{ Form::open(array('url' => 'matriculas/saveM', 'method' => 'POST','class'=>'col-sm -6'), array('role'=>'form'))}}
     <br>
     <!-- Nombre Acudiente -->
     <div class="form-group col-sm-12">
       {{ Form::label('nameA', 'Nombre', array('class' => 'col-sm-2 control-label')) }}
       <div class="col-sm-2">
-      @if($acudiente)
+      @if(isset($acudiente))
         {{ Form::Text('nameA',$acudiente['nombre_acudiente'], array('placeholder' => 'Nombre', 'class' => 'col-sm-2 form-control')) }}
       @else
         {{ Form::Text('nameA',null, array('placeholder' => 'Nombre', 'class' => 'col-sm-2 form-control')) }}
       @endif
       </div>
     </div>
+    @if(isset($acudiente))
     <input type="hidden" name="datosA" id="datosA" class="form-control" value="{{$acudiente['id_acudiente']}}">
+    @endif
     <!-- Parentesco -->
     <div class="form-group col-sm-12">
       {{ Form::label('ParentA', 'Parentesco', array('class' => 'col-sm-2 control-label')) }}
       <div class="col-sm-2">
-      @if($acudiente)
+      @if(isset($acudiente))
         {{ Form::Text('ParentA', $acudiente['parentesco_acudiente'], array('placeholder' => 'Parentesco', 'class' => 'col-sm-2 form-control')) }}
       @else
         {{ Form::Text('ParentA', null, array('placeholder' => 'Parentesco', 'class' => 'col-sm-2 form-control')) }}
@@ -394,7 +445,7 @@
     <div class="form-group col-sm-12">
       {{ Form::label('telA', 'Telefono Fijo', array('class' => 'col-sm-2 control-label')) }}
       <div class="col-sm-2">
-      @if($acudiente)
+      @if(isset($acudiente))
         {{ Form::Text('telA', $acudiente['telefono_acudiente'], array('placeholder' => 'Telefono Fijo', 'class' => 'col-sm-2 form-control')) }}
       @else  
         {{ Form::Text('telA', null, array('placeholder' => 'Telefono Fijo', 'class' => 'col-sm-2 form-control')) }}
@@ -406,7 +457,7 @@
     <div class="form-group col-sm-12">
       {{ Form::label('celA', 'Celular', array('class' => 'col-sm-2 control-label')) }}
       <div class="col-sm-2">
-      @if($acudiente)
+      @if(isset($acudiente))
         {{ Form::Text('celA',$acudiente['celular_acudiente'], array('placeholder' => 'Celular', 'class' => 'col-sm-2 form-control')) }}
       @else  
         {{ Form::Text('celA', null, array('placeholder' => 'Celular', 'class' => 'col-sm-2 form-control')) }}
@@ -418,7 +469,7 @@
     <div class="form-group col-sm-12">
       {{ Form::label('telOfA', 'Telefono Oficina', array('class' => 'col-sm-2 control-label')) }}
       <div class="col-sm-2">
-      @if($acudiente)
+      @if(isset($acudiente))
         {{ Form::Text('telOfA', $acudiente['teloficina_acudiente'], array('placeholder' => 'Telefono Oficina', 'class' => 'col-sm-2 form-control')) }}
       @else  
         {{ Form::Text('telOfA', null, array('placeholder' => 'Telefono Oficina', 'class' => 'col-sm-2 form-control')) }}

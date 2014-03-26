@@ -156,7 +156,7 @@ Route::group(array('prefix' => 'matriculas'), function(){
 			Route::get('buscaralum/{numero}', 'MatriculasController@searchalum')->where('numero','[0-9]+');
 			Route::get('infocomp', 'MatriculasController@infocomp');
 			Route::get('srchP', 'MatriculasController@srchP');
-			Route::post('saveP', 'MatriculasController@saveP');
+			Route::post('savePadre', 'MatriculasController@savePadre');
 			
 			//Autocompletar papa - mama - acudiente
 			

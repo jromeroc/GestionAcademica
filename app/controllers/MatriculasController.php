@@ -68,26 +68,26 @@ class MatriculasController extends BaseController
 					$tipos = Tipodoc::all()->lists('name_tipodoc','id_tipodoc');
 					$tabla = $this->asignTabla($data['year_matricula']);
 					$data['codigoMatri']=$codigoMatri;
-					//$save = $this->_matricula->saveMatricula($data,$tabla);
+					$save = $this->_matricula->saveMatricula($data,$tabla);
 
 					switch ($data) {
 
-						case isset($data['papa']):
+						case $data['papa']:
 								
 								$dateP = $this->_matricula->srchP($data['papa']);
 								$papa = get_object_vars($dateP[0]);
 								
-								if (isset($data['mama'])) {
+								if ($data['mama']) {
 									$dateM = $this->_matricula->srchP($data['mama']);
 									$mama = get_object_vars($dateM[0]);
-									if (isset($data['acudiente'])) {
+									if ($data['acudiente']) {
 										$dateA = $this->_matricula->srchA($data['acudiente']);
 										$acudiente = get_object_vars($dateA[0]);
 									return View::make('matriculas.info-complementaria')->with(array('name' => $data['alum'],'tipoR'=>$data['T-reg'],'tipodoc'=>$tipos,'papa'=>$papa,'mama'=>$mama,'acudiente'=>$acudiente,'codM'=>$data['codigoMatri']));
 									}
 									return View::make('matriculas.info-complementaria')->with(array('name' => $data['alum'],'tipoR'=>$data['T-reg'],'tipodoc'=>$tipos,'papa'=>$papa,'mama'=>$mama,'codM'=>$data['codigoMatri']));
 								}
-								if (isset($data['acudiente'])) {
+								if ($data['acudiente']) {
 										$dateA = $this->_matricula->srchA($data['acudiente']);
 										$acudiente = get_object_vars($dateA[0]);
 									return View::make('matriculas.info-complementaria')->with(array('name' => $data['alum'],'tipoR'=>$data['T-reg'],'tipodoc'=>$tipos,'papa'=>$papa,'acudiente'=>$acudiente,'codM'=>$data['codigoMatri']));
@@ -95,7 +95,7 @@ class MatriculasController extends BaseController
 								return View::make('matriculas.info-complementaria')->with(array('name' => $data['alum'],'tipoR'=>$data['T-reg'],'tipodoc'=>$tipos,'papa'=>$papa,'codM'=>$data['codigoMatri']));
 						break;
 
-						case isset($data['mama']):
+						case $data['mama']:
 
 							$dateM = $this->_matricula->srchP($data['mama']);
 							$mama = get_object_vars($dateM[0]);
@@ -103,7 +103,7 @@ class MatriculasController extends BaseController
 							if ($data['papa']) {
 								$dateP = $this->_matricula->srchP($data['papa']);
 								$papa = get_object_vars($dateP[0]);
-								if (isset($data['acudiente'])) {
+								if ($data['acudiente']) {
 									$dateA = $this->_matricula->srchA($data['acudiente']);
 									$acudiente = get_object_vars($dateA[0]);
 									return View::make('matriculas.info-complementaria')->with(array('name' => $data['alum'],'tipoR'=>$data['T-reg'],'tipodoc'=>$tipos,'papa'=>$papa,'mama'=>$mama,'acudiente'=>$acudiente,'codM'=>$data['codigoMatri']));
@@ -133,26 +133,26 @@ class MatriculasController extends BaseController
 				{
 					$tipos = Tipodoc::all()->lists('name_tipodoc','id_tipodoc');
 					$tabla = $this->asignTabla($data['year_matricula']);
-					//$save = $this->_matricula->saveInscripcion($data,$tabla);
+					$save = $this->_matricula->saveInscripcion($data,$tabla);
 
 					switch ($data) {
 
-						case isset($data['papa']):
+						case $data['papa']:
 								
 								$dateP = $this->_matricula->srchP($data['papa']);
 								$papa = get_object_vars($dateP[0]);
 								
-								if (isset($data['mama'])) {
+								if ($data['mama']) {
 									$dateM = $this->_matricula->srchP($data['mama']);
 									$mama = get_object_vars($dateM[0]);
-									if (isset($data['acudiente'])) {
+									if ($data['acudiente']) {
 										$dateA = $this->_matricula->srchA($data['acudiente']);
 										$acudiente = get_object_vars($dateA[0]);
 									return View::make('matriculas.info-complementaria')->with(array('name' => $data['alum'],'tipoR'=>$data['T-reg'],'tipodoc'=>$tipos,'papa'=>$papa,'mama'=>$mama,'acudiente'=>$acudiente));
 									}
 									return View::make('matriculas.info-complementaria')->with(array('name' => $data['alum'],'tipoR'=>$data['T-reg'],'tipodoc'=>$tipos,'papa'=>$papa,'mama'=>$mama));
 								}
-								if (isset($data['acudiente'])) {
+								if ($data['acudiente']) {
 										$dateA = $this->_matricula->srchA($data['acudiente']);
 										$acudiente = get_object_vars($dateA[0]);
 									return View::make('matriculas.info-complementaria')->with(array('name' => $data['alum'],'tipoR'=>$data['T-reg'],'tipodoc'=>$tipos,'papa'=>$papa,'acudiente'=>$acudiente));
@@ -160,7 +160,7 @@ class MatriculasController extends BaseController
 								return View::make('matriculas.info-complementaria')->with(array('name' => $data['alum'],'tipoR'=>$data['T-reg'],'tipodoc'=>$tipos,'papa'=>$papa,));
 						break;
 
-						case isset($data['mama']):
+						case $data['mama']:
 
 							$dateM = $this->_matricula->srchP($data['mama']);
 							$mama = get_object_vars($dateM[0]);
@@ -168,7 +168,7 @@ class MatriculasController extends BaseController
 							if ($data['papa']) {
 								$dateP = $this->_matricula->srchP($data['papa']);
 								$papa = get_object_vars($dateP[0]);
-								if (isset($data['acudiente'])) {
+								if ($data['acudiente']) {
 									$dateA = $this->_matricula->srchA($data['acudiente']);
 									$acudiente = get_object_vars($dateA[0]);
 									return View::make('matriculas.info-complementaria')->with(array('name' => $data['alum'],'tipoR'=>$data['T-reg'],'tipodoc'=>$tipos,'papa'=>$papa,'mama'=>$mama,'acudiente'=>$acudiente));
@@ -233,12 +233,22 @@ class MatriculasController extends BaseController
 		}
 	}	
 
-	public function saveP(){
+	public function savePadre(){
 		$data = Input::all();
-		echo "<pre>";
+		$tipos = Tipodoc::all()->lists('name_tipodoc','id_tipodoc');
+		if (!empty($data['datosp'])) {
+			$save = $this->_matricula->UpdatePadre($data);
+		}else{
+			//$save = $this->_matricula->SavePadre($data);
+		}
+
 		print_r($data);
-		echo "</pre>";
-		$save = $this->_matricula->saveP($data);
+		/*if ($data['T-Reg']==1) {	
+			return View::make('matriculas.info-complementaria')->with(array('name' => $data['alum'],'tipoR'=>$data['T-Reg'],'tipodoc'=>$tipos,'codM'=>$data['codM']));
+		}elseif ($data['T-Reg']==0)
+		{
+			return View::make('matriculas.info-complementaria')->with(array('name' => $data['alum'],'tipoR'=>$data['T-Reg'],'tipodoc'=>$tipos));
+		}*/
 	}
 }
 

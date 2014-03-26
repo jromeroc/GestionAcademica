@@ -103,13 +103,46 @@ class Matriculas extends Eloquent
         return $papa;
     }
 
-    public function UpdateP(){
-        $papa = DB::table('padres_cch')->where->('datosp','=','')
+    public function UpdatePadre($data){
+        $papa = DB::table('padres_cch')
+        ->where('id_padre','=',$data['datosp'])
         ->update(
             array(
-                
+                'nombres_padre'      => $data['nameP'],
+                'apel1_padre'        => $data['fnameP'],
+                'apel2_padre'        => $data['lnameP'],
+                'id_tipodoc_padre'   => $data['tipo_docP'],
+                'numdoc_padre'       => $data['Num_docP'],
+                'profesion_padre'    => $data['profP'],
+                'ocupacion_padre'    => $data['ocP'],
+                'empresa_padre'      => $data['empP'],
+                'tel_casa_padre'     => $data['fijoP'],
+                'tel_oficina_padre'  => $data['TofP'],
+                'celular_padre'      => $data['celP'],
+                'email_padre'        => $data['emailP'],
+                'tipo_padre'         => $data['genero'],
             )
-        );
+            );
+    }
+    public function SavePadre($data){
+        $papa = DB::table('padres_cch')
+        ->insert(
+            array(
+                'nombres_padre'      => $data['nameP'],
+                'apel1_padre'        => $data['fnameP'],
+                'apel2_padre'        => $data['lnameP'],
+                'id_tipodoc_padre'   => $data['tipo_docP'],
+                'numdoc_padre'       => $data['Num_docP'],
+                'profesion_padre'    => $data['profP'],
+                'ocupacion_padre'    => $data['ocP'],
+                'empresa_padre'      => $data['empP'],
+                'tel_casa_padre'     => $data['fijoP'],
+                'tel_oficina_padre'  => $data['TofP'],
+                'celular_padre'      => $data['celP'],
+                'email_padre'        => $data['emailP'],
+                'tipo_padre'         => $data['genero'],
+            )
+            );
     }
 }
 ?>
