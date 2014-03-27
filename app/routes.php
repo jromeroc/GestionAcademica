@@ -159,9 +159,8 @@ Route::group(array('prefix' => 'matriculas'), function(){
 			Route::post('savePadre', 'MatriculasController@savePadre');
 			
 			//Autocompletar papa - mama - acudiente
-			
-			Route::get('buscar_padre/{numero}', 'MatriculasController@srch_papa')->where('numero','[0-9]+');
-			Route::get('buscar_acudiente/{numero}', 'MatriculasController@srch_acudiente')->where('numero','[0-9]+');
+			Route::get('buscar_padre', 'MatriculasController@srch_papa');
+			Route::get('buscar_acudiente/', 'MatriculasController@srch_acudiente');
 		});
 	});
 });

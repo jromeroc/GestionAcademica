@@ -57,7 +57,7 @@ $(document).on('ready',function(){
 
 	$('#nameP').autocomplete({		
 		type: "get",
-		source:root+'matriculas/buscar_padre/'+$('#datosp').val(),
+		source:root+'matriculas/buscar_padre',
 		select: function(event,ui){
 			$("#datosp").val(ui.item.id);
 			$("#nameP").val(ui.item.nombres_padre);
@@ -76,20 +76,20 @@ $(document).on('ready',function(){
 
 	$('#nameM').autocomplete({		
 		type: "get",
-		source:root+'matriculas/buscar_padre/'+$('#datosp').val(),
+		source:root+'matriculas/buscar_padre',
 		select: function(event,ui){
 			$("#datosm").val(ui.item.id);
-			$("#nameM").val(ui.item.nombres_padre);
-			$("#fnameM").val(ui.item.apel1_padre);
-			$("#lnameM").val(ui.item.apel2_padre);
-			$("#tipo_docM").val(ui.item.id_tipodoc_padre);
-			$("#Num_docM").val(ui.item.numdoc_padre);
-			$("#profM").val(ui.item.profesion_padre);
-			$("#ocM").val(ui.item.ocupacion_padre);
-			$("#empM").val(ui.item.empresa_padre);
-			$("#fijoM").val(ui.item.tel_casa_padre);
-			$("#celM").val(ui.item.celular_padre);
-			$("#emailM").val(ui.item.email_padre);	
+			$("#nameP").val(ui.item.nombres_padre);
+			$("#fnameP").val(ui.item.apel1_padre);
+			$("#lnameP").val(ui.item.apel2_padre);
+			$("#tipo_docP").val(ui.item.id_tipodoc_padre);
+			$("#Num_docP").val(ui.item.numdoc_padre);
+			$("#profP").val(ui.item.profesion_padre);
+			$("#ocP").val(ui.item.ocupacion_padre);
+			$("#empP").val(ui.item.empresa_padre);
+			$("#fijoP").val(ui.item.tel_casa_padre);
+			$("#celP").val(ui.item.celular_padre);
+			$("#emailP").val(ui.item.email_padre);	
 		}
 	});
 
