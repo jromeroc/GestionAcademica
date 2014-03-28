@@ -14,7 +14,7 @@
         {{ HTML::style('css/jquery-ui-1.10.4.custom.css') }}
         {{ HTML::style('css/estilos.css') }}
         {{ HTML::style('css/estructura.css') }}
-
+        <link rel="shortcut icon" href="{{URL::to('favicon.ico')}}">
     </head>
 
     <body>

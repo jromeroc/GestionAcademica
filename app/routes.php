@@ -153,14 +153,19 @@ Route::group(array('prefix' => 'matriculas'), function(){
 		Route::group(array('before' => 'permit'), function(){
 			Route::get('/', 'MatriculasController@MatriculaAlum');
 			Route::post('nuevo', 'MatriculasController@nuevo');
-			Route::get('buscaralum/{numero}', 'MatriculasController@searchalum')->where('numero','[0-9]+');
 			Route::get('infocomp', 'MatriculasController@infocomp');
-			Route::get('srchP', 'MatriculasController@srchP');
-			Route::post('savePadre', 'MatriculasController@savePadre');
+			Route::get('padres/{numero}', 'MatriculasController@padres')->where('numero','[0-9]+');
+			Route::get('acudiente', 'MatriculasController@acudientes');
+			Route::get('correspondencia', 'MatriculasController@infocomp');
 			
 			//Autocompletar papa - mama - acudiente
 			Route::get('buscar_padre', 'MatriculasController@srch_papa');
 			Route::get('buscar_acudiente/', 'MatriculasController@srch_acudiente');
+			
+			//Rutas para guardar y buscar
+			Route::get('buscaralum/{numero}', 'MatriculasController@searchalum')->where('numero','[0-9]+');
+			Route::get('srchP', 'MatriculasController@srchP');
+			Route::post('savePadre', 'MatriculasController@savePadre');
 		});
 	});
 });
