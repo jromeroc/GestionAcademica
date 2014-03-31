@@ -78,20 +78,8 @@ class Matriculas extends Eloquent
                 //'lastschool' => $data[''],
             )
         );
-	}
-
-    public function srchP($id){
-        $padre = DB::table('padres_cch')
-        ->select('*')
-        ->where('id_padre','=',$id)
-        ->get();
-        return $padre;
     }
 
-    public function srchA($id){
-        $acudiente = DB::table('acudiente')->select('*')->where('id_acudiente','=',$id)->get();
-        return $acudiente;
-    }
     public function autoCompleteP($padre){
         $papa = DB::table('padres_cch')->select("*",DB::raw("CONCAT_WS(' ', nombres_padre, apel1_padre, apel2_padre) as value , id_padre as id"))
         ->whereRaw("CONCAT_WS(' ', nombres_padre, apel1_padre, apel2_padre) LIKE '%".$padre."%'")
@@ -106,10 +94,24 @@ class Matriculas extends Eloquent
         return $papa;
     }
 
-    public function UpdatePadre($data){
+    public function srch_Id_Papa($tabla,$ida){
+
+        $papa="SELECT padres_cch.id_padre AS id_padre FROM padres_cch 
+        INNER JOIN alumnos_last ON padres_cch.id_padre = ".$tabla.".papa"."
+        WHERE ".$tabla.".id =".$ida;
+        $padre = DB::select($papa);
+        return $padre;
+
+    }
+
+    public function srch_Papa($id){
+        $infop = DB::table('padres_cch')->select('*')->where('id_padre','=',$id)->first();
+        return $infop;
+    }
+    
+    public function SavePadre($data){
         $papa = DB::table('padres_cch')
-        ->where('id_padre','=',$data['datosp'])
-        ->update(
+        ->insert(
             array(
                 'nombres_padre'      => $data['nameP'],
                 'apel1_padre'        => $data['fnameP'],
@@ -127,9 +129,11 @@ class Matriculas extends Eloquent
             )
             );
     }
-    public function SavePadre($data){
+
+    public function UpdatePadre($data){
         $papa = DB::table('padres_cch')
-        ->insert(
+        ->where('id_padre','=',$data['datosp'])
+        ->update(
             array(
                 'nombres_padre'      => $data['nameP'],
                 'apel1_padre'        => $data['fnameP'],

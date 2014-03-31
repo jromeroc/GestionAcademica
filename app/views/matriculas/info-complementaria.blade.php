@@ -49,15 +49,15 @@
   </div>
 
   <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
-    {{$id_alum}}
-    {{ HTML::link('matriculas/padres/'.$id_alum, 'Papá', array('class'=>'btn btn-info col-sm-3'));}}
+    {{ HTML::link('matriculas/padres/'.$id_alum.'/'.$year.'/'.$tipoP, 'Papá', array('class'=>'btn btn-info col-sm-3'));}}
+    {{ HTML::link('matriculas/padres/'.$id_alum.'/'.$year.'/'.$tipoP, 'Mamá', array('class'=>'btn btn-info col-sm-3'));}}
     {{ HTML::link('matriculas/acudiente', 'Acudiente', array('class'=>'btn btn-info col-sm-3'));}}
     {{ HTML::link('matriculas/correspondencia', 'Correspondencia', array('class'=>'btn btn-info col-sm-3'));}}
 
   </div>
 
   <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
-  
+
   </div>
 
 </div>

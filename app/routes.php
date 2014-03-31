@@ -154,7 +154,7 @@ Route::group(array('prefix' => 'matriculas'), function(){
 			Route::get('/', 'MatriculasController@MatriculaAlum');
 			Route::post('nuevo', 'MatriculasController@nuevo');
 			Route::get('infocomp', 'MatriculasController@infocomp');
-			Route::get('padres/{numero}', 'MatriculasController@padres')->where('numero','[0-9]+');
+			Route::get('padres/{num1}/{num2}/{num3}', 'MatriculasController@padres')->where(array('num1'=>'[0-9]+','num2'=>'[0-9]+','num3'=>'[0-9]+'));
 			Route::get('acudiente', 'MatriculasController@acudientes');
 			Route::get('correspondencia', 'MatriculasController@infocomp');
 			
