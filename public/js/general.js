@@ -61,4 +61,6 @@ $(document).on('ready',function(){
 			$("#id_city_exp").val(ui.item.id);
 		}
 	});
+
+	$('#message-success').fadeOut(5000);
 });

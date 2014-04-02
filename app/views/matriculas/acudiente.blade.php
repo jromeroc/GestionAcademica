@@ -13,8 +13,25 @@
 @section('content')
 
 <!-- ACUDIENTE -->
-    {{ Form::open(array('url' => 'matriculas/saveM', 'method' => 'POST','class'=>'col-sm -6'), array('role'=>'form'))}}
+    {{ Form::open(array('url' => 'matriculas/saveAcudiente', 'method' => 'POST','class'=>'col-sm -6'), array('role'=>'form'))}}
     <br>
+
+    @if(!empty($id_alum))
+      <input type="hidden" name="id_alum" id="id_alum" class="form-control" value="{{$id_alum}}">
+    @endif
+
+    @if(!empty($year))
+      <input type="hidden" name="year" id="year" class="form-control" value="{{$year}}">
+    @endif
+
+    @if($tipoR==0 || $tipoR ==1)
+      <input type="hidden" name="tipoR" id="tipoR" class="form-control" value="{{$tipoR}}">
+    @endif
+
+    @if(!empty($name))
+      <input type="hidden" name="name" id="name" class="form-control" value="{{$name}}">
+    @endif
+
     <!-- Nombre Acudiente -->
     <div class="form-group col-sm-12">
       {{ Form::label('nameA', 'Nombre', array('class' => 'col-sm-2 control-label')) }}

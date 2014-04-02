@@ -12,7 +12,11 @@ class Matriculas extends Eloquent
 		->get();
 		return $consult;
 	}
-
+    public function srchid_alum($tabla,$ndoc){
+        $consult = DB::table($tabla)->select('id')
+        ->where('num_document','=',$ndoc)->get();
+        return $consult;
+    }
 	public function cod_matri($tablaAlumnos){
 		$consult = DB::table($tablaAlumnos)->max('matricula');
 		return $consult;
@@ -104,9 +108,42 @@ class Matriculas extends Eloquent
 
     }
 
+        public function srch_Id_Mama($tabla,$ida){
+
+        $mama="SELECT padres_cch.id_padre AS id_padre FROM padres_cch 
+        INNER JOIN alumnos_last ON padres_cch.id_padre = ".$tabla.".mama"."
+        WHERE ".$tabla.".id =".$ida;
+        $madre = DB::select($mama);
+        return $madre;
+    }
+
+    public function srch_Id_Ac($tabla,$ida){
+
+        $acudiente="SELECT acudiente.id_acudiente AS id_acudiente FROM alumnos_last 
+        INNER JOIN acudiente ON alumnos_last.acudiente = acudiente.id_acudiente
+        WHERE ".$tabla.".id =".$ida;
+        $ac = DB::select($acudiente);
+        return $ac;
+    }
+
+    public function srch_N_alum($tabla,$ida){
+        $alum = DB::table($tabla)->select('names')->where('id','=',$ida)->get();
+        return $alum;
+    }
+
+        public function srch_tipoR($tabla,$ida){
+        $tipoR = DB::table($tabla)->select('matriculado')->where('id','=',$ida)->get();
+        return $tipoR;
+    }
+
     public function srch_Papa($id){
         $infop = DB::table('padres_cch')->select('*')->where('id_padre','=',$id)->first();
         return $infop;
+    }
+
+    public function srch_Acudiente($id){
+        $infoa = DB::table('acudiente')->select('*')->where('id_acudiente','=',$id)->first();
+        return $infoa;
     }
     
     public function SavePadre($data){
@@ -148,6 +185,32 @@ class Matriculas extends Eloquent
                 'celular_padre'      => $data['celP'],
                 'email_padre'        => $data['emailP'],
                 'tipo_padre'         => $data['genero'],
+            )
+            );
+    }
+    public function SaveAc($data){
+        $papa = DB::table('acudiente')
+        ->insert(
+            array(
+                'nombre_acudiente'      => $data['nameA'],
+                'parentesco_acudiente'  => $data['ParentA'],
+                'telefono_acudiente'    => $data['telA'],
+                'celular_acudiente'     => $data['celA'],
+                'teloficina_acudiente'  => $data['telOfA'],
+            )
+            );
+    }
+
+    public function UpdateAc($data){
+        $papa = DB::table('padres_cch')
+        ->where('id_acudiente','=',$data['datosA'])
+        ->update(
+            array(
+                'nombre_acudiente'      => $data['nameA'],
+                'parentesco_acudiente'  => $data['parentA'],
+                'telefono_acudiente'    => $data['telA'],
+                'celular_acudiente'     => $data['celA'],
+                'teloficina_acudiente'  => $data['telOfA'],
             )
             );
     }

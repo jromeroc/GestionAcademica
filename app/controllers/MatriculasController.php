@@ -72,7 +72,7 @@ class MatriculasController extends BaseController
 					//$save = $this->_matricula->saveMatricula($data,$tabla);
 					//print_r($data);
 					if (!empty($data['id_alum'])) {	
-						return View::make('matriculas.info-complementaria')->with(array('id_alum'=>$data['id_alum'],'tipoR'=>$data['T-reg'],'name'=>$data['alum'],'codM'=>$data['codigoMatri']));
+						return View::make('matriculas.info-complementaria')->with(array('id_alum'=>$data['id_alum'],'tipoR'=>$data['T-reg'],'name'=>$data['alum'],'codM'=>$data['codigoMatri'],'year'=>$data['year_matricula']));
 					}
 					else{
 						return View::make('matriculas.info-complementaria')->with(array('tipoR'=>$data['T-reg'],'name'=>$data['alum'],'codM'=>$data['codigoMatri']));
@@ -93,14 +93,21 @@ class MatriculasController extends BaseController
 					$tabla = $this->asignTabla($data['year_matricula']);
 					//$save = $this->_matricula->saveInscripcion($data,$tabla);
 					
-					print_r($data);
-					
-					
 					if (!empty($data['id_alum'])) {	
-						//return View::make('matriculas.info-complementaria')->with(array('id_alum'=>$data['id_alum'],'tipoR'=>$data['T-reg'],'name'=>$data['alum'],'year'=>$data['year_matricula']));
+						return View::make('matriculas.info-complementaria')->with(array('tipoR'=>$data['T-reg'],'name'=>$data['alum'],'year'=>$data['year_matricula'],'id_alum'=>$data['id_alum']));
 					}
 					else{
-						//return View::make('matriculas.info-complementaria')->with(array('tipoR'=>$data['T-reg'],'name'=>$data['alum']));
+						if (!empty($data['n_document'])) {
+							$tabla = $this->asignTabla($data['year_matricula']);
+	 						$id_alum = $this->_matricula->srchid_alum($tabla,$data['n_document']);
+	 						$id_alum = get_object_vars($id_alum[0]);
+	 						$id_alum = $id_alum['id'];
+
+						}
+						else{
+
+						}
+						return View::make('matriculas.info-complementaria')->with(array('tipoR'=>$data['T-reg'],'name'=>$data['alum'],'year'=>$data['year_matricula'],'id_alum'=>$id_alum));
 					}
 				}
 			}			
@@ -148,38 +155,125 @@ class MatriculasController extends BaseController
 		}
 	}	
 
+	
+	public function padre($id,$year){
+		$tipos = Tipodoc::all()->lists('name_tipodoc','id_tipodoc');
+		if (!empty($id))
+		{
+			//Buscar tabla
+			$tabla = $this->asignTabla($year);
+			//Buscar ID padre
+			$papa = $this->_matricula->srch_Id_Papa($tabla,$id);
+			$papa = get_object_vars($papa[0]);
+			$id_papa=$papa['id_padre'];
+			//Buscar Datos Padre
+			$datos_P=$this->_matricula->srch_Papa($id_papa);
+			$datos_P=get_object_vars($datos_P);
+			$alum = $this->_matricula->srch_N_alum($tabla,$id);
+			$alum = get_object_vars($alum[0]);
+			$alum = $alum['names'];
+			$tipoR = $this->_matricula->srch_tipoR($tabla,$id);
+			$tipoR = get_object_vars($tipoR[0]);
+			$tipoR = $tipoR['matriculado'];
+			
+			return View::Make('matriculas.padre')->with(array('tipodoc'=>$tipos,'papa'=>$datos_P,'padre'=>'Padre','name'=>$alum,'tipoR'=>$tipoR,'id_alum'=>$id,'year'=>$year));
+		}
+		else
+		{
+			//Consultar Id alumno y luego el mismo procedimiento de arriba...
+		}
+	}
+
+	public function madre($id,$year){
+		$tipos = Tipodoc::all()->lists('name_tipodoc','id_tipodoc');
+		if (!empty($id))
+		{
+			
+			$tabla = $this->asignTabla($year);
+
+			$mama = $this->_matricula->srch_Id_Mama($tabla,$id);
+			$mama = get_object_vars($mama[0]);
+			$id_mama=$mama['id_padre'];
+
+			$datos_M=$this->_matricula->srch_Papa($id_mama);
+			$datos_M=get_object_vars($datos_M);
+			$alum = $this->_matricula->srch_N_alum($tabla,$id);
+			$alum = get_object_vars($alum[0]);
+			$alum = $alum['names'];
+			$tipoR = $this->_matricula->srch_tipoR($tabla,$id);
+			$tipoR = get_object_vars($tipoR[0]);
+			$tipoR = $tipoR['matriculado'];
+			return View::Make('matriculas.padre')->with(array('tipodoc'=>$tipos,'papa'=>$datos_M,'padre'=>'Madre','name'=>$alum,'tipoR'=>$tipoR,'id_alum'=>$id,'year'=>$year));
+		}
+		else
+		{
+			
+		}
+
+	}
+	public function acudiente($id,$year){
+		$tipos = Tipodoc::all()->lists('name_tipodoc','id_tipodoc');
+		if (!empty($id))
+		{
+			$tabla = $this->asignTabla($year);
+
+			$acu = $this->_matricula->srch_Id_Ac($tabla,$id);
+			$acu = get_object_vars($acu[0]);
+			$id_acudiente = $acu['id_acudiente'];
+
+			$datos_A=$this->_matricula->srch_Acudiente($id_acudiente);
+			$datos_A=get_object_vars($datos_A);
+
+			$alum = $this->_matricula->srch_N_alum($tabla,$id);
+			$alum = get_object_vars($alum[0]);
+			$alum = $alum['names'];
+			$tipoR = $this->_matricula->srch_tipoR($tabla,$id);
+			$tipoR = get_object_vars($tipoR[0]);
+			$tipoR = $tipoR['matriculado'];
+			return View::Make('matriculas.acudiente')->with(array('tipodoc'=>$tipos,'acudiente'=>$datos_A,'name'=>$alum,'tipoR'=>$tipoR,'id_alum'=>$id,'year'=>$year));
+		}
+		else
+		{
+			//Consultar Id alumno y luego el mismo procedimiento de arriba...
+		}
+	}
+
 	public function savePadre(){
 		$data = Input::all();
 		$tipos = Tipodoc::all()->lists('name_tipodoc','id_tipodoc');
 		if (!empty($data['datosp'])) {
 			$save = $this->_matricula->UpdatePadre($data);
+			$action ="Actualizado";
 		}
 
 		else{
 			$save = $this->_matricula->SavePadre($data);
+			$action ="Guardado";
+		}
+
+		return View::make('matriculas.info-complementaria')->with(array('save'=>'Se han '.$action.' correctamente los datos del Padre','tipoR' => $data['tipoR'],'name'=>$data['name'],'id_alum'=>$data['id_alum'],'year'=>$data['year']));
+
 		}
 
 
-		}
-	
-	public function padres($id,$year,$tipoP){
+
+	public function saveAcudiente(){
+		$data = Input::all();
 		$tipos = Tipodoc::all()->lists('name_tipodoc','id_tipodoc');
-		if (!empty($id)) {
-			$tabla = $this->asignTabla($year);
-			$papa = $this->_matricula->srch_Id_Papa($tabla,$id);
-			$papa = get_object_vars($papa[0]);
-			$id_papa=$papa['id_padre'];
-			$datosp=$this->_matricula->srch_Papa($id_papa);
-			$datosp=get_object_vars($datosp);
-			return View::Make('matriculas.padre')->with(array('tipodoc'=>$tipos,'papa'=>$datosp));
-		}else{
-			//Consultar Id alumno y luego el mismo procedimiento de arriba
+		if (!empty($data['datosp'])) {
+			$save = $this->_matricula->UpdateAc($data);
+			$action ="Actualizado";
 		}
-	}
-	public function acudientes(){
-		$tipos = Tipodoc::all()->lists('name_tipodoc','id_tipodoc');
-		return View::Make('matriculas.acudiente')->with(array('tipodoc'=>$tipos));
-	}
+
+		else{
+			$save = $this->_matricula->SaveAc($data);
+			$action ="Guardado";
+		}
+
+		return View::make('matriculas.info-complementaria')->with(array('save'=>'Se han '.$action.' los datos del Acudiente','tipoR' => $data['tipoR'],'name'=>$data['name'],'id_alum'=>$data['id_alum'],'year'=>$data['year']));
+		
+		}
 
 	}
+
 ?>

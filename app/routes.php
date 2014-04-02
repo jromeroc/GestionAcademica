@@ -154,8 +154,9 @@ Route::group(array('prefix' => 'matriculas'), function(){
 			Route::get('/', 'MatriculasController@MatriculaAlum');
 			Route::post('nuevo', 'MatriculasController@nuevo');
 			Route::get('infocomp', 'MatriculasController@infocomp');
-			Route::get('padres/{num1}/{num2}/{num3}', 'MatriculasController@padres')->where(array('num1'=>'[0-9]+','num2'=>'[0-9]+','num3'=>'[0-9]+'));
-			Route::get('acudiente', 'MatriculasController@acudientes');
+			Route::get('padre/{num1}/{num2}', 'MatriculasController@padre')->where(array('num1'=>'[0-9]+','num2'=>'[0-9]+'));
+			Route::get('madre/{num1}/{num2}', 'MatriculasController@madre')->where(array('num1'=>'[0-9]+','num2'=>'[0-9]+'));
+			Route::get('acudiente/{num1}/{num2}', 'MatriculasController@acudiente')->where(array('num1'=>'[0-9]+','num2'=>'[0-9]+'));
 			Route::get('correspondencia', 'MatriculasController@infocomp');
 			
 			//Autocompletar papa - mama - acudiente
@@ -166,6 +167,7 @@ Route::group(array('prefix' => 'matriculas'), function(){
 			Route::get('buscaralum/{numero}', 'MatriculasController@searchalum')->where('numero','[0-9]+');
 			Route::get('srchP', 'MatriculasController@srchP');
 			Route::post('savePadre', 'MatriculasController@savePadre');
+			Route::post('saveAcudiente', 'MatriculasController@saveAcudiente');
 		});
 	});
 });

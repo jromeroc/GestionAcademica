@@ -7,17 +7,31 @@
 @stop
 
 @section('modulo')
-  <h1>Matriculas <small>Papá / Mamá</small></h1>
+  <h1>Matriculas <small>[{{$padre}}]</small></h1>
 @stop
 
 @section('content')
-
 
 <!-- PAPA -->
   <div>
   <br>
     {{ Form::open(array('url' => 'matriculas/savePadre', 'method' => 'POST','class'=>'col-sm -6'), array('role'=>'form'))}}
     
+    @if(!empty($name))
+      <input type="hidden" name="name" id="name" class="form-control" value="{{$name}}">
+    @endif
+
+    @if(!empty($id_alum))
+      <input type="hidden" name="id_alum" id="id_alum" class="form-control" value="{{$id_alum}}">
+    @endif
+
+    @if(!empty($year))
+      <input type="hidden" name="year" id="year" class="form-control" value="{{$year}}">
+    @endif
+
+    @if($tipoR==0 || $tipoR ==1)
+      <input type="hidden" name="tipoR" id="tipoR" class="form-control" value="{{$tipoR}}">
+    @endif
     <!-- Nombre papa -->
     <div class="form-group col-sm-12">
       {{ Form::label('nameP', 'Nombre', array('class' => 'col-sm-2 control-label')) }}
@@ -168,14 +182,6 @@
 
     @if(!empty($codM))
       <input type="hidden" name="codM" id="codM" class="form-control" value="{{$codM}}">
-    @endif
-
-    @if(!empty($name))
-      <input type="hidden" name="alum" id="alum" class="form-control" value="{{$name}}">
-    @endif
-
-    @if(isset($tipoR))
-      <input type="hidden" name="T-Reg" id="T-Reg" class="form-control" value="{{$tipoR}}">
     @endif
     
     <input type="hidden" name="genero" id="genero" class="form-control" value="1">
