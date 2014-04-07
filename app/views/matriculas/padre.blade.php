@@ -184,8 +184,11 @@
       <input type="hidden" name="codM" id="codM" class="form-control" value="{{$codM}}">
     @endif
     
-    <input type="hidden" name="genero" id="genero" class="form-control" value="1">
-
+    @if(!empty($papa))
+      <input type="hidden" name="genero" id="genero" class="form-control" value="{{$papa['tipo_padre']}}">
+    @else
+      <input type="hidden" name="genero" id="genero" class="form-control" value="{{$genero}}">
+    @endif
   <!-- Submit !-->
   <div class="form-group col-sm-12">
     {{form::submit('Guardar información',array('class'=>'btn btn-success col-sm-6'))}}

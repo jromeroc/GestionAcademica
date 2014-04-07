@@ -17,6 +17,19 @@ class Matriculas extends Eloquent
         ->where('num_document','=',$ndoc)->get();
         return $consult;
     }
+
+    public function srchid_alum_name($tabla,$name){
+        $consult = DB::table($tabla)->select('id')
+        ->where('names','=',$name)->get();
+        return $consult;
+    }
+
+    public function srchid_alum_codm($tabla,$codm){
+        $consult = DB::table($tabla)->select('id')
+        ->where('matriculado','=',$codm)->get();
+        return $consult;
+    }
+
 	public function cod_matri($tablaAlumnos){
 		$consult = DB::table($tablaAlumnos)->max('matricula');
 		return $consult;
@@ -162,11 +175,31 @@ class Matriculas extends Eloquent
                 'tel_oficina_padre'  => $data['TofP'],
                 'celular_padre'      => $data['celP'],
                 'email_padre'        => $data['emailP'],
-                'tipo_padre'         => $data['genero'],
+                'tipo_padre'         => $data['genero']
             )
-            );
+        );
+    }
+/*
+    public function asignPapa($tabla,$ida,idp){
+        $alum = DB::table($tabla)
+        ->where('id','=',$ida)
+        ->insert(
+            array(
+            'papa' => $idp
+            )
+        );
     }
 
+    public function asignMama($tabla,$ida,idm){
+        $alum = DB::table($tabla)
+        ->where('id','=',$ida)
+        ->insert(
+            array(
+            'mama' => $idm
+            )
+        );
+    }
+    */
     public function UpdatePadre($data){
         $papa = DB::table('padres_cch')
         ->where('id_padre','=',$data['datosp'])
