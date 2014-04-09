@@ -46,6 +46,7 @@ $(document).on('ready',function(){
 			$("#fijo").val(ui.item.telefono);
 			$("#email").val(ui.item.mail);
 			$("#fecha_nac").val(ui.item.date_born);
+			$("#nombres").val(ui.item.nombres_padre);
 		}
 	});
 	$( "#fecha_nac" ).datepicker({

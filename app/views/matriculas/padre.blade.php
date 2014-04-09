@@ -41,7 +41,9 @@
         @else
         {{ Form::Text('nameP',null, array('placeholder' => 'Nombre', 'class' => 'col-sm-2 form-control')) }}
         @endif
+        <input type="hidden" name="nombres" id="nombres" class="form-control" value="">
       </div>
+
     </div>
     @if(!empty($papa))
     <input type="hidden" name="datosp" id="datosp" class="form-control" value="{{$papa['id_padre']}}">

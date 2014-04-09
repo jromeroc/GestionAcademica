@@ -69,7 +69,7 @@ class MatriculasController extends BaseController
 					$tipos = Tipodoc::all()->lists('name_tipodoc','id_tipodoc');
 					$tabla = $this->asignTabla($data['year_matricula']);
 					$data['codigoMatri']=$codigoMatri;
-					//$save = $this->_matricula->saveMatricula($data,$tabla);
+					$save = $this->_matricula->saveMatricula($data,$tabla);
 					
 					if (!empty($data['id_alum'])) {	
 						return View::make('matriculas.info-complementaria')->with(array('tipoR'=>$data['T-reg'],'name'=>$data['alum'],'year'=>$data['year_matricula'],'id_alum'=>$data['id_alum']));
@@ -80,7 +80,8 @@ class MatriculasController extends BaseController
 	 						$id_alum = $this->_matricula->srchid_alum($tabla,$data['n_document']);
 	 						$id_alum = get_object_vars($id_alum[0]);
 	 						$id_alum = $id_alum['id'];
-							//return View::make('matriculas.info-complementaria')->with(array('tipoR'=>$data['T-reg'],'name'=>$data['alum'],'year'=>$data['year_matricula'],'id_alum'=>$id_alum));
+	 						
+							return View::make('matriculas.info-complementaria')->with(array('tipoR'=>$data['T-reg'],'name'=>$data['alum'],'year'=>$data['year_matricula'],'id_alum'=>$id_alum));
 	 						
 						}
 						else{
@@ -88,7 +89,7 @@ class MatriculasController extends BaseController
 	 						$id_alum = $this->_matricula->srchid_alum_name($tabla,$data['alum']);
 	 						$id_alum = get_object_vars($id_alum[0]);
 	 						$id_alum = $id_alum['id'];
-							//return View::make('matriculas.info-complementaria')->with(array('tipoR'=>$data['T-reg'],'name'=>$data['alum'],'year'=>$data['year_matricula'],'id_alum'=>$id_alum));
+							return View::make('matriculas.info-complementaria')->with(array('tipoR'=>$data['T-reg'],'name'=>$data['alum'],'year'=>$data['year_matricula'],'id_alum'=>$id_alum));
 						}
 					}
 					//Error ID ALUM
@@ -106,7 +107,7 @@ class MatriculasController extends BaseController
 				{
 					$tipos = Tipodoc::all()->lists('name_tipodoc','id_tipodoc');
 					$tabla = $this->asignTabla($data['year_matricula']);
-					//$save = $this->_matricula->saveInscripcion($data,$tabla);
+					$save = $this->_matricula->saveInscripcion($data,$tabla);
 					
 					if (!empty($data['id_alum'])) {	
 						return View::make('matriculas.info-complementaria')->with(array('tipoR'=>$data['T-reg'],'name'=>$data['alum'],'year'=>$data['year_matricula'],'id_alum'=>$data['id_alum']));
@@ -115,6 +116,7 @@ class MatriculasController extends BaseController
 						if (!empty($data['n_document'])) {
 							$tabla = $this->asignTabla($data['year_matricula']);
 	 						$id_alum = $this->_matricula->srchid_alum($tabla,$data['n_document']);
+	 						
 	 						$id_alum = get_object_vars($id_alum[0]);
 	 						$id_alum = $id_alum['id'];	
 							return View::make('matriculas.info-complementaria')->with(array('tipoR'=>$data['T-reg'],'name'=>$data['alum'],'year'=>$data['year_matricula'],'id_alum'=>$id_alum));
@@ -196,8 +198,8 @@ class MatriculasController extends BaseController
 				$id_papa=$papa['id_padre'];
 				$datos_P=$this->_matricula->srch_Papa($id_papa);
 				$datos_P=get_object_vars($datos_P);					
-				print_r($datos_P);
-				return View::Make('matriculas.padre')->with(array('tipodoc'=>$tipos,'papa'=>$datos_P,'padre'=>'Madre','name'=>$alum,'tipoR'=>$tipoR,'id_alum'=>$id,'year'=>$year,'genero'=>$genero));
+				// print_r($datos_P);
+				return View::Make('matriculas.padre')->with(array('tipodoc'=>$tipos,'papa'=>$datos_P,'padre'=>'Padre','name'=>$alum,'tipoR'=>$tipoR,'id_alum'=>$id,'year'=>$year,'genero'=>$genero));
 			}
 			else
 			{
@@ -227,7 +229,6 @@ class MatriculasController extends BaseController
 				$id_mama=$mama['id_padre'];
 				$datos_M=$this->_matricula->srch_Papa($id_mama);
 				$datos_M=get_object_vars($datos_M);
-				print_r($datos_M);
 				return View::Make('matriculas.padre')->with(array('tipodoc'=>$tipos,'papa'=>$datos_M,'padre'=>'Madre','name'=>$alum,'tipoR'=>$tipoR,'id_alum'=>$id,'year'=>$year,'genero'=>$genero));
 			}
 			else{
@@ -265,6 +266,13 @@ class MatriculasController extends BaseController
 	public function savePadre(){
 		$data = Input::all();
 		$tipos = Tipodoc::all()->lists('name_tipodoc','id_tipodoc');
+
+		if (!empty($data['nombres'])) {
+			$data['nameP'] = $data['nombres'];
+		}else{
+			$data['nombres'] = $data['nameP'];
+		}
+
 		if (!empty($data['datosp'])) {
 			$save = $this->_matricula->UpdatePadre($data);
 			$action ="Actualizado";
@@ -274,19 +282,25 @@ class MatriculasController extends BaseController
 			$save = $this->_matricula->SavePadre($data);
 			$action ="Guardado";
 		}
-		print_r($data);
-		/*
-		if ($data['genero']==0) 
+		$tabla = $this->asignTabla($data['year']);
+
+		if ($data['genero']==1) 
 		{
-			$asignalum = $this->_matricula->asignPapa();
+			$id_papa = $this->_matricula->srch_papa_ndoc($data['Num_docP']);
+			$id_papa=get_object_vars($id_papa[0]);
+			$id_papa=$id_papa['id_padre'];
+			$asignalum = $this->_matricula->asignPapa($tabla,$data['id_alum'],$id_papa);
 		}
 
 		else
 		{
-			$asignalum = $this->_matricula->asignMama();
+			$id_mama = $this->_matricula->srch_papa_ndoc($data['Num_docP']);
+			$id_mama=get_object_vars($id_mama[0]);
+			$id_mama=$id_mama['id_padre'];
+			$asignalum = $this->_matricula->asignMama($tabla,$data['id_alum'],$id_mama);
 		} 
-		//return View::make('matriculas.info-complementaria')->with(array('save'=>'Se han '.$action.' correctamente los datos del Padre','tipoR' => $data['tipoR'],'name'=>$data['name'],'id_alum'=>$data['id_alum'],'year'=>$data['year']));
-		*/
+		return View::make('matriculas.info-complementaria')->with(array('save'=>'Se han '.$action.' correctamente los datos del Padre','tipoR' => $data['tipoR'],'name'=>$data['name'],'id_alum'=>$data['id_alum'],'year'=>$data['year']));
+		
 		}
 
 

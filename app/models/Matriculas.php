@@ -118,7 +118,13 @@ class Matriculas extends Eloquent
         WHERE ".$tabla.".id =".$ida;
         $padre = DB::select($papa);
         return $padre;
+    }
 
+    public function srch_papa_ndoc($doc){
+        $papa = DB::table('padres_cch')->select('id_padre')
+        ->where('numdoc_padre','=',$doc)
+        ->get();
+        return $papa;
     }
 
         public function srch_Id_Mama($tabla,$ida){
@@ -163,7 +169,7 @@ class Matriculas extends Eloquent
         $papa = DB::table('padres_cch')
         ->insert(
             array(
-                'nombres_padre'      => $data['nameP'],
+                'nombres_padre'      => $data['nombres'],
                 'apel1_padre'        => $data['fnameP'],
                 'apel2_padre'        => $data['lnameP'],
                 'id_tipodoc_padre'   => $data['tipo_docP'],
@@ -179,27 +185,27 @@ class Matriculas extends Eloquent
             )
         );
     }
-/*
-    public function asignPapa($tabla,$ida,idp){
+
+    public function asignPapa($tabla,$ida,$idp){
         $alum = DB::table($tabla)
         ->where('id','=',$ida)
-        ->insert(
+        ->update(
             array(
             'papa' => $idp
             )
         );
     }
 
-    public function asignMama($tabla,$ida,idm){
+    public function asignMama($tabla,$ida,$idm){
         $alum = DB::table($tabla)
         ->where('id','=',$ida)
-        ->insert(
+        ->update(
             array(
             'mama' => $idm
             )
         );
     }
-    */
+    
     public function UpdatePadre($data){
         $papa = DB::table('padres_cch')
         ->where('id_padre','=',$data['datosp'])
