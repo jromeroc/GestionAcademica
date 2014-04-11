@@ -305,7 +305,7 @@ class MatriculasController extends BaseController
 	public function saveAcudiente(){
 		$data = Input::all();
 		$tipos = Tipodoc::all()->lists('name_tipodoc','id_tipodoc');
-		if (!empty($data['datosp'])) {
+		if (!empty($data['datosA'])) {
 			$save = $this->_matricula->UpdateAc($data);
 			$action ="Actualizado";
 		}
@@ -314,8 +314,12 @@ class MatriculasController extends BaseController
 			$save = $this->_matricula->SaveAc($data);
 			$action ="Guardado";
 		}
-
-		return View::make('matriculas.info-complementaria')->with(array('save'=>'Se han '.$action.' los datos del Acudiente','tipoR' => $data['tipoR'],'name'=>$data['name'],'id_alum'=>$data['id_alum'],'year'=>$data['year']));
+		$tabla = $this->asignTabla($data['year']);
+		$id_ac = $this->_matricula->srch_acu_token($data['_token']);
+		$id_ac=get_object_vars($id_ac);
+		$id_ac=$id_ac['id_acudiente'];
+		$asignalum = $this->_matricula->asignAcudiente($tabla,$data['id_alum'],$id_ac);
+		return View::make('matriculas.info-complementaria')->with(array('save'=>'Se han '.$action.' los datos del Acudiente','tipoR' => $data['tipoR'],'name'=>$data['name'],'id_alum'=>$data['id_alum'],'year'=>$data['year'],'action'=>$action));
 		
 		}
 

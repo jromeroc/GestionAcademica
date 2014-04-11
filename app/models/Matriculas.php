@@ -160,6 +160,11 @@ class Matriculas extends Eloquent
         return $infop;
     }
 
+    public function srch_acu_token($token){
+        $idac = DB::table('acudiente')->select('*')->where('token','=',$token)->first();
+        return $idac;
+    }
+
     public function srch_Acudiente($id){
         $infoa = DB::table('acudiente')->select('*')->where('id_acudiente','=',$id)->first();
         return $infoa;
@@ -203,7 +208,7 @@ class Matriculas extends Eloquent
                 'tel_oficina_padre'  => $data['TofP'],
                 'celular_padre'      => $data['celP'],
                 'email_padre'        => $data['emailP'],
-                'tipo_padre'         => $data['genero'],
+                'tipo_padre'         => $data['genero']
             )
             );
     }
@@ -227,6 +232,16 @@ class Matriculas extends Eloquent
             )
         );
     }
+
+    public function asignAcudiente($tabla,$idal,$idac){
+        $alum = DB::table($tabla)
+        ->where('id','=',$idal)
+        ->update(
+            array(
+            'acudiente' => $idac
+            )
+        );
+    }
     
     public function SaveAc($data){
         $papa = DB::table('acudiente')
@@ -237,6 +252,7 @@ class Matriculas extends Eloquent
                 'telefono_acudiente'    => $data['telA'],
                 'celular_acudiente'     => $data['celA'],
                 'teloficina_acudiente'  => $data['telOfA'],
+                'token'                 => $data['_token']
             )
             );
     }
@@ -251,6 +267,7 @@ class Matriculas extends Eloquent
                 'telefono_acudiente'    => $data['telA'],
                 'celular_acudiente'     => $data['celA'],
                 'teloficina_acudiente'  => $data['telOfA'],
+                'token'                 => $data['_token']
             )
             );
     }
