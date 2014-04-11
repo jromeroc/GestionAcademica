@@ -165,11 +165,11 @@ class Matriculas extends Eloquent
         return $infoa;
     }
     
-    public function SavePadre($data){
+    public function SavePadre($data,$nombre){
         $papa = DB::table('padres_cch')
         ->insert(
             array(
-                'nombres_padre'      => $data['nombres'],
+                'nombres_padre'      => $nombre,
                 'apel1_padre'        => $data['fnameP'],
                 'apel2_padre'        => $data['lnameP'],
                 'id_tipodoc_padre'   => $data['tipo_docP'],
@@ -184,6 +184,28 @@ class Matriculas extends Eloquent
                 'tipo_padre'         => $data['genero']
             )
         );
+    }
+
+    public function UpdatePadre($data,$nombre){
+        $papa = DB::table('padres_cch')
+        ->where('id_padre','=',$data['datosp'])
+        ->update(
+            array(
+                'nombres_padre'      => $data['nameP'],
+                'apel1_padre'        => $data['fnameP'],
+                'apel2_padre'        => $data['lnameP'],
+                'id_tipodoc_padre'   => $data['tipo_docP'],
+                'numdoc_padre'       => $data['Num_docP'],
+                'profesion_padre'    => $data['profP'],
+                'ocupacion_padre'    => $data['ocP'],
+                'empresa_padre'      => $data['empP'],
+                'tel_casa_padre'     => $data['fijoP'],
+                'tel_oficina_padre'  => $data['TofP'],
+                'celular_padre'      => $data['celP'],
+                'email_padre'        => $data['emailP'],
+                'tipo_padre'         => $data['genero'],
+            )
+            );
     }
 
     public function asignPapa($tabla,$ida,$idp){
@@ -206,27 +228,6 @@ class Matriculas extends Eloquent
         );
     }
     
-    public function UpdatePadre($data){
-        $papa = DB::table('padres_cch')
-        ->where('id_padre','=',$data['datosp'])
-        ->update(
-            array(
-                'nombres_padre'      => $data['nameP'],
-                'apel1_padre'        => $data['fnameP'],
-                'apel2_padre'        => $data['lnameP'],
-                'id_tipodoc_padre'   => $data['tipo_docP'],
-                'numdoc_padre'       => $data['Num_docP'],
-                'profesion_padre'    => $data['profP'],
-                'ocupacion_padre'    => $data['ocP'],
-                'empresa_padre'      => $data['empP'],
-                'tel_casa_padre'     => $data['fijoP'],
-                'tel_oficina_padre'  => $data['TofP'],
-                'celular_padre'      => $data['celP'],
-                'email_padre'        => $data['emailP'],
-                'tipo_padre'         => $data['genero'],
-            )
-            );
-    }
     public function SaveAc($data){
         $papa = DB::table('acudiente')
         ->insert(

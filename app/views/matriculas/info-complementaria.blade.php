@@ -1,6 +1,5 @@
 @extends('layouts.master')
 
-
 @section('title')
 @parent
 .:: Matriculas ::.
@@ -66,13 +65,16 @@
   </div>
 
 </div>
-<br>
-<br>
-<br>
+
+  <br>
+  <br>
+  <br>
+
 <div id="message-success" class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
     @if(isset($save))
       @if(!empty($save))
-        <div class="alert alert-info">
+        @if($action=="Guardado")
+        <div class="alert alert-success">
             <br>
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
               <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
@@ -81,6 +83,18 @@
             </div>
             <br>
           </div>
+          
+          @elseif($action=="Actualizado")
+            <div class="alert alert-info">
+            <br>
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+              <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                <h3 class="panel-title"><strong>{{$save}}</strong></h3>      
+              </div>    
+            </div>
+            <br>
+          </div>
+          @endif
       @endif
     @endif
 

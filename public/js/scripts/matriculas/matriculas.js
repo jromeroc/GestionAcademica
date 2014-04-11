@@ -46,7 +46,6 @@ $(document).on('ready',function(){
 			$("#fijo").val(ui.item.telefono);
 			$("#email").val(ui.item.mail);
 			$("#fecha_nac").val(ui.item.date_born);
-			$("#nombres").val(ui.item.nombres_padre);
 		}
 	});
 	$( "#fecha_nac" ).datepicker({
@@ -71,7 +70,9 @@ $(document).on('ready',function(){
 			$("#empP").val(ui.item.empresa_padre);
 			$("#fijoP").val(ui.item.tel_casa_padre);
 			$("#celP").val(ui.item.celular_padre);
-			$("#emailP").val(ui.item.email_padre);	
+			$("#emailP").val(ui.item.email_padre);
+			$("#nombres").val(ui.item.nombres_padre);
+				
 		}
 	});
 

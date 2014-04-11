@@ -268,18 +268,18 @@ class MatriculasController extends BaseController
 		$tipos = Tipodoc::all()->lists('name_tipodoc','id_tipodoc');
 
 		if (!empty($data['nombres'])) {
-			$data['nameP'] = $data['nombres'];
+			$nombre = $data['nombres'];
 		}else{
-			$data['nombres'] = $data['nameP'];
+			$nombre = $data['nameP'];
 		}
 
 		if (!empty($data['datosp'])) {
-			$save = $this->_matricula->UpdatePadre($data);
+			$save = $this->_matricula->UpdatePadre($data,$nombre);
 			$action ="Actualizado";
 		}
 
 		else{
-			$save = $this->_matricula->SavePadre($data);
+			$save = $this->_matricula->SavePadre($data,$nombre);
 			$action ="Guardado";
 		}
 		$tabla = $this->asignTabla($data['year']);
@@ -291,19 +291,16 @@ class MatriculasController extends BaseController
 			$id_papa=$id_papa['id_padre'];
 			$asignalum = $this->_matricula->asignPapa($tabla,$data['id_alum'],$id_papa);
 		}
-
 		else
 		{
 			$id_mama = $this->_matricula->srch_papa_ndoc($data['Num_docP']);
 			$id_mama=get_object_vars($id_mama[0]);
 			$id_mama=$id_mama['id_padre'];
 			$asignalum = $this->_matricula->asignMama($tabla,$data['id_alum'],$id_mama);
-		} 
-		return View::make('matriculas.info-complementaria')->with(array('save'=>'Se han '.$action.' correctamente los datos del Padre','tipoR' => $data['tipoR'],'name'=>$data['name'],'id_alum'=>$data['id_alum'],'year'=>$data['year']));
+		}
+		return View::make('matriculas.info-complementaria')->with(array('save'=>'Se han '.$action.' correctamente los datos del Padre','tipoR' => $data['tipoR'],'name'=>$data['name'],'id_alum'=>$data['id_alum'],'year'=>$data['year'],'action'=>$action));
 		
 		}
-
-
 
 	public function saveAcudiente(){
 		$data = Input::all();

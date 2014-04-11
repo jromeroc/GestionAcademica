@@ -32,6 +32,7 @@
     @if($tipoR==0 || $tipoR ==1)
       <input type="hidden" name="tipoR" id="tipoR" class="form-control" value="{{$tipoR}}">
     @endif
+    
     <!-- Nombre papa -->
     <div class="form-group col-sm-12">
       {{ Form::label('nameP', 'Nombre', array('class' => 'col-sm-2 control-label')) }}
