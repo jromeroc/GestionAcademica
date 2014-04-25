@@ -70,7 +70,7 @@ return array(
     'File_ASN1' => $vendorDir . '/phpseclib/phpseclib/phpseclib/File/ASN1.php',
     'File_ASN1_Element' => $vendorDir . '/phpseclib/phpseclib/phpseclib/File/ASN1.php',
     'File_X509' => $vendorDir . '/phpseclib/phpseclib/phpseclib/File/X509.php',
-    'Grado' => $baseDir . '/app/models/Grado.php',
+    'Grado' => $baseDir . '/app/models/Grados.php',
     'GradoTableSeeder' => $baseDir . '/app/database/seeds/GradoTableSeeder.php',
     'Grupo' => $baseDir . '/app/models/Grupo.php',
     'GrupoTableSeeder' => $baseDir . '/app/database/seeds/GrupoTableSeeder.php',

@@ -45,6 +45,8 @@
     </div>
     @if(!empty($acudiente))
     <input type="hidden" name="datosA" id="datosA" class="form-control" value="{{$acudiente['id_acudiente']}}">
+    @else
+    <input type="hidden" name="datosA" id="datosA" class="form-control" value="">
     @endif
     <!-- Parentesco -->
     <div class="form-group col-sm-12">

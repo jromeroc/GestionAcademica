@@ -168,6 +168,12 @@ Route::group(array('prefix' => 'matriculas'), function(){
 			Route::get('srchP', 'MatriculasController@srchP');
 			Route::post('savePadre', 'MatriculasController@savePadre');
 			Route::post('saveAcudiente', 'MatriculasController@saveAcudiente');
+
+			//Listar Editar y Eliminar
+			Route::get('matriculados', 'MatriculasController@matriculados');
+			Route::post('srch_alum_matri', 'MatriculasController@srch_alum_matri');
+			Route::post('informe_alum', 'MatriculasController@informe_alum');
+
 		});
 	});
 });

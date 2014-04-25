@@ -33,7 +33,7 @@
   		<div class="form-group col-sm-12">
       	{{ Form::label('year_matricula', 'Año Matricula', array('class' => 'col-sm-2 control-label')) }}
         <div class="col-sm-2">
-      		{{ Form::select('year_matricula', array($años['year'] => '2013-2014',$años['lastY'] => '2012-2013',$años['nextY'] => '2014-2015')); }}
+      		{{ Form::select('year_matricula', array('0000'=>'Seleccione año',$años['lastY'] => $años['last'] , $años['year'] => $años['act'],$años['nextY'] => $años['next'])); }}
       	</div>
       </div>
 
@@ -107,7 +107,7 @@
         </div>
       </div>
 
-      <!-- Fecha nacimiento  !-->
+      
       <div class="form-group col-sm-12">
         {{ Form::label('fecha_nac', 'Fecha de nacimiento', array('class' => 'col-sm-2 control-label')) }}
         <div class="col-sm-2">

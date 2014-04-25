@@ -48,6 +48,8 @@
     </div>
     @if(!empty($papa))
     <input type="hidden" name="datosp" id="datosp" class="form-control" value="{{$papa['id_padre']}}">
+    @else
+    <input type="hidden" name="datosp" id="datosp" class="form-control" value="">
     @endif
     <!-- Ape1 papa -->
     <div class="form-group col-sm-12">

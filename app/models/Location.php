@@ -13,14 +13,14 @@ class Location extends BaseController
 
 	public function autocompletarciudad($find,$id_pais)
 	{
-		$listCity = DB::table('ciudades')->select("nombre_ciudad AS value , id_ciudad AS id")
+		$listCity = DB::table('ciudades')->select("nombre_ciudad AS value" , "id_ciudad AS id")
 		->whereRaw("nombre_ciudad LIKE '%".$find."%'")
 		->get();
 		return $listCity;
 	}
 	public function autocompletarciudadU($find)
 	{
-		$listCity = DB::table('ciudades')->select("nombre_ciudad AS value , id_ciudad AS id")
+		$listCity = DB::table('ciudades')->select("nombre_ciudad AS value" , "id_ciudad AS id")
 		->whereRaw("nombre_ciudad LIKE '%".$find."%'")
 		->get();
 		return $listCity;

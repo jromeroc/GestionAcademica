@@ -35,34 +35,34 @@ class Matriculas extends Eloquent
 		return $consult;
 	}
 	public function saveMatricula($data,$tabla){
-		DB::table($tabla)->insert(
+        DB::table($tabla)->insert(
     		array(
-    			'matriculado' => $data['T-reg'],
-    			'date_matricula' => $data['fecha_matricula'],
-    			'grado' => $data['grado'],
-    			'fname' => $data['fname'],
-    			'lname' => $data['lnane'],
-    			'names' => $data['alum'],
-    			'tipo_document' => $data['tipo_doc'],
-    			'num_document' => $data['n_document'],
-    			'pais_born' => $data['id_pais'],
-    			'city_born' => $data['id_city'],
-    			'sexo' => $data['genero'],
-    			'grupo_san' => $data['g_sang'],
-    			'rh' => $data['RH'],
-    			'eps' => $data['eps'],
-    			'tipo_hermano' => $data['T-Herm'],
-    			'direccion' => $data['direcc'],
-    			'telefono' => $data['fijo'],
-    			'celular' => $data['cel'],
-    			'mail' => $data['email'],
-    			'papa' => $data['papa'],
-    			'mama' => $data['mama'],
-    			'acudiente' => $data['acudiente'],
-    			//'lastschool' => $data[''],
-                'exp_document' => $data['id_city_exp'],
-    			'matricula' => $data['codigoMatri'],
-                'date_born' => $data['fecha_nac']
+    			'matriculado'        => $data['T-reg'],
+    			'date_matricula'     => $data['fecha_matricula'],
+    			'grado'              => $data['grado'],
+    			'fname'              => $data['fname'],
+    			'lname'              => $data['lnane'],
+    			'names'              => $data['alum'],
+    			'tipo_document'      => $data['tipo_doc'],
+    			'num_document'       => $data['n_document'],
+    			'pais_born'          => $data['id_pais'],
+    			'city_born'          => $data['id_city'],
+    			'sexo'               => $data['genero'],
+    			'grupo_san'          => $data['g_sang'],
+    			'rh'                 => $data['RH'],
+    			'eps'                => $data['eps'],
+    			'tipo_hermano'       => $data['T-Herm'],
+    			'direccion'          => $data['direcc'],
+    			'telefono'           => $data['fijo'],
+    			'celular'            => $data['cel'],
+    			'mail'               => $data['email'],
+    			'papa'               => $data['papa'],
+    			'mama'               => $data['mama'],
+    			'acudiente'          => $data['acudiente'],
+    			// 'lastschool'         => $data[''],
+                'exp_document'       => $data['id_city_exp'],
+    			'matricula'          => $data['codigoMatri'],
+                'date_born'          => $data['fecha_nac']
     		)
 		);
     }
@@ -70,29 +70,31 @@ class Matriculas extends Eloquent
     public function saveInscripcion($data,$tabla){
         DB::table($tabla)->insert(
             array(
-                'matriculado' => $data['T-reg'],
-                'date_matricula' => $data['fecha_matricula'],
-                'grado' => $data['grado'],
-                'fname' => $data['fname'],
-                'lname' => $data['lnane'],
-                'names' => $data['alum'],
-                'tipo_document' => $data['tipo_doc'],
-                'num_document' => $data['n_document'],
-                'pais_born' => $data['id_pais'],
-                'city_born' => $data['id_city'],
-                'sexo' => $data['genero'],
-                'grupo_san' => $data['g_sang'],
-                'rh' => $data['RH'],
-                'eps' => $data['eps'],
-                'tipo_hermano' => $data['T-Herm'],
-                'direccion' => $data['direcc'],
-                'telefono' => $data['fijo'],
-                'celular' => $data['cel'],
-                'mail' => $data['email'],
-                'papa' => $data['papa'],
-                'mama' => $data['mama'],
-                'acudiente' => $data['acudiente'],
-                //'lastschool' => $data[''],
+                'matriculado'       => $data['T-reg'],
+                'date_matricula'    => $data['fecha_matricula'],
+                'grado'             => $data['grado'],
+                'fname'             => $data['fname'],
+                'lname'             => $data['lnane'],
+                'names'             => $data['alum'],
+                'tipo_document'     => $data['tipo_doc'],
+                'num_document'      => $data['n_document'],
+                'pais_born'         => $data['id_pais'],
+                'city_born'         => $data['id_city'],
+                'sexo'              => $data['genero'],
+                'grupo_san'         => $data['g_sang'],
+                'rh'                => $data['RH'],
+                'eps'               => $data['eps'],
+                'tipo_hermano'      => $data['T-Herm'],
+                'direccion'         => $data['direcc'],
+                'telefono'          => $data['fijo'],
+                'celular'           => $data['cel'],
+                'mail'              => $data['email'],
+                'papa'              => $data['papa'],
+                'mama'              => $data['mama'],
+                'acudiente'         => $data['acudiente'],
+                'exp_document'      => $data['id_city_exp'],
+                'date_born'         => $data['fecha_nac']
+                // 'lastschool' => $data[''],
             )
         );
     }
@@ -114,7 +116,7 @@ class Matriculas extends Eloquent
     public function srch_Id_Papa($tabla,$ida){
 
         $papa="SELECT padres_cch.id_padre AS id_padre FROM padres_cch 
-        INNER JOIN alumnos_last ON padres_cch.id_padre = ".$tabla.".papa"."
+        INNER JOIN ".$tabla." ON padres_cch.id_padre = ".$tabla.".papa"."
         WHERE ".$tabla.".id =".$ida;
         $padre = DB::select($papa);
         return $padre;
@@ -130,7 +132,7 @@ class Matriculas extends Eloquent
         public function srch_Id_Mama($tabla,$ida){
 
         $mama="SELECT padres_cch.id_padre AS id_padre FROM padres_cch 
-        INNER JOIN alumnos_last ON padres_cch.id_padre = ".$tabla.".mama"."
+        INNER JOIN ".$tabla." ON padres_cch.id_padre = ".$tabla.".mama"."
         WHERE ".$tabla.".id =".$ida;
         $madre = DB::select($mama);
         return $madre;
@@ -138,8 +140,8 @@ class Matriculas extends Eloquent
 
     public function srch_Id_Ac($tabla,$ida){
 
-        $acudiente="SELECT acudiente.id_acudiente AS id_acudiente FROM alumnos_last 
-        INNER JOIN acudiente ON alumnos_last.acudiente = acudiente.id_acudiente
+        $acudiente="SELECT acudiente.id_acudiente AS id_acudiente FROM ".$tabla." 
+        INNER JOIN acudiente ON ".$tabla.".acudiente"." = acudiente.id_acudiente
         WHERE ".$tabla.".id =".$ida;
         $ac = DB::select($acudiente);
         return $ac;
@@ -258,12 +260,12 @@ class Matriculas extends Eloquent
     }
 
     public function UpdateAc($data){
-        $papa = DB::table('padres_cch')
+        $papa = DB::table('acudiente')
         ->where('id_acudiente','=',$data['datosA'])
         ->update(
             array(
                 'nombre_acudiente'      => $data['nameA'],
-                'parentesco_acudiente'  => $data['parentA'],
+                'parentesco_acudiente'  => $data['ParentA'],
                 'telefono_acudiente'    => $data['telA'],
                 'celular_acudiente'     => $data['celA'],
                 'teloficina_acudiente'  => $data['telOfA'],
@@ -271,5 +273,52 @@ class Matriculas extends Eloquent
             )
             );
     }
+
+    // Listar 
+        public function selectmatriculados($tabla){
+            $consulta = DB::table($tabla)
+                ->where('matriculado','=','1')
+                ->where('retirado','=','0')
+                ->join('grados',$tabla.'.grado','=','grados.id')
+                ->select($tabla.'.id','grado' , 'fname' , 'lname' , 'names' , 'grados.nombre as Grado' , $tabla.'.matricula')
+                ->get();
+                return $consulta;
+        }
+        public function selectmatriculados_g($tabla,$grado){
+            $consulta = DB::table($tabla)
+                ->where('matriculado','=','1')
+                ->where('retirado','=','0')
+                ->where('grado','=',$grado)
+                ->join('grados',$tabla.'.grado','=','grados.id')
+                ->select($tabla.'.id','grado' , 'fname' , 'lname' , 'names' , 'grados.nombre as Grado' , $tabla.'.matricula')
+                ->get();
+                return $consulta;
+        }
+
+        public function selectmatriculados_n($tabla,$grado,$alum){
+            $consulta = DB::table($tabla)
+                ->where('matriculado','=','1')
+                ->where('retirado','=','0')
+                ->where('grado','=',$grado)
+                ->whereRaw()
+                ->join('grados',$tabla.'.grado','=','grados.id')
+                ->select($tabla.'.id','grado' , 'fname' , 'lname' , 'names' , 'grados.nombre as Grado' , $tabla.'.matricula')
+                ->get();
+                return $consulta;
+        }
+
+        public function selectmatriculados_g_n($tabla,$grado,$alum){
+            $consulta = DB::table($tabla)
+                ->where('matriculado','=','1')
+                ->where('retirado','=','0')
+                ->where('grado','=',$grado)
+                ->whereRaw()
+                ->join('grados',$tabla.'.grado','=','grados.id')
+                ->select($tabla.'.id','grado' , 'fname' , 'lname' , 'names' , 'grados.nombre as Grado' , $tabla.'.matricula')
+                ->get();
+                return $consulta;
+        }
+
+    //
 }
 ?>

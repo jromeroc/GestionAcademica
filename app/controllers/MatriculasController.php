@@ -8,25 +8,43 @@ class MatriculasController extends BaseController
 	public function __construct()
 	{
 		$this->_matricula = new Matriculas();
+	}
+
+	public function asign_year(){
+		$year=date('Y');
+		$anterior = $year-2;
 		
+		if ($year == date('Y') && (date('m') <=7 )) {
+			$lastY = $year - 1;
+			$nextY = $year + 1;
+			$last = $anterior." - ".$lastY;
+			$act = $lastY." - ".$year;
+			$next = $year." - ".$nextY;
+		}
+		elseif ($year == date('Y') && $month >= 8) {
+			$lastY = $year - 1;
+			$nextY = $year + 1;
+			$last = $anterior." - ".$lastY;
+			$act = $lastY." - ".$year;
+			$next = $year." - ".$nextY;
+		}
+
+		$años = array("year"	=>	$year 	,
+					  "act"		=>	$act 	,
+					  "lastY"	=>	$lastY 	,
+					  "last"	=>	$last 	,
+					  "nextY"	=>	$nextY 	,
+					  "next"	=>	$next
+		);
+		return $años;
 	}
 
 	public function MatriculaAlum(){
 		
 		$tipos = Tipodoc::all()->lists('name_tipodoc','id_tipodoc');
 		$grados = Grado::all()->lists('nombre','id');
-		$month = date("m");
-		$year;
-		if ($month > 7) {
-			$year=date('Y')+1;
-		}
-		elseif ($month < 8) {
-			$year=date('Y');
-		}
-		$lastY = $year - 1;
-		$nextY = $year + 1;
-
-		$años = array("year"=>$year,"lastY"=>$lastY,"nextY"=>$nextY);
+		$años = $this->asign_year();
+		
 		return View::Make('matriculas.alum')->with(array('años' => $años,'tipodoc'=>$tipos,'grado'=>$grados ));
 	}
 
@@ -72,7 +90,7 @@ class MatriculasController extends BaseController
 					$save = $this->_matricula->saveMatricula($data,$tabla);
 					
 					if (!empty($data['id_alum'])) {	
-						return View::make('matriculas.info-complementaria')->with(array('tipoR'=>$data['T-reg'],'name'=>$data['alum'],'year'=>$data['year_matricula'],'id_alum'=>$data['id_alum']));
+						return View::make('matriculas.info-complementaria')->with(array('tipoR'=>$data['T-reg'],'name'=>$data['alum'],'year'=>$data['year_matricula'],'id_alum'=>$data['id_alum'],'codM'=>$codigoMatri));
 					}
 					else{
 						if (!empty($data['n_document'])) {
@@ -81,7 +99,7 @@ class MatriculasController extends BaseController
 	 						$id_alum = get_object_vars($id_alum[0]);
 	 						$id_alum = $id_alum['id'];
 	 						
-							return View::make('matriculas.info-complementaria')->with(array('tipoR'=>$data['T-reg'],'name'=>$data['alum'],'year'=>$data['year_matricula'],'id_alum'=>$id_alum));
+							return View::make('matriculas.info-complementaria')->with(array('tipoR'=>$data['T-reg'],'name'=>$data['alum'],'year'=>$data['year_matricula'],'id_alum'=>$id_alum,'codM'=>$codigoMatri));
 	 						
 						}
 						else{
@@ -89,7 +107,7 @@ class MatriculasController extends BaseController
 	 						$id_alum = $this->_matricula->srchid_alum_name($tabla,$data['alum']);
 	 						$id_alum = get_object_vars($id_alum[0]);
 	 						$id_alum = $id_alum['id'];
-							return View::make('matriculas.info-complementaria')->with(array('tipoR'=>$data['T-reg'],'name'=>$data['alum'],'year'=>$data['year_matricula'],'id_alum'=>$id_alum));
+							return View::make('matriculas.info-complementaria')->with(array('tipoR'=>$data['T-reg'],'name'=>$data['alum'],'year'=>$data['year_matricula'],'id_alum'=>$id_alum,'codM'=>$codigoMatri));
 						}
 					}
 					//Error ID ALUM
@@ -136,46 +154,32 @@ class MatriculasController extends BaseController
 		}
 	}
 
-	public function searchalum($year){
-		$tabla = $this->asignTabla($year);
-		if(Input::get('term'))
-		{
-			$found = $this->_matricula->autoCompletename(Input::get('term'),$year,$tabla);
-			return Response::json($found);
-		}
-	}
-
 	public function asignTabla($year){
-			switch ($year)
+			
+			if ($year == date('Y') && (date('m')<=7)) 
 			{
-	    		case ($year = date('Y'))&&(date('m')<=7):
-			        $tablaAlumnos = "alumnos_last";
-			        break;
-	    		case $year < date('Y'):
-			        $tablaAlumnos = "alumnos_fecha";
-			        break;
-	    		case ($year > date('Y'))&&(date('m')>=8):
-			        $tablaAlumnos = "alumnos";
-			        break;
+				$tablaAlumnos = "alumnos";
 			}
+			
+			elseif($year < date('Y'))
+			{
+				$tablaAlumnos = "alumnos_last";
+			}
+
+			elseif($year == date('Y') && (date('m')>=8))
+			{
+				$tablaAlumnos = "alumnos_next";
+			}
+
+			elseif($year > date('Y') && (date('m')<=7))
+			{
+				$tablaAlumnos = "alumnos_next";
+			}
+
 			return $tablaAlumnos;
 		}
 
-	public function srch_papa(){
-		if(Input::get('term'))
-		{
-			$found = $this->_matricula->autoCompleteP(Input::get('term'));
-			return Response::json($found);
-		}
-	}
 
-	public function srch_acudiente(){
-		if(Input::get('term'))
-		{
-			$found = $this->_matricula->autoCompleteA(Input::get('term'));
-			return Response::json($found);
-		}
-	}	
 
 	public function padre($id,$year){
 		$tipos = Tipodoc::all()->lists('name_tipodoc','id_tipodoc');
@@ -263,6 +267,49 @@ class MatriculasController extends BaseController
 		}
 	}
 
+	public function matriculados(){
+		$grados = Grado::all()->lists('nombre','id');
+		$años = $this->asign_year();
+		
+		return View::Make('matriculas.matriculados')->with(array('grados'=>$grados,'años'=>$años));
+	}
+
+	public function srch_alum_matri(){
+		$años = $this->asign_year();
+		$grados = Grado::all()->lists('nombre','id');
+		$data= Input::all();
+		$tabla = $this->asignTabla($data['year_matricula']);
+		
+		if (empty($data['Grados']) && empty($data['name_alum'])) {
+			$consulta =$this->_matricula->selectmatriculados($tabla);
+		}
+		
+		if (!empty($data['name_alum'])) 
+		{
+			$consulta =$this->_matricula->selectmatriculados_n($tabla,$data['Grados'],$data['name_alum']);
+		}
+		
+		if (!empty($data['Grados'])) 
+		{
+			$consulta =$this->_matricula->selectmatriculados_g($tabla,$data['Grados']);
+			if (!empty($data['name_alum']))
+			{
+				$consulta =$this->_matricula->selectmatriculados_g_n($tabla,$data['Grados'],$data['name_alum']);
+			}
+		}
+
+		echo "<pre>";
+		print_r($data);
+		print_r($consulta);
+		echo "</pre>";
+
+		// if (empty($consulta)) {
+			// return View::Make('matriculas.matriculados')->with(array('grados'=>$grados,'años'=>$años,'mensaje'=>'No hay Alumnos Matriculados'));		
+		// }else{
+			// return View::Make('matriculas.matriculados')->with(array('grados'=>$grados,'años'=>$años,'alumnos'=>$consulta));
+		// }
+	}
+
 	public function savePadre(){
 		$data = Input::all();
 		$tipos = Tipodoc::all()->lists('name_tipodoc','id_tipodoc');
@@ -322,6 +369,32 @@ class MatriculasController extends BaseController
 		return View::make('matriculas.info-complementaria')->with(array('save'=>'Se han '.$action.' los datos del Acudiente','tipoR' => $data['tipoR'],'name'=>$data['name'],'id_alum'=>$data['id_alum'],'year'=>$data['year'],'action'=>$action));
 		
 		}
+
+	public function searchalum($year){
+		$year = $year -1;
+		$tabla = $this->asignTabla($year);
+		if(Input::get('term'))
+		{
+			$found = $this->_matricula->autoCompletename(Input::get('term'),$year,$tabla);
+			return Response::json($found);
+		}
+	}
+	
+	public function srch_papa(){
+		if(Input::get('term'))
+		{
+			$found = $this->_matricula->autoCompleteP(Input::get('term'));
+			return Response::json($found);
+		}
+	}
+
+	public function srch_acudiente(){
+		if(Input::get('term'))
+		{
+			$found = $this->_matricula->autoCompleteA(Input::get('term'));
+			return Response::json($found);
+		}
+	}	
 
 	}
 
