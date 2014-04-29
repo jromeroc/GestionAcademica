@@ -11,74 +11,34 @@
 @stop
 
 @section('content')
-	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-		{{ Form::open(array('url' => 'matriculas/srch_alum_matri', 'method' => 'POST','class'=>'col-sm -6'), array('role'=>'form'))}}
-			<div class="form-group col-sm-12">
-      			{{ Form::label('year_matricula', 'Año Matricula', array('class' => 'col-sm-2 control-label')) }}
-        		<div class="col-sm-2">
-      				{{ Form::select('year_matricula', array('0000'=>'Seleccione año',$años['lastY'] => $años['last'] , $años['year'] => $años['act'],$años['nextY'] => $años['next'])); }}
-      			</div>
-      		</div>
-      		
-      		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+	{{ Form::open(array('url' => 'matriculas/alumnos-matriculados', 'method' => 'POST','class'=>'form-inline'), array('role'=>'form'))}}
+		<!-- Año -->
+		{{ Form::label('year_matricula', 'Año Matricula', array('class' => 'control-label')) }}
+        
+      	{{ Form::select('year_matricula', array('0000'=>'Seleccione año',$años['lastY'] => $años['last'] , $años['year'] => $años['act'],$años['nextY'] => $años['next'])); }}
+      	<!-- Grado -->
+		{{ Form::label('Grados', 'Grado', array('class' => 'control-label')) }}
 
-      			<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
-      				
-      			</div>      			
+		{{ Form::select('Grados', $grados, null)}}		
+		<!-- Alumno -->
+		{{ Form::label('name_alum', 'Alumno:') }}
+		
+		{{ Form::Text('name_alum', null, array('placeholder' => 'Nombre Alumno', 'class' => 'form-control')) }}
+		<!-- Submit -->
+		{{form::submit('Buscar Alumnos',array('class'=>'btn btn-success'))}}
 
-      			<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-      				<label class="alert alert-info col-sm-6 text-center">Filtro Adicional</label>
-      			</div>      			
-
-      			<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
-      				
-      			</div>
-      		
-      		</div>
-
-      		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-
-
-	      		<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-					<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
-						{{ Form::label('Grados', 'Grado', array('class' => 'col-sm-2 control-label')) }}
-					</div>
-
-					<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
-						{{ Form::select('Grados', $grados, null)}}</p>		
-					</div>
-				</div>
-
-				<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-					<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
-						{{ Form::label('name_alum', 'Alumno:') }}
-					</div>
-
-					<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-						{{ Form::Text('name_alum', null, array('placeholder' => 'Nombre Alumno', 'class' => 'form-control')) }}
-					</div>
-				</div>
-
-	      		<div class="col-sm-2">
-	      			{{form::submit('Buscar Alumnos',array('class'=>'btn btn-success col-sm-12'))}}
-	   			</div>
-      		</div>
-		{{Form::close()}}
-	</div>
-
-	<br>
-	<br>
+	{{Form::close()}}
 
 	@if(!empty($alumnos))
 
 		<table class="table table-bordered table-hover">
 			<thead>
 				<tr class="info">
+					<th> Cod. Matricula 	</th>
 					<th> Grado				</th>
 					<th> Segundo Apellido	</th>
 					<th> Primer Apellido	</th>
 					<th> Nombres			</th>
-					<th> Cod. Matricula 	</th>
 					<th> Acciones			</th>
 				</tr>
 			</thead>
@@ -86,14 +46,14 @@
 			<tbody>
 				@foreach ($alumnos as $alums)
 				<tr>
+					<td> {{$alums->matricula}} </td>
 					<td> {{$alums->Grado}} </td>
 					<td> {{$alums->lname}} </td>
 					<td> {{$alums->fname}} </td>
 					<td> {{$alums->names}} </td>
-					<td> {{$alums->matricula}} </td>
 					<td>
-				   		{{ HTML::link('observador/delete/', 'Editar', array('class'=>'btn btn-primary'));}}
-				   		{{ HTML::link('observador/delete/', 'Cancelar Matricula', array('class'=>'btn btn-danger'));}}
+				   		{{ HTML::link('matriculas/editar_matricula/'.$alums->id.'/'.$año, 'Editar', array('class'=>'btn btn-primary'));}}
+				   		{{ HTML::link('matriculas/cancel_matricula/'.$alums->id.'/'.$año, 'Cancelar Matricula', array('class'=>'btn btn-danger'));}}
 					</td>
 				</tr>
 				@endforeach
@@ -105,11 +65,20 @@
 	@endif
 	@if(!empty($mensaje))
 
-	<div class="form-group col-sm-3 alert alert-warning" id="msg_alums_matri">
+	<div class="form-group col-sm-3 alert alert-danger" id="msg_alums_matri">
         <h4>{{$mensaje}}</h4>
     </div>
 
 	@endif
+
+	@if(!empty($mensaje_cancel))
+
+	<div class="form-group col-sm-3 alert alert-success" id="mensaje_cancel">
+        <h4>{{$mensaje_cancel}}</h4>
+    </div>
+
+	@endif
+
 @stop
 
 @section('scripts') 

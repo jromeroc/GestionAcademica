@@ -113,6 +113,7 @@ $(document).on('ready',function(){
 		}
 	});
 	$('#msg_alums_matri').fadeOut(5000);
-	
+
+	$('#mensaje_cancel').fadeOut(5000);
 	
 });

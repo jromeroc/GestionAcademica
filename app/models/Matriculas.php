@@ -274,7 +274,7 @@ class Matriculas extends Eloquent
             );
     }
 
-    // Listar 
+    // Alumnos Matriculados 
         public function selectmatriculados($tabla){
             $consulta = DB::table($tabla)
                 ->where('matriculado','=','1')
@@ -295,12 +295,11 @@ class Matriculas extends Eloquent
                 return $consulta;
         }
 
-        public function selectmatriculados_n($tabla,$grado,$alum){
+        public function selectmatriculados_n($tabla,$alum){
             $consulta = DB::table($tabla)
                 ->where('matriculado','=','1')
                 ->where('retirado','=','0')
-                ->where('grado','=',$grado)
-                ->whereRaw()
+                ->where($tabla.".names" , "LIKE" , '%'.$alum.'%')
                 ->join('grados',$tabla.'.grado','=','grados.id')
                 ->select($tabla.'.id','grado' , 'fname' , 'lname' , 'names' , 'grados.nombre as Grado' , $tabla.'.matricula')
                 ->get();
@@ -312,13 +311,67 @@ class Matriculas extends Eloquent
                 ->where('matriculado','=','1')
                 ->where('retirado','=','0')
                 ->where('grado','=',$grado)
-                ->whereRaw()
+                ->where($tabla.".names" , "LIKE" , '%'.$alum.'%')
                 ->join('grados',$tabla.'.grado','=','grados.id')
                 ->select($tabla.'.id','grado' , 'fname' , 'lname' , 'names' , 'grados.nombre as Grado' , $tabla.'.matricula')
                 ->get();
                 return $consulta;
         }
 
-    //
+        public function srch_alum_edit($id,$tabla){
+            $consulta = DB::table($tabla)
+            ->join('ciudades',$tabla.'.exp_document','=','ciudades.id_ciudad')
+            ->join('paises',$tabla.'.pais_born','=','paises.id_pais')
+            ->join($tabla.' as alum','ciudades.id_ciudad','=',$tabla.'.city_born')
+            ->select(
+                $tabla.'.id',
+                $tabla.'.matricula',
+                $tabla.'.grado',
+                $tabla.'.names',
+                $tabla.'.fname',
+                $tabla.'.lname',
+                $tabla.'.tipo_document',
+                $tabla.'.num_document',
+                $tabla.'.exp_document',
+                $tabla.'.date_born',
+                $tabla.'.pais_born',
+                $tabla.'.city_born',
+                $tabla.'.sexo',
+                $tabla.'.grupo_san',
+                $tabla.'.rh',
+                $tabla.'.eps',
+                $tabla.'.tipo_hermano',
+                $tabla.'.direccion',
+                $tabla.'.telefono',
+                $tabla.'.celular',
+                $tabla.'.mail',
+                $tabla.'.papa',
+                $tabla.'.mama',
+                $tabla.'.acudiente',
+                $tabla.'.date_matricula',
+                $tabla.'.matriculado',
+                'ciudades.id_ciudad',
+                'ciudades.nombre_ciudad',
+                'paises.id_pais',
+                'paises.name_pais',
+                'alum.id_ciudad',
+                'alum.nombre_ciudad'
+
+            )
+            ->where($tabla.'.id','=',$id)
+            ->get();
+            return $consulta;
+        }
+
+        public function cancel_matricula($id,$tabla){
+            $consulta = DB::table($tabla)
+            ->where('id','=',$id)
+            ->update(
+                array(
+                    'retirado' => 1
+                )
+            );
+        }
+    // 
 }
 ?>

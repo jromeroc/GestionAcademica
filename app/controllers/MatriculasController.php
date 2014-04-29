@@ -43,6 +43,7 @@ class MatriculasController extends BaseController
 		
 		$tipos = Tipodoc::all()->lists('name_tipodoc','id_tipodoc');
 		$grados = Grado::all()->lists('nombre','id');
+		array_unshift($grados, "Seleccione Grado");
 		$años = $this->asign_year();
 		
 		return View::Make('matriculas.alum')->with(array('años' => $años,'tipodoc'=>$tipos,'grado'=>$grados ));
@@ -269,6 +270,7 @@ class MatriculasController extends BaseController
 
 	public function matriculados(){
 		$grados = Grado::all()->lists('nombre','id');
+		array_unshift($grados, "Seleccione Grado");
 		$años = $this->asign_year();
 		
 		return View::Make('matriculas.matriculados')->with(array('grados'=>$grados,'años'=>$años));
@@ -277,37 +279,80 @@ class MatriculasController extends BaseController
 	public function srch_alum_matri(){
 		$años = $this->asign_year();
 		$grados = Grado::all()->lists('nombre','id');
+		array_unshift($grados, "Seleccione Grado");
 		$data= Input::all();
 		$tabla = $this->asignTabla($data['year_matricula']);
 		
 		if (empty($data['Grados']) && empty($data['name_alum'])) {
 			$consulta =$this->_matricula->selectmatriculados($tabla);
+			// echo "Año: "; print_r($consulta);
 		}
 		
 		if (!empty($data['name_alum'])) 
 		{
-			$consulta =$this->_matricula->selectmatriculados_n($tabla,$data['Grados'],$data['name_alum']);
+			$consulta =$this->_matricula->selectmatriculados_n($tabla,$data['name_alum']);
+			// echo "Alumno: "; print_r($consulta);
 		}
 		
-		if (!empty($data['Grados'])) 
+		if (!empty($data['Grados']))
 		{
 			$consulta =$this->_matricula->selectmatriculados_g($tabla,$data['Grados']);
 			if (!empty($data['name_alum']))
 			{
 				$consulta =$this->_matricula->selectmatriculados_g_n($tabla,$data['Grados'],$data['name_alum']);
+				// echo "Alumnos + grados: "; print_r($consulta);
 			}
+			// echo "Grado: "; print_r($consulta);
 		}
 
-		echo "<pre>";
-		print_r($data);
-		print_r($consulta);
-		echo "</pre>";
+		if (empty($consulta)) {
+			return View::Make('matriculas.matriculados')->with(array('grados'=>$grados,'años'=>$años,'mensaje'=>'No hay Alumnos Matriculados','año'=>$data['year_matricula']));		
+		
+		}
 
-		// if (empty($consulta)) {
-			// return View::Make('matriculas.matriculados')->with(array('grados'=>$grados,'años'=>$años,'mensaje'=>'No hay Alumnos Matriculados'));		
-		// }else{
-			// return View::Make('matriculas.matriculados')->with(array('grados'=>$grados,'años'=>$años,'alumnos'=>$consulta));
-		// }
+		else{
+			return View::Make('matriculas.matriculados')->with(array('grados'=>$grados,'años'=>$años,'alumnos'=>$consulta,'año'=>$data['year_matricula']));
+
+		}
+	}
+
+	public function edit_matri($id,$año){
+		
+		$tipos = Tipodoc::all()->lists('name_tipodoc','id_tipodoc');
+		
+		$grados = Grado::all()->lists('nombre','id');
+		array_unshift($grados, "Seleccione Grado");
+		
+		$años = $this->asign_year();
+		$tabla = $this->asignTabla($año);
+		
+		$datos_alum = $this->_matricula->srch_alum_edit($id,$tabla);
+		$datos_alum = get_object_vars($datos_alum[0]);
+echo "<pre>";
+		print_r($datos_alum);
+echo "</pre>";
+		//return View::Make('matriculas.alum')->with(array('años' => $años,'tipodoc'=>$tipos,'grado'=>$grados,'alum'=>$datos_alum,'id_alum'=>$id,'año_matri'=>$año));
+	}
+
+
+	public function cancel_matri($id,$año){
+		$grados = Grado::all()->lists('nombre','id');
+
+		array_unshift($grados, "Seleccione Grado");
+
+		$años = $this->asign_year();
+
+		$tabla = $this->asignTabla($año);
+
+
+		$delete = $this->_matricula->cancel_matricula($id,$tabla);
+
+		return View::Make('matriculas.matriculados')->with(array('grados'=>$grados,'años'=>$años,'mensaje_cancel'=>'Matricula Cancelada correctamente'));
+
+	}
+
+	public function update_matricula($id,$año){
+
 	}
 
 	public function savePadre(){
