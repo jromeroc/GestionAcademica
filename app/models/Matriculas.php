@@ -319,48 +319,54 @@ class Matriculas extends Eloquent
         }
 
         public function srch_alum_edit($id,$tabla){
-            $consulta = DB::table($tabla)
-            ->join('ciudades',$tabla.'.exp_document','=','ciudades.id_ciudad')
-            ->join('paises',$tabla.'.pais_born','=','paises.id_pais')
-            ->join($tabla.' as alum','ciudades.id_ciudad','=',$tabla.'.city_born')
-            ->select(
-                $tabla.'.id',
-                $tabla.'.matricula',
-                $tabla.'.grado',
-                $tabla.'.names',
-                $tabla.'.fname',
-                $tabla.'.lname',
-                $tabla.'.tipo_document',
-                $tabla.'.num_document',
-                $tabla.'.exp_document',
-                $tabla.'.date_born',
-                $tabla.'.pais_born',
-                $tabla.'.city_born',
-                $tabla.'.sexo',
-                $tabla.'.grupo_san',
-                $tabla.'.rh',
-                $tabla.'.eps',
-                $tabla.'.tipo_hermano',
-                $tabla.'.direccion',
-                $tabla.'.telefono',
-                $tabla.'.celular',
-                $tabla.'.mail',
-                $tabla.'.papa',
-                $tabla.'.mama',
-                $tabla.'.acudiente',
-                $tabla.'.date_matricula',
-                $tabla.'.matriculado',
-                'ciudades.id_ciudad',
-                'ciudades.nombre_ciudad',
-                'paises.id_pais',
-                'paises.name_pais',
-                'alum.id_ciudad',
-                'alum.nombre_ciudad'
+            $consulta = "
 
-            )
-            ->where($tabla.'.id','=',$id)
-            ->get();
-            return $consulta;
+            SELECT
+                ciudades.`id_ciudad` AS id_ciudad,
+                ciudades.`nombre_ciudad` AS nombre_ciudad,
+                alumnos.`id` AS id,
+                alumnos.`matricula` AS matricula,
+                alumnos.`grado` AS grado,
+                alumnos.`names` AS names,
+                alumnos.`fname` AS fname,
+                alumnos.`lname` AS lname,
+                alumnos.`tipo_document` AS tipo_document,
+                alumnos.`num_document` AS num_document,
+                alumnos.`exp_document` AS exp_document,
+                alumnos.`date_born` AS date_born,
+                alumnos.`pais_born` AS pais_born,
+                alumnos.`city_born` AS city_born,
+                alumnos.`sexo` AS sexo,
+                alumnos.`grupo_san` AS grupo_san,
+                alumnos.`rh` AS rh,
+                alumnos.`eps` AS eps,
+                alumnos.`tipo_hermano` AS tipo_hermano,
+                alumnos.`direccion` AS direccion,
+                alumnos.`telefono` AS telefono,
+                alumnos.`celular` AS celular,
+                alumnos.`mail` AS mail,
+                alumnos.`papa` AS papa,
+                alumnos.`mama` AS mama,
+                alumnos.`acudiente` AS alumnos_acudiente,
+                alumnos.`date_matricula` AS date_matricula,
+                alumnos.`matriculado` AS matriculado,
+                ciudades_A.`nombre_ciudad` AS city_born_name,
+                ciudades_A.`id_ciudad` AS city_born_id,
+                paises.`id_pais` AS id_pais,
+                paises.`name_pais` AS name_pais
+                
+            FROM
+                `ciudades` ciudades 
+
+            INNER JOIN `alumnos` alumnos ON ciudades.`id_ciudad` = alumnos.`city_born`
+            INNER JOIN `ciudades` ciudades_A ON alumnos.`exp_document` = ciudades_A.`id_ciudad`
+            INNER JOIN `paises` paises ON alumnos.`pais_born` = paises.`id_pais`
+            
+            WHERE 
+            
+            ".$tabla.".id = ".$id;
+            $consult = DB::select($consulta);
+            return $consult;
         }
 
         public function cancel_matricula($id,$tabla){
@@ -369,6 +375,41 @@ class Matriculas extends Eloquent
             ->update(
                 array(
                     'retirado' => 1
+                )
+            );
+        }
+
+        public function update_matri($id,$tabla,$data){
+            $update = DB::table($tabla)
+            ->where('id','=',$id)
+            ->update(
+                array(
+                    'matriculado'        => $data['T-reg'],
+                    'date_matricula'     => $data['fecha_matricula'],
+                    'grado'              => $data['grado'],
+                    'fname'              => $data['fname'],
+                    'lname'              => $data['lnane'],
+                    'names'              => $data['alum'],
+                    'tipo_document'      => $data['tipo_doc'],
+                    'num_document'       => $data['n_document'],
+                    'pais_born'          => $data['id_pais'],
+                    'city_born'          => $data['id_city'],
+                    'sexo'               => $data['genero'],
+                    'grupo_san'          => $data['g_sang'],
+                    'rh'                 => $data['RH'],
+                    'eps'                => $data['eps'],
+                    'tipo_hermano'       => $data['T-Herm'],
+                    'direccion'          => $data['direcc'],
+                    'telefono'           => $data['fijo'],
+                    'celular'            => $data['cel'],
+                    'mail'               => $data['email'],
+                    'papa'               => $data['papa'],
+                    'mama'               => $data['mama'],
+                    'acudiente'          => $data['acudiente'],
+                    // 'lastschool'         => $data[''],
+                    'exp_document'       => $data['id_city_exp'],
+                    // 'matricula'          => $data['codigoMatri'],
+                    'date_born'          => $data['fecha_nac']
                 )
             );
         }

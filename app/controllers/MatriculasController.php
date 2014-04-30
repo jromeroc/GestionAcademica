@@ -328,10 +328,8 @@ class MatriculasController extends BaseController
 		
 		$datos_alum = $this->_matricula->srch_alum_edit($id,$tabla);
 		$datos_alum = get_object_vars($datos_alum[0]);
-echo "<pre>";
-		print_r($datos_alum);
-echo "</pre>";
-		//return View::Make('matriculas.alum')->with(array('años' => $años,'tipodoc'=>$tipos,'grado'=>$grados,'alum'=>$datos_alum,'id_alum'=>$id,'año_matri'=>$año));
+
+		return View::Make('matriculas.alum')->with(array('años' => $años,'tipodoc'=>$tipos,'grado'=>$grados,'alum'=>$datos_alum,'id_alum'=>$id,'año_matri'=>$año));
 	}
 
 
@@ -352,6 +350,16 @@ echo "</pre>";
 	}
 
 	public function update_matricula($id,$año){
+		$data=Input::all();
+		
+		$grados = Grado::all()->lists('nombre','id');
+		array_unshift($grados, "Seleccione Grado");
+		$años = $this->asign_year();
+		
+		$tabla = $this->asignTabla($año);
+		$update = $this->_matricula->update_matri($id,$tabla,$data);
+		
+		return View::Make('matriculas.matriculados')->with(array('grados'=>$grados,'años'=>$años,'mensaje_update'=>'Matricula Actualizada correctamente'));
 
 	}
 

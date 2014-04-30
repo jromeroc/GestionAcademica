@@ -249,9 +249,12 @@
   		<div class="form-group col-sm-12">
         {{ Form::label('city_srch', 'Ciudad de nacimiento', array('class' => 'col-sm-2 control-label')) }}
         <div class="col-sm-2">
-          
-      		{{ Form::Text('city_srch', null, array('placeholder' => 'Ciudad Nacimiento', 'class' => 'col-sm-2 form-control')) }}
-      	</div>
+          @if(!empty($alum))
+          {{ Form::Text('city_srch',$alum['city_born_name'], array('placeholder' => 'Ciudad Nacimiento', 'class' => 'col-sm-2 form-control')) }}
+          @else
+          {{ Form::Text('city_srch',null, array('placeholder' => 'Ciudad Nacimiento', 'class' => 'col-sm-2 form-control')) }}
+          @endif
+        </div>
       </div>
       {{ Form::hidden('id_city',null, array('id' => 'id_city')) }}
 

@@ -79,6 +79,17 @@
 
 	@endif
 
+	@if(!empty($mensaje_update))
+
+	<div class="form-group col-sm-3 alert alert-success" id="mensaje_update">
+        <h4>{{$mensaje_update}}</h4>
+    </div>
+
+	@endif
+
+	
+
+
 @stop
 
 @section('scripts') 

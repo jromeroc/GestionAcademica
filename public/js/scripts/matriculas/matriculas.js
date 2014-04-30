@@ -116,4 +116,5 @@ $(document).on('ready',function(){
 
 	$('#mensaje_cancel').fadeOut(5000);
 	
+	$('#mensaje_update').fadeOut(5000);
 });
