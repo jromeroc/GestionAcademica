@@ -74,6 +74,7 @@ return array(
     'GradoTableSeeder' => $baseDir . '/app/database/seeds/GradoTableSeeder.php',
     'Grupo' => $baseDir . '/app/models/Grupo.php',
     'GrupoTableSeeder' => $baseDir . '/app/database/seeds/GrupoTableSeeder.php',
+    'GruposSang' => $baseDir . '/app/database/migrations/2014_05_05_134605_Grupos_sang.php',
     'HomeController' => $baseDir . '/app/controllers/HomeController.php',
     'IlluminateQueueClosure' => $vendorDir . '/laravel/framework/src/Illuminate/Queue/IlluminateQueueClosure.php',
     'Illuminate\\Auth\\AuthManager' => $vendorDir . '/laravel/framework/src/Illuminate/Auth/AuthManager.php',

@@ -319,53 +319,58 @@ class Matriculas extends Eloquent
         }
 
         public function srch_alum_edit($id,$tabla){
-            $consulta = "
+            $consulta = 
 
-            SELECT
+            " SELECT
                 ciudades.`id_ciudad` AS id_ciudad,
-                ciudades.`nombre_ciudad` AS nombre_ciudad,
-                alumnos.`id` AS id,
-                alumnos.`matricula` AS matricula,
-                alumnos.`grado` AS grado,
-                alumnos.`names` AS names,
-                alumnos.`fname` AS fname,
-                alumnos.`lname` AS lname,
-                alumnos.`tipo_document` AS tipo_document,
-                alumnos.`num_document` AS num_document,
-                alumnos.`exp_document` AS exp_document,
-                alumnos.`date_born` AS date_born,
-                alumnos.`pais_born` AS pais_born,
-                alumnos.`city_born` AS city_born,
-                alumnos.`sexo` AS sexo,
-                alumnos.`grupo_san` AS grupo_san,
-                alumnos.`rh` AS rh,
-                alumnos.`eps` AS eps,
-                alumnos.`tipo_hermano` AS tipo_hermano,
-                alumnos.`direccion` AS direccion,
-                alumnos.`telefono` AS telefono,
-                alumnos.`celular` AS celular,
-                alumnos.`mail` AS mail,
-                alumnos.`papa` AS papa,
-                alumnos.`mama` AS mama,
-                alumnos.`acudiente` AS alumnos_acudiente,
-                alumnos.`date_matricula` AS date_matricula,
-                alumnos.`matriculado` AS matriculado,
-                ciudades_A.`nombre_ciudad` AS city_born_name,
+                ciudades.`nombre_ciudad` AS nombre_ciudad,".
+                $tabla.".`id` AS id, ".
+                $tabla.".`matricula` AS matricula, ".
+                $tabla.".`grado` AS grado, ".
+                $tabla.".`names` AS names, ".
+                $tabla.".`fname` AS fname, ".
+                $tabla.".`lname` AS lname, ".
+                $tabla.".`tipo_document` AS tipo_document, ".
+                $tabla.".`num_document` AS num_document, ".
+                $tabla.".`exp_document` AS exp_document, ".
+                $tabla.".`date_born` AS date_born, ".
+                $tabla.".`pais_born` AS pais_born, ".
+                $tabla.".`city_born` AS city_born, ".
+                $tabla.".`sexo` AS sexo, ".
+                $tabla.".`grupo_san` AS grupo_san, ".
+                $tabla.".`rh` AS rh, ".
+                $tabla.".`eps` AS eps, ".
+                $tabla.".`tipo_hermano` AS tipo_hermano, ".
+                $tabla.".`direccion` AS direccion, ".
+                $tabla.".`telefono` AS telefono, ".
+                $tabla.".`celular` AS celular, ".
+                $tabla.".`mail` AS mail, ".
+                $tabla.".`papa` AS papa, ".
+                $tabla.".`mama` AS mama, ".
+                $tabla.".`acudiente` AS alumnos_acudiente, ".
+                $tabla.".`date_matricula` AS date_matricula, ".
+                $tabla.".`matriculado` AS matriculado, ".
+                "ciudades_A.`nombre_ciudad` AS city_born_name,
                 ciudades_A.`id_ciudad` AS city_born_id,
                 paises.`id_pais` AS id_pais,
                 paises.`name_pais` AS name_pais
                 
-            FROM
-                `ciudades` ciudades 
+            FROM ciudades
 
-            INNER JOIN `alumnos` alumnos ON ciudades.`id_ciudad` = alumnos.`city_born`
-            INNER JOIN `ciudades` ciudades_A ON alumnos.`exp_document` = ciudades_A.`id_ciudad`
-            INNER JOIN `paises` paises ON alumnos.`pais_born` = paises.`id_pais`
+            INNER JOIN ".$tabla." ".$tabla." ON ciudades.`id_ciudad` = ".$tabla.".`city_born`
+            INNER JOIN `ciudades` ciudades_A ON ".$tabla.".`exp_document` = ciudades_A.`id_ciudad`
+            INNER JOIN `paises` paises ON ".$tabla.".`pais_born` = paises.`id_pais`
             
             WHERE 
             
-            ".$tabla.".id = ".$id;
+            ". 
+            
+            
+
+            $tabla.".id = ".$id;
+
             $consult = DB::select($consulta);
+            
             return $consult;
         }
 

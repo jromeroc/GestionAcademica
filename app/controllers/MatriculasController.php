@@ -46,7 +46,8 @@ class MatriculasController extends BaseController
 		array_unshift($grados, "Seleccione Grado");
 		$años = $this->asign_year();
 		
-		return View::Make('matriculas.alum')->with(array('años' => $años,'tipodoc'=>$tipos,'grado'=>$grados ));
+		
+		return View::Make('matriculas.alum')->with(array('años' => $años,'tipodoc'=>$tipos,'grado'=>$grados));
 	}
 
 	public function nuevo(){
@@ -269,6 +270,7 @@ class MatriculasController extends BaseController
 	}
 
 	public function matriculados(){
+
 		$grados = Grado::all()->lists('nombre','id');
 		array_unshift($grados, "Seleccione Grado");
 		$años = $this->asign_year();
@@ -324,11 +326,16 @@ class MatriculasController extends BaseController
 		array_unshift($grados, "Seleccione Grado");
 		
 		$años = $this->asign_year();
+
 		$tabla = $this->asignTabla($año);
 		
+		// echo "ID Alum: $id <br>Año: $año <br>Tabla: $tabla <br>Lista años: ";
 		$datos_alum = $this->_matricula->srch_alum_edit($id,$tabla);
 		$datos_alum = get_object_vars($datos_alum[0]);
-
+		
+		// print_r($años);
+		// echo "<br> consulta: ";
+		// print_r($datos_alum);
 		return View::Make('matriculas.alum')->with(array('años' => $años,'tipodoc'=>$tipos,'grado'=>$grados,'alum'=>$datos_alum,'id_alum'=>$id,'año_matri'=>$año));
 	}
 

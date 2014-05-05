@@ -256,7 +256,11 @@
           @endif
         </div>
       </div>
+      @if(!empty($alum))
+      {{ Form::hidden('id_city',$alum['city_born_id'], array('id' => 'id_city')) }}
+      @else
       {{ Form::hidden('id_city',null, array('id' => 'id_city')) }}
+      @endif
 
       <!-- Genero  !-->
       <div class="form-group col-sm-12">
@@ -320,9 +324,21 @@
       	{{ Form::label('g_sang', 'Grupo Sanguineo', array('class' => 'col-sm-2 control-label')) }}
        	<div class="col-sm-2">
           @if(!empty($alum['grupo_san']))
-      		  {{ Form::Text('g_sang', $alum['grupo_san'], array('placeholder' => 'Grupo Sanguineo', 'class' => 'col-sm-2 form-control')) }}
+            {{ Form::select('g_sang', array(
+              ''=>'Seleccione Grupo',
+              'A'  => 'A',
+              'B'  => 'B',
+              'AB' => 'AB',
+              'O' => 'O'
+              )); }}
           @else
-            {{ Form::Text('g_sang', null, array('placeholder' => 'Grupo Sanguineo', 'class' => 'col-sm-2 form-control')) }}
+            {{ Form::select('g_sang', array(
+              ''=>'Seleccione Grupo',
+              'A'  => 'A',
+              'B'  => 'B',
+              'AB' => 'AB',
+              'O' => 'O'
+              )); }}
           @endif
         </div>
       </div>
