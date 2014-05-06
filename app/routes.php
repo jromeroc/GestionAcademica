@@ -171,7 +171,9 @@ Route::group(array('prefix' => 'matriculas'), function(){
 
 			//Listar Editar y Eliminar
 			Route::get('matriculados', 'MatriculasController@matriculados');
+			Route::get('inscritos', 'MatriculasController@inscritos');
 			Route::post('alumnos-matriculados', 'MatriculasController@srch_alum_matri');
+			Route::post('alumnos-inscritos', 'MatriculasController@srch_alum_inscritos');
 			Route::post('informe_alum', 'MatriculasController@informe_alum');
 			Route::get('cancel_matricula/{num1}/{num2}', 'MatriculasController@cancel_matri')->where(array('num1'=>'[0-9]+','num2'=>'[0-9]+'));
 			Route::get('editar_matricula/{num1}/{num2}', 'MatriculasController@edit_matri')->where(array('num1'=>'[0-9]+','num2'=>'[0-9]+'));
