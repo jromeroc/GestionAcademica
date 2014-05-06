@@ -29,6 +29,24 @@ class SubmenuTableSeeder extends Seeder {
             'url' => 'informe',
             'estado' => '1'
         ));
+        Submenu::create(array(
+            'id_menu'=>'6',
+            'name_item' => 'Legalizadas',
+            'url' => 'informe',
+            'estado' => '1'
+        ));
+        Submenu::create(array(
+            'id_menu'=>'6',
+            'name_item' => 'Pendientes',
+            'url' => 'informe',
+            'estado' => '1'
+        ));
+        Submenu::create(array(
+            'id_menu'=>'4',
+            'name_item' => 'Control',
+            'url' => 'informe',
+            'estado' => '1'
+        ));
         
     }
 
