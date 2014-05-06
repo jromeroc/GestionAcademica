@@ -31,6 +31,10 @@ class PermisosTableSeeder extends Seeder {
             'role'=>'1',
             'permiso'=>'5',
         ));
+       PermisosRole::create(array(
+            'role'=>'1',
+            'permiso'=>'6',
+        ));
 	}
 
 }

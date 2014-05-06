@@ -37,6 +37,11 @@ class MenuTableSeeder extends Seeder {
             'url' => 'matriculas',
             'estado' => '1'
         ));
+        Menu::create(array(
+            'name_item' => 'Legalizar Matriculas',
+            'url' => 'legalizacion',
+            'estado' => '1'
+        ));
     }
 
 }

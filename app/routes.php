@@ -194,3 +194,13 @@ Route::group(array('prefix' => 'location'), function(){
 		});
 	});
 });
+
+Route::group(array('prefix' => 'legalizacion'), function(){
+	Route::group(array('before' => 'auth'), function(){
+		Route::group(array('before' => 'permit'), function(){
+			Route::get('/', 'LegalizarController@index');
+			Route::get('por_legalizar', 'LegalizarController@pendientes');
+			Route::get('legalizadas', 'LegalizarController@legalizadas');
+		});
+	});
+});
