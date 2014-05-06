@@ -152,6 +152,11 @@ class Matriculas extends Eloquent
         return $alum;
     }
 
+    public function srch_CodM_alum($tabla,$ida){
+        $codM = DB::table($tabla)->select('matricula')->where('id','=',$ida)->get();
+        return $codM;
+    }
+
         public function srch_tipoR($tabla,$ida){
         $tipoR = DB::table($tabla)->select('matriculado')->where('id','=',$ida)->get();
         return $tipoR;
@@ -419,5 +424,49 @@ class Matriculas extends Eloquent
             );
         }
     // 
+
+    public function selectinscritos($tabla){
+            $consulta = DB::table($tabla)
+                ->where('matriculado','=','0')
+                ->where('retirado','=','0')
+                ->join('grados',$tabla.'.grado','=','grados.id')
+                ->select($tabla.'.id','grado' , 'fname' , 'lname' , 'names' , 'grados.nombre as Grado' , $tabla.'.matricula')
+                ->get();
+                return $consulta;
+        }
+
+    public function selectinscritos_g($tabla,$grado){
+            $consulta = DB::table($tabla)
+                ->where('matriculado','=','0')
+                ->where('retirado','=','0')
+                ->where('grado','=',$grado)
+                ->join('grados',$tabla.'.grado','=','grados.id')
+                ->select($tabla.'.id','grado' , 'fname' , 'lname' , 'names' , 'grados.nombre as Grado' , $tabla.'.matricula')
+                ->get();
+                return $consulta;
+        }
+    
+    public function selectinscritos_n($tabla,$alum){
+            $consulta = DB::table($tabla)
+                ->where('matriculado','=','0')
+                ->where('retirado','=','0')
+                ->where($tabla.".names" , "LIKE" , '%'.$alum.'%')
+                ->join('grados',$tabla.'.grado','=','grados.id')
+                ->select($tabla.'.id','grado' , 'fname' , 'lname' , 'names' , 'grados.nombre as Grado' , $tabla.'.matricula')
+                ->get();
+                return $consulta;
+        }
+
+    public function selectinscritos_g_n($tabla,$grado,$alum){
+            $consulta = DB::table($tabla)
+                ->where('matriculado','=','0')
+                ->where('retirado','=','0')
+                ->where('grado','=',$grado)
+                ->where($tabla.".names" , "LIKE" , '%'.$alum.'%')
+                ->join('grados',$tabla.'.grado','=','grados.id')
+                ->select($tabla.'.id','grado' , 'fname' , 'lname' , 'names' , 'grados.nombre as Grado' , $tabla.'.matricula')
+                ->get();
+                return $consulta;
+        }
 }
 ?>

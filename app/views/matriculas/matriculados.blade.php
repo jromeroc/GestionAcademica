@@ -7,11 +7,27 @@
 @stop
 
 @section('modulo')
-  <h1>Matriculas <small>Matriculados</small></h1>
+  <h1>Matriculas 
+  	@if(!empty($inscritos))
+  	<small>Inscritos</small>
+  	@else
+  	<small>Matriculados</small>
+  	@endif
+  </h1>
 @stop
 
 @section('content')
+		
+	@if(!empty($inscritos))
+
+	{{ Form::open(array('url' => 'matriculas/alumnos-inscritos', 'method' => 'POST','class'=>'form-inline'), array('role'=>'form'))}}
+	
+	@else
+	
 	{{ Form::open(array('url' => 'matriculas/alumnos-matriculados', 'method' => 'POST','class'=>'form-inline'), array('role'=>'form'))}}
+
+	@endif
+
 		<!-- Año -->
 		{{ Form::label('year_matricula', 'Año Matricula', array('class' => 'control-label')) }}
         

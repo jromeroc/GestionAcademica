@@ -32,6 +32,10 @@
       <input type="hidden" name="name" id="name" class="form-control" value="{{$name}}">
     @endif
 
+    @if(!empty($codM))
+      <input type="hidden" name="codM" id="codM" class="form-control" value="{{$codM}}">
+    @endif
+
     <!-- Nombre Acudiente -->
     <div class="form-group col-sm-12">
       {{ Form::label('nameA', 'Nombre', array('class' => 'col-sm-2 control-label')) }}
