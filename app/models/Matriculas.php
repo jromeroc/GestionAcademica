@@ -468,5 +468,17 @@ class Matriculas extends Eloquent
                 ->get();
                 return $consulta;
         }
+
+    public function listFamilias($tipo = 0)
+    {
+        if($tipo)
+        {
+
+        }
+        else
+        {
+            
+        }
+    }
 }
 ?>
