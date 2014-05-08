@@ -478,5 +478,17 @@ class Matriculas extends Eloquent
                 ->paginate(15);
                 return $consulta;
         }
+
+    public function listFamilias($tipo = 0)
+    {
+        if($tipo)
+        {
+
+        }
+        else
+        {
+            
+        }
+    }
 }
 ?>

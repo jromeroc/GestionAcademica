@@ -4,17 +4,17 @@ class LegalizarController extends BaseController
 {
 	public function index()
 	{
-		return "Hello cch";
+		return View::Make('legalizacion.principal');
 	}
 
 	public function pendientes()
 	{
-		return "Hello crch";
+		return View::Make('legalizacion.pendientes');
 	}
 
 	public function legalizadas()
 	{
-		return "Hello ccr++++++++++++++h";	
+		return View::Make('legalizacion.legalizadas');	
 	}
 }
 
