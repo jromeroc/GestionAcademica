@@ -45,25 +45,16 @@
     @endif
 
 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-  <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
-  
-  </div>
-
   <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
   
   @if(!empty($id_alum))
-    {{ HTML::link('matriculas/padre/'.$id_alum.'/'.$year.'/', 'Papá', array('class'=>'btn btn-info col-sm-3'));}}
-    {{ HTML::link('matriculas/madre/'.$id_alum.'/'.$year.'/', 'Mamá', array('class'=>'btn btn-info col-sm-3'));}}
-    {{ HTML::link('matriculas/acudiente/'.$id_alum.'/'.$year.'/', 'Acudiente', array('class'=>'btn btn-info col-sm-3'));}}
-    {{ HTML::link('matriculas/correspondencia', 'Correspondencia', array('class'=>'btn btn-info col-sm-3'));}}
+    {{ HTML::link('matriculas/padre/'.$id_alum.'/'.$year.'/', 'Papá', array('class'=>'nav nav-tabs col-sm-3'));}}
+    {{ HTML::link('matriculas/madre/'.$id_alum.'/'.$year.'/', 'Mamá', array('class'=>'nav nav-tabs col-sm-3'));}}
+    {{ HTML::link('matriculas/acudiente/'.$id_alum.'/'.$year.'/', 'Acudiente', array('class'=>'nav nav-tabs col-sm-3'));}}
+    {{ HTML::link('matriculas/correspondencia', 'Correspondencia', array('class'=>'nav nav-tabs col-sm-3'));}}
   @endif
   
   </div>
-
-  <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
-
-  </div>
-
 </div>
 
   <br>

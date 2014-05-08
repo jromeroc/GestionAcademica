@@ -215,15 +215,15 @@
       <div class="form-group col-sm-12">
         {{ Form::label('city_exp', 'Ciudad de Expedicion', array('class' => 'col-sm-2 control-label')) }}
         <div class="col-sm-2">
-          @if(!empty($alum['nombre_ciudad']))
-          {{ Form::Text('city_exp', $alum['nombre_ciudad'], array('placeholder' => 'Ciudad Expedicion', 'class' => 'col-sm-2 form-control')) }}
+          @if(!empty($alum))
+          {{ Form::Text('city_exp', $alum['city_born_name'] , array('placeholder' => 'Ciudad Expedicion', 'class' => 'col-sm-2 form-control')) }}
           @else
           {{ Form::Text('city_exp', null, array('placeholder' => 'Ciudad Expedicion', 'class' => 'col-sm-2 form-control')) }}
           @endif
         </div>
       </div>
       @if(!empty($alum['id_ciudad']))
-      {{ Form::hidden('id_city_exp',$alum['id_ciudad'], array('id' => 'id_city_exp')) }}
+      {{ Form::hidden('id_city_exp',$alum['city_born_id'], array('id' => 'id_city_exp')) }}
       @else
       {{ Form::hidden('id_city_exp',null, array('id' => 'id_city_exp')) }}
       @endif
@@ -231,14 +231,14 @@
   		<div class="form-group col-sm-12">
       	{{ Form::label('pais_srch', 'Pais de nacimiento', array('class' => 'col-sm-2 control-label')) }}
        	<div class="col-sm-2">
-          @if(!empty($alum['name_pais']))
+          @if(!empty($alum))
           {{ Form::Text('pais_srch', $alum['name_pais'], array('placeholder' => 'Pais Nacimiento', 'class' => 'col-sm-2 form-control')) }}
           @else
           {{ Form::Text('pais_srch', null, array('placeholder' => 'Pais Nacimiento', 'class' => 'col-sm-2 form-control')) }}
           @endif
         </div>
       </div>
-        @if(!empty($alum['id_pais']))
+        @if(!empty($alum))
         {{ Form::hidden('id_pais',$alum['id_pais'], array('id' => 'id_pais')) }}  
         @else
         {{ Form::hidden('id_pais',null, array('id' => 'id_pais')) }}  
@@ -250,14 +250,14 @@
         {{ Form::label('city_srch', 'Ciudad de nacimiento', array('class' => 'col-sm-2 control-label')) }}
         <div class="col-sm-2">
           @if(!empty($alum))
-          {{ Form::Text('city_srch',$alum['city_born_name'], array('placeholder' => 'Ciudad Nacimiento', 'class' => 'col-sm-2 form-control')) }}
+          {{ Form::Text('city_srch',$alum['nombre_ciudad'], array('placeholder' => 'Ciudad Nacimiento', 'class' => 'col-sm-2 form-control')) }}
           @else
           {{ Form::Text('city_srch',null, array('placeholder' => 'Ciudad Nacimiento', 'class' => 'col-sm-2 form-control')) }}
           @endif
         </div>
       </div>
       @if(!empty($alum))
-      {{ Form::hidden('id_city',$alum['city_born_id'], array('id' => 'id_city')) }}
+      {{ Form::hidden('id_city', $alum['id_ciudad'] , array('id' => 'id_city')) }}
       @else
       {{ Form::hidden('id_city',null, array('id' => 'id_city')) }}
       @endif

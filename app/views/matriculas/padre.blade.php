@@ -12,6 +12,46 @@
 
 @section('content')
 
+<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+
+  <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+  <ul class="nav nav-tabs">
+  @if(!empty($id_alum))
+    @if($padre=="Padre")
+    <li class="active">
+    {{ HTML::link('matriculas/padre/'.$id_alum.'/'.$year.'/', 'Papá');}}
+    </li>
+    @else
+    <li>
+    {{ HTML::link('matriculas/padre/'.$id_alum.'/'.$year.'/', 'Papá');}}
+    </li>
+    @endif
+
+    @if($padre=="Madre")
+    <li class="active">
+    {{ HTML::link('matriculas/madre/'.$id_alum.'/'.$year.'/', 'Mamá');}}
+    </li>
+    @else
+    <li>
+    {{ HTML::link('matriculas/madre/'.$id_alum.'/'.$year.'/', 'Mamá');}}
+    </li>
+    @endif
+    <li>
+    {{ HTML::link('matriculas/acudiente/'.$id_alum.'/'.$year.'/', 'Acudiente', array('class'=>'nav nav-tabs col-sm-3'));}}
+    </li>
+    <li>
+    {{ HTML::link('matriculas/correspondencia', 'Correspondencia', array('class'=>'nav nav-tabs col-sm-3'));}}
+    </li>
+  @endif
+  </ul>
+  </div>
+
+</div>
+
+  <br>
+  <br>
+  <br>
+
 <!-- PAPA -->
   <div>
   <br>

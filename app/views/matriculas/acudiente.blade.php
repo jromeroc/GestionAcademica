@@ -12,6 +12,36 @@
 
 @section('content')
 
+<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+  <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+  <ul class="nav nav-tabs">
+  @if(!empty($id_alum))
+    <li>
+    {{ HTML::link('matriculas/padre/'.$id_alum.'/'.$year.'/', 'Papá');}}
+    </li>
+
+
+    <li>
+    {{ HTML::link('matriculas/madre/'.$id_alum.'/'.$year.'/', 'Mamá');}}
+    </li>
+
+    <li class="active">
+    {{ HTML::link('matriculas/acudiente/'.$id_alum.'/'.$year.'/', 'Acudiente');}}
+    </li>
+
+    <li>
+    {{ HTML::link('matriculas/correspondencia', 'Correspondencia');}}
+    </li>
+  @endif
+  </ul>
+  </div>
+
+</div>
+
+  <br>
+  <br>
+  <br>
+
 <!-- ACUDIENTE -->
     {{ Form::open(array('url' => 'matriculas/saveAcudiente', 'method' => 'POST','class'=>'col-sm -6'), array('role'=>'form'))}}
     <br>

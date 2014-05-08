@@ -3,6 +3,7 @@
 class Matriculas extends Eloquent
 {
 	protected $tablaAlumnos;
+    protected $perPage = 2;
 	public function autoCompletename($alum,$year,$tablaAlumnos)
 	{	
 		$consult = DB::table($tablaAlumnos)->select("*",DB::raw("CONCAT_WS(' ',lname,fname,names) as value, id"))
@@ -157,9 +158,15 @@ class Matriculas extends Eloquent
         return $codM;
     }
 
-        public function srch_tipoR($tabla,$ida){
+    public function srch_tipoR($tabla,$ida){
         $tipoR = DB::table($tabla)->select('matriculado')->where('id','=',$ida)->get();
         return $tipoR;
+    }
+
+    public function srchNameAlum($tabla,$ndoc){
+        $name = DB::table($tabla)->select(DB::raw("CONCAT_WS(' ',names,fname,lname) as value"))
+        ->where('num_document','=',$ndoc)->get();
+        return $name;
     }
 
     public function srch_Papa($id){
@@ -287,6 +294,8 @@ class Matriculas extends Eloquent
                 ->join('grados',$tabla.'.grado','=','grados.id')
                 ->select($tabla.'.id','grado' , 'fname' , 'lname' , 'names' , 'grados.nombre as Grado' , $tabla.'.matricula')
                 ->get();
+
+                $paginator = Paginator::make($consulta, $consulta, $perPage);
                 return $consulta;
         }
         public function selectmatriculados_g($tabla,$grado){
@@ -296,7 +305,7 @@ class Matriculas extends Eloquent
                 ->where('grado','=',$grado)
                 ->join('grados',$tabla.'.grado','=','grados.id')
                 ->select($tabla.'.id','grado' , 'fname' , 'lname' , 'names' , 'grados.nombre as Grado' , $tabla.'.matricula')
-                ->get();
+                ->paginate(15);
                 return $consulta;
         }
 
@@ -307,7 +316,7 @@ class Matriculas extends Eloquent
                 ->where($tabla.".names" , "LIKE" , '%'.$alum.'%')
                 ->join('grados',$tabla.'.grado','=','grados.id')
                 ->select($tabla.'.id','grado' , 'fname' , 'lname' , 'names' , 'grados.nombre as Grado' , $tabla.'.matricula')
-                ->get();
+                ->paginate(15);
                 return $consulta;
         }
 
@@ -319,7 +328,7 @@ class Matriculas extends Eloquent
                 ->where($tabla.".names" , "LIKE" , '%'.$alum.'%')
                 ->join('grados',$tabla.'.grado','=','grados.id')
                 ->select($tabla.'.id','grado' , 'fname' , 'lname' , 'names' , 'grados.nombre as Grado' , $tabla.'.matricula')
-                ->get();
+                ->paginate(15);
                 return $consulta;
         }
 
@@ -431,8 +440,9 @@ class Matriculas extends Eloquent
                 ->where('retirado','=','0')
                 ->join('grados',$tabla.'.grado','=','grados.id')
                 ->select($tabla.'.id','grado' , 'fname' , 'lname' , 'names' , 'grados.nombre as Grado' , $tabla.'.matricula')
-                ->get();
-                return $consulta;
+                ->paginate(15);
+
+            return $consulta;
         }
 
     public function selectinscritos_g($tabla,$grado){
@@ -442,7 +452,7 @@ class Matriculas extends Eloquent
                 ->where('grado','=',$grado)
                 ->join('grados',$tabla.'.grado','=','grados.id')
                 ->select($tabla.'.id','grado' , 'fname' , 'lname' , 'names' , 'grados.nombre as Grado' , $tabla.'.matricula')
-                ->get();
+                ->paginate(15);
                 return $consulta;
         }
     
@@ -453,7 +463,7 @@ class Matriculas extends Eloquent
                 ->where($tabla.".names" , "LIKE" , '%'.$alum.'%')
                 ->join('grados',$tabla.'.grado','=','grados.id')
                 ->select($tabla.'.id','grado' , 'fname' , 'lname' , 'names' , 'grados.nombre as Grado' , $tabla.'.matricula')
-                ->get();
+                ->paginate(15);
                 return $consulta;
         }
 
@@ -465,7 +475,7 @@ class Matriculas extends Eloquent
                 ->where($tabla.".names" , "LIKE" , '%'.$alum.'%')
                 ->join('grados',$tabla.'.grado','=','grados.id')
                 ->select($tabla.'.id','grado' , 'fname' , 'lname' , 'names' , 'grados.nombre as Grado' , $tabla.'.matricula')
-                ->get();
+                ->paginate(15);
                 return $consulta;
         }
 }
