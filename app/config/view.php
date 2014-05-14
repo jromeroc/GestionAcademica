@@ -26,6 +26,6 @@ return array(
 	|
 	*/
 
-	'pagination' => 'paginacion',
+	'pagination' => 'pagination::slider-3',
 
 );

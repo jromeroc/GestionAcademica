@@ -289,46 +289,45 @@ class Matriculas extends Eloquent
     // Alumnos Matriculados 
         public function selectmatriculados($tabla){
             $consulta = DB::table($tabla)
+                ->select($tabla.'.id','grado' , 'fname' , 'lname' , 'names' , 'grados.nombre as Grado' , $tabla.'.matricula')
+                ->join('grados',$tabla.'.grado','=','grados.id')
                 ->where('matriculado','=','1')
                 ->where('retirado','=','0')
-                ->join('grados',$tabla.'.grado','=','grados.id')
-                ->select($tabla.'.id','grado' , 'fname' , 'lname' , 'names' , 'grados.nombre as Grado' , $tabla.'.matricula')
-                ->get();
+                ->paginate(5);
 
-                $paginator = Paginator::make($consulta, $consulta, $perPage);
                 return $consulta;
         }
         public function selectmatriculados_g($tabla,$grado){
             $consulta = DB::table($tabla)
+                ->select($tabla.'.id','grado' , 'fname' , 'lname' , 'names' , 'grados.nombre as Grado' , $tabla.'.matricula')
+                ->join('grados',$tabla.'.grado','=','grados.id')
                 ->where('matriculado','=','1')
                 ->where('retirado','=','0')
                 ->where('grado','=',$grado)
-                ->join('grados',$tabla.'.grado','=','grados.id')
-                ->select($tabla.'.id','grado' , 'fname' , 'lname' , 'names' , 'grados.nombre as Grado' , $tabla.'.matricula')
-                ->paginate(15);
+                ->paginate(5);
                 return $consulta;
         }
 
         public function selectmatriculados_n($tabla,$alum){
             $consulta = DB::table($tabla)
+                ->select($tabla.'.id','grado' , 'fname' , 'lname' , 'names' , 'grados.nombre as Grado' , $tabla.'.matricula')
+                ->join('grados',$tabla.'.grado','=','grados.id')
                 ->where('matriculado','=','1')
                 ->where('retirado','=','0')
                 ->where($tabla.".names" , "LIKE" , '%'.$alum.'%')
-                ->join('grados',$tabla.'.grado','=','grados.id')
-                ->select($tabla.'.id','grado' , 'fname' , 'lname' , 'names' , 'grados.nombre as Grado' , $tabla.'.matricula')
-                ->paginate(15);
+                ->paginate(5);
                 return $consulta;
         }
 
         public function selectmatriculados_g_n($tabla,$grado,$alum){
             $consulta = DB::table($tabla)
+                ->select($tabla.'.id','grado' , 'fname' , 'lname' , 'names' , 'grados.nombre as Grado' , $tabla.'.matricula')
+                ->join('grados',$tabla.'.grado','=','grados.id')
                 ->where('matriculado','=','1')
                 ->where('retirado','=','0')
                 ->where('grado','=',$grado)
                 ->where($tabla.".names" , "LIKE" , '%'.$alum.'%')
-                ->join('grados',$tabla.'.grado','=','grados.id')
-                ->select($tabla.'.id','grado' , 'fname' , 'lname' , 'names' , 'grados.nombre as Grado' , $tabla.'.matricula')
-                ->paginate(15);
+                ->paginate(5);
                 return $consulta;
         }
 
@@ -436,46 +435,46 @@ class Matriculas extends Eloquent
 
     public function selectinscritos($tabla){
             $consulta = DB::table($tabla)
+                ->select($tabla.'.id','grado' , 'fname' , 'lname' , 'names' , 'grados.nombre as Grado' , $tabla.'.matricula')
+                ->join('grados',$tabla.'.grado','=','grados.id')
                 ->where('matriculado','=','0')
                 ->where('retirado','=','0')
-                ->join('grados',$tabla.'.grado','=','grados.id')
-                ->select($tabla.'.id','grado' , 'fname' , 'lname' , 'names' , 'grados.nombre as Grado' , $tabla.'.matricula')
-                ->paginate(15);
+                ->paginate(9);
 
             return $consulta;
         }
 
     public function selectinscritos_g($tabla,$grado){
             $consulta = DB::table($tabla)
+                ->select($tabla.'.id','grado' , 'fname' , 'lname' , 'names' , 'grados.nombre as Grado' , $tabla.'.matricula')
+                ->join('grados',$tabla.'.grado','=','grados.id')
                 ->where('matriculado','=','0')
                 ->where('retirado','=','0')
                 ->where('grado','=',$grado)
-                ->join('grados',$tabla.'.grado','=','grados.id')
-                ->select($tabla.'.id','grado' , 'fname' , 'lname' , 'names' , 'grados.nombre as Grado' , $tabla.'.matricula')
-                ->paginate(15);
+                ->paginate(5);
                 return $consulta;
         }
     
     public function selectinscritos_n($tabla,$alum){
             $consulta = DB::table($tabla)
+                ->select($tabla.'.id','grado' , 'fname' , 'lname' , 'names' , 'grados.nombre as Grado' , $tabla.'.matricula')
+                ->join('grados',$tabla.'.grado','=','grados.id')
                 ->where('matriculado','=','0')
                 ->where('retirado','=','0')
                 ->where($tabla.".names" , "LIKE" , '%'.$alum.'%')
-                ->join('grados',$tabla.'.grado','=','grados.id')
-                ->select($tabla.'.id','grado' , 'fname' , 'lname' , 'names' , 'grados.nombre as Grado' , $tabla.'.matricula')
-                ->paginate(15);
+                ->paginate(5);
                 return $consulta;
         }
 
     public function selectinscritos_g_n($tabla,$grado,$alum){
             $consulta = DB::table($tabla)
+                ->select($tabla.'.id','grado' , 'fname' , 'lname' , 'names' , 'grados.nombre as Grado' , $tabla.'.matricula')
+                ->join('grados',$tabla.'.grado','=','grados.id')
                 ->where('matriculado','=','0')
                 ->where('retirado','=','0')
                 ->where('grado','=',$grado)
                 ->where($tabla.".names" , "LIKE" , '%'.$alum.'%')
-                ->join('grados',$tabla.'.grado','=','grados.id')
-                ->select($tabla.'.id','grado' , 'fname' , 'lname' , 'names' , 'grados.nombre as Grado' , $tabla.'.matricula')
-                ->paginate(15);
+                ->paginate(5);
                 return $consulta;
         }
 

@@ -84,6 +84,7 @@ class MatriculasController extends BaseController
 				{
 					return View::Make('matriculas.alum')->withInput()->withErrors($validacion)->with(array('datos'=>$data));
 				}
+				
 				else
 				{
 					$tipos = Tipodoc::all()->lists('name_tipodoc','id_tipodoc');
@@ -334,33 +335,40 @@ class MatriculasController extends BaseController
 		$años = $this->asign_year();
 		$grados = Grado::all()->lists('nombre','id');
 		array_unshift($grados, "Seleccione Grado");
-		$data= Input::all();
-		$tabla = $this->asignTabla($data['year_matricula']);
-
-		if (empty($data['Grados']) && empty($data['name_alum'])) {
-			$consulta =$this->_matricula->selectinscritos($tabla);
-		}
 		
-		if (!empty($data['name_alum'])) 
-		{
-			$consulta =$this->_matricula->selectinscritos_n($tabla,$data['name_alum']);
-		}
-		
-		if (!empty($data['Grados']))
-		{
-			$consulta =$this->_matricula->selectinscritos_g($tabla,$data['Grados']);
-			if (!empty($data['name_alum']))
-			{
-				$consulta =$this->_matricula->selectinscritos_g_n($tabla,$data['Grados'],$data['name_alum']);
+		if (Input::all()) {
+			$data= Input::all();
+			$tabla = $this->asignTabla($data['year_matricula']);
+			
+			if (empty($data['Grados']) && empty($data['name_alum'])) {
+				$consulta =$this->_matricula->selectinscritos($tabla);
 			}
-		}
-		
-		if (empty($consulta)) {
-			return View::Make('matriculas.matriculados')->with(array('grados'=>$grados,'años'=>$años,'mensaje'=>'No hay Alumnos Inscritos','año'=>$data['year_matricula']));		
+			
+			if (!empty($data['name_alum'])) 
+			{
+				$consulta =$this->_matricula->selectinscritos_n($tabla,$data['name_alum']);
+			}
+			
+			if (!empty($data['Grados']))
+			{
+				$consulta =$this->_matricula->selectinscritos_g($tabla,$data['Grados']);
+				if (!empty($data['name_alum']))
+				{
+					$consulta =$this->_matricula->selectinscritos_g_n($tabla,$data['Grados'],$data['name_alum']);
+				}
+			}
+
+			if (empty($consulta)) {
+				return View::Make('matriculas.matriculados')->with(array('grados'=>$grados,'años'=>$años,'mensaje'=>'No hay Alumnos Matriculados','año'=>$data['year_matricula'],'data'=>$data));		
+			}
+
+			else{
+				return View::Make('matriculas.matriculados')->with(array('grados'=>$grados,'años'=>$años,'alumnos'=>$consulta,'año'=>$data['year_matricula'],'data'=>$data));
+			}
 		}
 
 		else{
-			return View::Make('matriculas.matriculados')->with(array('grados'=>$grados,'años'=>$años,'alumnos'=>$consulta,'año'=>$data['year_matricula']));
+			echo "Error de Datos";
 		}
 
 	}
@@ -369,33 +377,40 @@ class MatriculasController extends BaseController
 		$años = $this->asign_year();
 		$grados = Grado::all()->lists('nombre','id');
 		array_unshift($grados, "Seleccione Grado");
-		$data= Input::all();
-		$tabla = $this->asignTabla($data['year_matricula']);
 		
-		if (empty($data['Grados']) && empty($data['name_alum'])) {
-			$consulta =$this->_matricula->selectmatriculados($tabla);
-		}
-		
-		if (!empty($data['name_alum'])) 
-		{
-			$consulta =$this->_matricula->selectmatriculados_n($tabla,$data['name_alum']);
-		}
-		
-		if (!empty($data['Grados']))
-		{
-			$consulta =$this->_matricula->selectmatriculados_g($tabla,$data['Grados']);
-			if (!empty($data['name_alum']))
+		if (Input::all()) {
+			$data= Input::all();
+			$tabla = $this->asignTabla($data['year_matricula']);
+			
+			if (empty($data['Grados']) && empty($data['name_alum'])) {
+				$consulta =$this->_matricula->selectmatriculados($tabla);
+			}
+			
+			if (!empty($data['name_alum'])) 
 			{
-				$consulta =$this->_matricula->selectmatriculados_g_n($tabla,$data['Grados'],$data['name_alum']);
+				$consulta =$this->_matricula->selectmatriculados_n($tabla,$data['name_alum']);
+			}
+			
+			if (!empty($data['Grados']))
+			{
+				$consulta =$this->_matricula->selectmatriculados_g($tabla,$data['Grados']);
+				if (!empty($data['name_alum']))
+				{
+					$consulta =$this->_matricula->selectmatriculados_g_n($tabla,$data['Grados'],$data['name_alum']);
+				}
+			}
+
+			if (empty($consulta)) {
+				return View::Make('matriculas.matriculados')->with(array('grados'=>$grados,'años'=>$años,'mensaje'=>'No hay Alumnos Matriculados','año'=>$data['year_matricula'],'data'=>$data));		
+			}
+
+			else{
+				return View::Make('matriculas.matriculados')->with(array('grados'=>$grados,'años'=>$años,'alumnos'=>$consulta,'año'=>$data['year_matricula'],'data'=>$data));
 			}
 		}
 
-		if (empty($consulta)) {
-			return View::Make('matriculas.matriculados')->with(array('grados'=>$grados,'años'=>$años,'mensaje'=>'No hay Alumnos Matriculados','año'=>$data['year_matricula']));		
-		}
-
 		else{
-			return View::Make('matriculas.matriculados')->with(array('grados'=>$grados,'años'=>$años,'alumnos'=>$consulta,'año'=>$data['year_matricula']));
+			echo "Error de Datos";
 		}
 	}
 
