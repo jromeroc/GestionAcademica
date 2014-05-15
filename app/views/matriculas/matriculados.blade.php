@@ -34,7 +34,7 @@
 		@if(isset($data))
       	<select name="year_matricula" id="year_matricula" class="form-control" required="required">
       		<!-- Seleccione año -->
-			@if($data['year_matricula'] == 0000)
+			    @if($data['year_matricula'] == 0000)
       			<option value="0000" selected>Seleccione año</option>
       		@else
       			<option value="0000">Seleccione año</option>

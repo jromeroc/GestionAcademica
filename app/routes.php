@@ -205,6 +205,9 @@ Route::group(array('prefix' => 'legalizacion'), function(){
 			Route::get('/', 'LegalizarController@index');
 			Route::get('por_legalizar', 'LegalizarController@pendientes');
 			Route::get('legalizadas', 'LegalizarController@legalizadas');
+			Route::get('matriculas-pendientes', 'LegalizarController@srchMatriculasPendientes');
+			Route::get('matriculas-legalizadas', 'LegalizarController@srchMatriculasLegalizadas');
+
 		});
-	});
+	}); 
 });
