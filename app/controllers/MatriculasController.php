@@ -359,11 +359,11 @@ class MatriculasController extends BaseController
 			}
 
 			if (empty($consulta)) {
-				return View::Make('matriculas.matriculados')->with(array('grados'=>$grados,'años'=>$años,'mensaje'=>'No hay Alumnos Matriculados','año'=>$data['year_matricula'],'data'=>$data));		
+				return View::Make('matriculas.matriculados')->with(array('grados'=>$grados,'años'=>$años,'mensaje'=>'No hay Alumnos Matriculados','año'=>$data['year_matricula'],'data'=>$data,'inscritos' => '1'));		
 			}
 
 			else{
-				return View::Make('matriculas.matriculados')->with(array('grados'=>$grados,'años'=>$años,'alumnos'=>$consulta,'año'=>$data['year_matricula'],'data'=>$data));
+				return View::Make('matriculas.matriculados')->with(array('grados'=>$grados,'años'=>$años,'alumnos'=>$consulta,'año'=>$data['year_matricula'],'data'=>$data,'inscritos' => '1'));
 			}
 		}
 

@@ -83,7 +83,7 @@
 			</tbody>
 		</table>
 		<br>
-		{{$alums->appends(array('year_matricula' => $data['name_alum'],'name_alum'=>$data['name_alum']))->links()}}
+		{{$alums->appends(array('year_matricula' => $data['year_matricula'],'name_alum'=>$data['name_alum']))->links()}}
 		</div>
 	</div>
 	@endif

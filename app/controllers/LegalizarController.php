@@ -38,7 +38,7 @@ class LegalizarController extends BaseController
 			$alums = $this->_Legalizar->srchMatriculasPendientes($tabla);
 			if (!empty($data['name_alum'])) 
 			{
-				$alums = $this->_Legalizar->srchMatriculasPendientesY_A($$tabla,$data['name_alum']);
+				$alums = $this->_Legalizar->srchMatriculasPendientesY_A($tabla,$data['name_alum']);
 			}
 		}
 		return View::Make('legalizacion.pendientes')->with(array('alums'=>$alums,'años' => $años,'data'=>$data));	
