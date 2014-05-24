@@ -64,26 +64,26 @@
 		<table class="table table-bordered table-hover">
 			<thead>
 				<tr class="info">
-					<th> Cod. Matricula 	</th>
-					<th> Primer Apellido	</th>
-					<th> Segundo Apellido	</th>
-					<th> Nombres			</th>
+					
+					<th> Padre			</th>
+					<th> Madre			</th>
+					<th> Matricula		</th>
+					<th> Alumno			</th>
 				</tr>
 			</thead>
 					
 			<tbody>
 				@foreach ($alums as $alumns)
 				<tr>
+					<td> {{$alumns->namepapa}} </td>
+					<td> {{$alumns->namemama}} </td>
 					<td> {{$alumns->matricula}} </td>
-					<td> {{$alumns->fname}} </td>
-					<td> {{$alumns->lname}} </td>
-					<td> {{$alumns->names}} </td>
-					<td>
+					<td> {{$alumns->namealum}} </td>
 				@endforeach
 			</tbody>
 		</table>
 		<br>
-		{{$alums->appends(array('year_matricula' => $data['year_matricula'],'name_alum'=>$data['name_alum']))->links()}}
+		{{--{{$alums->appends(array('year_matricula' => $data['year_matricula'],'name_alum'=>$data['name_alum']))->links()}}--}}
 		</div>
 	</div>
 	@endif
