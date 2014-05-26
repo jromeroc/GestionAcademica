@@ -8,21 +8,24 @@
 
 @section('modulo')
   <h2>Matriculas
-      <small>Legalizadas</small>
+  	  @if ($type)
+      		<small>Legalizadas</small>
+  		@else
+      		<small>Pendientes</small>
+  	  @endif
   </h2>
 @stop
 
-@section('content')
 
 @section('content')
-	{{ Form::open(array('url' => 'legalizacion/matriculas-legalizadas', 'method' => 'get','class'=>'form-inline'), array('role'=>'form'))}}
+	{{ Form::open(array('url' => 'legalizacion/filtro-matriculas/'.$type, 'method' => 'get','class'=>'form-inline'), array('role'=>'form'))}}
 
 		<!-- Año Matricula -->
 		{{ Form::label('year_matricula', 'Año Matricula', array('class' => 'control-label')) }}
 		@if(!empty($data))
 	    <select name="year_matricula" id="year_matricula" class="form-control" required="required">
       		<!-- Seleccione año -->
-			@if($data['year_matricula'] == 0000)
+			@if($data['year_matricula'] == 0)
       			<option value="0" selected>Seleccione año</option>
       		@else
       			<option value="0">Seleccione año</option>

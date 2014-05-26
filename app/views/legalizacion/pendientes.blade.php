@@ -20,10 +20,10 @@
 		@if(!empty($data))
 	    <select name="year_matricula" id="year_matricula" class="form-control" required="required">
       		<!-- Seleccione año -->
-			@if($data['year_matricula'] == 0000)
-      			<option value="0000" selected>Seleccione año</option>
+			@if($data['year_matricula'] == 0)
+      			<option value="0" selected>Seleccione año</option>
       		@else
-      			<option value="0000">Seleccione año</option>
+      			<option value="0">Seleccione año</option>
       		@endif
       		<!-- Año pasado -->
       		@if($data['year_matricula'] == $anos['lastY'])
