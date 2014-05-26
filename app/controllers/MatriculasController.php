@@ -29,14 +29,14 @@ class MatriculasController extends BaseController
 			$next = $year." - ".$nextY;
 		}
 
-		$años = array("year"	=>	$year 	,
+		$anos = array("year"	=>	$year 	,
 					  "act"		=>	$act 	,
 					  "lastY"	=>	$lastY 	,
 					  "last"	=>	$last 	,
 					  "nextY"	=>	$nextY 	,
 					  "next"	=>	$next
 		);
-		return $años;
+		return $anos;
 	}
 
 	public function MatriculaAlum(){
@@ -44,10 +44,10 @@ class MatriculasController extends BaseController
 		$tipos = Tipodoc::all()->lists('name_tipodoc','id_tipodoc');
 		$grados = Grado::all()->lists('nombre','id');
 		array_unshift($grados, "Seleccione Grado");
-		$años = $this->asign_year();
+		$anos = $this->asign_year();
 		
 		
-		return View::Make('matriculas.alum')->with(array('años' => $años,'tipodoc'=>$tipos,'grado'=>$grados));
+		return View::Make('matriculas.alum')->with(array('anos' => $anos,'tipodoc'=>$tipos,'grado'=>$grados));
 	}
 
 	public function nuevo(){
@@ -317,22 +317,22 @@ class MatriculasController extends BaseController
 
 		$grados = Grado::all()->lists('nombre','id');
 		array_unshift($grados, "Seleccione Grado");
-		$años = $this->asign_year();
+		$anos = $this->asign_year();
 		
-		return View::Make('matriculas.matriculados')->with(array('grados'=>$grados,'años'=>$años));
+		return View::Make('matriculas.matriculados')->with(array('grados'=>$grados,'anos'=>$anos));
 	}
 
 	public function inscritos(){
 
 		$grados = Grado::all()->lists('nombre','id');
 		array_unshift($grados, "Seleccione Grado");
-		$años = $this->asign_year();
-		return View::Make('matriculas.matriculados')->with(array('grados'=>$grados,'años'=>$años,'inscritos'=>'1'));
+		$anos = $this->asign_year();
+		return View::Make('matriculas.matriculados')->with(array('grados'=>$grados,'anos'=>$anos,'inscritos'=>'1'));
 	}
 
 	public function srch_alum_inscritos(){
 
-		$años = $this->asign_year();
+		$anos = $this->asign_year();
 		$grados = Grado::all()->lists('nombre','id');
 		array_unshift($grados, "Seleccione Grado");
 		
@@ -359,11 +359,11 @@ class MatriculasController extends BaseController
 			}
 
 			if (empty($consulta)) {
-				return View::Make('matriculas.matriculados')->with(array('grados'=>$grados,'años'=>$años,'mensaje'=>'No hay Alumnos Matriculados','año'=>$data['year_matricula'],'data'=>$data,'inscritos' => '1'));		
+				return View::Make('matriculas.matriculados')->with(array('grados'=>$grados,'anos'=>$anos,'mensaje'=>'No hay Alumnos Matriculados','año'=>$data['year_matricula'],'data'=>$data,'inscritos' => '1'));		
 			}
 
 			else{
-				return View::Make('matriculas.matriculados')->with(array('grados'=>$grados,'años'=>$años,'alumnos'=>$consulta,'año'=>$data['year_matricula'],'data'=>$data,'inscritos' => '1'));
+				return View::Make('matriculas.matriculados')->with(array('grados'=>$grados,'anos'=>$anos,'alumnos'=>$consulta,'año'=>$data['year_matricula'],'data'=>$data,'inscritos' => '1'));
 			}
 		}
 
@@ -374,7 +374,7 @@ class MatriculasController extends BaseController
 	}
 	
 	public function srch_alum_matri(){
-		$años = $this->asign_year();
+		$anos = $this->asign_year();
 		$grados = Grado::all()->lists('nombre','id');
 		array_unshift($grados, "Seleccione Grado");
 		
@@ -401,11 +401,11 @@ class MatriculasController extends BaseController
 			}
 
 			if (empty($consulta)) {
-				return View::Make('matriculas.matriculados')->with(array('grados'=>$grados,'años'=>$años,'mensaje'=>'No hay Alumnos Matriculados','año'=>$data['year_matricula'],'data'=>$data));		
+				return View::Make('matriculas.matriculados')->with(array('grados'=>$grados,'anos'=>$anos,'mensaje'=>'No hay Alumnos Matriculados','año'=>$data['year_matricula'],'data'=>$data));		
 			}
 
 			else{
-				return View::Make('matriculas.matriculados')->with(array('grados'=>$grados,'años'=>$años,'alumnos'=>$consulta,'año'=>$data['year_matricula'],'data'=>$data));
+				return View::Make('matriculas.matriculados')->with(array('grados'=>$grados,'anos'=>$anos,'alumnos'=>$consulta,'año'=>$data['year_matricula'],'data'=>$data));
 			}
 		}
 
@@ -421,14 +421,14 @@ class MatriculasController extends BaseController
 		$grados = Grado::all()->lists('nombre','id');
 		array_unshift($grados, "Seleccione Grado");
 		
-		$años = $this->asign_year();
+		$anos = $this->asign_year();
 
 		$tabla = $this->asignTabla($año);
 
 		$datos_alum = $this->_matricula->srch_alum_edit($id,$tabla);
 		$datos_alum = get_object_vars($datos_alum[0]);
 
-		return View::Make('matriculas.alum')->with(array('años' => $años,'tipodoc'=>$tipos,'grado'=>$grados,'alum'=>$datos_alum,'id_alum'=>$id,'año_matri'=>$año));
+		return View::Make('matriculas.alum')->with(array('anos' => $anos,'tipodoc'=>$tipos,'grado'=>$grados,'alum'=>$datos_alum,'id_alum'=>$id,'año_matri'=>$año));
 	}
 
 
@@ -437,14 +437,14 @@ class MatriculasController extends BaseController
 
 		array_unshift($grados, "Seleccione Grado");
 
-		$años = $this->asign_year();
+		$anos = $this->asign_year();
 
 		$tabla = $this->asignTabla($año);
 
 
 		$delete = $this->_matricula->cancel_matricula($id,$tabla);
 
-		return View::Make('matriculas.matriculados')->with(array('grados'=>$grados,'años'=>$años,'mensaje_cancel'=>'Matricula Cancelada correctamente'));
+		return View::Make('matriculas.matriculados')->with(array('grados'=>$grados,'anos'=>$anos,'mensaje_cancel'=>'Matricula Cancelada correctamente'));
 
 	}
 
@@ -453,12 +453,12 @@ class MatriculasController extends BaseController
 		
 		$grados = Grado::all()->lists('nombre','id');
 		array_unshift($grados, "Seleccione Grado");
-		$años = $this->asign_year();
+		$anos = $this->asign_year();
 		
 		$tabla = $this->asignTabla($año);
 		$update = $this->_matricula->update_matri($id,$tabla,$data);
 		
-		return View::Make('matriculas.matriculados')->with(array('grados'=>$grados,'años'=>$años,'mensaje_update'=>'Matricula Actualizada correctamente'));
+		return View::Make('matriculas.matriculados')->with(array('grados'=>$grados,'anos'=>$anos,'mensaje_update'=>'Matricula Actualizada correctamente'));
 
 	}
 

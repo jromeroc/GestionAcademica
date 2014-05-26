@@ -2,13 +2,13 @@
 
 class LegalizarController extends BaseController
 {
-	public $_Legalizar;
-	public $_Matricula;
+	public $_legalizar;
+	public $_matricula;
 
 	public function __construct()
 	{
-		$this->_Legalizar = new Legalizar();
-		$this->_Matricula = new MatriculasController();
+		$this->_legalizar = new Legalizar();
+		$this->_matricula = new MatriculasController();
 	}
 
 	public function index()
@@ -18,49 +18,77 @@ class LegalizarController extends BaseController
 
 	public function pendientes()
 	{
-		$años = $this->_Matricula->asign_year();		
-		return View::Make('legalizacion.pendientes')->with(array('años' => $años));
+		$this->listado(0);
+
 	}
 
 	public function legalizadas()
 	{
-		$años = $this->_Matricula->asign_year();	
-		return View::Make('legalizacion.legalizadas')->with(array('años' => $años));
+		$this->listado(1);
 	}
 
-	public function srchMatriculasPendientes()
+	private function listado($type)
 	{
-		$años = $this->_Matricula->asign_year();	
-		$data = Input::all();
-		$tabla = $this->_Matricula->asignTabla($data['year_matricula']);
-		if (!empty($data['year_matricula'])) 
-		{
-			$alums = $this->_Legalizar->srchMatriculasPendientes($tabla);
-			if (!empty($data['name_alum'])) 
-			{
-				$alums = $this->_Legalizar->srchMatriculasPendientesY_A($tabla,$data['name_alum']);
-			}
-		}
-		return View::Make('legalizacion.pendientes')->with(array('alums'=>$alums,'años' => $años,'data'=>$data));	
-	}	
-
-	public function srchMatriculasLegalizadas()
-	{
-		$años = $this->_Matricula->asign_year();	
-		$data = Input::all();
-		$tabla = $this->_Matricula->asignTabla($data['year_matricula']);
-		if (!empty($data['year_matricula'])) 
-		{
-			$alums = $this->_Legalizar->srchMatriculasLegalizadas($tabla);
-			if (!empty($data['name_alum'])) 
-			{
-				$alums = $this->_Legalizar->srchMatriculasLegalizadasY_A($tabla,$data['name_alum']);
-			}
-		}
-		return View::Make('legalizacion.legalizadas')->with(array('alums'=>$alums,'años' => $años,'data'=>$data));	
+		$anos = $this->_matricula->asign_year();
+		return View::Make('legalizacion.pendientes')->with(array('anos' => $anos));
 	}
 
+	public function matriculasPendientes()
+	{
+		$anos = $this->_matricula->asign_year();
+		$data = Input::all();
+		$tabla = $this->_matricula->asignTabla($data['year_matricula']);
+		if (!empty($data['year_matricula']))
+		{
+			$alums = $this->_legalizar->matriculasPendientes($tabla);
+			if (!empty($data['name_alum']))
+			{
+				$alums = $this->_legalizar->matriculasPendientesY_A($tabla,$data['name_alum']);
+			}
+		}
+		return View::Make('legalizacion.pendientes')->with(array('alums'=>$alums,'anos' => $anos,'data'=>$data));
+	}
 
+	public function matriculasLegalizadas()
+	{
+		$anos = $this->_matricula->asign_year();
+		$data = Input::all();
+		$tabla = $this->_matricula->asignTabla($data['year_matricula']);
+		if (!empty($data['year_matricula']))
+		{
+			$alums = $this->_legalizar->matriculasLegalizadas($tabla);
+			if (!empty($data['name_alum']))
+			{
+				$alums = $this->_legalizar->matriculasLegalizadasY_A($tabla,$data['name_alum']);
+			}
+		}
+		return View::Make('legalizacion.legalizadas')->with(array('alums'=>$alums,'anos' => $anos,'data'=>$data));
+	}
+
+	public function asignTabla($year){
+
+			if ($year == date('Y') && (date('m')<=7))
+			{
+				$tablaAlumnos = "alumnos";
+			}
+
+			elseif($year < date('Y'))
+			{
+				$tablaAlumnos = "alumnos_last";
+			}
+
+			elseif($year == date('Y') && (date('m')>=8))
+			{
+				$tablaAlumnos = "alumnos_next";
+			}
+
+			elseif($year > date('Y') && (date('m')<=7))
+			{
+				$tablaAlumnos = "alumnos_next";
+			}
+
+			return $tablaAlumnos;
+		}
 }
 
 ?>

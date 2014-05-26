@@ -3,7 +3,7 @@
 class Legalizar extends Eloquent
 {
 
-	public function srchMatriculasPendientes($tabla){
+	public function matriculasPendientes($tabla){
 		$consulta = "
 			SELECT
 			".$tabla.".matricula,
@@ -12,7 +12,7 @@ class Legalizar extends Eloquent
             CONCAT_WS(' ',padres_cch_A.`nombres_padre`,padres_cch_A.`apel1_padre`,padres_cch_A.`apel2_padre`) AS namemama,
             padres_cch.`apel1_padre` AS apelpapa,
             padres_cch_A.`apel1_padre` AS apelmama,
-            ".$tabla.".`papa` AS idpapa, 
+            ".$tabla.".`papa` AS idpapa,
             ".$tabla.".`mama` AS idmama,
             ".$tabla.".`matriculado` AS matriculado
             FROM `padres_cch` padres_cch
@@ -26,7 +26,7 @@ class Legalizar extends Eloquent
 		return $consult;
 	}
 
-	public function srchMatriculasPendientesY_A($tabla,$name){
+	public function matriculasPendientesY_A($tabla,$name){
 		$consulta = DB::table($tabla)
 		->select('names','fname','lname','matricula','papa','mama')
 		->join('padres_cch', $tabla.'.papa', '=', 'padres_cch.id_padre')
@@ -38,7 +38,7 @@ class Legalizar extends Eloquent
 	}
 
 
-	public function srchMatriculasLegalizadas($tabla){
+	public function matriculasLegalizadas($tabla){
 		$consulta = DB::table($tabla)
 		->select('names','fname','lname','matricula','papa','mama')
 		->join('padres_cch', $tabla.'.papa', '=', 'padres_cch.id_padre')
@@ -48,7 +48,7 @@ class Legalizar extends Eloquent
 		return $consulta;
 	}
 
-	public function srchMatriculasLegalizadasY_A($tabla,$name){
+	public function matriculasLegalizadasY_A($tabla,$name){
 		$consulta = DB::table($tabla)
 		->select('names','fname','lname','matricula','papa','mama')
 		->join('padres_cch', $tabla.'.papa', '=', 'padres_cch.id_padre')

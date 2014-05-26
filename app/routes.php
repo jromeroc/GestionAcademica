@@ -46,11 +46,11 @@ Route::group(array('prefix' => 'administracion'), function(){
 		    /*
 				-- Rutas para Admon Permisos
 			*/
-			Route::get('permisos','RoleController@index');	
-			Route::get('listado_roles','RoleController@listado');	
-			Route::get('permisos_role/{numero}','RoleController@permisos')->where('numero','[0-9]+');	
-			Route::post('guardar','RoleController@guardar');	
-		});	
+			Route::get('permisos','RoleController@index');
+			Route::get('listado_roles','RoleController@listado');
+			Route::get('permisos_role/{numero}','RoleController@permisos')->where('numero','[0-9]+');
+			Route::post('guardar','RoleController@guardar');
+		});
 	});
 });
 
@@ -130,7 +130,7 @@ Route::group(array('prefix' => 'observador'), function(){
 Route::group(array('prefix' => 'alumnos'), function(){
 	Route::group(array('before' => 'auth'), function(){
 		Route::group(array('before' => 'permit'), function(){
-			Route::get('buscar', 'AlumnosController@autocompletar');			
+			Route::get('buscar', 'AlumnosController@autocompletar');
 		});
 	});
 });
@@ -140,7 +140,7 @@ Route::group(array('prefix' => 'alumnos'), function(){
 Route::group(array('prefix' => 'docentes'), function(){
 	Route::group(array('before' => 'auth'), function(){
 		Route::group(array('before' => 'permit'), function(){
-			Route::get('buscar', 'DocentesController@autocompletar');			
+			Route::get('buscar', 'DocentesController@autocompletar');
 		});
 	});
 });
@@ -158,11 +158,11 @@ Route::group(array('prefix' => 'matriculas'), function(){
 			Route::get('madre/{num1}/{num2}', 'MatriculasController@madre')->where(array('num1'=>'[0-9]+','num2'=>'[0-9]+'));
 			Route::get('acudiente/{num1}/{num2}', 'MatriculasController@acudiente')->where(array('num1'=>'[0-9]+','num2'=>'[0-9]+'));
 			Route::get('correspondencia', 'MatriculasController@infocomp');
-			
+
 			//Autocompletar papa - mama - acudiente
 			Route::get('buscar_padre', 'MatriculasController@srch_papa');
 			Route::get('buscar_acudiente/', 'MatriculasController@srch_acudiente');
-			
+
 			//Rutas para guardar y buscar
 			Route::get('buscaralum/{numero}', 'MatriculasController@searchalum')->where('numero','[0-9]+');
 			Route::get('srchP', 'MatriculasController@srchP');
@@ -172,11 +172,11 @@ Route::group(array('prefix' => 'matriculas'), function(){
 			//Listar Editar y Eliminar
 			Route::get('matriculados', 'MatriculasController@matriculados');
 			Route::get('inscritos', 'MatriculasController@inscritos');
-			
+
 			Route::get('alumnos-matriculados', 'MatriculasController@srch_alum_matri');
 			Route::get('alumnos-inscritos', 'MatriculasController@srch_alum_inscritos');
-			
-			
+
+
 			Route::get('cancel_matricula/{num1}/{num2}', 'MatriculasController@cancel_matri')->where(array('num1'=>'[0-9]+','num2'=>'[0-9]+'));
 			Route::get('editar_matricula/{num1}/{num2}', 'MatriculasController@edit_matri')->where(array('num1'=>'[0-9]+','num2'=>'[0-9]+'));
 			Route::post('update_matricula/{num1}/{num2}', 'MatriculasController@update_matricula')->where(array('num1'=>'[0-9]+','num2'=>'[0-9]+'));
@@ -203,12 +203,11 @@ Route::group(array('prefix' => 'legalizacion'), function(){
 	Route::group(array('before' => 'auth'), function(){
 		Route::group(array('before' => 'permit'), function(){
 			Route::get('/', 'LegalizarController@index');
-			Route::get('por_legalizar', 'LegalizarController@pendientes');
+			Route::get('pendientes', 'LegalizarController@pendientes');
 			Route::get('legalizadas', 'LegalizarController@legalizadas');
-			Route::get('matriculas-pendientes', 'LegalizarController@srchMatriculasPendientes');
-			Route::get('matriculas-legalizadas', 'LegalizarController@srchMatriculasLegalizadas');
+			Route::get('matriculas-pendientes', 'LegalizarController@matriculasPendientes');
+			Route::get('matriculas-legalizadas', 'LegalizarController@matriculasLegalizadas');
 			Route::get('documentos-matricula', 'DocsMatriculaController@printDocs');
-
 		});
-	}); 
+	});
 });

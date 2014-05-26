@@ -7,8 +7,7 @@
 @stop
 
 @section('modulo')
-  <h1>Matriculas 
+  <h2>Matriculas
       <small>Legalización</small>
-  </h1>
+  </h2>
 @stop
-
