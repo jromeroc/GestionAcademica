@@ -115,4 +115,26 @@ class Legalizar extends Eloquent
             
             return $consult;
 	}
+
+      public function srch_padre($id){
+            $padre = DB::table('padres_cch')
+            ->select(
+                  DB::raw("CONCAT_WS(' ', nombres_padre, apel1_padre, apel2_padre) as nombre")
+            )
+            ->where('id_padre','=',$id)
+            ->get();
+            return $padre;
+      }
+      public function srch_hijos($idP,$idM,$tabla){
+            $hijos = DB::table($tabla)
+            ->select(
+                  DB::raw("CONCAT_WS(' ', lname, fname, names) as nombre"),
+                  'id',
+                  'grado'
+            )
+            ->where('papa','=',$idP)
+            ->where('mama','=',$idM)
+            ->get();
+            return $hijos;
+      }
 }

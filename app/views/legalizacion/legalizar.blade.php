@@ -12,45 +12,86 @@
 
 @section('content')
 
-<div class="table-responsive">
-	<table class="table table-hover">
+	<table class="table">
 		<thead>
 			<tr>
-				<th>Nombre Padre</th>
-				<th>Nombre Madre</th>
+				<th>Nombre Papá</th>
+				<th>Nombre Mamá</th>
 			</tr>
 		</thead>
 		<tbody>
 			<tr>
-				<td>a</td>
-				<td>a</td>
+				<td>{{$papa['nombre']}}</td>
+				<td>{{$mama['nombre']}}</td>
 			</tr>
 		</tbody>
 	</table>
-</div>
 
-	<h3 class="text-center">Hijos</h3>
 
-<div class="table-responsive">
-	<table class="table table-hover">
+	<legend><h4>Hijos</h4></legend>
+
+	<table class="table">
 		<thead>
 			<tr>
-				<th>Grado </th>
-				<th>Nombre</th>
+				<th>Grado	</th>
+				<th>Nombre	</th>
 			</tr>
 		</thead>
 		<tbody>
-			<tr>
-				<td>a</td>
-				<td>a</td>
-			</tr>
-		</tbody>
-	</table>
-</div>
+            @foreach($hijo as $hijos)  
+                <tr>
+                    <td>{{$hijos['grado']}}</td>
+                    <td>{{$hijos['nombre']}}</td>
+                </tr>
+            @endforeach
+        </tbody>
+    </table>
 
-	{{ Form::open(array('url' => 'legalizacion/documentos/', 'method' => 'get','class'=>'form-inline'), array('role'=>'form'))}}
-<input type="radio" id="Inscripcion" name="T-reg" value="0" checked="checked">
-	{{form::radio('papa',null,'Firma solo Papa')}}
-	{{Form::close()}}
+    {{ Form::open(array('url' => 'legalizacion/legalizar/', 'method' => 'POST','class'=>'form-inline'), array('role'=>'form'))}}
+    	<legend><h4 >Documentación</h4></legend>
+    <div class="col-sm-4">
+        <div class="radio">
+            <label>
+                Firma solo Papá            
+                <input type="radio" id="papa" name="papa" value="0"> 
+            </label>
+        </div>
+    </div>
+
+    <div class="col-sm-4">
+        <div class="radio">
+            <label>
+                Firma solo Mamá            
+                <input type="radio" id="mama" name="mama" value="1">
+            </label>
+        </div>
+    </div>
+
+    <div class="col-sm-4">
+        <div class="radio">
+            <label>
+                Firman Ambos            
+                <input type="radio" id="ambos" name="ambos" value="2">
+            </label>
+        </div>
+    </div>
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+    	<br>
+    </div>
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+    	{{ HTML::link('legalizacion/legalizar/', 'Pagare y Contrato', array('class'=>'btn btn-primary col-sm-2'));}}
+    	<div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+    		
+    	</div>
+    	{{ HTML::link('legalizacion/legalizar/', 'Enfermeria', array('class'=>'btn btn-primary col-sm-2'));}}
+    	<div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+    		
+    	</div>
+    	{{ HTML::link('legalizacion/legalizar/', 'Contabilidad', array('class'=>'btn btn-primary col-sm-2'));}}
+    	<div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+    		
+    	</div>
+    	{{ HTML::link('legalizacion/legalizar/', 'Matricula', array('class'=>'btn btn-primary col-sm-2'));}}
+    </div>
 
 @stop
