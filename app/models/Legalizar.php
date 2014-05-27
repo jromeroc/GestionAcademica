@@ -3,10 +3,8 @@
 class Legalizar extends Eloquent
 {
 
-	public function matriculasPendientes($tabla){
-		$consulta = "
-			SELECT
-			"
+	public function listMatriculas($tabla, $type){
+		$consulta = "SELECT "
                   .$tabla.".matricula,
 			CONCAT_WS(' ',".$tabla.".`names`,".$tabla.".`fname`,".$tabla.".`lname`) AS namealum,
                   CONCAT_WS(' ',padres_cch.`nombres_padre`,padres_cch.`apel1_padre`,padres_cch.`apel2_padre`) AS namepapa,
@@ -15,14 +13,11 @@ class Legalizar extends Eloquent
                   padres_cch_A.`apel1_padre` AS apelmama,
                   ".$tabla.".`papa` AS idpapa, 
                   ".$tabla.".`mama` AS idmama,
-                  ".$tabla.".`matriculado` AS matriculado
-
+                  ".$tabla.".`matriculado` AS matriculado 
                   FROM `padres_cch` padres_cch
-
                   INNER JOIN `".$tabla."` ".$tabla." ON padres_cch.`id_padre` = ".$tabla.".`papa`
                   INNER JOIN `padres_cch` padres_cch_A ON ".$tabla.".`mama` = padres_cch_A.`id_padre`
                   INNER JOIN `acudiente` acudiente ON ".$tabla.".`acudiente` = acudiente.`id_acudiente`
-
                   WHERE legalizada = 0
                   GROUP BY `papa` , `mama`
                   ORDER BY apelpapa, apelmama

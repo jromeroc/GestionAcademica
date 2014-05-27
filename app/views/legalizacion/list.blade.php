@@ -18,7 +18,7 @@
 
 
 @section('content')
-	{{ Form::open(array('url' => 'legalizacion/filtro-matriculas/'.$type, 'method' => 'get','class'=>'form-inline'), array('role'=>'form'))}}
+	{{ Form::open(array('url' => 'legalizacion/filtro-matriculas/'.$type, 'method' => 'post','class'=>'form-inline'), array('role'=>'form'))}}
 
 		<!-- Año Matricula -->
 		{{ Form::label('year_matricula', 'Año Matricula', array('class' => 'control-label')) }}
@@ -69,20 +69,20 @@
 		<table class="table table-bordered table-hover">
 			<thead>
 				<tr class="info">
-					<th> Cod. Matricula 	</th>
-					<th> Primer Apellido	</th>
-					<th> Segundo Apellido	</th>
-					<th> Nombres			</th>
+					<th> Familia</th>
+					<th> Papá	</th>
+					<th> Mamá	</th>
+					<th></th>
 				</tr>
 			</thead>
 
 			<tbody>
 				@foreach ($alums as $alumns)
 				<tr>
-					<td> {{$alumns->matricula}} </td>
-					<td> {{$alumns->fname}} </td>
-					<td> {{$alumns->lname}} </td>
-					<td> {{$alumns->names}} </td>
+					<td>  </td>
+					<td>  </td>
+					<td>  </td>
+					<td>  </td>
 					<td>
 				@endforeach
 			</tbody>
