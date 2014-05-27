@@ -54,6 +54,10 @@ class LegalizarController extends BaseController
 		}
 		return View::Make('legalizacion.list')->with(array('alums'=>$alums,'anos' => $anos,'data'=>$data));
 	}
+
+	public function legalizar(){
+		return View::Make('legalizacion.legalizar');
+	}
 }
 
 ?>
