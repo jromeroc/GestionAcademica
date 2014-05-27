@@ -36,14 +36,29 @@ class LegalizarController extends BaseController
 	public function matriculasList($type)
 	{
 		$this->_typeList = $type;
-		return $this->filtroMatriculas();
+
+		$tabla = $anos = $this->_matricula->asignTabla(date('Y'));
+		
+		if(isset($data['year_matricula'])){
+			$tabla = $this->_matricula->asignTabla($data['year_matricula']);
+		}
+
+		$list = $this->_legalizar->listMatriculas($tabla,$type);
+
+		dd($list); 
+		
 	}
 
 	public function filtroMatriculas()
 	{
 		$anos = $this->_matricula->asign_year();
 		$data = Input::all();
-		$tabla = $this->_matricula->asignTabla($data['year_matricula']);
+
+		$tabla = date('Y');
+		if(isset($data['year_matricula'])){
+			return View::Make('legalizacion.list')->with(array('type' => $this->_typeList));
+		}
+
 		if (!empty($data['year_matricula']))
 		{
 			$alums = $this->_legalizar->matriculasPendientes($tabla);
@@ -52,7 +67,7 @@ class LegalizarController extends BaseController
 				$alums = $this->_legalizar->matriculasPendientesY_A($tabla,$data['name_alum']);
 			}
 		}
-		return View::Make('legalizacion.list')->with(array('alums'=>$alums, 'anos' => $anos,'data'=>$data, 'type' => $this->_typeList));
+		return View::Make('legalizacion.list')->with(array('anos' => $anos,'data'=>$data, 'type' => $this->_typeList));
 	}
 
 	public function legalizar(){
