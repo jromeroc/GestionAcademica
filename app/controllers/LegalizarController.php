@@ -52,7 +52,7 @@ class LegalizarController extends BaseController
 				$alums = $this->_legalizar->matriculasPendientesY_A($tabla,$data['name_alum']);
 			}
 		}
-		return View::Make('legalizacion.list')->with(array('alums'=>$alums,'anos' => $anos,'data'=>$data));
+		return View::Make('legalizacion.list')->with(array('alums'=>$alums, 'anos' => $anos,'data'=>$data, 'type' => $this->_typeList));
 	}
 
 	public function legalizar(){
