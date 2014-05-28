@@ -82,7 +82,7 @@
 					<td> {{$infoFamily->familia}} </td>
 					<td> {{$infoFamily->namepapa}} </td>
 					<td> {{$infoFamily->namemama}} </td>
-					<td> {{ HTML::link('/legalizacion/legalizar/'.$infoFamily->idpapa.'/'.$infoFamily->idmama,'Legalizar',array('class' => 'btn btn-primary')) }}</td>
+					<td> {{ HTML::link('/legalizacion/legalizar/'.$infoFamily->idpapa.'/'.$infoFamily->idmama.'/'.$year,'Legalizar',array('class' => 'btn btn-primary')) }}</td>
 				@endforeach
 			</tbody>
 		</table>
