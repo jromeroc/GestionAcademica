@@ -71,7 +71,7 @@ class LegalizarController extends BaseController
 		return View::Make('legalizacion.list')->with(array('anos' => $anos,'data'=>$data, 'type' => $this->_typeList));
 	}
 
-	public function legalizar($idM=132,$idP=280,$ano=2014){
+	public function legalizar($idM,$idP,$ano){
 		$tabla = $this->_matricula->asignTabla($ano);
 		$papa = $this->_legalizar->srch_padre($idP);
 		$papa = get_object_vars($papa[0]);
