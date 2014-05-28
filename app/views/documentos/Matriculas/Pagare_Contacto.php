@@ -32,7 +32,7 @@
 		            Entre los suscritos a saber <strong><?php echo $presidente ?></strong>. 
 		            mayor de edad, plenamente capaz, e identificado con cédula de ciudadanía 
 		            Nº '.$indentification.' de ciudad exp D.C., obrando como Representante Legal del 
-		            COLEGIO COLOMBO HEBREO - BOGOTA D.C., entidad sin ánimo de lucro, 
+		            <strong>COLEGIO COLOMBO HEBREO - BOGOTA D.C.</strong>, entidad sin ánimo de lucro, 
 		            calendario B, con personería jurídica vigente y reconocida mediante la 
 		            Resolución 1891 del 28 de junio de1958, expedida por el 
 		            Ministerio de justicia y reforma estatutaria según resolución 
@@ -51,7 +51,7 @@
 					95 y 201 de la Ley 115 de 1994 prescriben que la matrícula y su renovación constituyen un 
 					contrato regulado por las normas del derecho privado.
 				</p>
-
+				<br>
 				<p>
 					<strong>PRIMERA. -DEFINICIÓN DEL CONTRATO.</strong> El presente es un contrato de prestación de 
 					servicios educativos que obedece a las disposiciones constitucionales y legales donde 
@@ -64,9 +64,9 @@
 					de la Ley 115 de 1994. <strong>PARÁGRAFO</strong>. La naturaleza jurídica del presente contrato es de 
 					carácter civil según lo estipulado en el artículo 201 de la Ley 115.
 				</p>
-
+				<br>
 				<p>
-					SEGUNDA. - OBJETO DEL CONTRATO. El objeto del presente contrato es procurar la 
+					<strong>SEGUNDA. - OBJETO DEL CONTRATO.</strong> El objeto del presente contrato es procurar la 
 					formación integral del EDUCANDO mediante la recíproca complementación de esfuerzos del 
 					mismo, de los padres o acudientes y del COLEGIO con la búsqueda del pleno desarrollo de 
 					la personalidad del (la) estudiante y un rendimiento académico satisfactorio en el ejercicio del 
@@ -74,34 +74,34 @@
 					Nacional, mediante el desarrollo del Proyecto Educativo Institucional del COLEGIO y el 
 					cumplimiento de su Manual de Convivencia.
 				</p>
-
+				<br>
 				<p>
-					TERCERA -TÉRMINO. El presente contrato tiene vigencia para el período del año lectivo 
+					<strong>TERCERA -TÉRMINO.</strong> El presente contrato tiene vigencia para el período del año lectivo 
 					'.$yearLectivo.' y su ejecución será sucesiva por períodos mensuales.
 				</p>
-
+				<br>
 				<p>
-					CUARTA. -COSTO DEL SERVICIO EDUCATIVO. El presente contrato tiene una tarifa
-					educativa anual para el grado '.$grado.' de '.$valorAnual.' 
-					$ ('.$valorNumeroAnual.'), los cuales serán cancelados por los padres de familia o 
+					<strong>CUARTA. -COSTO DEL SERVICIO EDUCATIVO.</strong> El presente contrato tiene una tarifa
+					educativa anual para el grado __________ de __________
+					$ ____________________, los cuales serán cancelados por los padres de familia o 
 					acudientes de la siguiente manera: a) por concepto de matrícula la suma de 
-					'.$valorMatricula.' $ ('.$valornumeroMatricula.'), la que será 
+					____________________ $ ____________________, la que será 
 					cancelada en el momento de la firma de este contrato; b) El dinero restante por 
-					un monto de '.$valorLetrasTotPension.' pesos $ ('.$valorTotPension.'), 
+					un monto de ____________________ pesos $ ____________________, 
 					comprenderá la pensión escolar y será pagadero en diez (10) cuotas mensuales de 
-					'.$valorLetraMensualPension.' pesos $ ('.$valorPension.'), cada una de las cuales 
+					________________________ pesos $ ____________________, cada una de las cuales 
 					será pagada dentro de los cinco (5) primeros días de cada mes. Además una cuota única 
-					anual de '.$valorLetrasCuotaUnik.' $ ('.$valorCuotaUnik.'), por concepto de otros costos.
+					anual de ____________________ $ ____________________, por concepto de otros costos.
 				</p>
-
+				<br>
 				<p>
-					PARÁGRAFO PRIMERO. RETARDO EN PAGOS O INCUMPLIMIENTO: En caso de 
+					<strong>PARÁGRAFO PRIMERO. RETARDO EN PAGOS O INCUMPLIMIENTO:</strong> En caso de 
 					mora en los pagos, los padres o acudientes del (la) estudiante beneficiario(a) reconocerán 
 					intereses mensuales a la tasa máxima legal permitida sobre el valor del saldo no pagado 
 					los cuales se causarán después de la fecha límite de pago de cada cuota y deberán ser 
 					cancelados en el mes siguiente a pagar. En caso de incumplimiento en el pago de una o más 
 					de las sumas estipuladas o por terminación del presente contrato, los padres o acudientes 
-					se declaran y aceptan ser deudores del COLEGIO, quien podrá declarar insubsistentes los 
+					se declaran y aceptan ser deudores del <strong>COLEGIO,</strong> quien podrá declarar insubsistentes los 
 					plazos de esta obligación o de las cuotas que constituyan el saldo y exigir su pago inmediato 
 					judicial o extrajudicialmente en aplicación del procedimiento establecido por la institución 
 					educativa para el cobro de cartera morosa, quedando obligados los padres o acudientes 
@@ -110,24 +110,24 @@
 				</p>
 
 				<p>
-					PARÁGRAFO SEGUNDO. – CONSTITUCIÓN EN MORA: para los efectos del presente 
-					parágrafo LOS PADRES manifiestan expresamente que renuncian a cualquier trámite 
+					<strong>PARÁGRAFO SEGUNDO. – CONSTITUCIÓN EN MORA:</strong> para los efectos del presente 
+					parágrafo <strong>LOS PADRES</strong> manifiestan expresamente que renuncian a cualquier trámite 
 					extrajudicial o judicial para constituirse en mora, la cual se tendrá por constituida con el 
 					simple retardo en el pago de las obligaciones pecuniarias a su cargo y sin requerimiento 
 					alguno.
 				</p>
 
 				<p>
-					PARAGRAFO TERCERO.-AUSENCIAS TEMPORALES O DEFINITIVAS: La ausencia del 
+					<strong>PARAGRAFO TERCERO. -AUSENCIAS TEMPORALES O DEFINITIVAS:</strong> La ausencia del 
 					(la) estudiante beneficiario(a), en forma temporal o total dentro del mes por enfermedad, por 
 					causa fortuita o fuerza mayor, no dará el derecho al aquí comprometido a descontar suma 
-					alguna de lo obligado a pagar o a que el COLEGIO haga devoluciones o abonos posteriores.
+					alguna de lo obligado a pagar o a que el <strong>COLEGIO</strong> haga devoluciones o abonos posteriores.
 				</p>
-
+				<br>
 				<p>
-					QUINTA. - RESPONSABILIDAD PERSONAL. LOS PADRES de familia o acudientes
+					<strong>QUINTA. - RESPONSABILIDAD PERSONAL. LOS PADRES</strong> de familia o acudientes
 					autorizados, declaran que conocen y aceptan que las obligaciones de tipo económico 
-					que adquieren con el COLEGIO, las adquieren a título personal como responsables de 
+					que adquieren con el <strong>COLEGIO,</strong> las adquieren a título personal como responsables de 
 					la educación de su hijo(a), en el libre ejercicio del derecho a elegir para el/ella el tipo de 
 					educación de acuerdo a sus creencias y posibilidades, y por tanto no será argumento para 
 					buscar judicialmente la exoneración del pago de lo debido, impetrando el mecanismo judicial 
@@ -136,12 +136,12 @@
 					y aceptan que en caso de presentarse situaciones económicas difíciles que les impidan 
 					costear el servicio que ofrece la institución educativa, acudirán a buscar alternativas para el 
 					pago de las obligaciones económicas adquiridas con la Institución, evitando el detrimento 
-					patrimonial del COLEGIO y la consecuente afectación de la calidad del servicio educativo 
+					patrimonial del <strong>COLEGIO</strong> y la consecuente afectación de la calidad del servicio educativo 
 					que éste presta.
 				</p>
-
+				<br>
 				<p>
-					SEXTA. - DERECHOS Y OBLIGACIONES ESENCIALES DEL CONTRATO. En 
+					<strong>SEXTA. - DERECHOS Y OBLIGACIONES ESENCIALES DEL CONTRATO.</strong> En 
 					cumplimiento de las normas vigentes para el servicio educativo, el Decreto 1286 de 2005, 
 					La ley 1098 del 2006 Ley de Infancia y Adolescencia y el Decreto 1290 del 2009 sobre el 
 					Sistema de Evaluación y Promoción; los padres tienen los siguientes derechos y deberes 
@@ -149,7 +149,7 @@
 				</p>
 
 				<p>
-					DERECHOS Y OBLIGACIONES DE LOS PADRES O ACUDIENTES AUTORIZADOS. En 
+					<strong>DERECHOS Y OBLIGACIONES DE LOS PADRES O ACUDIENTES AUTORIZADOS.</strong> En 
 					cumplimiento de las normas vigentes para el servicio educativo y en concordancia con el 
 					objeto del presente contrato, los padres tienen los siguientes derechos:
 					<ol type="a">
@@ -158,11 +158,11 @@
 							integral de su hijo(a), de acuerdo con la Constitución y con la Legislación Nacional.
 						</li>
 						<li> 
-							Recibir información sobre EL COLEGIO y que este se encuentre debidamente autorizado 
+							Recibir información sobre <strong>EL COLEGIO</strong> y que este se encuentre debidamente autorizado 
 							para prestar el servicio educativo.</li>
 						<li> 
 							Conocer con anticipación o en el momento de la matrícula las características del 
-							COLEGIO, los principios que orientan el proceso educativo institucional, el manual de 
+							<strong>COLEGIO,</strong> los principios que orientan el proceso educativo institucional, el manual de 
 							convivencia, el plan de estudios, las estrategias pedagógicas básicas, el sistema de 
 							evaluación escolar y el plan de mejoramiento institucional.</li>
 						<li> 
@@ -172,17 +172,17 @@
 							Exigir el cumplimiento del PROYECTO EDUCATIVO INSTITUCIONAL.
 						</li>
 						<li> 
-							Participar en el proceso educativo que desarrolle EL COLEGIO y en especial, en la 
+							Participar en el proceso educativo que desarrolle EL <strong>COLEGIO</strong> y en especial, en la 
 							construcción, ejecución y modificación del proyecto educativo institucional.
 						</li>
 						<li> 
 							Expresar de manera respetuosa y por conducto regular sus opiniones respecto del 
 							proceso educativo de su hijo(a), y sobre el grado de idoneidad del personal docente y 
-							directivo del COLEGIO
+							directivo del <strong>COLEGIO</strong>
 						</li>
 						<li> 
 							Recibir respuesta suficiente y oportuna a sus requerimientos sobre la marcha del 
-							COLEGIO y sobre los asuntos que afecten particularmente el proceso educativo de su 
+							<strong>COLEGIO</strong> y sobre los asuntos que afecten particularmente el proceso educativo de su 
 							hijo(a).
 						</li>
 						<li>
@@ -208,7 +208,7 @@
 							instrumentos de evaluación y promoción de conformidad con el Decreto 1290 de 2009.
 						</li>
 						<li> 
-							Acompañar el proceso evaluativo del EDUCANDO.
+							Acompañar el proceso evaluativo del <strong>EDUCANDO.</strong>
 						</li>
 						<li> 
 							Recibir oportunamente respuestas a las inquietudes y solicitudes presentadas sobre el 
@@ -218,10 +218,10 @@
 				</p>
 
 				<p>
-					Así mismo LOS PADRES o acudientes autorizados contraen LAS SIGUIENTES OBLIGACIONES:
+					Así mismo <strong>LOS PADRES</strong> o acudientes autorizados contraen <strong>LAS SIGUIENTES OBLIGACIONES:</strong>
 					<ol type="a">
 						<li> 
-							Matricular al EDUCANDO en los días y horas señalados para ello en cada período 
+							Matricular al <strong>EDUCANDO</strong> en los días y horas señalados para ello en cada período 
 							académico, previo el cumplimiento de los requisitos exigidos por el COLEGIO para el 
 							caso.
 						</li>
@@ -238,40 +238,40 @@
 							comunidad educativa.
 						</li>
 						<li> 
-							Comunicar oportunamente y en primer lugar a las autoridades del COLEGIO las 
+							Comunicar oportunamente y en primer lugar a las autoridades del <strong>COLEGIO</strong> las 
 							irregularidades de que tenga conocimiento, entre otras, en relación con el maltrato 
 							infantil, abuso sexual, tráfico o consumo de drogas ilícitas
 						</li>
 						<li> 
-							Apoyar al COLEGIO en el desarrollo de las acciones que conduzcan al mejoramiento 
+							Apoyar al <strong>COLEGIO</strong> en el desarrollo de las acciones que conduzcan al mejoramiento 
 							del servicio educativo y que eleven la calidad de los aprendizajes, especialmente en la 
 							formulación y desarrollo de los planes de mejoramiento institucional
 						</li>
 						<li> 
-							Velar por el progreso del EDUCANDO beneficiario(a) en todos los órdenes, en contacto 
-							permanente con el COLEGIO. 
+							Velar por el progreso del <strong>EDUCANDO</strong> beneficiario(a) en todos los órdenes, en contacto 
+							permanente con el <strong>COLEGIO</strong>. 
 						</li>
 						<li> 
-							Cumplir estrictamente las citas y los llamados que hagan las directivas del COLEGIO.
+							Cumplir estrictamente las citas y los llamados que hagan las directivas del <strong>COLEGIO.</strong>
 						</li>
 						<li> 
 							Tener vigente la vinculación del (la) estudiante a una EPS o al seguro escolar con las 
-							especificaciones de donde ser remitido por el COLEGIO en caso de sufrir enfermedad o 
+							especificaciones de donde ser remitido por el <strong>COLEGIO</strong> en caso de sufrir enfermedad o 
 							accidente dentro de la jornada de estudio.
 						</li>
 						<li> 
-							En caso de que el EDUCANDO haya sido medicado/a, los PADRES de familia o 
+							En caso de que el <strong>EDUCANDO</strong> haya sido medicado/a, los <strong>PADRES</strong> de familia o 
 							acudientes autorizados son los responsables de suministrar el tratamiento y medicina 
 							indicada, junto con la prescripción médica. 
 						</li>
 						<li> 
 							Asumir los costos de tratamientos especializados de psicología que requiera el (la) 
-							estudiante beneficiario(a), ante la valoración que haga el COLEGIO de la necesidad de 
+							estudiante beneficiario(a), ante la valoración que haga el <strong>COLEGIO</strong> de la necesidad de 
 							tratamiento.
 						</li>
 						<li> 
 							Asumir los costos extras e imprevistos que fortuitamente resulten, el costo de los daños 
-							ocasionados a personas, cosas o a la planta física del COLEGIO por el EDUCANDO 
+							ocasionados a personas, cosas o a la planta física del <strong>COLEGIO</strong> por el <strong>EDUCANDO </strong>
 							beneficiario(a),
 						</li>
 						<li> 

@@ -209,8 +209,12 @@ Route::group(array('prefix' => 'legalizacion'), function(){
 			Route::get('/', 'LegalizarController@index');
 			Route::get('pendientes', 'LegalizarController@pendientes');
 			Route::get('legalizadas', 'LegalizarController@legalizadas');
-			Route::get('legalizaciones', 'LegalizarController@legalizar');
-			Route::get('legalizar', 'DocsMatriculaController@request_document');
+			Route::get('legalizar/{n1}/{n2}/{n3}', 'LegalizarController@legalizar')->where(array('n1'=>'[0-9]+','n2'=>'[0-9]+','n3'=>'[0-9]+'));
+			Route::get('docs/pagare', 'DocsMatriculaController@request_pagare');
+			Route::get('docs/enfermeria', 'DocsMatriculaController@request_Enfermeria');
+			Route::get('docs/contabilidad', 'DocsMatriculaController@request_Contabilidad');
+			Route::get('docs/matricula', 'DocsMatriculaController@request_Matricula');
+			
 			Route::post('filtro-matriculas/{type}', 'LegalizarController@matriculasList')->where('type','[0-9]+');
 		});
 	});
