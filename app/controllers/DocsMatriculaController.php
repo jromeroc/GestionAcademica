@@ -3,7 +3,7 @@
 class DocsMatriculaController extends Controller
 {
 
-	public function request_document($type=1){
+	public function request_document($type=2){
 		switch ($type) {
 			case 1:
 			$presidente = "Nombre presidente";
@@ -30,7 +30,7 @@ class DocsMatriculaController extends Controller
 			break;
 
 			case 2:
-				$doc = View::make('hello');
+				$doc = View::make('documentos.Matriculas.enfermeria');
 				return PDF::load($doc, 'carta', 'portrait')->show();
 			break;
 
