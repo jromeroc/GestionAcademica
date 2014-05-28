@@ -199,15 +199,19 @@ Route::group(array('prefix' => 'location'), function(){
 	});
 });
 
+/*
+	--Rutas para Legalizar
+*/
+
 Route::group(array('prefix' => 'legalizacion'), function(){
 	Route::group(array('before' => 'auth'), function(){
 		Route::group(array('before' => 'permit'), function(){
 			Route::get('/', 'LegalizarController@index');
 			Route::get('pendientes', 'LegalizarController@pendientes');
 			Route::get('legalizadas', 'LegalizarController@legalizadas');
+			Route::get('legalizaciones', 'LegalizarController@legalizar');
+			Route::get('legalizar', 'DocsMatriculaController@request_document');
 			Route::post('filtro-matriculas/{type}', 'LegalizarController@matriculasList')->where('type','[0-9]+');
-			Route::get('legalizar', 'LegalizarController@legalizar');
-			Route::get('documentos-matricula', 'DocsMatriculaController@printDocs');
 		});
 	});
 });

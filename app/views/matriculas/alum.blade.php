@@ -41,7 +41,7 @@
   		<div class="form-group col-sm-12">
       	{{ Form::label('year_matricula', 'Año Matricula', array('class' => 'col-sm-2 control-label')) }}
         <div class="col-sm-2">
-      		{{ Form::select('year_matricula', array('0000'=>'Seleccione año',$años['lastY'] => $años['last'] , $años['year'] => $años['act'],$años['nextY'] => $años['next'])); }}
+      		{{ Form::select('year_matricula', array('0000'=>'Seleccione año',$anos['lastY'] => $anos['last'] , $anos['year'] => $anos['act'],$anos['nextY'] => $anos['next'])); }}
       	</div>
       </div>
 
