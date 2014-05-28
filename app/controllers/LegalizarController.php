@@ -37,16 +37,17 @@ class LegalizarController extends BaseController
 	{
 		$this->_typeList = $type;
 
-		$tabla = $anos = $this->_matricula->asignTabla(date('Y'));
-		
+		$tabla = $this->_matricula->asignTabla(date('Y'));
+
+		$data = Input::all();
+
 		if(isset($data['year_matricula'])){
 			$tabla = $this->_matricula->asignTabla($data['year_matricula']);
 		}
 
 		$list = $this->_legalizar->listMatriculas($tabla,$type);
-
-		dd($list); 
-		
+		$anos = $this->_matricula->asign_year();
+		return View::Make('legalizacion.list')->with(array('family' => $list, 'type' => $type, 'anos' => $anos));
 	}
 
 	public function filtroMatriculas()

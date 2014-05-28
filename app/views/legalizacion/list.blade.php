@@ -50,7 +50,7 @@
       		@endif
       	</select>
 		@else
-	    {{ Form::select('year_matricula', array('0000'=>'Seleccione año',$anos['lastY'] => $anos['last'] , $anos['year'] => $anos['act'],$anos['nextY'] => $anos['next'])); }}
+	    {{ Form::select('year_matricula', array('0'=>'Seleccione año',$anos['lastY'] => $anos['last'] , $anos['year'] => $anos['act'],$anos['nextY'] => $anos['next'])); }}
 	    @endif
 	    <!-- Alumno -->
 	    {{ Form::label('name_alum', 'Alumno:') }}
@@ -64,7 +64,7 @@
 
 	{{Form::close()}}
 
-	@if(!empty($alums))
+	@if(!empty($family))
 		<br>
 		<table class="table table-bordered table-hover">
 			<thead>
@@ -77,19 +77,16 @@
 			</thead>
 
 			<tbody>
-				@foreach ($alums as $alumns)
+				@foreach ($family as $infoFamily)
 				<tr>
-					<td>  </td>
-					<td>  </td>
-					<td>  </td>
-					<td>  </td>
-					<td>
+					<td> {{$infoFamily->familia}} </td>
+					<td> {{$infoFamily->namepapa}} </td>
+					<td> {{$infoFamily->namemama}} </td>
+					<td> {{ HTML::link('/legalizacion/legalizar/'.$infoFamily->idpapa.'/'.$infoFamily->idmama,'Legalizar',array('class' => 'btn btn-primary')) }}</td>
 				@endforeach
 			</tbody>
 		</table>
-		<br>
-		{{$alums->appends(array('year_matricula' => $data['year_matricula'],'name_alum'=>$data['name_alum']))->links()}}
-		</div>
+		
 	</div>
 	@endif
 

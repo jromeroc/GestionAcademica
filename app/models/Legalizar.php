@@ -10,8 +10,7 @@ class Legalizar extends Eloquent
                   $addAlum = "AND $tabla = $idalum"; 
             }
 
-		echo $consulta = "SELECT "
-                  .$tabla.".matricula,
+		$consulta = "SELECT 
 			CONCAT_WS(' ',padres_cch.`apel1_padre`,padres_cch_A.`apel1_padre`) AS familia,
                   CONCAT_WS(' ',padres_cch.`nombres_padre`,padres_cch.`apel1_padre`,padres_cch.`apel2_padre`) AS namepapa,
                   CONCAT_WS(' ',padres_cch_A.`nombres_padre`,padres_cch_A.`apel1_padre`,padres_cch_A.`apel2_padre`) AS namemama,
