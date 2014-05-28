@@ -50,27 +50,6 @@ class LegalizarController extends BaseController
 		return View::Make('legalizacion.list')->with(array('family' => $list, 'type' => $type, 'anos' => $anos));
 	}
 
-	public function filtroMatriculas()
-	{
-		$anos = $this->_matricula->asign_year();
-		$data = Input::all();
-
-		$tabla = date('Y');
-		if(isset($data['year_matricula'])){
-			return View::Make('legalizacion.list')->with(array('type' => $this->_typeList));
-		}
-
-		if (!empty($data['year_matricula']))
-		{
-			$alums = $this->_legalizar->matriculasPendientes($tabla);
-			if (!empty($data['name_alum']))
-			{
-				$alums = $this->_legalizar->matriculasPendientesY_A($tabla,$data['name_alum']);
-			}
-		}
-		return View::Make('legalizacion.list')->with(array('anos' => $anos,'data'=>$data, 'type' => $this->_typeList));
-	}
-
 	public function legalizar(){
 		return View::Make('legalizacion.legalizar');
 	}
