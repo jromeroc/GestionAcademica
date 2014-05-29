@@ -176,6 +176,18 @@
       </div>  
     </div>
 
+    <!-- Direccion -->
+    <div class="form-group col-sm-12">
+      {{ Form::label('direccion', 'Direccion', array('class' => 'col-sm-2 control-label')) }}
+      <div class="col-sm-2">
+        @if(!empty($papa))
+        {{ Form::Text('direccion', $papa['direccion'], array('placeholder' => 'Direccion de residencia ', 'class' => 'col-sm-2 form-control')) }}
+        @else
+        {{ Form::Text('direccion', null, array('placeholder' => 'Direccion de residencia ', 'class' => 'col-sm-2 form-control')) }}
+        @endif
+      </div>  
+    </div>
+
     <!-- Tel Fijo -->
     <div class="form-group col-sm-12">
         {{ Form::label('fijoP', 'Telefono', array('class' => 'col-sm-2 control-label')) }}

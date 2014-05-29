@@ -2,11 +2,21 @@
 
 class DocsMatriculaController extends Controller
 {
+	public $_legalizar;
 
-	public function request_pagare(){
+
+
+	public function __construct(){
+		$this->_legalizar = new Legalizar();
+	}
+
+	public function request_pagare($idP,$idM){
+		$padre = $this->_legalizar->srchDataPadre($idP);
+		$padre = get_object_vars($padre[0]);
+		$madre = $this->_legalizar->srchDataPadre($idM);
+		$madre = get_object_vars($madre[0]);
 		$presidente = "Nombre presidente";
 		$indentification = "Num doc presidente";
-
 		$signoFather = 'Nombre papa';
 		$signoMother = 'Nombre mama';
 		$nameSons = 'Nombres de los hijos';// preguntar si es uno o todos los hijos
@@ -23,7 +33,7 @@ class DocsMatriculaController extends Controller
 		$valorPension = 'mensual pension';
 		$valorLetrasCuotaUnik = 'unikca';
 		$valorCuotaUnik = 'valo Unikkkk';
-		$doc = View::Make('documentos.Matriculas.Pagare_Contacto')->with(array('presidente'=>$presidente));
+		$doc = View::Make('documentos.Matriculas.Pagare_Contacto')->with(array('papa'=>$padre,'mama'=>$madre,'presidente'=>$presidente));
 		return PDF::load($doc, 'carta', 'portrait')->show();
 	}
 

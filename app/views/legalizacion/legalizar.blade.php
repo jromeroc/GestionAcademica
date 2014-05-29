@@ -81,7 +81,7 @@
         	<br>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-        	{{ HTML::link('legalizacion/docs/pagare', 'Pagare y Contrato', array('class'=>'btn btn-primary col-sm-2','target'=>"_blank"));}}
+        	{{ HTML::link('legalizacion/docs/pagare/'.$papa['id'].'/'.$mama['id'], 'Pagare y Contrato', array('class'=>'btn btn-primary col-sm-2','target'=>"_blank"));}}
         	<div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
         		
         	</div>

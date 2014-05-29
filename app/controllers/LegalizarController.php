@@ -46,7 +46,6 @@ class LegalizarController extends BaseController
 			$year = $data['year_matricula'];
 			$tabla = $this->_matricula->asignTabla($year);
 		}
-
 		$list = $this->_legalizar->listMatriculas($tabla,$type);
 		$anos = $this->_matricula->asign_year();
 		return View::Make('legalizacion.list')->with(array('family' => $list, 'type' => $type, 'anos' => $anos, 'year' => $year));
