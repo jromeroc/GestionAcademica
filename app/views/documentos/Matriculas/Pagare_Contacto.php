@@ -2,23 +2,47 @@
 			<head>
 				<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 				<style>
+					body{
+						font-size: 14px
+					}
 					p{
 						text-align : justify;
-						margin: 5px 30px;
+						margin: 10px 30px;
 					}
 					li{
 						text-align : justify;
 						margin: 5px 30px;
 					}
-
-					table
+					.paragrafo{
+						margin-left: 50px; 
+					}
+					.padres{
+						
+						width:100%;
+						margin: 65px;
+					}
+					.padres td {
+						padding: 2px;
+					}
+					.firma{
+						width:200px;
+						border-top:solid black;
+					}
+					.firmas{
+						width:100%;
+						margin:920px 50px 20px;
+					}
+					.cch{
+						width:50%;
+						margin: 50px;
+					}
 				</style>
 			</head>
 		
 			<body>
 			<table>
 	   			<tr>
-	      			<td rowspan="3"><img src="..\..\public\cch\CCH.jpg"></td><td><h3>COLEGIO COLOMBO HEBREO</h3></td>
+	      			<td rowspan="3"><img src="..\..\public\cch\CCH.jpg"></td><td><h3><strong>COLEGIO</strong> COLOMBO HEBREO</h3></td>
 	   			</tr>
 			    <tr>
 			      <th>PROCESO DE MATRICULA</th>
@@ -32,7 +56,7 @@
 		            Entre los suscritos a saber <strong><?php echo $presidente ?></strong>. 
 		            mayor de edad, plenamente capaz, e identificado con cédula de ciudadanía 
 		            Nº '.$indentification.' de ciudad exp D.C., obrando como Representante Legal del 
-		            <strong>COLEGIO COLOMBO HEBREO - BOGOTA D.C.</strong>, entidad sin ánimo de lucro, 
+		            <strong>COLEGIO COLOMBO HEBREO - BOGOTÁ D.C.</strong>, entidad sin ánimo de lucro, 
 		            calendario B, con personería jurídica vigente y reconocida mediante la 
 		            Resolución 1891 del 28 de junio de1958, expedida por el 
 		            Ministerio de justicia y reforma estatutaria según resolución 
@@ -51,12 +75,12 @@
 					95 y 201 de la Ley 115 de 1994 prescriben que la matrícula y su renovación constituyen un 
 					contrato regulado por las normas del derecho privado.
 				</p>
-				<br>
+				
 				<p>
 					<strong>PRIMERA. -DEFINICIÓN DEL CONTRATO.</strong> El presente es un contrato de prestación de 
 					servicios educativos que obedece a las disposiciones constitucionales y legales donde 
 					se establece una responsabilidad compartida, en la cual concurren obligaciones de los 
-					educadores, los padres de familia y los educandos; obligaciones que son correlativas y 
+					educadores, los <strong>PADRES</strong> de familia y los <strong>EDUCANDO</strong>s; obligaciones que son correlativas y 
 					esenciales a la consecución del objeto y de los fines comunes, pues la educación es un 
 					derecho- deber donde la exigencia de un derecho trae aparejado el cumplimiento de un 
 					deber. El presente contrato formaliza la vinculación del (la) <strong>EDUCANDO</strong> al servicio educativo 
@@ -64,22 +88,22 @@
 					de la Ley 115 de 1994. <strong>PARÁGRAFO</strong>. La naturaleza jurídica del presente contrato es de 
 					carácter civil según lo estipulado en el artículo 201 de la Ley 115.
 				</p>
-				<br>
+				
 				<p>
 					<strong>SEGUNDA. - OBJETO DEL CONTRATO.</strong> El objeto del presente contrato es procurar la 
-					formación integral del EDUCANDO mediante la recíproca complementación de esfuerzos del 
-					mismo, de los padres o acudientes y del COLEGIO con la búsqueda del pleno desarrollo de 
+					formación integral del <strong>EDUCANDO</strong> mediante la recíproca complementación de esfuerzos del 
+					mismo, de los padres o acudientes y del <strong>COLEGIO</strong> con la búsqueda del pleno desarrollo de 
 					la personalidad del (la) estudiante y un rendimiento académico satisfactorio en el ejercicio del 
 					programa curricular correspondiente al grado ____, aprobado por el Ministerio de Educación 
-					Nacional, mediante el desarrollo del Proyecto Educativo Institucional del COLEGIO y el 
+					Nacional, mediante el desarrollo del Proyecto Educativo Institucional del <strong>COLEGIO</strong> y el 
 					cumplimiento de su Manual de Convivencia.
 				</p>
-				<br>
+				
 				<p>
 					<strong>TERCERA -TÉRMINO.</strong> El presente contrato tiene vigencia para el período del año lectivo 
 					'.$yearLectivo.' y su ejecución será sucesiva por períodos mensuales.
 				</p>
-				<br>
+				
 				<p>
 					<strong>CUARTA. -COSTO DEL SERVICIO EDUCATIVO.</strong> El presente contrato tiene una tarifa
 					educativa anual para el grado __________ de __________
@@ -93,15 +117,15 @@
 					será pagada dentro de los cinco (5) primeros días de cada mes. Además una cuota única 
 					anual de ____________________ $ ____________________, por concepto de otros costos.
 				</p>
-				<br>
-				<p>
+				
+				<p class="paragrafo">
 					<strong>PARÁGRAFO PRIMERO. RETARDO EN PAGOS O INCUMPLIMIENTO:</strong> En caso de 
 					mora en los pagos, los padres o acudientes del (la) estudiante beneficiario(a) reconocerán 
 					intereses mensuales a la tasa máxima legal permitida sobre el valor del saldo no pagado 
 					los cuales se causarán después de la fecha límite de pago de cada cuota y deberán ser 
 					cancelados en el mes siguiente a pagar. En caso de incumplimiento en el pago de una o más 
 					de las sumas estipuladas o por terminación del presente contrato, los padres o acudientes 
-					se declaran y aceptan ser deudores del <strong>COLEGIO,</strong> quien podrá declarar insubsistentes los 
+					se declaran y aceptan ser deudores del <strong>COLEGIO</strong>,</strong> quien podrá declarar insubsistentes los 
 					plazos de esta obligación o de las cuotas que constituyan el saldo y exigir su pago inmediato 
 					judicial o extrajudicialmente en aplicación del procedimiento establecido por la institución 
 					educativa para el cobro de cartera morosa, quedando obligados los padres o acudientes 
@@ -109,7 +133,7 @@
 					así como a los honorarios legales correspondientes.
 				</p>
 
-				<p>
+				<p class="paragrafo">
 					<strong>PARÁGRAFO SEGUNDO. – CONSTITUCIÓN EN MORA:</strong> para los efectos del presente 
 					parágrafo <strong>LOS PADRES</strong> manifiestan expresamente que renuncian a cualquier trámite 
 					extrajudicial o judicial para constituirse en mora, la cual se tendrá por constituida con el 
@@ -117,13 +141,13 @@
 					alguno.
 				</p>
 
-				<p>
+				<p class="paragrafo">
 					<strong>PARAGRAFO TERCERO. -AUSENCIAS TEMPORALES O DEFINITIVAS:</strong> La ausencia del 
 					(la) estudiante beneficiario(a), en forma temporal o total dentro del mes por enfermedad, por 
 					causa fortuita o fuerza mayor, no dará el derecho al aquí comprometido a descontar suma 
 					alguna de lo obligado a pagar o a que el <strong>COLEGIO</strong> haga devoluciones o abonos posteriores.
 				</p>
-				<br>
+				
 				<p>
 					<strong>QUINTA. - RESPONSABILIDAD PERSONAL. LOS PADRES</strong> de familia o acudientes
 					autorizados, declaran que conocen y aceptan que las obligaciones de tipo económico 
@@ -139,7 +163,7 @@
 					patrimonial del <strong>COLEGIO</strong> y la consecuente afectación de la calidad del servicio educativo 
 					que éste presta.
 				</p>
-				<br>
+				
 				<p>
 					<strong>SEXTA. - DERECHOS Y OBLIGACIONES ESENCIALES DEL CONTRATO.</strong> En 
 					cumplimiento de las normas vigentes para el servicio educativo, el Decreto 1286 de 2005, 
@@ -149,7 +173,7 @@
 				</p>
 
 				<p>
-					<strong>DERECHOS Y OBLIGACIONES DE LOS PADRES O ACUDIENTES AUTORIZADOS.</strong> En 
+					DERECHOS Y OBLIGACIONES DE LOS <strong>PADRES</strong> O ACUDIENTES AUTORIZADOS. En 
 					cumplimiento de las normas vigentes para el servicio educativo y en concordancia con el 
 					objeto del presente contrato, los padres tienen los siguientes derechos:
 					<ol type="a">
@@ -172,7 +196,7 @@
 							Exigir el cumplimiento del PROYECTO EDUCATIVO INSTITUCIONAL.
 						</li>
 						<li> 
-							Participar en el proceso educativo que desarrolle EL <strong>COLEGIO</strong> y en especial, en la 
+							Participar en el proceso educativo que desarrolle <strong>EL COLEGIO</strong> y en especial, en la 
 							construcción, ejecución y modificación del proyecto educativo institucional.
 						</li>
 						<li> 
@@ -208,7 +232,7 @@
 							instrumentos de evaluación y promoción de conformidad con el Decreto 1290 de 2009.
 						</li>
 						<li> 
-							Acompañar el proceso evaluativo del <strong>EDUCANDO.</strong>
+							Acompañar el proceso evaluativo del <strong>EDUCANDO</strong>.</strong>
 						</li>
 						<li> 
 							Recibir oportunamente respuestas a las inquietudes y solicitudes presentadas sobre el 
@@ -222,7 +246,7 @@
 					<ol type="a">
 						<li> 
 							Matricular al <strong>EDUCANDO</strong> en los días y horas señalados para ello en cada período 
-							académico, previo el cumplimiento de los requisitos exigidos por el COLEGIO para el 
+							académico, previo el cumplimiento de los requisitos exigidos por el <strong>COLEGIO</strong> para el 
 							caso.
 						</li>
 						<li> 
@@ -252,7 +276,7 @@
 							permanente con el <strong>COLEGIO</strong>. 
 						</li>
 						<li> 
-							Cumplir estrictamente las citas y los llamados que hagan las directivas del <strong>COLEGIO.</strong>
+							Cumplir estrictamente las citas y los llamados que hagan las directivas del <strong>COLEGIO</strong>.</strong>
 						</li>
 						<li> 
 							Tener vigente la vinculación del (la) estudiante a una EPS o al seguro escolar con las 
@@ -271,17 +295,17 @@
 						</li>
 						<li> 
 							Asumir los costos extras e imprevistos que fortuitamente resulten, el costo de los daños 
-							ocasionados a personas, cosas o a la planta física del <strong>COLEGIO</strong> por el <strong>EDUCANDO </strong>
+							ocasionados a personas, cosas o a la planta física del <strong>COLEGIO</strong> por el <strong>EDUCANDO</strong> </strong>
 							beneficiario(a),
 						</li>
 						<li> 
 							Asumir el veinte por ciento 20% del importe del cheque no pagado y librado por los 
-							PADRES a favor del COLEGIO por concepto de sanción comercial de acuerdo a las 
+							<strong>PADRES</strong> a favor del <strong>COLEGIO</strong> por concepto de sanción comercial de acuerdo a las 
 							condiciones del artículo 731 del código de comercio.
 						</li>
 						<li> 
 							Asumir las sumas de dinero correspondientes a talleres y cursos extracurriculares y 
-							demás actividades las cuales los PADRES autoricen, deban pagar y que no comprenden 
+							demás actividades las cuales los <strong>PADRES</strong> autoricen, deban pagar y que no comprenden 
 							el valor del presente contrato. .
 						</li>
 						<li> 
@@ -319,36 +343,36 @@
 				</p>
 
 				<p>
-					DERECHOS Y OBLIGACIONES DEL EDUCANDO BENEFICIARIO(A). En cumplimiento de 
+					<strong>DERECHOS Y OBLIGACIONES DEL EDUCANDO BENEFICIARIO(A).</strong> En cumplimiento de 
 					las normas vigentes para el servicio educativo y en concordancia con el objeto del presente 
 					contrato, el (la) estudiante beneficiario(a) tiene los derechos y deberes contemplados en el 
 					Manual de Convivencia.
 				</p>
 
 				<p>
-					DERECHOS Y OBLIGACIONES DEL COLEGIO. En cumplimiento de las normas vigentes
-					para el servicio educativo y en concordancia con el objeto del presente contrato, el COLEGIO 
+					<strong>DERECHOS Y OBLIGACIONES DEL COLEGIO</strong>. En cumplimiento de las normas vigentes
+					para el servicio educativo y en concordancia con el objeto del presente contrato, el <strong>COLEGIO</strong> 
 					tiene los siguientes derechos:
 
 					<ol type="a">
 						<li>
 							Exigir el cumplimiento del Manual de Convivencia, de los procesos, procedimientos 
-							y reglamentos internos por parte de los PADRES DE FAMILIA, ACUDIENTES 
+							y reglamentos internos por parte de los <strong>PADRES</strong> DE FAMILIA, ACUDIENTES 
 							AUTORIZADOS Y ESTUDIANTES y de los deberes que derivan del servicio.
 						</li>
 						<li>
-							Exigir a los PADRES DE FAMILIA Y ACUDIENTES AUTORIZADOS el cumplimiento de 
-							sus obligaciones como responsables del EDUCANDO.
+							Exigir a los <strong>PADRES</strong> DE FAMILIA Y ACUDIENTES AUTORIZADOS el cumplimiento de 
+							sus obligaciones como responsables del <strong>EDUCANDO</strong>.
 						</li>
 						<li>
 							Recuperar los costos incurridos en los servicios y a exigir y lograr el pago de los derechos 
 							correspondientes a matrícula, pensión y otros cobros, por todos los medios lícitos a su 
 							alcance, quedando facultado para realizar cobro prejurídico y jurídico, con fundamento 
-							en el contrato y haciendo uso del título valor pagaré, firmado por los PADRES Y/O 
+							en el contrato y haciendo uso del título valor pagaré, firmado por los <strong>PADRES</strong> Y/O 
 							ACUDIENTES AUTORIZADOS simultáneamente con este documento.
 						</li>
 						<li>
-							Teniendo en cuenta que el COLEGIO es una institución educativa de carácter PRIVADO 
+							Teniendo en cuenta que el <strong>COLEGIO</strong> es una institución educativa de carácter PRIVADO 
 							no obstante prestar el SERVICIO PÚBLICO DE EDUCACIÓN tendrá derecho a exigir 
 							la efectividad de sus derechos e intereses y el respeto por el equilibrio y la ecuación 
 							Contractual.
@@ -358,8 +382,10 @@
 							según estipulaciones del Reglamento o Manual de Convivencia y por razones de 
 							comportamiento, rendimiento, por el no pago en las obligaciones contractuales a que da 
 							lugar el presente contrato o por el incumplimiento del mismo.
-							Así mismo el COLEGIO se obliga a:
-
+						</li>
+						<p>	
+							Así mismo el <strong>COLEGIO</strong> se obliga a:
+						</p>
 							<ol type="a">
 								<li>
 									Ofrecer una educación integral de acuerdo con los fines de la educación colombiana, 
@@ -382,7 +408,7 @@
 				</p>
 
 				<p>
-					SÉPTIMA- CAUSALES DE TERMINACIÓN DEL CONTRATO. El presente contrato, 
+					<strong>SÉPTIMA- CAUSALES DE TERMINACIÓN DEL CONTRATO.</strong> El presente contrato, 
 					terminará además de las razones contempladas en el PROYECTO EDUCATIVO 
 					INSTITUCIONAL y el Reglamento o Manual de Convivencia por una de las siguientes 
 					causas:
@@ -398,7 +424,7 @@
 							Por muerte del(la) estudiante o fuerza mayor
 						</li>
 						<li>	
-							Por suspensión de actividades del COLEGIO COLOMBO HEBREO por más de sesenta 
+							Por suspensión de actividades del <strong>COLEGIO COLOMBO HEBREO</strong> por más de sesenta 
 							(60) días o por clausura definitiva del establecimiento educativo
 						</li>
 						<li>	
@@ -422,44 +448,44 @@
 					</ol>
 				</p>
 
-				<p>
-					PARÁGRAFO: En caso de retiro de un EDUCANDO antes de finalizar el ciclo académico.
-					EL COLEGIO no está obligado a devolver dinero por concepto de matrícula. En cuanto a 
-					pensiones pagadas por anticipado EL COLEGIO devolverá el dinero correspondiente a los 
+				<p class="paragrafo">
+					<strong>PARÁGRAFO:</strong> En caso de retiro de un <strong>EDUCANDO</strong> antes de finalizar el ciclo académico.
+					EL <strong>COLEGIO</strong> no está obligado a devolver dinero por concepto de matrícula. En cuanto a 
+					pensiones pagadas por anticipado EL <strong>COLEGIO</strong> devolverá el dinero correspondiente a los 
 					meses no tomados y según lo estipulado en el presente contrato.
 				</p>
 
 				<p>
-					OCTAVA.- PRORROGA Para el presente contrato no operará prórroga automática del 
+					<strong>OCTAVA. - PRORROGA</strong> Para el presente contrato no operará prórroga automática del 
 					mismo, es independiente para cada programa curricular la celebración de un nuevo contrato 
-					y el COLEGIO se reserva el derecho a celebrar un nuevo contrato a la terminación de cada 
+					y el <strong>COLEGIO</strong> se reserva el derecho a celebrar un nuevo contrato a la terminación de cada 
 					año lectivo de acuerdo a la evaluación que se haga del desempeño académico y disciplinario 
 					de cada uno(a) de los (las) estudiantes, y del cumplimiento de las responsabilidades 
 					contraídas por los padres y acudientes debidamente autorizados.
 				</p>
 
 				<p>
-					NOVENA. - AUTORIZACIÓN. Los PADRES Y/O ACUDIENTES autorizan, expresamente 
-					al COLEGIO, para que con fines estadísticos de control, supervisión y de información 
+					<strong>NOVENA. - AUTORIZACIÓN.</strong> Los <strong>PADRES</strong> Y/O ACUDIENTES autorizan, expresamente 
+					al <strong>COLEGIO</strong>, para que con fines estadísticos de control, supervisión y de información 
 					comercial, consulte, reporte, procese y divulgue a la entidad que maneje bases de datos con 
 					los mismos fines, el nacimiento, manejo, modificación y extinción de obligaciones contraídas 
-					con anterioridad o a través del presente contrato con el COLEGIO o derivadas del mismo, 
+					con anterioridad o a través del presente contrato con el <strong>COLEGIO</strong> o derivadas del mismo, 
 					con los sectores comercial y financiero.
 				</p>
 
 				<p>
-					DECIMA. -CERTIFICADOS Y CONSTANCIAS. Los padres de familia o acudientes, podrán
-					solicitar al COLEGIO que se expidan certificados y constancias sobre el (la) estudiante 
-					beneficiario(a), lo cual se hará por el COLEGIO dentro de los dos (2) días siguientes a la 
+					<strong>DECIMA. -CERTIFICADOS Y CONSTANCIAS.</strong> Los padres de familia o acudientes, podrán
+					solicitar al <strong>COLEGIO</strong> que se expidan certificados y constancias sobre el (la) estudiante 
+					beneficiario(a), lo cual se hará por el <strong>COLEGIO</strong> dentro de los dos (2) días siguientes a la 
 					solicitud, siempre y cuando se paguen los derechos de expedición de los mismos y no exista 
 					retardo o incumplimiento en el pago de los costos educativos pactados en este contrato. 
 					(Sentencia SU 624 de 1999). En el evento de que termine el año lectivo y los padres de
-					familia o acudiente no están a Paz y Salvo por todo con el COLEGIO, éste puede negarse a 
+					familia o acudiente no están a Paz y Salvo por todo con el <strong>COLEGIO</strong>, éste puede negarse a 
 					la renovación del contrato.
 				</p>
 
 				<p>
-					DÉCIMA PRIMERA. – DECLARACIONES: LOS PADRES o acudientes nos declaramos 
+					<strong>DÉCIMA PRIMERA. – DECLARACIONES: Los padres</strong> o acudientes nos declaramos 
 					en capacidad de pago y aceptamos las tarifas establecidas, así mismo declaramos que 
 					aceptamos las directrices generales planteadas dentro del PEI del COLEGIO donde se 
 					proyecta como una de las instituciones con más alta calidad a nivel nacional que está en 
@@ -470,7 +496,7 @@
 				</p>
 
 				<p>
-					DECIMA SEGUNDA.- MERITO EJECUTIVO. Para todos los efectos legales el presente
+					<strong>DECIMA SEGUNDA. - MERITO EJECUTIVO.</strong> Para todos los efectos legales el presente
 					contrato presta mérito ejecutivo con su sola presentación.
 				</p>
 
@@ -479,8 +505,66 @@
 					____________________ de ________________, en dos ejemplares del mismo tenor.
 				</p>
 
-				<table>
+				<table class="padres">
+					<tr>
+						<td class="firma"><strong>PADRE O ACUDIENTE</strong></td>
+						<td></td>
+						<td class="firma"><strong>MADRE O ACUDIENTE</strong></td>
+					</tr>
+					<tr>
+						<td>Padre falso 123</td>
+						<td></td>
+						<td>Padre falso 456</td>
+					</tr>
+					<tr>
+						<td><strong>C.C</strong></td>
+						<td></td>
+						<td><strong>C.C</strong></td>
+					</tr>
 
+					<tr>
+						<td><strong>DIRECCIÓN</strong></td>
+						<td></td>
+						<td><strong>DIRECCIÓN</strong></td>
+					</tr>
+
+					<tr>
+						<td><strong>TELÉFONO</strong></td>
+						<td></td>
+						<td><strong>TELÉFONO</strong></td>
+					</tr>
+
+					<tr>
+						<td><strong>CELULAR</strong></td>
+						<td></td>
+						<td><strong>CELULAR</strong></td>
+					</tr>
+
+					<tr>
+						<td><strong>E-MAIL</strong></td>
+						<td></td>
+						<td><strong>E-MAIL</strong></td>
+					</tr>
+
+				</table>
+
+
+
+				<table class="firmas">
+				<tr>
+					<td class="firma"><strong>NOMBRE ASESOR DE MATRICULA</strong></td>
+					<td></td>	
+					<td class="firma"><strong>ESTUDIANTE</strong></td>
+				</tr>
+				</table>
+
+				<table class="cch">
+				<tr>
+					<td class="firma"><strong>COLEGIO COLOMBO HEBREO</strong></td>
+				</tr>
+				<tr>
+					<td><strong>REPRESENTANTE LEGAL</strong></td>
+				</tr>
 				</table>
 	        </body>
         </html>
