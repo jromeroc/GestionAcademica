@@ -210,8 +210,8 @@ Route::group(array('prefix' => 'legalizacion'), function(){
 			Route::get('pendientes', 'LegalizarController@pendientes');
 			Route::get('legalizadas', 'LegalizarController@legalizadas');
 			Route::get('legalizar/{n1}/{n2}/{n3}', 'LegalizarController@legalizar')->where(array('n1'=>'[0-9]+','n2'=>'[0-9]+','n3'=>'[0-9]+'));
-			Route::get('docs/contrato/{n1}/{n2}', 'DocsMatriculaController@request_pagare')->where(array('n1'=>'[0-9]+','n2'=>'[0-9]+'));
-			Route::get('docs/pagare/{n1}/{n2}', 'DocsMatriculaController@request_pagare')->where(array('n1'=>'[0-9]+','n2'=>'[0-9]+'));
+			Route::get('docs/contrato/{n1}/{n2}/{n3}', 'DocsMatriculaController@request_contrato')->where(array('n1'=>'[0-9]+','n2'=>'[0-9]+','n3'=>'[0-9]+'));
+			Route::get('docs/pagare/{n1}/{n2}/{n3}', 'DocsMatriculaController@request_pagare')->where(array('n1'=>'[0-9]+','n2'=>'[0-9]+','n3'=>'[0-9]+'));
 			Route::get('docs/enfermeria', 'DocsMatriculaController@request_Enfermeria');
 			Route::get('docs/contabilidad', 'DocsMatriculaController@request_Contabilidad');
 			Route::get('docs/matricula', 'DocsMatriculaController@request_Matricula');

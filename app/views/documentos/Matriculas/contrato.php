@@ -49,7 +49,7 @@
 				margin: 2px 0px;
 			}
 		</style>
-		<title> Doc. Pagare </title>
+		<title> Doc. Contrato </title>
 	</head>
 		
 	<body>

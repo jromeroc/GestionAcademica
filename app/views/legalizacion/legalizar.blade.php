@@ -81,19 +81,30 @@
         	<br>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-        	{{ HTML::link('legalizacion/docs/pagare/'.$papa['id'].'/'.$mama['id'], 'Pagare y Contrato', array('class'=>'btn btn-primary col-sm-2','target'=>"_blank"));}}
         	<div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
-        		
-        	</div>
-        	{{ HTML::link('legalizacion/docs/enfermeria', 'Enfermeria', array('class'=>'btn btn-primary col-sm-2','target'=>"_blank"));}}
-        	<div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
-        		
-        	</div>
-        	{{ HTML::link('legalizacion/docs/contabilidad', 'Contabilidad', array('class'=>'btn btn-primary col-sm-2','target'=>"_blank"));}}
-        	<div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
-        		
-        	</div>
-        	{{ HTML::link('legalizacion/docs/matricula', 'Matricula', array('class'=>'btn btn-primary col-sm-2','target'=>"_blank"));}}
+                
+            </div>
+            {{ HTML::link('legalizacion/docs/pagare/'.$papa['id'].'/'.$mama['id'].'/2', 'Pagare', array('class'=>'btn btn-primary col-sm-1','target'=>"_blank"));}}
+            <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+
+            </div>
+            
+            {{ HTML::link('legalizacion/docs/contrato/'.$papa['id'].'/'.$mama['id'].'/0', 'Contrato', array('class'=>'btn btn-primary col-sm-1','target'=>"_blank"));}}
+            <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+
+            </div>
+            
+        	{{ HTML::link('legalizacion/docs/enfermeria'.$papa['id'].'/'.$mama['id'].'/0', 'Enfermeria', array('class'=>'btn btn-primary col-sm-1','target'=>"_blank"));}}
+            <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+
+            </div>
+        	
+        	{{ HTML::link('legalizacion/docs/contabilidad'.$papa['id'].'/'.$mama['id'].'/0', 'Contabilidad', array('class'=>'btn btn-primary col-sm-2','target'=>"_blank"));}}
+            <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+
+            </div>
+        	
+        	{{ HTML::link('legalizacion/docs/matricula', 'Matricula', array('class'=>'btn btn-primary col-sm-1','target'=>"_blank"));}}
         </div>
 
 @stop
