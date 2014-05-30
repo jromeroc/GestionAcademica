@@ -10,7 +10,7 @@ class DocsMatriculaController extends Controller
 		$this->_legalizar = new Legalizar();
 	}
 
-	public function request_pagare($idP,$idM){
+	public function requestContrato($idP,$idM){
 
 		$pdf = App::make('dompdf');
 		$padre = $this->_legalizar->srchDataPadre($idP);
@@ -26,7 +26,7 @@ class DocsMatriculaController extends Controller
 		$gradoALumno = 'grado alumno';
 		$grado = 'grado';
 		
-		$doc = View::Make('documentos.Matriculas.Pagare_Contacto')->with(array('papa'=>$padre,'mama'=>$madre,'presidente'=>$presidente));
+		$doc = View::Make('documentos.Matriculas.contrato')->with(array('papa'=>$padre,'mama'=>$madre,'presidente'=>$presidente));
 		$pdf->loadHTML($doc)->setPaper('a4');
 		return $pdf->stream();
 	}
@@ -34,7 +34,8 @@ class DocsMatriculaController extends Controller
 	public function request_Enfermeria(){
 		$info = array('dato'=>'1');
 		$doc = View::Make('documentos.Matriculas.enfermeria')->with(array('dato'=>$dato));
-		return PDF::load($doc, 'carta', 'portrait')->show();
+		$pdf->loadHTML($doc)->setPaper('a4');
+		return $pdf->stream();
 	}
 
 	public function request_Contabilidad(){
