@@ -60,7 +60,7 @@
 			{{ Form::Text('name_alum', null, array('placeholder' => 'Nombre Alumno', 'class' => 'form-control')) }}
 		@endif
 		<!-- Submit -->
-		{{form::submit('Buscar Alumnos',array('class'=>'btn btn-success'))}}
+		{{form::submit('Buscar Familia',array('class'=>'btn btn-success'))}}
 
 	{{Form::close()}}
 

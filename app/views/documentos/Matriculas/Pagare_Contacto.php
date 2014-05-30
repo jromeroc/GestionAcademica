@@ -11,13 +11,16 @@
 			}
 			li{
 				text-align : justify;
-				margin: 5px 30px;
+				margin: 5px ,30px;
+			}
+			th{
+				padding: 2px;
 			}
 			.paragrafo{
 				margin-left: 50px; 
 			}
 			.padres{		
-				width:100%;
+				width: 100%;
 				margin: 65px;
 			}
 			.padres td {
@@ -29,7 +32,7 @@
 			}
 			.firmas{
 				width:100%;
-				margin:920px 50px 20px;
+				margin:90px 50px 20px;
 			}
 			.cch{
 				width:50%;
@@ -37,25 +40,27 @@
 			}
 			
 			#img{
-				width: 100px;
-				height: 80px;
+				width: 250px;
+				height: 130px;
+			}
+			.head{
+				font-size: 15px;
+				text-align : left;
+				margin: 2px 0px;
 			}
 		</style>
 		<title> Doc. Pagare </title>
 	</head>
 		
 	<body>
-		<table class="encabezado" border="1">
+		<table class="encabezado">
    			<tr>
-      			<th rowspan="3"><img id="img" src=""></th><th><h3>COLEGIO COLOMBO HEBREO</h3></th>
-   			</tr>
-
-		    <tr>
-		      <th>PROCESO DE MATRICULA</th>
-		    </tr>
-
-		    <tr>
-		      <th>CONTRATO DE PRESTACION DE SERVICIOS EDUCATIVOS</th>
+      			<td style="width:250px"><img id="img" src="http://colhebreo.dev/cch/CCH.jpg"/></td>
+		    	<th>
+		    		<p class="head">COLEGIO COLOMBO HEBREO</p>
+    				<p class="head">PROCESO DE MATRICULA</p>
+    				<p class="head">CONTRATO DE PRESTACION DE SERVICIOS EDUCATIVOS</p>
+    			</th>
 		    </tr>
 		</table> 
 

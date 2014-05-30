@@ -11,6 +11,8 @@ class DocsMatriculaController extends Controller
 	}
 
 	public function request_pagare($idP,$idM){
+
+		$pdf = App::make('dompdf');
 		$padre = $this->_legalizar->srchDataPadre($idP);
 		$padre = get_object_vars($padre[0]);
 		$madre = $this->_legalizar->srchDataPadre($idM);
@@ -22,19 +24,11 @@ class DocsMatriculaController extends Controller
 		$nameSons = 'Nombres de los hijos';// preguntar si es uno o todos los hijos
 		$yearLectivo = "2014 - 2015";
 		$gradoALumno = 'grado alumno';
-		$valorAnual = 'cientos';
-		$valorNumeroAnual = '100s';
-		$valorMatricula = 'cadena valor matricula';
-		$valornumeroMatricula = '3000000';
 		$grado = 'grado';
-		$valorLetrasTotPension = 'millones';
-		$valorTotPension = 'mas millones';
-		$valorLetraMensualPension = 'Millones mensuales';
-		$valorPension = 'mensual pension';
-		$valorLetrasCuotaUnik = 'unikca';
-		$valorCuotaUnik = 'valo Unikkkk';
+		
 		$doc = View::Make('documentos.Matriculas.Pagare_Contacto')->with(array('papa'=>$padre,'mama'=>$madre,'presidente'=>$presidente));
-		return PDF::load($doc, 'carta', 'portrait')->show();
+		$pdf->loadHTML($doc)->setPaper('a4');
+		return $pdf->stream();
 	}
 
 	public function request_Enfermeria(){
