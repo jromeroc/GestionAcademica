@@ -77,8 +77,8 @@
 	            que funciona actualmente en la Av. Calle 153 No 50 – 65  Suba, 
 	            Cundinamarca y que para los efectos del presente contrato en adelante se 
 	            denominará <strong>EL COLEGIO</strong>  o por quien legalmente le sustituya y
-	            '.$signoFather.' y '.$signoMother.', en adelante <strong>LOS PADRES</strong>, identificados como aparece al
-				pie de nuestras firmas, obrando como <strong>PADRES</strong> y/o acudientes de '.$nameSons.' del grado ____,
+	            <?php echo $papa['nombre']; ?> y <?php echo $mama['nombre']; ?>, en adelante <strong>LOS PADRES</strong>, identificados como aparece al
+				pie de nuestras firmas, obrando como <strong>PADRES</strong> y/o acudientes de <?php foreach($hijos as $son) {echo $son['nombre']." del grado ". $son['grado'].", ";} ?>
 				quien en lo sucesivo se denominará <strong>EL EDUCANDO</strong>. En cumplimiento de los artículos 26,27,67,68,69 y 70 de la Constitución 
 				Nacional con el fin de asegurar el derecho a la educación; celebramos el presente 
 				CONTRATO DE PRESTACIÓN DEL SERVICIO EDUCATIVO, el cual se regirá por las 
@@ -515,6 +515,11 @@
 			<p>
 				Para constancia se firma en __________ a los _______ días del mes de 
 				____________________ de ________________, en dos ejemplares del mismo tenor.
+			</p>
+
+			<p>
+				Para constancia se firma en Bogotá a los <?php echo date('d'); ?> días del mes de 
+				<?php echo date('M'); ?> de ________________, en dos ejemplares del mismo tenor.
 			</p>
 
 			<table class="padres">

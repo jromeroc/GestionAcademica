@@ -3,20 +3,29 @@
 class DocsMatriculaController extends Controller
 {
 	public $_legalizar;
-
+	public $_matricula;
 
 
 	public function __construct(){
 		$this->_legalizar = new Legalizar();
+		$this->_matricula = new MatriculasController();
 	}
 
-	public function requestContrato($idP,$idM){
+	public function request_pagare($idM,$idP){
 
 		$pdf = App::make('dompdf');
 		$padre = $this->_legalizar->srchDataPadre($idP);
 		$padre = get_object_vars($padre[0]);
 		$madre = $this->_legalizar->srchDataPadre($idM);
 		$madre = get_object_vars($madre[0]);
+		$year = date('Y');
+		$tabla = $this->_matricula->asignTabla($year);
+
+		$hijo = $this->_legalizar->srch_hijos($padre['id'],$madre['id'],$tabla);
+		foreach ($hijo as $hijos) {
+			$son[] = get_object_vars($hijos);
+		}
+
 		$presidente = "Nombre presidente";
 		$indentification = "Num doc presidente";
 		$signoFather = 'Nombre papa';
@@ -26,7 +35,14 @@ class DocsMatriculaController extends Controller
 		$gradoALumno = 'grado alumno';
 		$grado = 'grado';
 		
-		$doc = View::Make('documentos.Matriculas.contrato')->with(array('papa'=>$padre,'mama'=>$madre,'presidente'=>$presidente));
+		$doc = View::Make('documentos.Matriculas.contrato')->with(
+			array(
+				'papa'=>$padre,
+				'mama'=>$madre,
+				'presidente'=>$presidente,
+				'hijos'=>$son
+			)
+		);
 		$pdf->loadHTML($doc)->setPaper('a4');
 		return $pdf->stream();
 	}
