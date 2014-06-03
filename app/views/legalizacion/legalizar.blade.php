@@ -40,7 +40,7 @@
 		<tbody>
             @foreach($hijo as $hijos)  
                 <tr>
-                    <td>{{$hijos['grado']}}°</td>
+                    <td>{{$hijos['grado']}}</td>
                     <td>{{$hijos['nombre']}}</td>
                 </tr>
             @endforeach

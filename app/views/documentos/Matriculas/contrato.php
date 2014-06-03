@@ -63,7 +63,6 @@
     			</th>
 		    </tr>
 		</table> 
-
             <p>
 	            Entre los suscritos a saber <strong><?php echo $presidente ?></strong>. 
 	            mayor de edad, plenamente capaz, e identificado con cédula de ciudadanía 
@@ -76,8 +75,8 @@
 	            Educación Distrital, identificada con el NIT No. 860.006.523-8 , 
 	            que funciona actualmente en la Av. Calle 153 No 50 – 65  Suba, 
 	            Cundinamarca y que para los efectos del presente contrato en adelante se 
-	            denominará <strong>EL COLEGIO</strong>  o por quien legalmente le sustituya y
-	            <?php echo $papa['nombre']; ?> y <?php echo $mama['nombre']; ?>, en adelante <strong>LOS PADRES</strong>, identificados como aparece al
+	            denominará <strong>EL COLEGIO</strong>  o por quien legalmente le sustituya y 
+	            <?php foreach($papas as $infopapa){echo $infopapa['nombre']." , "; } ?> en adelante <strong>LOS PADRES</strong>, identificados como aparece al
 				pie de nuestras firmas, obrando como <strong>PADRES</strong> y/o acudientes de <?php foreach($hijos as $son) {echo $son['nombre']." del grado ". $son['grado'].", ";} ?>
 				quien en lo sucesivo se denominará <strong>EL EDUCANDO</strong>. En cumplimiento de los artículos 26,27,67,68,69 y 70 de la Constitución 
 				Nacional con el fin de asegurar el derecho a la educación; celebramos el presente 
@@ -523,46 +522,47 @@
 			</p>
 
 			<table class="padres">
+				<?php foreach($papas as $infopapa){ ?>
 				<tr>
 					<td class="firma"><strong>PADRE O ACUDIENTE</strong></td>
-					<td></td>
+					<td> </td>
 					<td class="firma"><strong>MADRE O ACUDIENTE</strong></td>
 				</tr>
 				<tr>
-					<td> <?php echo $papa['nombre'];?></td>
 					<td></td>
-					<td> <?php echo $mama['nombre'];?></td>
+					<td></td>
+					<td></td>
 				</tr>
 				<tr>
-					<td><strong>C.C</strong> <?php echo $papa['CC'];?></td>
+					<td><strong>C.C</strong> <?php ?></td>
 					<td></td>
-					<td><strong>C.C</strong> <?php echo $mama['CC'];?></td>
+					<td><strong>C.C</strong><?php ?></td>
 				</tr>
 
 				<tr>
-					<td><strong>DIRECCIÓN</strong> <?php echo $papa['direccion'];?></td>
+					<td><strong>DIRECCIÓN</strong> <?php ?></td>
 					<td></td>
-					<td><strong>DIRECCIÓN</strong> <?php echo $mama['direccion'];?></td>
+					<td><strong>DIRECCIÓN</strong> <?php ?></td>
 				</tr>
 
 				<tr>
-					<td><strong>TELÉFONO</strong> <?php echo $papa['telefono'];?></td>
+					<td><strong>TELÉFONO</strong> <?php ?></td>
 					<td></td>
-					<td><strong>TELÉFONO</strong> <?php echo $mama['telefono'];?></td>
+					<td><strong>TELÉFONO</strong> <?php ?></td>
 				</tr>
 
 				<tr>
-					<td><strong>CELULAR</strong> <?php echo $papa['celular'];?></td>
+					<td><strong>CELULAR</strong> <?php ?></td>
 					<td></td>
-					<td><strong>CELULAR</strong> <?php echo $mama['celular'];?></td>
+					<td><strong>CELULAR</strong> <?php ?></td>
 				</tr>
 
 				<tr>
-					<td><strong>E-MAIL</strong> <?php echo $papa['email'];?></td>
+					<td><strong>E-MAIL</strong> <?php ?></td>
 					<td></td>
-					<td><strong>E-MAIL</strong> <?php echo $mama['email'];?></td>
+					<td><strong>E-MAIL</strong> <?php ?></td>
 				</tr>
-
+			<?php } ?>
 			</table>
 
 

@@ -30,18 +30,31 @@ class DocsMatriculaController extends Controller
 		foreach ($hijos as $hijo) {
 			$son[] = get_object_vars($hijo);
 		}	
+		$padres = array('papa' => $padre, 'mama'=>$madre );
+		if ($padre['id']==1) {
+			$padres = array('papa' => '','mama'=>$madre );	
+		}
+		if ($madre['id']==1) {
+			$padres = array('papa' => $padre, 'mama'=>'' );
+		}
 		
 		if($type == 1){
-			
 			$view = View::Make('documentos.Matriculas.contrato')->with(
 				array('firma'=>$type,
-					'papa'=>$padre,
-					'mama'=>$madre,
+					'papas'=>$padres,
 					'presidente'=>$presidente,
-					'hijos'=>$son));
-
+					'hijos'=>$son
+				)
+			);
 			$pdf->loadHTML($view)->setPaper('a4');
 			return $pdf->stream();
+			// return View::make('documentos.Matriculas.contrato')->with(
+			// 	array('firma'=>$type,
+			// 		'papas'=>$padres,
+			// 		'presidente'=>$presidente,
+			// 		'hijos'=>$son
+			// 	)
+			// );
 		}
 		if($type == 2){
 			$view = View::Make('documentos.Matriculas.pagare')->with(
