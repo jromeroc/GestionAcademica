@@ -53,14 +53,14 @@
 	    {{ Form::select('year_matricula', array('0'=>'Seleccione año',$anos['lastY'] => $anos['last'] , $anos['year'] => $anos['act'],$anos['nextY'] => $anos['next'])); }}
 	    @endif
 	    <!-- Alumno -->
-	    {{ Form::label('name_alum', 'Alumno:') }}
+	    {{ Form::label('name_alum', 'Buscar:') }}
 		@if(!empty($data))
 			{{ Form::Text('name_alum', $data['name_alum'], array('placeholder' => 'Nombre Alumno', 'class' => 'form-control')) }}
 		@else
-			{{ Form::Text('name_alum', null, array('placeholder' => 'Nombre Alumno', 'class' => 'form-control')) }}
+			{{ Form::Text('name_alum', null, array('placeholder' => 'Buscar familia', 'class' => 'form-control')) }}
 		@endif
 		<!-- Submit -->
-		{{form::submit('Buscar Familia',array('class'=>'btn btn-success'))}}
+		{{form::submit('Filtrar',array('class'=>'btn btn-success'))}}
 
 	{{Form::close()}}
 

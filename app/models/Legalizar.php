@@ -129,10 +129,8 @@ class Legalizar extends Eloquent
             return $padre;
       }
       public function srch_hijos($idP,$idM,$tabla){
-            $hijos = DB::table($tabla)
-            ->select(
-                  'id',
-                  DB::raw("CONCAT_WS(' ', lname, fname, names) as nombre"),
+            $hijos = DB::table($tabla)->select('id',
+                  DB::raw("CONCAT_WS(' ', fname, lname, names) as nombre"),
                   'grado'
             )
             ->where('papa','=',$idP)

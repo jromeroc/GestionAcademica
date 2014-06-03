@@ -149,8 +149,7 @@
 		</p>
 		<p>
 		<ol type="a">
-			<li>
-				Por concepto de capital, la suma de _________________________________________________ ($ ) moneda 
+			<li>Por concepto de capital, la suma de _________________________________________________ ($ ) moneda 
 				corriente.
 			</li>
 			<li>
