@@ -141,6 +141,23 @@ class Legalizar extends Eloquent
             return $hijos;
       }
 
+      public function srch_acu($idP,$idM,$tabla){
+            $acudiente = DB::table($tabla)->select(
+                  'acudiente.id_acudiente',
+                  'acudiente.nombre_acudiente',
+                  'acudiente.parentesco_acudiente',
+                  'acudiente.telefono_acudiente',
+                  'acudiente.celular_acudiente',
+                  'acudiente.teloficina_acudiente'
+            )
+            ->join('acudiente','acudiente.id_acudiente','=',$tabla.'.acudiente')
+            ->where('papa','=',$idP)
+            ->where('mama','=',$idM)
+            ->groupBy('id_acudiente')
+            ->get();
+            return $acudiente;
+      }
+
       public function srchDataPadre($id){
             $padre = DB::table('padres_cch')
             ->select(
@@ -150,7 +167,9 @@ class Legalizar extends Eloquent
                   'tel_casa_padre as telefono',
                   'celular_padre as celular',
                   'email_padre as email',
-                  'direccion'
+                  'direccion',
+                  'profesion_padre',
+                  'empresa_padre'
             )
             ->where('id_padre','=',$id)
             ->get();

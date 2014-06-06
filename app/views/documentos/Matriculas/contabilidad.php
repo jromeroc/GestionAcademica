@@ -4,7 +4,7 @@
     <title>Contabilidad</title>
 		<style type="text/css">
 			body{
-      font-size: 14px
+      font-size: 13px
       }
       p{
         text-align : justify;
@@ -45,13 +45,23 @@
       }
       
       #img{
-        width: 250px;
         height: 130px;
+        width: 250px;
       }
       .head{
         font-size: 15px;
-        text-align : left;
         margin: 2px 0px;
+        text-align : left;
+      }
+
+      .diligenciar{
+        border-bottom: solid black 1px;
+      }
+
+      h3{
+        border-bottom: solid #662 1px;
+        margin: 0;
+        padding: 5px 0 0 0;
       }
 		</style>
 	</head>
@@ -128,22 +138,171 @@
     ?>
 
     <h3>Información acudiente</h3>
-    <table>
+    <table id="acudiente">
       <tr>
         <th>Nombre</th>
+        <td><?=$acudiente['nombre_acudiente']?></td>
+
+        <th>Parentesco</th>
+        <td><?=$acudiente['parentesco_acudiente']?></td>
+        <th>Telefono Casa</th>
+        <td><?=$acudiente['telefono_acudiente']?></td>
+      </tr>
+
+      <tr>
+        
+
+        <th>Celular</th>
+        <td><?=$acudiente['celular_acudiente']?></td>
+
+        <th>Telefono Oficina</th>
+        <td><?=$acudiente['teloficina_acudiente']?></td>
+      </tr>
+
+    </table>
+    <h3>Información Alumnos</h3>
+    <table>
+      <tr>
+        <th>Edad</th>
+        <th>Nombre (DEL MAYOR AL MENOR)</th>
+        <th>CURSO (AL QUE INGRESA)</th>  
+      </tr>
+      <?php foreach ($hijos as $key) { ?>
+      <tr>
+        <td><?= $key['age']." años" ?></td>
+        <td><?= $key['nombre'] ?></td>
+        <td><?= $key['grado'] ?></td>
+      </tr>
+      <?php } ?>
+    </table>
+
+    <table>
+      <tr>
+        <th>Curso</th>
+        <th>VALOR MATRICULA</th>
+        <th>VALOR MATERIAL DIDACTICO</th>  
+        <th>SUBTOTAL</th>  
+      </tr>
+      <?php foreach ($hijos as $key) { ?>
+      <tr>
+        <td><?= $key['grado'] ?></td>
+        <td class="diligenciar"></td>
+        <td class="diligenciar"></td>
+        <td class="diligenciar"></td>
+      </tr>
+      <?php } ?>
+
+      <tr>
         <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+
+      <tr>
+        <td></td>
+        <td></td>
+        <td>TOTAL:</td>
+        <td class="diligenciar"></td>
+      </tr>
+
+      <tr>
+        <td></td>
+        <td></td>
+        <td>VR. DESCUENTO:</td>
+        <td class="diligenciar"></td>
+      </tr>
+
+      <tr>
+        <td></td>
+        <td></td>
+        <td>VR. RECARGO:</td>
+        <td class="diligenciar"></td>
+      </tr>
+
+      <tr>
+        <td></td>
+        <td></td>
+        <td>OTROS:</td>
+        <td class="diligenciar"></td>
+      </tr>
+
+      <tr>
+        <td></td>
+        <td></td>
+        <td>TOTAL:</td>
+        <td class="diligenciar"></td>
+      </tr>
+
+    </table>
+
+    <table>
+      <tr>
+        <th>Curso</th>
+        <th>Pensión</th>
+        <th>Transporte</th>  
+        <th>Vigilancia</th>  
+        <th>Hebraicos</th>  
+        <th>VR. Total</th>  
+      </tr>
+      <?php foreach ($hijos as $key) { ?>
+      <tr>
+        <td><?= $key['grado'] ?></td>
+        <td class="diligenciar"></td>
+        <td class="diligenciar"></td>
+        <td class="diligenciar"></td>
+        <td class="diligenciar"></td>
+        <td class="diligenciar"></td>
+      </tr>
+      <?php } ?>
+
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>SUBTOTAL:</td>
+        <td class="diligenciar" colspan="2"></td>
+      </tr>
+
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>DESCUENTO:</td>
+        <td class="diligenciar" colspan="2"></td>
+      </tr>
+
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>OTROS DESCUENTOS:</td>
+        <td class="diligenciar" colspan="2"></td>
+      </tr>
+
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>OTROS PAGOS:</td>
+        <td class="diligenciar" colspan="2"></td>
+      </tr>
+
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>OTROS PAGOS:</td>
+        <td class="diligenciar" colspan="2"></td>
       </tr>
       <tr>
-        <th>Parentesco</th>
         <td></td>
+        <td></td>
+        <td></td>
+        <td>TOTAL:</td>
+        <td class="diligenciar" colspan="2"></td>
       </tr>
     </table>
-    <?php
-    foreach($hijos as $son){
-                  echo $sons .= $son['nombre']." del grado ". $son['grado'].", ";
-                  $segundaGrados .= $son['grado'].', ';
-                  $tarifaCuarta .= 'para el grado '.$son['grado'].' de ______________________________________ $ ____________________, los ';
-                }
-    ?>
+
   </body>      
 </html>

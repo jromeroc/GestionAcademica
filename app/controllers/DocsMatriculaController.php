@@ -57,10 +57,16 @@ class DocsMatriculaController extends Controller
 			return $pdf->stream();
 		}
 		if($type == 3){
+			
+			$acu = $this->_legalizar->srch_acu($idP, $idM, $tabla);
+			$acu = get_object_vars($acu[0]);
+
 			$view = View::Make('documentos.Matriculas.contabilidad')->with(
 				array('padres'=>$padres,
 					'hijos'=>$son,
-					'firma'=>$typeFirma));
+					'firma'=>$typeFirma,
+					'acudiente'=>$acu));
+
 			$pdf->loadHTML($view)->setPaper('a4');
 			return $pdf->stream();
 		}
