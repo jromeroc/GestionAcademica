@@ -59,6 +59,18 @@
 	</head>
 		
 	<body>
+		<?php
+				if ($firma == 1){ 
+					$representantes = "Yo ".$padres['papa']['nombre']." mayor de edad y vecino de la ciudad de Bogotá D.C. identificado como aparece al pie de mi firma por medio del presente escrito autorizo"; 
+					$infoPagare = "Yo ".$padres['papa']['nombre']."mayor de edad y con domicilio en La ciudad de Bogotá D.C.:".$padres['papa']['direccion']." identificado como aparece al pie de mi firma, actuando en mi propio nombre, declaro de manera expresa por medio del presente instrumento que SOLIDARIA e INCONDICIONALMENTE pagare a la orden del COLEGIO COLOMBO HEBREO, o a su orden, en sus oficinas de ________________ el día ".date('d')." de _____ del ".date('Y').", las siguientes cantidades:";}
+				elseif($firma == 2) { 
+					$representantes = "Yo ".$padres['mama']['nombre']." mayor de edad y vecina de la ciudad de Bogotá D.C. identificada como aparece al pie de mi firma por medio del presente escrito autorizo";
+					$infoPagare = "Yo ".$padres['mama']['nombre']."mayor de edad y con domicilio en La ciudad de Bogotá D.C.:".$padres['mama']['direccion']." identificada como aparece al pie de mi firma, actuando en mi propio nombre, declaro de manera expresa por medio del presente instrumento que SOLIDARIA e 		INCONDICIONALMENTE pagare a la orden del COLEGIO COLOMBO HEBREO, o a su orden, en sus oficinas de ________________ el día ".date('d')." de _____ del ".date('Y').", las siguientes cantidades:"; }
+				elseif($firma == 3)	{ 
+					$representantes = "Nosotros ".$padres['papa']['nombre']." y ".$padres['mama']['nombre']." mayores de edad y vecinos de la ciudad de Bogotá D.C. identificados como aparece al pie de nuestras firmas por medio del presente escrito autorizamos";
+					$infoPagare = "Nosotros ".$padres['papa']['nombre']." y ".$padres['papa']['nombre']."mayores de edad y con domicilio en La ciudad de Bogotá D.C.:".$papa['direccion']." ".$padres['mama']['direccion']."identificados como aparece al pie de mi firma, actuando en nuestro propio nombre, declaramos de manera expresa por medio del presente instrumento que SOLIDARIA e 		INCONDICIONALMENTE pagare a la orden del COLEGIO COLOMBO HEBREO, o a su orden, en sus oficinas de ________________ el día ".date('d')." de _____ del ".date('Y').", las siguientes cantidades:";	}
+			?> 
+
 		<table class="encabezado">
    			<tr>
       			<td style="width:250px"><img id="img" src="http://colhebreo.dev/cch/CCH.jpg"/></td>
@@ -70,12 +82,7 @@
 		    </tr>
 		</table> 
 		<p>
-			<?php 
-				if ($firma == 0) 	{ echo "Yo ".$papa['nombre']." mayor de edad y vecino de la ciudad de Bogotá D.C. identificado como aparece al pie de mi firma por medio del presente escrito autorizo"; }
-				elseif($firma == 1) { echo "Yo ".$mama['nombre']." mayor de edad y vecina de la ciudad de Bogotá D.C. identificada como aparece al pie de mi firma por medio del presente escrito autorizo"; }
-				elseif($firma == 2)	{ echo "Nosotros ".$papa['nombre']." y ".$mama['nombre']." mayores de edad y vecinos de la ciudad de Bogotá D.C. identificados como aparece al pie de nuestras firmas por medio del presente escrito autorizamos";	}
-			?>  
-			al <strong>COLEGIO COLOMBO 
+			<?= $representantes?> al <strong>COLEGIO COLOMBO 
 			HEBREO</strong> o a quien represente sus derechos, de conformidad con el artículo 622 del 
 			Código de Comercio, en forma irrevocable y permanente para diligenciar sin previo aviso 
 			los espacios en blanco contenidos en el presente pagaré que hemos otorgado a su orden, 
@@ -126,26 +133,7 @@
 
 		<h4>PAGARÉ</h4>
 		<p>
-			<?php if($firma==0){
-			echo "Yo ".$papa['nombre']."mayor de edad y con domicilio en La ciudad de Bogotá D.C.:".$papa['direccion']." identificado como 
-			aparece al pie de mi firma, actuando en mi propio nombre, declaro 
-			de manera expresa por medio del presente instrumento que SOLIDARIA e 
-			INCONDICIONALMENTE pagare a la orden del COLEGIO COLOMBO HEBREO, 
-			o a su orden, en sus oficinas de ________________ el día ".date('d')." de _____ del ".date('Y').", las siguientes cantidades:"; }?>
-
-			<?php if($firma==1){
-			echo "Yo ".$mama['nombre']."mayor de edad y con domicilio en La ciudad de Bogotá D.C.:".$mama['direccion']." identificada como 
-			aparece al pie de mi firma, actuando en mi propio nombre, declaro 
-			de manera expresa por medio del presente instrumento que SOLIDARIA e 
-			INCONDICIONALMENTE pagare a la orden del COLEGIO COLOMBO HEBREO, 
-			o a su orden, en sus oficinas de ________________ el día ".date('d')." de _____ del ".date('Y').", las siguientes cantidades:"; }?>
-
-			<?php if($firma==2){
-			echo "Nosotros ".$papa['nombre']." y ".$mama['nombre']."mayores de edad y con domicilio en La ciudad de Bogotá D.C.:".$papa['direccion']." ".$mama['direccion']."identificados como 
-			aparece al pie de mi firma, actuando en nuestro propio nombre, declaramos 
-			de manera expresa por medio del presente instrumento que SOLIDARIA e 
-			INCONDICIONALMENTE pagare a la orden del COLEGIO COLOMBO HEBREO, 
-			o a su orden, en sus oficinas de ________________ el día ".date('d')." de _____ del ".date('Y').", las siguientes cantidades:"; }?>
+			<?=$infoPagare;?>
 		</p>
 		<p>
 		<ol type="a">
@@ -171,9 +159,12 @@
 				su notificación. 
 			</li>
 			<li>
-				Renunciamos a la presentación para el pago, al protesto.CIUDAD Y FECHA: DE DE 20__.
+				Renunciamos a la presentación para el pago, al protesto.
 			</li>
 		</ol>
+
 		<p>
+			CIUDAD Y FECHA: ___________ _____DE _____________DE 20___.
+		</p>
 	</body>
 </html>

@@ -16,13 +16,20 @@ class DocsMatriculaController extends Controller
 		$presidente = "Nombre presidente";
 		$indentification = "Num doc presidente";
 		$yearLectivo = "2014 - 2015";
-
-		$padre = $this->_legalizar->srchDataPadre($idP);
-		$padre = get_object_vars($padre[0]);
-		$madre = $this->_legalizar->srchDataPadre($idM);
-		$madre = get_object_vars($madre[0]);
 		
 		$type = Input::get('doc');
+		$typeFirma = Input::get('firma');
+
+		if($typeFirma == 1 || $typeFirma == 3)
+		{
+			$padre = $this->_legalizar->srchDataPadre($idP);
+			$padres['papa'] = get_object_vars($padre[0]);
+		}
+		if($typeFirma == 2 || $typeFirma == 3)
+		{
+			$madre = $this->_legalizar->srchDataPadre($idM);
+			$padres['mama'] = get_object_vars($madre[0]);
+		}
 
 		$tabla = $this->_matricula->asignTabla($year);
 		$hijos = $this->_legalizar->srch_hijos($idP, $idM, $tabla);
@@ -30,55 +37,41 @@ class DocsMatriculaController extends Controller
 		foreach ($hijos as $hijo) {
 			$son[] = get_object_vars($hijo);
 		}	
-		$padres = array('papa' => $padre, 'mama'=>$madre );
-		if ($padre['id']==1) {
-			$padres = array('papa' => '','mama'=>$madre );	
-		}
-		if ($madre['id']==1) {
-			$padres = array('papa' => $padre, 'mama'=>'' );
-		}
-		
+
 		if($type == 1){
 			$view = View::Make('documentos.Matriculas.contrato')->with(
-				array('firma'=>$type,
-					'papas'=>$padres,
+				array('firma'=>$typeFirma,
+					'padres'=>$padres,
 					'presidente'=>$presidente,
-					'hijos'=>$son
-				)
-			);
+					'hijos'=>$son));
 			$pdf->loadHTML($view)->setPaper('a4');
 			return $pdf->stream();
-			// return View::make('documentos.Matriculas.contrato')->with(
-			// 	array('firma'=>$type,
-			// 		'papas'=>$padres,
-			// 		'presidente'=>$presidente,
-			// 		'hijos'=>$son
-			// 	)
-			// );
 		}
 		if($type == 2){
 			$view = View::Make('documentos.Matriculas.pagare')->with(
-				array('papa'=>$padre,
-					'mama'=>$madre,
+				array('padres'=>$padres,
 					'hijos'=>$son,
-					'firma' => Input::get('firma')));
+					'firma'=>$typeFirma));
 
 			$pdf->loadHTML($view)->setPaper('a4');
 			return $pdf->stream();
 		}
 		if($type == 3){
-			$doc = View::Make('documentos.Matriculas.contabilidad');
-			$pdf->loadHTML($doc)->setPaper('legal');
+			$view = View::Make('documentos.Matriculas.contabilidad')->with(
+				array('padres'=>$padres,
+					'hijos'=>$son,
+					'firma'=>$typeFirma));
+			$pdf->loadHTML($view)->setPaper('a4');
 			return $pdf->stream();
 		}
 		if($type == 4){
-			$info = array('dato'=>'1');
-			$doc = View::Make('documentos.Matriculas.enfermeria')->with(array('dato'=>$dato));
-			$pdf->loadHTML($doc)->setPaper('a4');
+			$view = View::Make('documentos.Matriculas.enfermeria');
+			$pdf->loadHTML($view)->setPaper('a4');
 			return $pdf->stream();
 		}
 		if($type == 5){
-			$pdf->loadHTML('<html><h1>Matricula</h1></html>')->setPaper('a4');
+			$view = '<html><h1>Matricula</h1></html>';
+			$pdf->loadHTML($view)->setPaper('a4');
 			return $pdf->stream();
 		}
 	}

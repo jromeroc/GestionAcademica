@@ -2,9 +2,9 @@
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <title>Contabilidad</title>
-			<style>
-				body{
-        font-size: 14px
+		<style type="text/css">
+			body{
+      font-size: 14px
       }
       p{
         text-align : justify;
@@ -13,6 +13,9 @@
       li{
         text-align : justify;
         margin: 5px ,30px;
+      }
+      table{
+        width: 100%;
       }
       th{
         text-align: left;
@@ -50,132 +53,92 @@
         text-align : left;
         margin: 2px 0px;
       }
-			
 		</style>
 	</head>
 	
 	<body>
 
-	<table class="encabezado">
-        <tr>
-            <td style="width:250px"><img id="img" src="http://colhebreo.dev/cch/CCH.jpg"/></td>
-          <th>
-            <p class="head">COLEGIO COLOMBO HEBREO</p>
-            <p class="head">AÑO LECTIVO 2014 - 2015</p>
-            <p class="head">HOJA CONTABILIDAD</p>
-          </th>
-        </tr>
+    <table class="encabezado">
+      <tr>
+        <td style="width:250px"><img id="img" src="http://colhebreo.dev/cch/CCH.jpg"/></td>
+        <th>
+          <p class="head">COLEGIO COLOMBO HEBREO</p>
+          <p class="head">AÑO LECTIVO 2014 - 2015</p>
+          <p class="head">HOJA CONTABILIDAD</p>
+        </th>
+      </tr>
     </table>
-    <div>
-  	<table>
-    		<tr>		
-    			<td colspan="2"><th> CODIGO: </th><td></td>
-    		</tr>
-    		<tr>
-    			<th> NOMBRE DEL PADRE </th> <td colspan="3"></td>
-    		</tr>
-    		<tr>	
-    			<th>C.C O NIT: </th> <td></td> <th>E-Mail</th> <td></td>
-    		</tr>	
-    		<tr>
-    			<th> NOMBRE DE LA MADRE </th> <td colspan="3"></td>
-    		</tr>
-    		<tr>	
-    			<th>C.C O NIT:</th> <td></td> <th>E-Mail:</th> <td></td>
-    		</tr>
 
-    		<tr>	
-    			<th> DIRECCION DE LA RESIDENCIA: </th> <td></td> <th> TELEFONO: </th> <td></td>
-    		</tr>
+    
+    <?php
+      if($firma == 1 || $firma == 3)
+      {
+    ?>
+    <h3>Información papá</h3>
+    <table>
+      <tr>
+        <th>Nombre</th>
+        <td><?= $padres['papa']['nombre']?></td>
+        <th>C.C o NIT</th>
+        <td><?= $padres['papa']['CC']?></td>
+      </tr>
+      <tr>
+        <th>Dirección residencia</th>
+        <td><?= $padres['papa']['direccion']?></td>
+        <th>Teléfono</th>
+        <td><?= $padres['papa']['telefono']?></td>
+      </tr>
+      <tr>
+        <th>Celular</th>
+        <td><?= $padres['papa']['celular']?></td>
+        <th>E-mail</th>
+        <td><?= $padres['papa']['email']?></td>
+      </tr>
+    </table>
+    <?php      
+      }
+    ?>
+    <?php
+      if($firma == 2 || $firma == 3)
+      {
+    ?>
+    <h3>Información mamá</h3>
+    <table>
+      <tr>
+        <th>Nombre</th>
+        <td><?= $padres['mama']['nombre']?></td>
+        <th>C.C o NIT</th>
+        <td><?= $padres['mama']['CC']?></td>
+      </tr>
+      <tr>
+        <th>Dirección residencia</th>
+        <td><?= $padres['mama']['direccion']?></td>
+        <th>Teléfono</th>
+        <td><?= $padres['mama']['telefono']?></td>
+      </tr>
+      <tr>
+        <th>Celular</th>
+        <td><?= $padres['mama']['celular']?></td>
+        <th>E-mail</th>
+        <td><?= $padres['mama']['email']?></td>
+      </tr>
+    </table>
+    <?php
+      }
+    ?>
 
-    		<tr>	
-    			<th> DIRECCION DE LA OFICINA: </th> <td></td> <th> TELEFONO: </th> <td></td>
-    		</tr>
+    <h3>Información acudiente</h3>
+    <table>
+      <tr>
+        <th>Nombre</th>
+        <td></td>
+      </tr>
+      <tr>
+        <th>Parentesco</th>
+        <td></td>
+      </tr>
+    </table>
+    
 
-    		<tr>	
-    			<th> CELULAR PADRE: </th> <td></td> <th> CELULAR MADRE: </th> <td></td>
-    		</tr>
-
-    		<tr>	
-    			<th> NOMBRE DEL ACUDIENTE: </th> <td colspan="3"></td>
-    		</tr>
-
-    		<tr>	
-    			<th> OBSERVACION: </th> <td colspan="3"></td>
-    		</tr>
-    		</table>
-  		</div>
-      <div>
-  		<table>
-  			<tr>		
-  				<td> NOMBRE (DEL MAYOR AL MENOR) </td> <td>CURSO (AL QUE INGRESA)</td>
-  			</tr>
-  			<tr>	<td>___</td> <td>___</td>	</tr>
-  			<tr>	<td>___</td> <td>___</td>	</tr>
-  			<tr>	<td>___</td> <td>___</td>	</tr>
-  			<tr>	<td>___</td> <td>___</td>	</tr>
-  			<tr>	<td>___</td> <td>___</td>	</tr>
-  				
-  		</table>
-  		</div>
-      <div>
-      </div>
-  		<table>
-  			<tr>		
-  				<td> CURSO </td> 
-  				<td> V/MATRICULA</td>
-  				<td> V/MATERIAL DIDACTICO</td>
-  				<td> SUBTOTAL</td>
-  			</tr>
-  			<tr>	<td>___</td> <td>___</td> <td>___</td> <td>___</td>	</tr>
-  			<tr>	<td>___</td> <td>___</td> <td>___</td> <td>___</td>	</tr>
-  			<tr>	<td>___</td> <td>___</td> <td>___</td> <td>___</td>	</tr>
-  			<tr>	<td>___</td> <td>___</td> <td>___</td> <td>___</td>	</tr>
-  			<tr>	<td>___</td> <td>___</td> <td>___</td> <td>___</td>	</tr>
-  				
-  		</table>
-  		<br>
-  		
-  		<table width="98%" BORDER=1>
-
-  			<tr> <td>TOTAL</td> 			<td>___</td>	</tr>
-  			<tr> <td>VR. DESCUENTO</td> 	<td>___</td>	</tr>
-  			<tr> <td>VR. RECARGO</td> 		<td>___</td>	</tr>
-  			<tr> <td>OTROS</td> 			<td>___</td>	</tr>
-  			<tr> <td>TOTAL</td> 			<td>___</td>	</tr>
-  				
-  		</table>
-
-  		<br>
-  		<br>
-
-  		<table width="98%" BORDER=1>
-  			<tr>		
-  				<td> CURSO </td> 
-  				<td> PENSION</td>
-  				<td> TRANSPORTE</td>
-  				<td> VIGILANCIA</td>
-  				<td> HEBRAICOS</td>
-  				<td> VR. TOTAL</td>
-  			</tr>
-  			<tr>	<td>___</td> <td>___</td> <td>___</td> <td>___</td>	<td>___</td> <td>___</td></tr>
-  			<tr>	<td>___</td> <td>___</td> <td>___</td> <td>___</td>	<td>___</td> <td>___</td></tr>
-  			<tr>	<td>___</td> <td>___</td> <td>___</td> <td>___</td>	<td>___</td> <td>___</td></tr>
-  			<tr>	<td>___</td> <td>___</td> <td>___</td> <td>___</td>	<td>___</td> <td>___</td></tr>
-  			<tr>	<td>___</td> <td>___</td> <td>___</td> <td>___</td>	<td>___</td> <td>___</td></tr>
-  			<tr>	<td>___</td> <td>___</td> <td>___</td> <td>___</td>	<td>___</td> <td>___</td></tr>
-  			
-  				
-  		</table>
-
-  		<br>
-
-  		<table width="98%" BORDER=1>
-
-  			<tr> <td>SUBTOTAL</td> 				   <td>___</td>	</tr>
-  			<tr> <td>DESCUENTO</td> 			   <td>___</td>	</tr>
-  			<tr> <td>OTROS DESCUENTOS</td> 	 <td>___</td>	</tr>
-  			<tr> <td>OTROS PAGOS</td> 			 <td>___</td>	</tr>
-  			<tr> <td>TOTAL</td> 				     <td>___</td>	</tr>
-  				
-  		</table>
+  </body>      
+</html>

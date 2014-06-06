@@ -1,6 +1,6 @@
 <html>
 	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<meta http-equiv="Content-Type"content="text/html; charset=UTF-8" />
 		<style>
 			body{
 				font-size: 14px
@@ -48,6 +48,19 @@
 				text-align : left;
 				margin: 2px 0px;
 			}
+			.container{
+				padding-top: 80px;
+			    font-size: 16px;
+			}
+			.control-label{
+			    font-weight:bold;
+			}
+			.col{
+				border-top: 2px solid;
+				margin-left: 30px;
+				width: 45%;
+				display: inline-block;
+			}
 		</style>
 		<title> Doc. Contrato </title>
 	</head>
@@ -64,7 +77,31 @@
 		    </tr>
 		</table> 
             <p>
-	            Entre los suscritos a saber <strong><?php echo $presidente ?></strong>. 
+            	<?php
+            		if($firma == 3){
+            			$namePadres = $padres['papa']['nombre'].' y '.$padres['mama']['nombre'];
+            		}elseif ($firma == 1) {
+            			$namePadres = $padres['papa']['nombre'];
+            		}elseif ($firma == 2) {
+            			$namePadres = $padres['mama']['nombre'];
+            		}
+
+            		$sons = '';
+            		$segundaGrados = '';
+            		$tarifaCuarta = '';
+            		foreach($hijos as $son){
+            			$sons .= $son['nombre']." del grado ". $son['grado'].", ";
+            			$segundaGrados .= $son['grado'].', ';
+            			$tarifaCuarta .= 'para el grado '.$son['grado'].' de ______________________________________ $ ____________________, los ';
+            		}
+            		if(count($hijos) > 1){
+            			$textGrados = "a los grados ". $segundaGrados;
+            		}else{
+            			$textGrados = "al grado ". $segundaGrados;
+            		}
+            	?>
+
+	            Entre los suscritos a saber <strong><?= $presidente ?></strong>. 
 	            mayor de edad, plenamente capaz, e identificado con cédula de ciudadanía 
 	            Nº '.$indentification.' de ciudad exp D.C., obrando como Representante Legal del 
 	            <strong>COLEGIO COLOMBO HEBREO - BOGOTÁ D.C.</strong>, entidad sin ánimo de lucro, 
@@ -76,8 +113,8 @@
 	            que funciona actualmente en la Av. Calle 153 No 50 – 65  Suba, 
 	            Cundinamarca y que para los efectos del presente contrato en adelante se 
 	            denominará <strong>EL COLEGIO</strong>  o por quien legalmente le sustituya y 
-	            <?php foreach($papas as $infopapa){echo $infopapa['nombre']." , "; } ?> en adelante <strong>LOS PADRES</strong>, identificados como aparece al
-				pie de nuestras firmas, obrando como <strong>PADRES</strong> y/o acudientes de <?php foreach($hijos as $son) {echo $son['nombre']." del grado ". $son['grado'].", ";} ?>
+	            <?= $namePadres;?> en adelante <strong>LOS PADRES</strong>, identificados como aparece al
+				pie de nuestras firmas, obrando como <strong>PADRES</strong> y/o acudientes de <?= $sons;?>
 				quien en lo sucesivo se denominará <strong>EL EDUCANDO</strong>. En cumplimiento de los artículos 26,27,67,68,69 y 70 de la Constitución 
 				Nacional con el fin de asegurar el derecho a la educación; celebramos el presente 
 				CONTRATO DE PRESTACIÓN DEL SERVICIO EDUCATIVO, el cual se regirá por las 
@@ -105,7 +142,7 @@
 				formación integral del <strong>EDUCANDO</strong> mediante la recíproca complementación de esfuerzos del 
 				mismo, de los padres o acudientes y del <strong>COLEGIO</strong> con la búsqueda del pleno desarrollo de 
 				la personalidad del (la) estudiante y un rendimiento académico satisfactorio en el ejercicio del 
-				programa curricular correspondiente al grado ____, aprobado por el Ministerio de Educación 
+				programa curricular correspondiente <?php echo $textGrados;?> aprobado por el Ministerio de Educación 
 				Nacional, mediante el desarrollo del Proyecto Educativo Institucional del <strong>COLEGIO</strong> y el 
 				cumplimiento de su Manual de Convivencia.
 			</p>
@@ -117,16 +154,18 @@
 			
 			<p>
 				<strong>CUARTA. -COSTO DEL SERVICIO EDUCATIVO.</strong> El presente contrato tiene una tarifa
-				educativa anual para el grado __________ de __________
-				$ ____________________, los cuales serán cancelados por los padres de familia o 
-				acudientes de la siguiente manera: a) por concepto de matrícula la suma de 
-				____________________ $ ____________________, la que será 
-				cancelada en el momento de la firma de este contrato; b) El dinero restante por 
-				un monto de ____________________ pesos $ ____________________, 
-				comprenderá la pensión escolar y será pagadero en diez (10) cuotas mensuales de 
-				________________________ pesos $ ____________________, cada una de las cuales 
-				será pagada dentro de los cinco (5) primeros días de cada mes. Además una cuota única 
-				anual de ____________________ $ ____________________, por concepto de otros costos.
+				educativa anual <?= $tarifaCuarta; ?>, los cuales serán cancelados por los padres de familia o 
+				acudientes de la siguiente manera: 
+				<ol type='a'>
+					<li>por concepto de matrícula la suma de __________________________________ $ ____________________, la que será 
+						cancelada en el momento de la firma de este contrato;</li>
+					<li>El dinero restante por un monto de __________________________________ pesos $ ____________________, 
+						comprenderá la pensión escolar y será pagadero en diez (10) cuotas mensuales de 
+						__________________________________ pesos $ ____________________, cada una de las cuales 
+						será pagada dentro de los cinco (5) primeros días de cada mes. Además una cuota única 
+						anual de __________________________________ $ ____________________, por concepto de otros costos.
+					</li>
+				</ol>
 			</p>
 			
 			<p class="paragrafo">
@@ -511,62 +550,82 @@
 				contrato presta mérito ejecutivo con su sola presentación.
 			</p>
 
-			<p>
+			<!-- p>
 				Para constancia se firma en __________ a los _______ días del mes de 
 				____________________ de ________________, en dos ejemplares del mismo tenor.
-			</p>
+			</p> -->
 
 			<p>
-				Para constancia se firma en Bogotá a los <?php echo date('d'); ?> días del mes de 
-				<?php echo date('M'); ?> de ________________, en dos ejemplares del mismo tenor.
+				Para constancia se firma en Bogotá a los <?= date('d'); ?> días del mes de 
+				<?= date('M'); ?> del <?= date('Y'); ?>, en dos ejemplares del mismo tenor.
 			</p>
 
-			<table class="padres">
-				<?php foreach($papas as $infopapa){ ?>
-				<tr>
-					<td class="firma"><strong>PADRE O ACUDIENTE</strong></td>
-					<td> </td>
-					<td class="firma"><strong>MADRE O ACUDIENTE</strong></td>
-				</tr>
-				<tr>
-					<td></td>
-					<td></td>
-					<td></td>
-				</tr>
-				<tr>
-					<td><strong>C.C</strong> <?php ?></td>
-					<td></td>
-					<td><strong>C.C</strong><?php ?></td>
-				</tr>
-
-				<tr>
-					<td><strong>DIRECCIÓN</strong> <?php ?></td>
-					<td></td>
-					<td><strong>DIRECCIÓN</strong> <?php ?></td>
-				</tr>
-
-				<tr>
-					<td><strong>TELÉFONO</strong> <?php ?></td>
-					<td></td>
-					<td><strong>TELÉFONO</strong> <?php ?></td>
-				</tr>
-
-				<tr>
-					<td><strong>CELULAR</strong> <?php ?></td>
-					<td></td>
-					<td><strong>CELULAR</strong> <?php ?></td>
-				</tr>
-
-				<tr>
-					<td><strong>E-MAIL</strong> <?php ?></td>
-					<td></td>
-					<td><strong>E-MAIL</strong> <?php ?></td>
-				</tr>
-			<?php } ?>
-			</table>
-
-
-
+			<div class="container">
+				<?php
+	    			if ($firma == 1 || $firma == 3) {
+	    			?>
+	    			<div class="col">
+			    		<div class="form-group">
+						    <label class="control-label">Padre o acudiente</label>
+						    <?= $padres['papa']['nombre']?>
+					  	</div>
+					  	<div class="form-group">
+						    <label class="control-label">C.C</label>
+						    <span><?= $padres['papa']['CC']?></span>
+					  	</div>
+					  	<div class="form-group">
+						    <label class="control-label">Dirección</label>
+						    <span><?= $padres['papa']['direccion']?></span>
+					  	</div>
+					  	<div class="form-group">
+						    <label class="control-label">Teléfono</label>
+						    <span><?= $padres['papa']['telefono']?></span>
+					  	</div>
+					  	<div class="form-group">
+						    <label class="control-label">Celular</label>
+						    <span><?= $padres['papa']['celular']?></span>
+					  	</div>
+					  	<div class="form-group">
+						    <label class="control-label">Email</label>
+						    <span><?= $padres['papa']['email']?></span>
+					  	</div>
+				  	</div>
+	    			<?php	
+	    			}
+				?>
+				<?php
+		    		if ($firma == 2 || $firma == 3) {
+		    		?>
+		    		<div class="col">
+			    		<div class="form-group">
+						    <label class="control-label">Padre o acudiente</label>
+						    <?= $padres['mama']['nombre']?>
+					  	</div>
+					  	<div class="form-group">
+						    <label class="control-label">C.C</label>
+						    <span><?= $padres['mama']['CC']?></span>
+					  	</div>
+					  	<div class="form-group">
+						    <label class="control-label">Dirección</label>
+						    <span><?= $padres['mama']['direccion']?></span>
+					  	</div>
+					  	<div class="form-group">
+						    <label class="control-label">Teléfono</label>
+						    <span><?= $padres['mama']['telefono']?></span>
+					  	</div>
+					  	<div class="form-group">
+						    <label class="control-label">Celular</label>
+						    <span><?= $padres['mama']['celular']?></span>
+					  	</div>
+					  	<div class="form-group">
+						    <label class="control-label">Email</label>
+						    <span><?= $padres['mama']['email']?></span>
+					  	</div>
+				  	</div>
+	    			<?php	
+		    		}
+				?>
+			</div>
 			<table class="firmas">
 			<tr>
 				<td class="firma"><strong>NOMBRE ASESOR DE MATRICULA</strong></td>
@@ -583,5 +642,6 @@
 				<td><strong>REPRESENTANTE LEGAL</strong></td>
 			</tr>
 			</table>
+
         </body>
     </html>

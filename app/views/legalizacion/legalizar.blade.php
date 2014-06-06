@@ -57,7 +57,7 @@
                     <div class="radio">
                         <label>
                                 Firma solo Papá            
-                                <input type="radio" id="papa" name="firma" value="0">
+                                <input type="radio" id="papa" name="firma" value="1">
                         </label>
                     </div>
                 </div>
@@ -67,7 +67,7 @@
                     <div class="radio">
                         <label>
                             Firma solo Mamá            
-                            <input type="radio" id="mama" name="firma" value="1">
+                            <input type="radio" id="mama" name="firma" value="2">
                         </label>
                     </div>
                 </div>
@@ -77,7 +77,7 @@
                     <div class="radio">
                         <label>
                             Firman Ambos            
-                            <input type="radio" id="ambos" name="firma" value="2">
+                            <input type="radio" id="ambos" name="firma" value="3">
                         </label>
                     </div>
                 </div>
