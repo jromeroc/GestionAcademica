@@ -21,6 +21,11 @@
         text-align: left;
         padding: 2px;
       }
+      h3{
+        border-bottom: solid #662 1px;
+        margin: 0;
+        padding: 5px 0 0 0;
+      }
       .paragrafo{
         margin-left: 50px; 
       }
@@ -58,11 +63,6 @@
         border-bottom: solid black 1px;
       }
 
-      h3{
-        border-bottom: solid #662 1px;
-        margin: 0;
-        padding: 5px 0 0 0;
-      }
 		</style>
 	</head>
 	
@@ -93,7 +93,7 @@
         <td><?= $padres['papa']['CC']?></td>
       </tr>
       <tr>
-        <th>Dirección residencia</th>
+        <th>Dirección</th>
         <td><?= $padres['papa']['direccion']?></td>
         <th>Teléfono</th>
         <td><?= $padres['papa']['telefono']?></td>
@@ -121,7 +121,7 @@
         <td><?= $padres['mama']['CC']?></td>
       </tr>
       <tr>
-        <th>Dirección residencia</th>
+        <th>Dirección</th>
         <td><?= $padres['mama']['direccion']?></td>
         <th>Teléfono</th>
         <td><?= $padres['mama']['telefono']?></td>
@@ -145,8 +145,7 @@
 
         <th>Parentesco</th>
         <td><?=$acudiente['parentesco_acudiente']?></td>
-        <th>Telefono Casa</th>
-        <td><?=$acudiente['telefono_acudiente']?></td>
+        
       </tr>
 
       <tr>
@@ -157,6 +156,9 @@
 
         <th>Telefono Oficina</th>
         <td><?=$acudiente['teloficina_acudiente']?></td>
+
+        <th>Telefono Casa</th>
+        <td><?=$acudiente['telefono_acudiente']?></td>
       </tr>
 
     </table>
@@ -179,9 +181,9 @@
     <table>
       <tr>
         <th>Curso</th>
-        <th>VALOR MATRICULA</th>
-        <th>VALOR MATERIAL DIDACTICO</th>  
-        <th>SUBTOTAL</th>  
+        <th>Valor Matricula</th>
+        <th>Valor Material Didactico</th>  
+        <th>Subtotal</th>  
       </tr>
       <?php foreach ($hijos as $key) { ?>
       <tr>
@@ -202,35 +204,35 @@
       <tr>
         <td></td>
         <td></td>
-        <td>TOTAL:</td>
+        <td><b>TOTAL:</b></td>
         <td class="diligenciar"></td>
       </tr>
 
       <tr>
         <td></td>
         <td></td>
-        <td>VR. DESCUENTO:</td>
+        <td><b>VR. DESCUENTO:</b></td>
         <td class="diligenciar"></td>
       </tr>
 
       <tr>
         <td></td>
         <td></td>
-        <td>VR. RECARGO:</td>
+        <td><b>VR. RECARGO:</b></td>
         <td class="diligenciar"></td>
       </tr>
 
       <tr>
         <td></td>
         <td></td>
-        <td>OTROS:</td>
+        <td><b>OTROS:</b></td>
         <td class="diligenciar"></td>
       </tr>
 
       <tr>
         <td></td>
         <td></td>
-        <td>TOTAL:</td>
+        <td><b>TOTAL:</b></td>
         <td class="diligenciar"></td>
       </tr>
 
@@ -260,7 +262,7 @@
         <td></td>
         <td></td>
         <td></td>
-        <td>SUBTOTAL:</td>
+        <td><b>SUBTOTAL:</b></td>
         <td class="diligenciar" colspan="2"></td>
       </tr>
 
@@ -268,7 +270,7 @@
         <td></td>
         <td></td>
         <td></td>
-        <td>DESCUENTO:</td>
+        <td><b>DESCUENTO:</b></td>
         <td class="diligenciar" colspan="2"></td>
       </tr>
 
@@ -276,7 +278,7 @@
         <td></td>
         <td></td>
         <td></td>
-        <td>OTROS DESCUENTOS:</td>
+        <td><b>OTROS DESCUENTOS:</b></td>
         <td class="diligenciar" colspan="2"></td>
       </tr>
 
@@ -284,7 +286,7 @@
         <td></td>
         <td></td>
         <td></td>
-        <td>OTROS PAGOS:</td>
+        <td><b>OTROS PAGOS:</b></td>
         <td class="diligenciar" colspan="2"></td>
       </tr>
 
@@ -292,14 +294,14 @@
         <td></td>
         <td></td>
         <td></td>
-        <td>OTROS PAGOS:</td>
+        <td><b>OTROS PAGOS:</b></td>
         <td class="diligenciar" colspan="2"></td>
       </tr>
       <tr>
         <td></td>
         <td></td>
         <td></td>
-        <td>TOTAL:</td>
+        <td><b>TOTAL:</b></td>
         <td class="diligenciar" colspan="2"></td>
       </tr>
     </table>

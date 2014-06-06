@@ -132,8 +132,20 @@ class Legalizar extends Eloquent
             $hijos = DB::table($tabla)->select($tabla.'.id',
                   DB::raw("CONCAT_WS(' ', fname, lname, names) as nombre"),
                   DB::raw("DATE_FORMAT(FROM_DAYS(TO_DAYS(NOW())-TO_DAYS(date_born)), '%Y')+0 AS age"),
-                  'grados.nombre as grado'                  
-            )->join('grados','grados.id','=',$tabla.'.grado')
+                  'grados.nombre as grado',
+                  'tipodocumento.name_tipodoc',
+                  'num_document',
+                  'direccion',
+                  'telefono',
+                  'paises.name_pais',   
+                  'ciudades.nombre_ciudad',
+                  'rh',
+                  'grupo_san'
+            )
+            ->join('grados','grados.id','=',$tabla.'.grado')
+            ->join('ciudades','ciudades.id_ciudad','=',$tabla.'.city_born')
+            ->join('paises','paises.id_pais','=',$tabla.'.pais_born')
+            ->join('tipodocumento','tipodocumento.id_tipodoc','=',$tabla.'.tipo_document')
             ->where('papa','=',$idP)
             ->where('mama','=',$idM)
             ->orderBy('age', 'desc')
