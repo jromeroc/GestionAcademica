@@ -131,11 +131,12 @@ class Legalizar extends Eloquent
       public function srch_hijos($idP,$idM,$tabla){
             $hijos = DB::table($tabla)->select($tabla.'.id',
                   DB::raw("CONCAT_WS(' ', fname, lname, names) as nombre"),
-                  DB::raw('CURDATE(), (YEAR(CURDATE())-YEAR(date_born)(RIGHT(CURDATE(),5)<RIGHT(date_born,5)) AS age'),
+                  DB::raw("DATE_FORMAT(FROM_DAYS(TO_DAYS(NOW())-TO_DAYS(date_born)), '%Y')+0 AS age"),
                   'grados.nombre as grado'                  
             )->join('grados','grados.id','=',$tabla.'.grado')
             ->where('papa','=',$idP)
             ->where('mama','=',$idM)
+            ->orderBy('age', 'desc')
             ->get();
             return $hijos;
       }

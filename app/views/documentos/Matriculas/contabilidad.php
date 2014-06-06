@@ -138,7 +138,12 @@
         <td></td>
       </tr>
     </table>
-    
-
+    <?php
+    foreach($hijos as $son){
+                  echo $sons .= $son['nombre']." del grado ". $son['grado'].", ";
+                  $segundaGrados .= $son['grado'].', ';
+                  $tarifaCuarta .= 'para el grado '.$son['grado'].' de ______________________________________ $ ____________________, los ';
+                }
+    ?>
   </body>      
 </html>
