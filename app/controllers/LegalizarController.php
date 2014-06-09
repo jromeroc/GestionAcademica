@@ -64,7 +64,11 @@ class LegalizarController extends BaseController
 		}
 		return View::Make('legalizacion.legalizar')->with(array('papa'=>$papa,'mama'=>$mama,'hijo'=>$hijo,'year'=>$ano));
 	}
-
+	public function legalizarM($idP,$idM,$ano){
+		$tabla = $this->_matricula->asignTabla($ano);
+		$update = $this->_legalizar->LegalizarMatricula($idP,$idM,$tabla);
+		return Redirect::to('legalizacion');
+	}
 }
 
 ?>

@@ -35,7 +35,7 @@
   @if(empty($alum))
   	{{ Form::open(array('url' => 'matriculas/nuevo', 'method' => 'POST','class'=>'col-sm -6'), array('role'=>'form'))}}
   @else
-    {{ Form::open(array('url' => 'matriculas/update_matricula/'.$id_alum.'/'.$año_matri, 'method' => 'POST','class'=>'col-sm -6'), array('role'=>'form'))}}
+    {{ Form::open(array('url' => 'matriculas/update_matricula/'.$id_alum.'/'.$ano_matri, 'method' => 'POST','class'=>'col-sm -6'), array('role'=>'form'))}}
   @endif		
       <!-- Año Matricula  !-->
   		<div class="form-group col-sm-12">

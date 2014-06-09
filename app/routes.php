@@ -181,7 +181,7 @@ Route::group(array('prefix' => 'matriculas'), function(){
 			Route::get('editar_matricula/{num1}/{num2}', 'MatriculasController@edit_matri')->where(array('num1'=>'[0-9]+','num2'=>'[0-9]+'));
 			Route::get('editar_papa/{num1}/{num2}/{num3}', 'MatriculasController@edit_padre')->where(array('num1'=>'[0-9]+','num2'=>'[0-9]+','num3'=>'[0-9]+'));
 			Route::get('editar_mama/{num1}/{num2}/{num3}', 'MatriculasController@edit_madre')->where(array('num1'=>'[0-9]+','num2'=>'[0-9]+','num3'=>'[0-9]+'));
-			Route::get('editar_acudiente/{num1}/{num2}', 'MatriculasController@edit_matri')->where(array('num1'=>'[0-9]+','num2'=>'[0-9]+'));
+			Route::get('editar_acudiente/{num1}/{num2}', 'MatriculasController@edit_acudiente')->where(array('num1'=>'[0-9]+','num2'=>'[0-9]+'));
 			Route::post('update_matricula/{num1}/{num2}', 'MatriculasController@update_matricula')->where(array('num1'=>'[0-9]+','num2'=>'[0-9]+'));
 
 		});
@@ -213,6 +213,7 @@ Route::group(array('prefix' => 'legalizacion'), function(){
 			Route::get('pendientes', 'LegalizarController@pendientes');
 			Route::get('legalizadas', 'LegalizarController@legalizadas');
 			Route::get('legalizar/{n1}/{n2}/{n3}', 'LegalizarController@legalizar')->where(array('n1'=>'[0-9]+','n2'=>'[0-9]+','n3'=>'[0-9]+'));
+			Route::get('legalizada/{n1}/{n2}/{n3}', 'LegalizarController@legalizarM')->where(array('n1'=>'[0-9]+','n2'=>'[0-9]+','n3'=>'[0-9]+'));
 			Route::post('docs/{n1}/{n2}/{n3}', 'DocsMatriculaController@requestDocs')->where(array('n1'=>'[0-9]+','n2'=>'[0-9]+','n3'=>'[0-9]+'));
 			Route::post('filtro-matriculas/{type}', 'LegalizarController@matriculasList')->where('type','[0-9]+');
 		});

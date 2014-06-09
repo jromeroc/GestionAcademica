@@ -188,4 +188,11 @@ class Legalizar extends Eloquent
             ->get();
             return $padre;
       }
+
+      public function LegalizarMatricula($papa,$mama,$tabla){
+            $consulta = DB::table($tabla)
+                  ->where('papa', $papa)
+                  ->where('mama', $mama)
+                  ->update(array('legalizada' => 1));
+      }
 }

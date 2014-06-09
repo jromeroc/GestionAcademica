@@ -65,7 +65,7 @@ class MatriculasController extends BaseController
 			$mensajes = array(
 					'alum.required'			 	=> 'Digite el nombre del alumno.',
 					'fname.required' 			=> 'Digite el apellido del alumno.',
-					'year_matricula.required' 	=> 'Seleccione un año Escolar.',
+					'year_matricula.required' 	=> 'Seleccione un ano Escolar.',
 					'genero.required' 			=> 'Seleccione un genero.',					
 					'grado.required' 			=> 'Seleccione un grado.',				
 					'T-reg.required' 			=> 'Seleccione Inscripcion o Matricula.'				
@@ -87,7 +87,7 @@ class MatriculasController extends BaseController
 				
 				else
 				{
-					$tipos = Tipodoc::all()->lists('name_tipodoc','id_tipodoc');
+					$tipos = Tipodoc::all()->lists('name','id');
 					$tabla = $this->asignTabla($data['year_matricula']);
 					$data['codigoMatri']=$codigoMatri;
 					$save = $this->_matricula->saveMatricula($data,$tabla);
@@ -131,7 +131,7 @@ class MatriculasController extends BaseController
 
 				else
 				{
-					$tipos = Tipodoc::all()->lists('name_tipodoc','id_tipodoc');
+					$tipos = Tipodoc::all()->lists('name','id');
 					$tabla = $this->asignTabla($data['year_matricula']);
 					$save = $this->_matricula->saveInscripcion($data,$tabla);
 					if (!empty($data['n_document'])) {
@@ -283,10 +283,13 @@ class MatriculasController extends BaseController
 			$tabla = $this->asignTabla($ano);
 			$alum = $this->_matricula->srch_alum_edit($id_alum,$tabla);
 			$alum =get_object_vars($alum[0]);
+			
+			
 			if (!empty($alum['papa'])) 
 			{
 				$papa = $this->_matricula->srch_Papa($alum['papa']);
 				$papa = get_object_vars($papa);
+				
 			}else{
 				$papa="";
 			}
@@ -294,6 +297,7 @@ class MatriculasController extends BaseController
 			{
 				$mama = $this->_matricula->srch_Papa($alum['mama']);
 				$mama = get_object_vars($mama);
+				
 			}else{
 				$mama="";
 			}
@@ -302,12 +306,12 @@ class MatriculasController extends BaseController
 			}else{
 				$tipoR = 1;
 			}
-			print_r($papa);
+			
 			if ($type == 1) {
-				// return View::Make('matriculas.padre')->with(array('padre'=>'papa', 'papa'=>$papa,'tipoR'=>$tipoR,'tipodoc'=>$tipos,'id_alum'=>$id_alum,'year'=>$ano,'genero'=>$type));
+				return View::Make('matriculas.padre')->with(array('padre'=>'papa', 'papa'=>$papa,'tipoR'=>$tipoR,'tipodoc'=>$tipos,'id_alum'=>$id_alum,'year'=>$ano,'genero'=>$type));
 			}
 			if ($type == 0) {
-				// return View::Make('matriculas.padre')->with(array('padre'=>'mama', 'papa'=>$mama,'tipoR'=>$tipoR,'tipodoc'=>$tipos,'id_alum'=>$id_alum,'year'=>$ano,'genero'=>$type));
+				return View::Make('matriculas.padre')->with(array('padre'=>'mama', 'papa'=>$mama,'tipoR'=>$tipoR,'tipodoc'=>$tipos,'id_alum'=>$id_alum,'year'=>$ano,'genero'=>$type));
 			}
 		}
 
@@ -392,11 +396,11 @@ class MatriculasController extends BaseController
 			}
 
 			if (empty($consulta)) {
-				return View::Make('matriculas.matriculados')->with(array('grados'=>$grados,'anos'=>$anos,'mensaje'=>'No hay Alumnos Matriculados','año'=>$data['year_matricula'],'data'=>$data,'inscritos' => '1'));		
+				return View::Make('matriculas.matriculados')->with(array('grados'=>$grados,'anos'=>$anos,'mensaje'=>'No hay Alumnos Matriculados','ano'=>$data['year_matricula'],'data'=>$data,'inscritos' => '1'));		
 			}
 
 			else{
-				return View::Make('matriculas.matriculados')->with(array('grados'=>$grados,'anos'=>$anos,'alumnos'=>$consulta,'año'=>$data['year_matricula'],'data'=>$data,'inscritos' => '1'));
+				return View::Make('matriculas.matriculados')->with(array('grados'=>$grados,'anos'=>$anos,'alumnos'=>$consulta,'ano'=>$data['year_matricula'],'data'=>$data,'inscritos' => '1'));
 			}
 		}
 
@@ -434,11 +438,11 @@ class MatriculasController extends BaseController
 			}
 
 			if (empty($consulta)) {
-				return View::Make('matriculas.matriculados')->with(array('grados'=>$grados,'anos'=>$anos,'mensaje'=>'No hay Alumnos Matriculados','año'=>$data['year_matricula'],'data'=>$data));		
+				return View::Make('matriculas.matriculados')->with(array('grados'=>$grados,'anos'=>$anos,'mensaje'=>'No hay Alumnos Matriculados','ano'=>$data['year_matricula'],'data'=>$data));		
 			}
 
 			else{
-				return View::Make('matriculas.matriculados')->with(array('grados'=>$grados,'anos'=>$anos,'alumnos'=>$consulta,'año'=>$data['year_matricula'],'data'=>$data));
+				return View::Make('matriculas.matriculados')->with(array('grados'=>$grados,'anos'=>$anos,'alumnos'=>$consulta,'ano'=>$data['year_matricula'],'data'=>$data));
 			}
 		}
 
@@ -447,7 +451,7 @@ class MatriculasController extends BaseController
 		}
 	}
 
-	public function edit_matri($id,$año){
+	public function edit_matri($id,$ano){
 		
 		$tipos = Tipodoc::all()->lists('name','id');
 		
@@ -456,23 +460,23 @@ class MatriculasController extends BaseController
 		
 		$anos = $this->asign_year();
 
-		$tabla = $this->asignTabla($año);
+		$tabla = $this->asignTabla($ano);
 
 		$datos_alum = $this->_matricula->srch_alum_edit($id,$tabla);
 		$datos_alum = get_object_vars($datos_alum[0]);
 
-		return View::Make('matriculas.alum')->with(array('anos' => $anos,'tipodoc'=>$tipos,'grado'=>$grados,'alum'=>$datos_alum,'id_alum'=>$id,'año_matri'=>$año));
+		return View::Make('matriculas.alum')->with(array('anos' => $anos,'tipodoc'=>$tipos,'grado'=>$grados,'alum'=>$datos_alum,'id_alum'=>$id,'ano_matri'=>$ano));
 	}
 
 
-	public function cancel_matri($id,$año){
+	public function cancel_matri($id,$ano){
 		$grados = Grado::all()->lists('nombre','id');
 
 		array_unshift($grados, "Seleccione Grado");
 
 		$anos = $this->asign_year();
 
-		$tabla = $this->asignTabla($año);
+		$tabla = $this->asignTabla($ano);
 
 
 		$delete = $this->_matricula->cancel_matricula($id,$tabla);
@@ -481,14 +485,20 @@ class MatriculasController extends BaseController
 
 	}
 
-	public function update_matricula($id,$año){
+	public function update_matricula($id,$ano){
 		$data=Input::all();
+		$tabla = $this->asignTabla($ano);
 		
+		$codigoMatri = $this->_matricula->srch_cod_matri($tabla,$id);
+		$codigoMatri = get_object_vars($codigoMatri[0]);
+		if ($codigoMatri == 0) {
+			$codigoMatri = $this->_matricula->cod_matri($tabla);
+			$codigoMatri = $codigoMatri +1;
+		} 
+		$data['codigoMatri']=$codigoMatri;
 		$grados = Grado::all()->lists('nombre','id');
 		array_unshift($grados, "Seleccione Grado");
 		$anos = $this->asign_year();
-		
-		$tabla = $this->asignTabla($año);
 		$update = $this->_matricula->update_matri($id,$tabla,$data);
 		
 		return View::Make('matriculas.matriculados')->with(array('grados'=>$grados,'anos'=>$anos,'mensaje_update'=>'Matricula Actualizada correctamente'));
@@ -497,7 +507,7 @@ class MatriculasController extends BaseController
 
 	public function savePadre(){
 		$data = Input::all();
-		$tipos = Tipodoc::all()->lists('name_tipodoc','id_tipodoc');
+		$tipos = Tipodoc::all()->lists('name','id');
 
 		if (!empty($data['nombres'])) {
 			$nombre = $data['nombres'];
@@ -546,7 +556,7 @@ class MatriculasController extends BaseController
 
 	public function saveAcudiente(){
 		$data = Input::all();
-		$tipos = Tipodoc::all()->lists('name_tipodoc','id_tipodoc');
+		$tipos = Tipodoc::all()->lists('name','id');
 		if (!empty($data['datosA'])) {
 			$save = $this->_matricula->UpdateAc($data);
 			$action ="Actualizado";

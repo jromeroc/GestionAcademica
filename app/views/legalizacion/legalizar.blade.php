@@ -89,8 +89,13 @@
             {{ Form::button('Contabilidad', array('class'=>'btn btn-primary', 'onclick' => 'impress(3)')) }}
             {{ Form::button('Enfermeria', array('class'=>'btn btn-primary', 'onclick' => 'impress(4)')) }}
             {{ Form::button('Matricula', array('class'=>'btn btn-primary', 'onclick' => 'impress(5)')) }}
+            {{ HTML::link('legalizacion/legalizada/'.$papa['id'].'/'.$mama['id'].'/'.$year, 'Legalizar Matricula', array('class'=>'btn btn-danger'));}}
+            
         </div>
-        {{ Form::hidden('doc', '', array('id'=>'doc'))}}
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            
+        </div>
+        {{ Form::hidden('doc','', array('id'=>'doc'))}}
     {{ Form::close() }}
 @stop
 

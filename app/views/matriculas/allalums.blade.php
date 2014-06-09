@@ -20,11 +20,11 @@
 					<td> {{$alums->lname}} </td>
 					<td> {{$alums->names}} </td>
 					<td>
-				   		{{ HTML::link('matriculas/editar_matricula/'.$alums->id.'/'.$año, 'Alumno', array('class'=>'btn btn-primary'));}}
-				   		{{ HTML::link('matriculas/editar_papa/'.$alums->id.'/'.$año.'/1', 'Papá', array('class'=>'btn btn-primary'));}}
-				   		{{ HTML::link('matriculas/editar_mama/'.$alums->id.'/'.$año.'/0', 'Mamá', array('class'=>'btn btn-primary'));}}
-				   		{{ HTML::link('matriculas/editar_acudiente/'.$alums->id.'/'.$año, 'Acudiente', array('class'=>'btn btn-primary'));}}
-				   		{{ HTML::link('matriculas/cancel_matricula/'.$alums->id.'/'.$año, 'Cancelar Matricula', array('class'=>'btn btn-danger'));}}
+				   		{{ HTML::link('matriculas/editar_matricula/'.$alums->id.'/'.$ano, 'Alumno', array('class'=>'btn btn-primary'));}}
+				   		{{ HTML::link('matriculas/editar_papa/'.$alums->id.'/'.$ano.'/1', 'Papá', array('class'=>'btn btn-primary'));}}
+				   		{{ HTML::link('matriculas/editar_papa/'.$alums->id.'/'.$ano.'/0', 'Mamá', array('class'=>'btn btn-primary'));}}
+				   		{{ HTML::link('matriculas/editar_acudiente/'.$alums->id.'/'.$ano, 'Acudiente', array('class'=>'btn btn-primary'));}}
+				   		{{ HTML::link('matriculas/cancel_matricula/'.$alums->id.'/'.$ano, 'Cancelar Matricula', array('class'=>'btn btn-danger'));}}
 					</td>
 				</tr>
 				@endforeach

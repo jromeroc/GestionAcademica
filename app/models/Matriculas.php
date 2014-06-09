@@ -31,10 +31,19 @@ class Matriculas extends Eloquent
         return $consult;
     }
 
-	public function cod_matri($tablaAlumnos){
-		$consult = DB::table($tablaAlumnos)->max('matricula');
-		return $consult;
-	}
+    public function srch_cod_matri($tablaAlumnos,$id_alum){
+        $consult = DB::table($tablaAlumnos)
+            ->select('matricula')
+            ->where('id','=',$id_alum)
+            ->get();
+        return $consult;
+    }
+
+    public function cod_matri($tablaAlumnos){
+        $consult = DB::table($tablaAlumnos)->max('matricula');
+        return $consult;
+    }
+
 	public function saveMatricula($data,$tabla){
         DB::table($tabla)->insert(
     		array(
