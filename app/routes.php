@@ -179,6 +179,9 @@ Route::group(array('prefix' => 'matriculas'), function(){
 
 			Route::get('cancel_matricula/{num1}/{num2}', 'MatriculasController@cancel_matri')->where(array('num1'=>'[0-9]+','num2'=>'[0-9]+'));
 			Route::get('editar_matricula/{num1}/{num2}', 'MatriculasController@edit_matri')->where(array('num1'=>'[0-9]+','num2'=>'[0-9]+'));
+			Route::get('editar_papa/{num1}/{num2}/{num3}', 'MatriculasController@edit_padre')->where(array('num1'=>'[0-9]+','num2'=>'[0-9]+','num3'=>'[0-9]+'));
+			Route::get('editar_mama/{num1}/{num2}/{num3}', 'MatriculasController@edit_madre')->where(array('num1'=>'[0-9]+','num2'=>'[0-9]+','num3'=>'[0-9]+'));
+			Route::get('editar_acudiente/{num1}/{num2}', 'MatriculasController@edit_matri')->where(array('num1'=>'[0-9]+','num2'=>'[0-9]+'));
 			Route::post('update_matricula/{num1}/{num2}', 'MatriculasController@update_matricula')->where(array('num1'=>'[0-9]+','num2'=>'[0-9]+'));
 
 		});

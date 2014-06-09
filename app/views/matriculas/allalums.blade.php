@@ -7,7 +7,7 @@
 					<th> Primer Apellido	</th>
 					<th> Segundo Apellido	</th>
 					<th> Nombres			</th>
-					<th> Acciones			</th>
+					<th> Editar				</th>
 				</tr>
 			</thead>
 					
@@ -20,7 +20,10 @@
 					<td> {{$alums->lname}} </td>
 					<td> {{$alums->names}} </td>
 					<td>
-				   		{{ HTML::link('matriculas/editar_matricula/'.$alums->id.'/'.$año, 'Editar', array('class'=>'btn btn-primary'));}}
+				   		{{ HTML::link('matriculas/editar_matricula/'.$alums->id.'/'.$año, 'Alumno', array('class'=>'btn btn-primary'));}}
+				   		{{ HTML::link('matriculas/editar_papa/'.$alums->id.'/'.$año.'/1', 'Papá', array('class'=>'btn btn-primary'));}}
+				   		{{ HTML::link('matriculas/editar_mama/'.$alums->id.'/'.$año.'/0', 'Mamá', array('class'=>'btn btn-primary'));}}
+				   		{{ HTML::link('matriculas/editar_acudiente/'.$alums->id.'/'.$año, 'Acudiente', array('class'=>'btn btn-primary'));}}
 				   		{{ HTML::link('matriculas/cancel_matricula/'.$alums->id.'/'.$año, 'Cancelar Matricula', array('class'=>'btn btn-danger'));}}
 					</td>
 				</tr>

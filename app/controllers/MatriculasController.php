@@ -195,7 +195,7 @@ class MatriculasController extends BaseController
 
 
 	public function padre($id,$year){
-		$tipos = Tipodoc::all()->lists('name_tipodoc','id_tipodoc');
+		$tipos = Tipodoc::all()->lists('name','id');
 		if (!empty($id))
 		{
 			$tabla = $this->asignTabla($year);
@@ -237,7 +237,7 @@ class MatriculasController extends BaseController
 	}
 
 	public function madre($id,$year){
-		$tipos = Tipodoc::all()->lists('name_tipodoc','id_tipodoc');
+		$tipos = Tipodoc::all()->lists('name','id');
 		if (!empty($id))
 		{
 			$tabla = $this->asignTabla($year);
@@ -276,10 +276,38 @@ class MatriculasController extends BaseController
 			}
 			
 		}
+
 	}
+		public function edit_padre($id_alum, $ano, $type){
+			$tipos = Tipodoc::all()->lists('name','id');
+			$tabla = $this->asignTabla($ano);
+			$alum = $this->_matricula->srch_alum_edit($id_alum,$tabla);
+			$alum =get_object_vars($alum[0]);
+			if (!empty($alum['papa'])) 
+			{
+				$papa = $this->_matricula->srch_Papa($alum['papa']);
+				$papa = get_object_vars($papa);
+			}
+			if (!empty($alum['mama'])) 
+			{
+				$mama = $this->_matricula->srch_Papa($alum['mama']);
+				$mama = get_object_vars($mama);
+			}
+			if ($alum['matriculado'] == 0 ) {
+				$tipoR = 0;
+			}else{
+				$tipoR = 1;
+			}
+			if ($type == 0) {
+				return View::Make('matriculas.padre')->with(array('padre'=>'papa', 'papa'=>$papa,'tipoR'=>$tipoR,'tipodoc'=>$tipos,'id_alum'=>$id_alum,'year'=>$ano));
+			}
+			if ($type == 1) {
+				return View::Make('matriculas.padre')->with(array('padre'=>'mama', 'papa'=>$mama,'tipoR'=>$tipoR,'tipodoc'=>$tipos,'id_alum'=>$id_alum,'year'=>$ano));
+			}
+		}
 
 	public function acudiente($id,$year){
-		$tipos = Tipodoc::all()->lists('name_tipodoc','id_tipodoc');
+		$tipos = Tipodoc::all()->lists('name','id');
 		if (!empty($id))
 		{
 			$tabla = $this->asignTabla($year);
