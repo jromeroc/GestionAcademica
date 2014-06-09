@@ -287,21 +287,26 @@ class MatriculasController extends BaseController
 			{
 				$papa = $this->_matricula->srch_Papa($alum['papa']);
 				$papa = get_object_vars($papa);
+			}else{
+				$papa="";
 			}
 			if (!empty($alum['mama'])) 
 			{
 				$mama = $this->_matricula->srch_Papa($alum['mama']);
 				$mama = get_object_vars($mama);
+			}else{
+				$mama="";
 			}
 			if ($alum['matriculado'] == 0 ) {
 				$tipoR = 0;
 			}else{
 				$tipoR = 1;
 			}
-			if ($type == 0) {
+
+			if ($type == 1) {
 				return View::Make('matriculas.padre')->with(array('padre'=>'papa', 'papa'=>$papa,'tipoR'=>$tipoR,'tipodoc'=>$tipos,'id_alum'=>$id_alum,'year'=>$ano));
 			}
-			if ($type == 1) {
+			if ($type == 0) {
 				return View::Make('matriculas.padre')->with(array('padre'=>'mama', 'papa'=>$mama,'tipoR'=>$tipoR,'tipodoc'=>$tipos,'id_alum'=>$id_alum,'year'=>$ano));
 			}
 		}
