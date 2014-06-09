@@ -13,8 +13,8 @@ class DocsMatriculaController extends Controller
 	public function requestDocs($idP,$idM,$year){
 
 		$pdf = App::make('dompdf');
-		$presidente = "Nombre presidente";
-		$indentification = "Num doc presidente";
+		$presidente = "ANDRES ALEJANDRO PEÑUELA PALLOS";
+		$indentification = "80'421.226";
 		$yearLectivo = "2014 - 2015";
 			
 		$meses = array('' , 
@@ -63,6 +63,7 @@ class DocsMatriculaController extends Controller
 				array('firma'=>$typeFirma,
 					'padres'=>$padres,
 					'presidente'=>$presidente,
+					'indentification' => $indentification,
 					'hijos'=>$son,
 					'mes'=>$meses));
 			$pdf->loadHTML($view)->setPaper('a4');

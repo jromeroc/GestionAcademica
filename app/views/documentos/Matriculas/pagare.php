@@ -88,7 +88,7 @@
 
 		<table class="encabezado">
    			<tr>
-      			<td style="width:250px"><img id="img" src="http://colhebreo.dev/cch/CCH.jpg"/></td>
+      			<td style="width:250px"><img id="img" src="http://192.168.0.50/cch/CCH.jpg"/></td>
 		    	<th>
 		    		<p class="head">COLEGIO COLOMBO HEBREO</p>
     				<p class="head">PROCESO DE MATRÍCULA</p>

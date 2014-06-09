@@ -68,7 +68,7 @@
 	<body>
 		<table class="encabezado">
    			<tr>
-      			<td style="width:250px"><img id="img" src="http://colhebreo.dev/cch/CCH.jpg"/></td>
+      			<td style="width:250px"><img id="img" src="http://192.168.0.50/cch/CCH.jpg"/></td>
 		    	<th>
 		    		<p class="head">COLEGIO COLOMBO HEBREO</p>
     				<p class="head">PROCESO DE MATRICULA</p>
@@ -103,7 +103,7 @@
 
 	            Entre los suscritos a saber <strong><?= $presidente ?></strong>. 
 	            mayor de edad, plenamente capaz, e identificado con cédula de ciudadanía 
-	            Nº '.$indentification.' de ciudad exp D.C., obrando como Representante Legal del 
+	            Nº <?= $indentification ?> de Bogotá D.C., obrando como Representante Legal del 
 	            <strong>COLEGIO COLOMBO HEBREO - BOGOTÁ D.C.</strong>, entidad sin ánimo de lucro, 
 	            calendario B, con personería jurídica vigente y reconocida mediante la 
 	            Resolución 1891 del 28 de junio de1958, expedida por el 
@@ -556,8 +556,8 @@
 			</p> -->
 
 			<p>
-				Para constancia se firma en Bogotá a los <?= date('d'); ?> días del mes de 
-				<?= date('M'); ?> del <?= date('Y'); ?>, en dos ejemplares del mismo tenor.
+				Para constancia se firma en Bogotá a los <?= date('d') ?> días del mes de 
+				<?= $mes[date('n')] ?> del <?= date('Y'); ?>, en dos ejemplares del mismo tenor.
 			</p>
 
 			<div class="container">

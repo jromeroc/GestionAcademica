@@ -58,11 +58,11 @@
 	<div style="page-break-after: always;">
 		<div id="encabezado">
 			<div>
-				<img class="cch" src="http://colhebreo.dev/cch/CCH.jpg"/>
+				<img class="cch" src="http://192.168.0.50/cch/CCH.jpg"/>
 			</div>
 			<div></div>
 			<div>
-				<img class="efqm" src="http://colhebreo.dev/cch/efqm.jpg"/>
+				<img class="efqm" src="http://192.168.0.50/cch/efqm.jpg"/>
 			</div>
 		</div>
 		<?php
@@ -164,7 +164,7 @@
 			</div>
 		</div>
 	<div>
-		<img class="footer" src="http://colhebreo.dev/cch/footer.jpg">
+		<img class="footer" src="http://192.168.0.50/cch/footer.jpg">
 	</div>
 	</div>
 	 <?php }?>
