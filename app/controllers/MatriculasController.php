@@ -462,9 +462,15 @@ class MatriculasController extends BaseController
 
 		$tabla = $this->asignTabla($ano);
 
+		$papa = $this->_matricula->srch_Id_Papa($tabla,$id);
+		$papa = get_object_vars($papa[0]);
+
+		$mama = $this->_matricula->srch_Id_Mama($tabla,$id);
+		$mama = get_object_vars($mama[0]);
+
 		$datos_alum = $this->_matricula->srch_alum_edit($id,$tabla);
 		$datos_alum = get_object_vars($datos_alum[0]);
-
+		
 		return View::Make('matriculas.alum')->with(array('anos' => $anos,'tipodoc'=>$tipos,'grado'=>$grados,'alum'=>$datos_alum,'id_alum'=>$id,'ano_matri'=>$ano));
 	}
 
