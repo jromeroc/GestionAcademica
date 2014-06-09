@@ -116,9 +116,6 @@
 
 	@endif
 
-	
-
-
 @stop
 
 @section('scripts') 

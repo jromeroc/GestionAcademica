@@ -302,12 +302,12 @@ class MatriculasController extends BaseController
 			}else{
 				$tipoR = 1;
 			}
-
+			print_r($papa);
 			if ($type == 1) {
-				return View::Make('matriculas.padre')->with(array('padre'=>'papa', 'papa'=>$papa,'tipoR'=>$tipoR,'tipodoc'=>$tipos,'id_alum'=>$id_alum,'year'=>$ano));
+				// return View::Make('matriculas.padre')->with(array('padre'=>'papa', 'papa'=>$papa,'tipoR'=>$tipoR,'tipodoc'=>$tipos,'id_alum'=>$id_alum,'year'=>$ano,'genero'=>$type));
 			}
 			if ($type == 0) {
-				return View::Make('matriculas.padre')->with(array('padre'=>'mama', 'papa'=>$mama,'tipoR'=>$tipoR,'tipodoc'=>$tipos,'id_alum'=>$id_alum,'year'=>$ano));
+				// return View::Make('matriculas.padre')->with(array('padre'=>'mama', 'papa'=>$mama,'tipoR'=>$tipoR,'tipodoc'=>$tipos,'id_alum'=>$id_alum,'year'=>$ano,'genero'=>$type));
 			}
 		}
 
