@@ -41,7 +41,7 @@ class MatriculasController extends BaseController
 
 	public function MatriculaAlum(){
 		
-		$tipos = Tipodoc::all()->lists('name_tipodoc','id_tipodoc');
+		$tipos = Tipodoc::all()->lists('name','id');
 		$grados = Grado::all()->lists('nombre','id');
 		array_unshift($grados, "Seleccione Grado");
 		$anos = $this->asign_year();
@@ -416,7 +416,7 @@ class MatriculasController extends BaseController
 
 	public function edit_matri($id,$año){
 		
-		$tipos = Tipodoc::all()->lists('name_tipodoc','id_tipodoc');
+		$tipos = Tipodoc::all()->lists('name','id');
 		
 		$grados = Grado::all()->lists('nombre','id');
 		array_unshift($grados, "Seleccione Grado");

@@ -13,7 +13,7 @@ class UserTableSeeder extends Seeder {
 
         User::create(array(
             'nick'=>'admin',
-            'password'=>Hash::make('123'),
+            'password'=>Hash::make('colegio*cch'),
             'role'=>'1',
             'type'=>'1',
             'active'=>'1',
@@ -27,9 +27,9 @@ class UserTableSeeder extends Seeder {
         ));
 
         User::create(array(
-            'nick'=>'docente',
-            'password'=>Hash::make('123'),
-            'role'=> 1,
+            'nick'=>'mpreciado',
+            'password'=>Hash::make('secacademica'),
+            'role'=> 7,
             'type'=> 1,
             'active'=> 1,
         ));

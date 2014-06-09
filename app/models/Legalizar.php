@@ -21,8 +21,8 @@ class Legalizar extends Eloquent
                   FROM `padres_cch` padres_cch
                   INNER JOIN `".$tabla."` ".$tabla." ON padres_cch.`id_padre` = ".$tabla.".`papa`
                   INNER JOIN `padres_cch` padres_cch_A ON ".$tabla.".`mama` = padres_cch_A.`id_padre`
-                  INNER JOIN `acudiente` acudiente ON ".$tabla.".`acudiente` = acudiente.`id_acudiente`
-                  WHERE legalizada = ".$type.$addAlum."
+                  
+                  WHERE legalizada = ".$type.$addAlum." AND matriculado = 1
                   GROUP BY `papa` , `mama`
                   ORDER BY apelpapa, apelmama";
             $consult = DB::select($consulta);

@@ -40,28 +40,28 @@
       			<option value="0000">Seleccione año</option>
       		@endif
       		<!-- Año pasado -->
-      		@if($data['year_matricula'] == $años['lastY'])
-      			<option value="{{$años['lastY']}}" selected>{{$años['last']}}</option>
+      		@if($data['year_matricula'] == $anos['lastY'])
+      			<option value="{{$anos['lastY']}}" selected>{{$anos['last']}}</option>
       		@else
-      			<option value="{{$años['lastY']}}">{{$años['last']}}</option>
+      			<option value="{{$anos['lastY']}}">{{$anos['last']}}</option>
       		@endif
       		<!-- Año Actual -->
-      		@if($data['year_matricula'] == $años['year'])
-      		<option value="{{$años['year']}}" selected>{{$años['act']}}</option>
+      		@if($data['year_matricula'] == $anos['year'])
+      		<option value="{{$anos['year']}}" selected>{{$anos['act']}}</option>
       		@else
-      		<option value="{{$años['year']}}">{{$años['act']}}</option>
+      		<option value="{{$anos['year']}}">{{$anos['act']}}</option>
       		@endif
       		<!-- Año Siguiente -->
-      		@if($data['year_matricula'] == $años['nextY'])
-      		<option value="{{$años['nextY']}}" selected>{{$años['next']}}</option>
+      		@if($data['year_matricula'] == $anos['nextY'])
+      		<option value="{{$anos['nextY']}}" selected>{{$anos['next']}}</option>
       		@else
-      		<option value="{{$años['nextY']}}">{{$años['next']}}</option>
+      		<option value="{{$anos['nextY']}}">{{$anos['next']}}</option>
       		@endif
       	</select>
         
         @else
       	
-      	{{ Form::select('year_matricula', array('0000'=>'Seleccione año',$años['lastY'] => $años['last'] , $años['year'] => $años['act'],$años['nextY'] => $años['next'])); }}
+      	{{ Form::select('year_matricula', array('0000'=>'Seleccione año',$anos['lastY'] => $anos['last'] , $anos['year'] => $anos['act'],$anos['nextY'] => $anos['next'])); }}
         
         @endif
 
