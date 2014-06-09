@@ -90,9 +90,7 @@ class Legalizar extends Eloquent
 	}
 
 	public function matriculasLegalizadasY_A($tabla,$name){
-		$consulta = "
-                  SELECT
-                  "
+		$consulta = "SELECT"
                   .$tabla.".matricula,
                   CONCAT_WS(' ',".$tabla.".`names`,".$tabla.".`fname`,".$tabla.".`lname`) AS namealum,
                   CONCAT_WS(' ',padres_cch.`nombres_padre`,padres_cch.`apel1_padre`,padres_cch.`apel2_padre`) AS namepapa,
@@ -128,24 +126,26 @@ class Legalizar extends Eloquent
             ->get();
             return $padre;
       }
+
       public function srch_hijos($idP,$idM,$tabla){
             $hijos = DB::table($tabla)->select($tabla.'.id',
                   DB::raw("CONCAT_WS(' ', fname, lname, names) as nombre"),
                   DB::raw("DATE_FORMAT(FROM_DAYS(TO_DAYS(NOW())-TO_DAYS(date_born)), '%Y')+0 AS age"),
                   'grados.nombre as grado',
-                  'tipodocumento.name_tipodoc',
+                  'tipodocumento.name',
                   'num_document',
                   'direccion',
                   'telefono',
                   'paises.name_pais',   
                   'ciudades.nombre_ciudad',
                   'rh',
-                  'grupo_san'
-            )
-            ->join('grados','grados.id','=',$tabla.'.grado')
-            ->join('ciudades','ciudades.id_ciudad','=',$tabla.'.city_born')
+                  'grupo_san',
+                  'date_born',
+                  'date_matricula as fecha')
+            ->join('tipodocumento','tipodocumento.id','=',$tabla.'.tipo_document')
             ->join('paises','paises.id_pais','=',$tabla.'.pais_born')
-            ->join('tipodocumento','tipodocumento.id_tipodoc','=',$tabla.'.tipo_document')
+            ->join('ciudades','ciudades.id_ciudad','=',$tabla.'.city_born')
+            ->join('grados','grados.id','=',$tabla.'.grado')
             ->where('papa','=',$idP)
             ->where('mama','=',$idM)
             ->orderBy('age', 'desc')
@@ -181,7 +181,8 @@ class Legalizar extends Eloquent
                   'email_padre as email',
                   'direccion',
                   'profesion_padre',
-                  'empresa_padre'
+                  'empresa_padre',
+                  'tel_oficina_padre as oficina'
             )
             ->where('id_padre','=',$id)
             ->get();

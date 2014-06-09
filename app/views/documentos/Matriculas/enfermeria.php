@@ -36,11 +36,9 @@
         padding: 2px;
       }
       .firma{
-        width:200px;
-        border-top:solid black;
-      }
-      .firma{
         border-top: solid #000 1px;
+        margin-top: 50px;
+        width: 250px;
       }
       .cch{
         width:50%;
@@ -90,13 +88,13 @@
       </tr>
       <tr>
       <th>Tipo documento</th>
-      <td><?=$infohijo['name_tipodoc']?></td>
+      <td><?=$infohijo['name']?></td>
       <th>Num. Identificación</th>
       <td><?=$infohijo['num_document']?></td>
       </tr>
       <tr>
-        <th>Lugar de nacimiento, Ciudad/ pais</th>
-        <td><?=$infohijo['nombre_ciudad']?>/<?=$infohijo['name_pais']?></td>
+        <th>Lugar de nacimiento, Ciudad / pais</th>
+        <td><?=$infohijo['nombre_ciudad']?> / <?=$infohijo['name_pais']?></td>
         <th>RH</th>
         <td><?=$infohijo['grupo_san'].$infohijo['rh']?></td>
       </tr>
@@ -232,33 +230,32 @@
 
     <tr>
       <th>Toma actualmente alguna medicina: 
-        ______________________________________
+        ________________________________________________________________________________
       </th>
     </tr>
     <tr>
-      <th>Autorizo en caso necesario suministrar:</th>
-      <td class="diligencia"></td>
+      <th>Autorizo en caso necesario suministrar: ___________________________________________________________</th>
     </tr>
     <tr>
-      <th>Onservaciones: 
+      <th>Observaciones: 
         ____________________________________________________________________________________________________
       </th>
       
     </tr>
 
     <tr>
-      <th><p>Autorizo al colegio Colombo Hebreo, para llevar
-        a mi infohijo(a) ala clinica en case de emergencia par su atención y tratamiento</p></th>
+      <th><p>Autorizo al colegio Colombo Hebreo, para llevar a mi hijo(a) ala clinica en case de emergencia par su atención y tratamiento</p></th>
     </tr>
     </table>
 
+    <div></div>
     <div class="firma">
       <p><strong>Firma del padre / acudiente</strong></p>
       <p><strong></strong></p>
     </div>
   </div>
-  <?php }?>
 
+  <?php }?>
 
 </body>
 </html>

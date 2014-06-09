@@ -17,8 +17,7 @@ class DocsMatriculaController extends Controller
 		$indentification = "Num doc presidente";
 		$yearLectivo = "2014 - 2015";
 			
-		$meses = array(
-			'' , 
+		$meses = array('' , 
 			'Enero' , 
 			'Febrero' , 
 			'Marzo' , 
@@ -54,6 +53,11 @@ class DocsMatriculaController extends Controller
 		$acu = $this->_legalizar->srch_acu($idP, $idM, $tabla);
 		$acu = get_object_vars($acu[0]);
 
+
+		// echo "<pre>";
+		// 	print_r($padres);
+		// echo "<pre>";
+		// return "lll";
 		if($type == 1){
 			$view = View::Make('documentos.Matriculas.contrato')->with(
 				array('firma'=>$typeFirma,
@@ -75,9 +79,6 @@ class DocsMatriculaController extends Controller
 			return $pdf->stream();
 		}
 		if($type == 3){
-			
-
-
 			$view = View::Make('documentos.Matriculas.contabilidad')->with(
 				array(
 					'padres'=>$padres,
@@ -102,7 +103,12 @@ class DocsMatriculaController extends Controller
 			
 		}
 		if($type == 5){
-			$view = View::Make('documentos.Matriculas.matricula');
+			$view = View::Make('documentos.Matriculas.matricula')->with(
+			array('padres'=>$padres,
+				'hijo'=>$son,
+				'firma'=>$typeFirma,
+				'acudiente'=>$acu,
+				'mes'=>$meses));;
 			$pdf->loadHTML($view)->setPaper('a4');
 			return $pdf->stream();
 		}

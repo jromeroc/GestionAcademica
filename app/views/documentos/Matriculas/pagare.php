@@ -45,7 +45,7 @@
 				width:50%;
 				margin: 50px;
 			}
-			
+
 			#img{
 				width: 250px;
 				height: 130px;
@@ -72,7 +72,7 @@
 		</style>
 		<title> Doc. Pagare </title>
 	</head>
-		
+
 	<body>
 		<?php
 				if ($firma == 1){ 
