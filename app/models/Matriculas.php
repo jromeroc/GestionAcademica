@@ -158,7 +158,7 @@ class Matriculas extends Eloquent
     }
 
     public function srch_N_alum($tabla,$ida){
-        $alum = DB::table($tabla)->select(DB::raw("CONCAT_WS(' ',names,fname,lname) as value"))->where('id','=',$ida)->get();
+        $alum = DB::table($tabla)->select(DB::raw("CONCAT_WS(' ',names,fname,lname) as names"))->where('id','=',$ida)->get();
         return $alum;
     }
 
