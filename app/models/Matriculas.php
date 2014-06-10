@@ -158,7 +158,7 @@ class Matriculas extends Eloquent
     }
 
     public function srch_N_alum($tabla,$ida){
-        $alum = DB::table($tabla)->select('names')->where('id','=',$ida)->get();
+        $alum = DB::table($tabla)->select(DB::raw("CONCAT_WS(' ',names,fname,lname) as value"))->where('id','=',$ida)->get();
         return $alum;
     }
 
@@ -437,7 +437,7 @@ class Matriculas extends Eloquent
                     'acudiente'          => $data['acudiente'],
                     // 'lastschool'         => $data[''],
                     'exp_document'       => $data['id_city_exp'],
-                    // 'matricula'          => $data['codigoMatri'],
+                    'matricula'          => $data['codigoMatri'],
                     'date_born'          => $data['fecha_nac']
                 )
             );

@@ -497,14 +497,20 @@ class MatriculasController extends BaseController
 		
 		$codigoMatri = $this->_matricula->srch_cod_matri($tabla,$id);
 		$codigoMatri = get_object_vars($codigoMatri[0]);
-		if ($codigoMatri == 0) {
+		foreach ($codigoMatri as $codiM) {
+			$codM = $codiM;
+		}
+		if ($codM == 0) {
+			// echo $codM;
 			$codigoMatri = $this->_matricula->cod_matri($tabla);
 			$codigoMatri = $codigoMatri +1;
+			// echo $codigoMatri;
 		} 
 		$data['codigoMatri']=$codigoMatri;
 		$grados = Grado::all()->lists('nombre','id');
 		array_unshift($grados, "Seleccione Grado");
 		$anos = $this->asign_year();
+		// echo $data['codigoMatri'];
 		$update = $this->_matricula->update_matri($id,$tabla,$data);
 		
 		return View::Make('matriculas.matriculados')->with(array('grados'=>$grados,'anos'=>$anos,'mensaje_update'=>'Matricula Actualizada correctamente'));
@@ -531,7 +537,11 @@ class MatriculasController extends BaseController
 			$action ="Guardado";
 		}
 		$tabla = $this->asignTabla($data['year']);
-
+		$name = $this->_matricula->srch_N_alum($tabla,$data['id_alum']);
+		$name = get_object_vars($name[0]);
+		foreach ($name as $nameAlum ) {
+			$nombre = $nameAlum;
+		}
 		if ($data['genero']==1) 
 		{
 			$id_papa = $this->_matricula->srch_papa_ndoc($data['Num_docP']);
@@ -548,15 +558,15 @@ class MatriculasController extends BaseController
 		}
 		if (!empty($data['tipoR'])) {
 			if (!empty($data['codM'])) {
-				return View::make('matriculas.info-complementaria')->with(array('save'=>'Se han '.$action.' correctamente los datos del Padre','tipoR' => $data['tipoR'],'name'=>$data['name'],'id_alum'=>$data['id_alum'],'year'=>$data['year'],'action'=>$action,'codM'=>$data['codM']));
+				return View::make('matriculas.info-complementaria')->with(array('save'=>'Se han '.$action.' correctamente los datos del Padre','tipoR' => $data['tipoR'],'name'=>$nombre,'id_alum'=>$data['id_alum'],'year'=>$data['year'],'action'=>$action,'codM'=>$data['codM']));
 			}
 			$tabla = $this->asignTabla($data['year']);
 			$codM = $this->_matricula->srch_CodM_alum($tabla,$data['id_alum']);
 			$codM = get_object_vars($codM[0]);
 			$codM = $codM['matricula'];
-			return View::make('matriculas.info-complementaria')->with(array('save'=>'Se han '.$action.' correctamente los datos del Padre','tipoR' => $data['tipoR'],'name'=>$data['name'],'id_alum'=>$data['id_alum'],'year'=>$data['year'],'action'=>$action,'codM'=>$codM));
+			return View::make('matriculas.info-complementaria')->with(array('save'=>'Se han '.$action.' correctamente los datos del Padre','tipoR' => $data['tipoR'],'name'=>$nombre,'id_alum'=>$data['id_alum'],'year'=>$data['year'],'action'=>$action,'codM'=>$codM));
 		}
-		return View::make('matriculas.info-complementaria')->with(array('save'=>'Se han '.$action.' correctamente los datos del Padre','tipoR' => $data['tipoR'],'name'=>$data['name'],'id_alum'=>$data['id_alum'],'year'=>$data['year'],'action'=>$action));
+		return View::make('matriculas.info-complementaria')->with(array('save'=>'Se han '.$action.' correctamente los datos del Padre','tipoR' => $data['tipoR'],'name'=>$nombre,'id_alum'=>$data['id_alum'],'year'=>$data['year'],'action'=>$action));
 		
 		}
 

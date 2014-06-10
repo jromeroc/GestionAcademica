@@ -20,7 +20,7 @@
             </div>
 
             <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
-              <h3 class="panel-title"><strong>Codigo Matricula:</strong> {{$codM}} </h3>
+              <h3 class="panel-title"><strong>Matricula:</strong> {{$codM}} </h3>
             </div>
 
           </div>

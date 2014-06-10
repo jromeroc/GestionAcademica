@@ -560,11 +560,23 @@
             @endif
           </div>
         </div>
+        @if(isset($alum))
           {{ Form::hidden('papa',$alum['papa'], array('id' => 'papa')) }}
+        @else
+          {{ Form::hidden('papa',null, array('id' => 'papa')) }}
+        @endif
 
+        @if(isset($alum))
           {{ Form::hidden('mama',$alum['mama'], array('id' => 'mama')) }}
+        @else
+          {{ Form::hidden('mama',null, array('id' => 'mama')) }}
+        @endif
         
-        {{ Form::hidden('acudiente',$alum['alumnos_acudiente'], array('id' => 'acudiente')) }}
+        @if(isset($alum))
+          {{ Form::hidden('acudiente',$alum['alumnos_acudiente'], array('id' => 'acudiente')) }}
+        @else
+          {{ Form::hidden('acudiente',null, array('id' => 'acudiente')) }}
+        @endif
     {{Form::close()}}
 @stop
 
