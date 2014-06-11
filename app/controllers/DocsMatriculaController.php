@@ -52,12 +52,6 @@ class DocsMatriculaController extends Controller
 		}	
 		$acu = $this->_legalizar->srch_acu($idP, $idM, $tabla);
 		$acu = get_object_vars($acu[0]);
-
-
-		// echo "<pre>";
-		// 	print_r($padres);
-		// echo "<pre>";
-		// return "lll";
 		if($type == 1){
 			$view = View::Make('documentos.Matriculas.contrato')->with(
 				array('firma'=>$typeFirma,
@@ -109,7 +103,7 @@ class DocsMatriculaController extends Controller
 				'hijo'=>$son,
 				'firma'=>$typeFirma,
 				'acudiente'=>$acu,
-				'mes'=>$meses));;
+				'mes'=>$meses));
 			$pdf->loadHTML($view)->setPaper('a4');
 			return $pdf->stream();
 		}

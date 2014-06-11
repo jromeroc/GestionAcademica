@@ -244,7 +244,7 @@
     </tr>
 
     <tr>
-      <th><p>Autorizo al colegio Colombo Hebreo, para llevar a mi hijo(a) ala clinica en case de emergencia par su atención y tratamiento</p></th>
+      <th><p>Autorizo al colegio Colombo Hebreo, para llevar a mi hijo(a) ala clinica en caso de emergencia par su atención y tratamiento</p></th>
     </tr>
     </table>
 

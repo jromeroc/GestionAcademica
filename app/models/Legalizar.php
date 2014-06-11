@@ -141,7 +141,8 @@ class Legalizar extends Eloquent
                   'rh',
                   'grupo_san',
                   'date_born',
-                  'date_matricula as fecha')
+                  'date_matricula as fecha',
+                  'matricula')
             ->join('tipodocumento','tipodocumento.id','=',$tabla.'.tipo_document')
             ->join('paises','paises.id_pais','=',$tabla.'.pais_born')
             ->join('ciudades','ciudades.id_ciudad','=',$tabla.'.city_born')

@@ -54,6 +54,8 @@
 	</style>
 </head>
 <body>
+
+
 	<?php foreach ($hijo as $infohijo) { ?>
 	<div style="page-break-after: always;">
 		<div id="encabezado">
@@ -72,6 +74,11 @@
 		<p class="fecha"><strong>Bogotá <?= $fecha[2]?> de <?= $mes[intval($fecha[1])]?> del <?= $fecha[0]?></strong></p>
 		<div>
 			<table>
+				<tr>
+					<th>Codigo Matricula</th>
+					<td ><?=$infohijo['matricula']?></td>
+					<th >Folio</th>
+				</tr>
 				<tr>
 					<th>Nombre del estudiante</th>
 					<td colspan="3"><?=$infohijo['nombre']?></td>
@@ -107,6 +114,7 @@
 		</div>
 
 		<?php
+		if (isset($padres['papa']['id'])) {
 		if ($padres['papa']['id'] != 1){
 		?>	
 		<div>
@@ -127,9 +135,10 @@
 			</table>
 		</div>
 		<?php
-		}
+		} } 
 		?>
 		<?php
+		if (isset($padres['mama']['id'])){
 		if ($padres['mama']['id'] != 1){
 		?>	
 		<div>
@@ -150,7 +159,7 @@
 			</table>
 		</div>
 		<?php
-		}
+		}}
 		?>
 		
 		<div >

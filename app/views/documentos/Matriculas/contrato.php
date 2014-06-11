@@ -7,7 +7,7 @@
 			}
 			p{
 				text-align : justify;
-				margin: 10px 30px;
+				margin: 20px 30px;
 			}
 			li{
 				text-align : justify;
