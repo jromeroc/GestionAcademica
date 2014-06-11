@@ -3,10 +3,10 @@
 
 @section('title')
 @parent
-.:: Observaciones ::.
+.:: Legalizaciones ::.
 @stop
 
 @section('modulo')
-  <h1>Matriculas <small>Seccion de Matriculas</small></h1>
+  <h1>Legalizaciones<small>[Matriculas]</small></h1>
 @stop
 @section('content')
