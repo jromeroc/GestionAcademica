@@ -6,7 +6,7 @@ class Matriculas extends Eloquent
     protected $perPage = 2;
 	public function autoCompletename($alum,$year,$tablaAlumnos)
 	{	
-		$consult = DB::table($tablaAlumnos)->select("*",DB::raw("CONCAT_WS(' ',lname,fname,names) as value, id"))
+		$consult = DB::table($tablaAlumnos)->select("*",DB::raw("CONCAT_WS(' ',fname,lname,names) as value, id"))
 		->join('paises',$tablaAlumnos.'.pais_born', '=', 'paises.id_pais')
         ->join('ciudades',$tablaAlumnos.'.city_born', '=', 'ciudades.id_ciudad')
 		->whereRaw("CONCAT_WS(' ',lname,fname,names) LIKE '%".$alum."%'")
@@ -159,6 +159,11 @@ class Matriculas extends Eloquent
 
     public function srch_N_alum($tabla,$ida){
         $alum = DB::table($tabla)->select(DB::raw("CONCAT_WS(' ',names,fname,lname) as names"))->where('id','=',$ida)->get();
+        return $ida;
+    }
+
+    public function srch_Name_alum($tabla,$ida){
+        $alum = DB::table($tabla)->select('names')->where('id','=',$ida)->get();
         return $alum;
     }
 

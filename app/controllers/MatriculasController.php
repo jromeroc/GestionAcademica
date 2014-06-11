@@ -10,6 +10,10 @@ class MatriculasController extends BaseController
 		$this->_matricula = new Matriculas();
 	}
 
+	public function index(){
+		return View::Make('matriculas.principal');
+	}
+
 	public function asign_year(){
 		$year=date('Y');
 		$anterior = $year-2;
@@ -98,7 +102,12 @@ class MatriculasController extends BaseController
 					}
 
 					if (!empty($data['id_alum'])) {	
-						return View::make('matriculas.info-complementaria')->with(array('tipoR'=>$data['T-reg'],'name'=>$data['alum'],'year'=>$data['year_matricula'],'id_alum'=>$data['id_alum'],'codM'=>$codigoMatri));
+						$year=$data['year_matricula']+1;
+						$tabla = $this->asignTabla($year);
+						$id_alum = $this->_matricula->srchid_alum($tabla,$data['n_document']);
+						$id_alum = get_object_vars($id_alum[0]);
+						$id_alum = $id_alum['id'];
+						return View::make('matriculas.info-complementaria')->with(array('tipoR'=>$data['T-reg'],'name'=>$data['alum'],'year'=>$data['year_matricula'],'id_alum'=>$id_alum,'codM'=>$codigoMatri));
 					}
 					else{
 						if (!empty($data['n_document'])) {
@@ -140,8 +149,13 @@ class MatriculasController extends BaseController
 						$name = $name['value'];
 					}
 
-					if (!empty($data['id_alum'])) {	
-						return View::make('matriculas.info-complementaria')->with(array('tipoR'=>$data['T-reg'],'name'=>$name,'year'=>$data['year_matricula'],'id_alum'=>$data['id_alum']));
+					if (!empty($data['id_alum'])) {
+						$year=$data['year_matricula']+1;
+						$tabla = $this->asignTabla($year);
+						$id_alum = $this->_matricula->srchid_alum($tabla,$data['n_document']);
+						$id_alum = get_object_vars($id_alum[0]);
+						$id_alum = $id_alum['id'];
+						return View::make('matriculas.info-complementaria')->with(array('tipoR'=>$data['T-reg'],'name'=>$name,'year'=>$data['year_matricula'],'id_alum'=>$id_alum));
 					}
 					else{
 						if (!empty($data['n_document'])) {
@@ -200,7 +214,7 @@ class MatriculasController extends BaseController
 		{
 			$tabla = $this->asignTabla($year);
 			
-			$alum = $this->_matricula->srch_N_alum($tabla,$id);
+			$alum = $this->_matricula->srch_Name_alum($tabla,$id);
 			$alum = get_object_vars($alum[0]);
 			$alum = $alum['names'];
 			
@@ -241,7 +255,7 @@ class MatriculasController extends BaseController
 		if (!empty($id))
 		{
 			$tabla = $this->asignTabla($year);
-			$alum = $this->_matricula->srch_N_alum($tabla,$id);
+			$alum = $this->_matricula->srch_Name_alum($tabla,$id);
 			$alum = get_object_vars($alum[0]);
 			$alum = $alum['names'];
 
@@ -320,7 +334,7 @@ class MatriculasController extends BaseController
 		if (!empty($id))
 		{
 			$tabla = $this->asignTabla($year);
-			$alum = $this->_matricula->srch_N_alum($tabla,$id);
+			$alum = $this->_matricula->srch_Name_alum($tabla,$id);
 			$alum = get_object_vars($alum[0]);
 			$alum = $alum['names'];
 
@@ -537,7 +551,7 @@ class MatriculasController extends BaseController
 			$action ="Guardado";
 		}
 		$tabla = $this->asignTabla($data['year']);
-		$name = $this->_matricula->srch_N_alum($tabla,$data['id_alum']);
+		$name = $this->_matricula->srch_Name_alum($tabla,$data['id_alum']);
 		$name = get_object_vars($name[0]);
 		foreach ($name as $nameAlum ) {
 			$nombre = $nameAlum;

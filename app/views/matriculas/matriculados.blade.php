@@ -89,7 +89,7 @@
 	{{Form::close()}}
 
 	@if(!empty($alumnos))
-	@include('matriculas.allalums')
+    @include('matriculas.allalums')
 	@endif
 
 	@if(!empty($mensaje))

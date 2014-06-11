@@ -65,7 +65,7 @@ class AuthController extends BaseController {
         Auth::logout();
 
         // Redirect to homepage
-        return Redirect::to('')->with('success', 'You are logged out');
+        return Redirect::to('/')->with('success', 'You are logged out');
     }
 }
 
