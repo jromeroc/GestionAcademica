@@ -26,7 +26,7 @@ $(document).on('ready',function(){
 			select: function(event,ui) 
 			{
 				$("#id_alum").val(ui.item.id);
-				$("#alum").val(ui.item.names);
+				$("#nombre_alumno").val(ui.item.names);
 				$("#fname").val(ui.item.fname);
 				$("#lnane").val(ui.item.lname);
 				$("#tipo_doc").val(ui.item.tipo_document);

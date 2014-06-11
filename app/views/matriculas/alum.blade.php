@@ -41,7 +41,7 @@
   		<div class="form-group col-sm-12">
       	{{ Form::label('year_matricula', 'Año Matricula', array('class' => 'col-sm-2 control-label')) }}
         <div class="col-sm-2">
-      		{{ Form::select('year_matricula', array('0000'=>'Seleccione año',$anos['lastY'] => $anos['last'] , $anos['year'] => $anos['act'],$anos['nextY'] => $anos['next'])); }}
+      		{{ Form::select('year_matricula', array('0000'=>'Seleccione año',$anos['lastY'] => $anos['last'] , $anos['year'] => $anos['act'],$anos['nextY'] => $anos['next']),$ano_matri); }}
       	</div>
       </div>
 
@@ -145,6 +145,7 @@
         </div>
       </div>
       {{ Form::hidden('id_alum',null, array('id' => 'id_alum')) }}
+      {{ Form::hidden('nombre_alumno',null, array('id' => 'nombre_alumno')) }}
       
       <!-- Apellido 1  !-->
   		<div class="form-group col-sm-12">
@@ -330,7 +331,7 @@
               'B'  => 'B',
               'AB' => 'AB',
               'O' => 'O'
-              )); }}
+              ),$alum['grupo_san']); }}
           @else
             {{ Form::select('g_sang', array(
               ''=>'Seleccione Grupo',

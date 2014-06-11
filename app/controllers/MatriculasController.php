@@ -94,6 +94,9 @@ class MatriculasController extends BaseController
 					$tipos = Tipodoc::all()->lists('name','id');
 					$tabla = $this->asignTabla($data['year_matricula']);
 					$data['codigoMatri']=$codigoMatri;
+					if (!empty($data['id_alum'])) {	
+						$data['alum'] = $data['nombre_alumno'];	
+					}
 					$save = $this->_matricula->saveMatricula($data,$tabla);
 					if (!empty($data['n_document'])) {
 						$name = $this->_matricula->srchNameAlum($tabla,$data['n_document']);
@@ -107,7 +110,7 @@ class MatriculasController extends BaseController
 						$id_alum = $this->_matricula->srchid_alum($tabla,$data['n_document']);
 						$id_alum = get_object_vars($id_alum[0]);
 						$id_alum = $id_alum['id'];
-						return View::make('matriculas.info-complementaria')->with(array('tipoR'=>$data['T-reg'],'name'=>$data['alum'],'year'=>$data['year_matricula'],'id_alum'=>$id_alum,'codM'=>$codigoMatri));
+						return View::make('matriculas.info-complementaria')->with(array('tipoR'=>$data['T-reg'],'name'=>$name,'year'=>$data['year_matricula'],'id_alum'=>$id_alum,'codM'=>$codigoMatri));
 					}
 					else{
 						if (!empty($data['n_document'])) {
@@ -142,6 +145,9 @@ class MatriculasController extends BaseController
 				{
 					$tipos = Tipodoc::all()->lists('name','id');
 					$tabla = $this->asignTabla($data['year_matricula']);
+					if (!empty($data['id_alum'])) {	
+						$data['alum'] = $data['nombre_alumno'];	
+					}
 					$save = $this->_matricula->saveInscripcion($data,$tabla);
 					if (!empty($data['n_document'])) {
 						$name = $this->_matricula->srchNameAlum($tabla,$data['n_document']);
@@ -484,7 +490,6 @@ class MatriculasController extends BaseController
 
 		$datos_alum = $this->_matricula->srch_alum_edit($id,$tabla);
 		$datos_alum = get_object_vars($datos_alum[0]);
-		
 		return View::Make('matriculas.alum')->with(array('anos' => $anos,'tipodoc'=>$tipos,'grado'=>$grados,'alum'=>$datos_alum,'id_alum'=>$id,'ano_matri'=>$ano));
 	}
 

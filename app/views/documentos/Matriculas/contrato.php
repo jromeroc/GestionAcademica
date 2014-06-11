@@ -628,18 +628,10 @@
 			</div>
 			<table class="firmas">
 			<tr>
-				<td class="firma"><strong>NOMBRE ASESOR DE MATRICULA</strong></td>
-				<td></td>	
+				<td class="firma"><strong>COLEGIO COLOMBO HEBREO</strong>
+				<br><strong>REPRESENTANTE LEGAL</strong>
+				</td>
 				<td class="firma"><strong>ESTUDIANTE</strong></td>
-			</tr>
-			</table>
-
-			<table class="cch">
-			<tr>
-				<td class="firma"><strong>COLEGIO COLOMBO HEBREO</strong></td>
-			</tr>
-			<tr>
-				<td><strong>REPRESENTANTE LEGAL</strong></td>
 			</tr>
 			</table>
 

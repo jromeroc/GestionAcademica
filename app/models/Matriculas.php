@@ -159,7 +159,7 @@ class Matriculas extends Eloquent
 
     public function srch_N_alum($tabla,$ida){
         $alum = DB::table($tabla)->select(DB::raw("CONCAT_WS(' ',names,fname,lname) as names"))->where('id','=',$ida)->get();
-        return $ida;
+        return $alum;
     }
 
     public function srch_Name_alum($tabla,$ida){
