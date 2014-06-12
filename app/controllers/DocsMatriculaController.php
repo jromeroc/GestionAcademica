@@ -60,7 +60,7 @@ class DocsMatriculaController extends Controller
 					'indentification' => $indentification,
 					'hijos'=>$son,
 					'mes'=>$meses));
-			$pdf->loadHTML($view)->setPaper('a4');
+			$pdf->loadHTML($view)->setPaper('letter');
 			return $pdf->stream();
 		}
 		if($type == 2){
@@ -70,7 +70,7 @@ class DocsMatriculaController extends Controller
 					'firma'=>$typeFirma,
 					'mes'=>$meses));
 
-			$pdf->loadHTML($view)->setPaper('a4');
+			$pdf->loadHTML($view)->setPaper('letter');
 			return $pdf->stream();
 		}
 		if($type == 3){
@@ -82,7 +82,7 @@ class DocsMatriculaController extends Controller
 					'acudiente'=>$acu,
 					'mes'=>$meses));
 
-			$pdf->loadHTML($view)->setPaper('a4');
+			$pdf->loadHTML($view)->setPaper('letter');
 			return $pdf->stream();
 		}
 		if($type == 4){
@@ -104,7 +104,7 @@ class DocsMatriculaController extends Controller
 				'firma'=>$typeFirma,
 				'acudiente'=>$acu,
 				'mes'=>$meses));
-			$pdf->loadHTML($view)->setPaper('a4');
+			$pdf->loadHTML($view)->setPaper('letter');
 			return $pdf->stream();
 		}
 	}
