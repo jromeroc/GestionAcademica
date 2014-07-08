@@ -71,7 +71,7 @@ class Matriculas extends Eloquent
     			'acudiente'          => $data['acudiente'],
     			// 'lastschool'         => $data[''],
                 'exp_document'       => $data['id_city_exp'],
-    			'matricula'          => $data['codigoMatri'],
+    			'matricula'          => $data['num_matricula'],
                 'date_born'          => $data['fecha_nac']
     		)
 		);

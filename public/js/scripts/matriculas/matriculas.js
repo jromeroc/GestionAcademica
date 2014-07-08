@@ -9,10 +9,18 @@ $(document).on('ready',function(){
 
 	$('#Matricula').on('click',function(){
 			$('#fecha').fadeIn();
+			$.ajax({
+			  type : 'GET',	
+			  url: root+"/matriculas/matricula/"+$('#year_matricula').val(),
+			}).done(function(data) {
+			  $('#num_matricula').val(data);		
+			  $('#num_matricula').fadeIn();
+			});
 	});
 
 	$('#Inscripcion').on('click',function(){		
 		$('#fecha').fadeOut();
+		$('#year_matricula').val('');
 	});
 
 	
@@ -26,6 +34,7 @@ $(document).on('ready',function(){
 			select: function(event,ui) 
 			{
 				$("#id_alum").val(ui.item.id);
+				$("#alum").val(ui.names);
 				$("#nombre_alumno").val(ui.item.names);
 				$("#fname").val(ui.item.fname);
 				$("#lnane").val(ui.item.lname);

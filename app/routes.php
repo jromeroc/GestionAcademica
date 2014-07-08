@@ -152,8 +152,9 @@ Route::group(array('prefix' => 'matriculas'), function(){
 	Route::group(array('before' => 'auth'), function(){
 		Route::group(array('before' => 'permit'), function(){
 			Route::get('/', 'MatriculasController@index');
-			Route::get('matricular', 'MatriculasController@MatriculaAlum');
-			Route::post('nuevo', 'MatriculasController@nuevo');
+			Route::get('nuevo', 'MatriculasController@matriculaAlum');
+			Route::post('nuevo', 'MatriculasController@nuevaMatricula');
+			Route::get('matricula/{num1}', 'MatriculasController@getMatricula')->where(array('num1'=>'[0-9]+'));
 			Route::get('infocomp', 'MatriculasController@infocomp');
 			Route::get('padre/{num1}/{num2}', 'MatriculasController@padre')->where(array('num1'=>'[0-9]+','num2'=>'[0-9]+'));
 			Route::get('madre/{num1}/{num2}', 'MatriculasController@madre')->where(array('num1'=>'[0-9]+','num2'=>'[0-9]+'));

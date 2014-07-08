@@ -15,6 +15,7 @@ class MatriculasController extends BaseController
 	}
 
 	public function asign_year(){
+		
 		$year=date('Y');
 		$anterior = $year-2;
 		
@@ -43,18 +44,23 @@ class MatriculasController extends BaseController
 		return $anos;
 	}
 
-	public function MatriculaAlum(){
+	public function getMatricula($year){
+		$tabla = $this->asignTabla($year);
+		$cod = $this->_matricula->cod_matri($tabla);
+		echo $cod+1;
+	}
+
+	public function matriculaAlum(){
 		
 		$tipos = Tipodoc::all()->lists('name','id');
 		$grados = Grado::all()->lists('nombre','id');
 		array_unshift($grados, "Seleccione Grado");
 		$anos = $this->asign_year();
-		
-		
+				
 		return View::Make('matriculas.alum')->with(array('anos' => $anos,'tipodoc'=>$tipos,'grado'=>$grados));
 	}
 
-	public function nuevo(){
+	public function nuevaMatricula(){
 		if(Input::get())
 		{
 			$data = Input::all();			
@@ -93,7 +99,7 @@ class MatriculasController extends BaseController
 				{
 					$tipos = Tipodoc::all()->lists('name','id');
 					$tabla = $this->asignTabla($data['year_matricula']);
-					$data['codigoMatri']=$codigoMatri;
+					
 					if (!empty($data['id_alum'])) {	
 						$data['alum'] = $data['nombre_alumno'];	
 					}

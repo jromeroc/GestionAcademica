@@ -49,21 +49,20 @@
       	</div>
       </div>
 
-  		<div class="form-group col-sm-12">
+  		<div class="form-group">
       	
         @if(empty($alum))
           {{ Form::label('tipo_reg', 'Tipo de Registro', array('class' => 'col-sm-2 control-label')) }}
           <!-- Inscripcion  !-->
-          <div class="col-sm-1">
+          <div class="col-sm-2">
             <div class="radio">
               <label>
-                <input type="radio" id="Inscripcion" name="T-reg" value="0">
-                Inscripcion
+                <input type="radio" id="Inscripcion" name="T-reg" value="0">Inscripción
               </label>
             </div>
           </div>
         	<!-- Matricula  !-->
-          <div class="col-sm-1">
+          <div class="col-sm-2">
             <div class="radio">
               <label>
                 <input type="radio" id="Matricula" name="T-reg" value="1">
@@ -74,9 +73,8 @@
         @endif
 
         @if(!empty($alum))
-          {{ Form::label('tipo_reg', 'Tipo de Registro', array('class' => 'col-sm-2 control-label')) }}
-
-          <div class="col-sm-1">
+          {{ Form::label('tipo_reg', 'Tipo de Registro', array('class' => 'control-label')) }}
+       
             <div class="radio">
                 <label>
                   @if($alum['matriculado']==0)
@@ -88,9 +86,9 @@
                   @endif
                 </label>
             </div>
-          </div>
+          
           <!-- Matricula  !-->
-          <div class="col-sm-1">
+          <div class="col-sm-4">
             <div class="radio">
               <label>
                 @if($alum['matriculado']==1)
@@ -115,6 +113,14 @@
           {{ Form::Text('fecha_matricula', $alum['date_matricula'], array('placeholder' => 'Fecha Matricula', 'class' => 'col-sm-2 form-control')) }}
           @else
       		{{ Form::Text('fecha_matricula', null, array('placeholder' => 'Fecha Matricula', 'class' => 'col-sm-2 form-control')) }}
+          @endif
+        </div>
+        {{ Form::label('num_matricula', 'Número matricula', array('class' => 'col-sm-2 control-label')) }}
+        <div class="col-sm-2"> 
+          @if(!empty($alum['num_matricula']))
+            {{ Form::Text('num_matricula', $alum['num_matricula'], array('placeholder' => 'Número Matricula', 'class' => 'col-sm-2 form-control')) }}
+          @else
+            {{ Form::Text('num_matricula', null, array('placeholder' => 'Número Matricula', 'class' => 'col-sm-2 form-control')) }}
           @endif
         </div>
       </div>
